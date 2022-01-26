@@ -1,0 +1,118 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+### Subregion masks (MNI) {-}
+
+>We defined anterior hippocampus using the Harvard-Oxford atlas mask (thresholded at 50% probability), selecting all voxels anterior to MNI y=-21 based on Poppenk et al. (2013). The resulting anterior hippocampus mask was also co-registered to participants’ functional space and intersected with the participant-specific hippocampal mask from FreeSurfer. The mask for the anterior-lateral entorhinal cortex was based on Navarro Schröder et al. (2015). It was co-registered to participants’ functional space and intersected with the entorhinal cortex mask from FreeSurfer.
+
+Above, we generated masks of the Hippocampus and Entorhinal Cortex based on the Freesurfer segmentation of each participant's structural image. Our hypotheses concern the anterior portion of the hippocampus and the anterior-lateral entorhinal subregion, specifically.  Hence, we want to split the participant-specific masks. 
+
+* For the hippocampus, we will start out with the probabilistic masks based on the Harvard-Oxford atlas delivered with FSL. Masks for the right and left hippocampus  will be combined, thresholded at 50% probability and split in an anterior and posterior section. We will define the anterior hippocampus as all voxels anterior to MNI y = -21 based on [Poppenk et al. (TiCS, 2013)](https://www.sciencedirect.com/science/article/pii/S1364661313000673). They "propose that foci at or anterior to y = -21 mm in MNI space (y = -20 mm in Talairach space) may be regarded as falling in the aHPC, as this coordinate incorporates the uncal apex in the MNI152 template and current neuroanatomical atlases".
+* We will define the anterolateral entorhinal cortex based on [Navarro Schröder et al. (eLife, 2015)](http://elifesciences.org/content/4/e06738). Specifically, we will use a mask for the dominant mode of connectivity change within the EC, which is shown in [Figure 2](https://elifesciences.org/articles/06738/figures#fig2) of the original paper. 
+
+The code below assumes that masks for the left and right hippocampus were extracted from the Harvard-Oxford atlas (MNI space 1mm). Likewise, it assumes the EC subregion masks (MNI space 1mm, obtained from [Tobias Navarro Schröder](https://www.researchgate.net/profile/Tobias_Navarro_Schroeder) to be included in the folder. After the hippocampus masks are combined, thresholded, and split, the masks will be co-registered to the functional analysis space.
+
+```{r, eval = run_prep_rois}
+
+# define the name of the ROIs in MNI space
+rois_hpc_fnames <- here("data", "mri", "rois", "mni_masks", paste0(rois_hpc,".nii.gz"))
+
+# combine atlas mask across hemispheres and split into anterior & posterior if not done
+atlas_fnames <- here("data", "mri", "rois", "mni_masks", 
+                   c("harvardoxford-subcortical_prob_Left_Hippocampus.nii.gz",
+                     "harvardoxford-subcortical_prob_Right_Hippocampus.nii.gz",
+                     "harvardoxford-hpc_lr.nii.gz",
+                     "harvardoxford-hpc_lr_tresh50_bin.nii.gz"))
+# combine the left and right HPC mask from the Harvard-Oxford atlas
+fsl_add(atlas_fnames[1], atlas_fnames[2],outfile = atlas_fnames[3],
+       retimg = FALSE, verbose = FALSE)
+
+# threshold at 50 percent probability
+fsl_thresh(atlas_fnames[3], outfile = atlas_fnames[4], thresh = 50, opts = "-bin",
+           retimg = FALSE, verbose = FALSE)
+
+# create anterior hippocampus ROI by creating a volume with all voxels anterior
+# to MNI y=-21 (y=105 in matrix coordinates) and mask this with the binary HPC ROI
+opts = sprintf("-mul 0 -add 1 -roi 0 182 105 -1 0 182 0 1 -mas %s", atlas_fnames[4])
+fsl_maths(file = atlas_fnames[4], outfile = rois_hpc_fnames[1], opts = opts,
+          retimg = FALSE, verbose = FALSE)
+```
+
+Here are some diagnostic plots for the ROIs that we will use (in MNI 1mm space).
+
+```{r, eval = run_prep_rois}
+# EC ROIs
+rois_ec_fnames <- here("data", "mri", "rois", "mni_masks", paste0(rois_ec,".nii.gz"))
+
+# file names for mni ROIs
+rois_mni_fnames <- c(rois_hpc_fnames, rois_ec_fnames)
+
+# load mni 1mm (here we use the ch2better template from MRIcron)
+#mni_nii <- here("data", "mri", "rois", "mni_masks", "MNI152_T1_1mm_brain.nii.gz") #%>% readNIfTI2()
+mni_nii <- here("data", "mri", "rois", "mni_masks", "ch2better_mni1mm.nii.gz")
+# register to MNI 1mm space if needed
+if(!file.exists(mni_nii)){
+  flirt(infile = here("data", "mri", "rois", "mni_masks", "ch2better.nii.gz"),
+        reffile = here("data", "mri", "rois", "mni_masks", "MNI152_T1_1mm_brain.nii.gz"),
+        outfile = mni_nii, omat = "ch2better_to_mni1mm")
+}
+mni_nii <- readNIfTI2(mni_nii)
+
+for (i_roi in 1:length(rois_mni)){
+  
+  # load roi mask nifti
+  roi_nii <- readNIfTI2(rois_mni_fnames[i_roi])
+  
+  # find coordinates for sensible slices to plot
+  coords <- arrayInd(which(as.logical(img_data(roi_nii))), dim(img_data(roi_nii)))
+  coords <- c(min(statip::mfv(coords[,1])), 
+              min(statip::mfv(coords[,2])), 
+              min(statip::mfv(coords[,3])))
+    
+  # create a diagnostic plot and save as a PDF
+  fname <- paste0(tools::file_path_sans_ext(rois_mni_fnames[i_roi], compression = "TRUE"),".pdf")
+  ortho2(robust_window(mni_nii, probs = c(0, 0.999)), y = roi_nii, 
+         col.y = roi_colors[i_roi], xyz = coords,
+         text = rois_mni[i_roi], crosshairs = FALSE)
+  dev.copy(pdf, fname)
+  invisible(dev.off())
+}
+```
+
+The resulting ROI masks can now be coregistered from MNI 1mm space to the analysis space of the wholebrain functional sequence. Finally, they are thresholded at a probability of 0.5.
+
+```{r, eval = run_prep_rois}
+
+# name of transformation matrix file to move from highres to functional space
+standard2func <- here("data", "mri", "processed", "wholebrain", 
+                     paste0("VIRTEM_P", subjects, ".feat"),
+                     "reg", "standard2example_func.mat")
+
+# use the mean EPI of wholebrain image as a reference
+mean_epi <- here("data", "mri", "processed", "samespace", paste0("VIRTEM_P", subjects),
+                 paste0("VIRTEM_P", subjects, "_wholebrain.nii.gz"))
+
+for (i_roi in 1:length(rois_mni)){
+  
+  #file name of ROI file in standard MNI space
+  roi_mni <- rois_mni_fnames[i_roi]
+  
+  # define output files in samespace (ss) = analysis space based on the wholebrain EPI
+  roi_ss <- file.path(dirs$rois_mni_ss_dirs[i_roi],
+                      sprintf("P%s_%s_ss.nii.gz", subjects, rois_mni[i_roi]))
+
+  # apply FSL flirt to move ROI from standard to wholebrain functional space
+  invisible(mapply(flirt_apply, infile = roi_mni, reffile = mean_epi, 
+                   initmat = standard2func, outfile = roi_ss,
+                   verbose = FALSE, retimg = FALSE))
+  
+  # use fslmaths to binarize the masked ROIs using a threshold of 0.5
+  out <- mapply(fsl_thresh, file = roi_ss, outfile = roi_ss, thresh = 0.5, opts = "-bin",
+                verbose = FALSE, retimg = FALSE)
+}
+```

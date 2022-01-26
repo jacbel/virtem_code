@@ -1,0 +1,88 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+### Calculate correlation matrices {-}
+
+>Only data for the 20 event images that were shown in the learning task were analyzed; data for the target stimulus were discarded. The similarity between the multi-voxel activity pattern for every event image in every mini-block with the pattern of every other event in every other mini-block was quantified using Pearson correlation coefficients. Thus, comparisons of scenes from the same mini-block were excluded. Next, we calculated mean, Fisher z-transformed correlation coefficients for every pair of events, yielding separate matrices of pattern similarity estimates for the pre- and the post-learning picture viewing tasks (Figure 3).
+
+Next, we need to calculate pair-wise correlations between the multi-voxel patterns from the picture viewing tasks. We will restrict the analysis to the 20 scenes during the learning task and discard the data for the target scene. The correlation matrix will first be calculated for trial-by-trial comparisons of multi-voxel patterns. These will then be averaged excluding comparisons of patterns from the same block. The resulting correlation matrices that are saved are ordered according to picture identity (i.e. picture 1-20 x picture 1-20).
+
+```{r, eval = calc_corr_mat}
+
+# for all 10x10 comparisons we will be averaging all comparisons apart from the diagonal
+# to exclude same_block comparisons
+no_diag <- matrix(data = TRUE, nrow=10, ncol = 10)
+diag(no_diag)<- FALSE
+
+for (i_sub in subjects){
+  for (i_run in 1:n_runs){
+    
+    for(i_roi in 1:length(rois)){
+      
+      # load the logfile for this run (pre or post) (Note to self: moved here 6 March when hunting ghosts)
+      log_fn <- file.path(dirs$pvt_log_dir, sprintf('P%s_%svirtem.txt', i_sub, runs[i_run]))
+      log <- read.table(log_fn)
+      colnames(log) <- c("pic", "fix_start", "pic_start", "volume", "response", "RT", "trial_end")
+      
+      # load the relevant MRI volumes (i.e. multi-voxel patterns)
+      fn <- file.path(dirs$rsa_roi_rel_vol_dirs[i_roi], 
+                      sprintf("%s_%s_%s_relevant_volumes.txt", i_sub, rois[i_roi], runs[i_run]))
+      rel_dat <- read.table(fn, sep = ",", dec = ".")
+      
+      # remove patterns & log entries corresponding to the target picture (catch trials)
+      rel_dat <- rel_dat[, log$pic != 21]
+      log <- log[log$pic != 21,]
+      
+      # order the data according to picture identity
+      rel_dat <- rel_dat[,order(log$pic)]
+      colnames(rel_dat) <- log$pic[order(log$pic)]
+      
+      # write to file for diagnostic purposes
+      fn <- file.path(dirs$rsa_roi_rel_vol_dirs[i_roi], 
+                      sprintf("%s_%s_%s_relevant_volumes_ordered.txt", i_sub, rois[i_roi], runs[i_run]))
+      write.table(rel_dat, fn, append = FALSE, sep = ",",
+                  dec = ".", row.names = FALSE, col.names = FALSE)
+      
+      # calculate the correlation matrix (trial by trial correlations at this point)
+      corr_mat_trial <- cor(rel_dat)
+      
+      # save the correlation matrix
+      fn <- file.path(dirs$rsa_roi_corr_mat_dirs[i_roi], 
+                      sprintf("%s_%s_%s_corr_mat_trial.txt", i_sub, rois[i_roi], runs[i_run]))
+      write.table(corr_mat_trial, fn, append = FALSE, sep = ",",
+                  dec = ".", row.names = FALSE, col.names = FALSE)
+      
+      # initialize correlation matrix condition by condition
+      corr_mat <- matrix(nrow = 20, ncol = 20, dimnames = c(list(1:20), list(1:20)))
+      
+      # loop over all picture comparisons
+      for(i_pic1 in 1:20){
+        for(i_pic2 in 1:20){
+          
+          # extract the current 10x10 correlation matrix
+          i1 <- (1+(i_pic1-1)*10):(i_pic1*10)
+          i2 <- (1+(i_pic2-1)*10):(i_pic2*10)
+          curr_mat <- corr_mat_trial[i1, i2]
+          
+          # average the corrlations while excluding diagonal (same block comparisons)
+          corr_mat[i_pic1, i_pic2] <- mean(curr_mat[no_diag])
+        }
+      }
+      # diagnostic plot
+      #corrplot(corr_mat, method = "color", is.corr=FALSE,
+      #   cl.lim = c(min(corr_mat),max(corr_mat)), addgrid.col = NA)
+      
+      # save the correlation matrix
+      fn <- file.path(dirs$rsa_roi_corr_mat_dirs[i_roi], 
+                      sprintf("%s_%s_%s_corr_mat.txt", i_sub, rois[i_roi], runs[i_run]))
+      write.table(corr_mat, fn, append = FALSE, sep = ",",
+                  dec = ".", row.names = FALSE, col.names = FALSE)
+    }
+  }
+}
+```

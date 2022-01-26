@@ -1,0 +1,103 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+### Final ROIs from intersection of masks {-}
+
+>We defined anterior hippocampus using the Harvard-Oxford atlas mask (thresholded at 50% probability), selecting all voxels anterior to MNI y=-21 based on Poppenk et al. (2013). The resulting anterior hippocampus mask was also co-registered to participants’ functional space and intersected with the participant-specific hippocampal mask from FreeSurfer. The mask for the anterior-lateral entorhinal cortex was based on Navarro Schröder et al. (2015). It was co-registered to participants’ functional space and intersected with the entorhinal cortex mask from FreeSurfer.
+
+In the last step, we intersect the masks from FreeSurfer with the respective subregion masks. At this point, both masks are in the functional analysis space and have been binarized. Finally, we generate a PDF of diagnostic plots to check the final ROI masks.
+
+```{r, eval = run_prep_rois}
+
+for (i_roi in 1:length(rois)){
+  
+  # define ROI files in samespace (ss) = analysis space based on the wholebrain EPI
+  roi_ss <- file.path(dirs$rois_ss_dirs[i_roi],
+                      sprintf("P%s_%s_ss.nii.gz", subjects, rois[i_roi]))
+  
+  # define file names for ROI files masked with freesurfer (i.e. our output)
+  roi_ss_fs <- file.path(dirs$rois_ss_dirs[i_roi],
+                      sprintf("P%s_%s_ss_fs.nii.gz", subjects, rois[i_roi]))
+  
+  # use HPC or EC mask from freesurfer? if not HPC or EC use graymatter mask
+  if(grepl("HPC", rois[i_roi])){
+    fs_roi <- here("data", "mri", "rois", "hpc_lr", "freesurfer_samespace",
+                   #sprintf("P%s_%s_fs_ss_masked_bin.nii.gz",subjects, "hpc_lr"))
+                   sprintf("P%s_%s_fs_ss_masked.nii.gz",subjects, "hpc_lr"))
+  } else if (grepl("EC", rois[i_roi])){
+    fs_roi <- here("data", "mri", "rois", "ec_lr", "freesurfer_samespace",
+                   #sprintf("P%s_%s_fs_ss_masked_bin.nii.gz",subjects, "ec_lr"))
+                   sprintf("P%s_%s_fs_ss_masked.nii.gz",subjects, "ec_lr"))
+  } else {#/data/pt_02261/virtem/data/mri/processed/samespace/VIRTEM_P035/VIRTEM_P035_common_graymatter_mask.nii.gz
+      
+    # mask gray matter mask with brain mask to account for partial FOV. Result will be used to mask ROIs
+    gm_mask_fn <- here("data", "mri", "processed", "samespace", paste0("VIRTEM_P", subjects),
+                   sprintf("VIRTEM_P%s_common_graymatter_mask.nii.gz",subjects))
+    brain_mask_fn <- here("data", "mri", "processed", "samespace", paste0("VIRTEM_P", subjects),
+                   sprintf("VIRTEM_P%s_common_mask_perBlock.nii.gz",subjects))
+    fs_roi <- here("data", "mri", "processed", "samespace", paste0("VIRTEM_P", subjects),
+                   sprintf("VIRTEM_P%s_common_graymatter_mask_brainmasked.nii.gz",subjects))
+    invisible(mapply(fsl_mask, file = gm_mask_fn, mask = brain_mask_fn, outfile = fs_roi,
+                   verbose = FALSE, retimg = FALSE))
+  }
+    #} else {stop("Don't know which Freesurfer mask to use!")}
+  
+  # mask the subregion mask with the Freesufer ROI
+  invisible(mapply(fsl_maths, file = roi_ss, opts = sprintf("-min %s", fs_roi), outfile = roi_ss_fs,
+                   verbose = FALSE, retimg = FALSE))
+  #invisible(mapply(fsl_mask, file = roi_ss, mask = fs_roi, outfile = roi_ss_fs,
+  #                 verbose = FALSE, retimg = FALSE))
+  
+  # threshold the resulting mask at a probability of 0.5 and binarize it
+  invisible(mapply(fsl_thresh, file = roi_ss_fs, outfile = roi_ss_fs, 
+                   thresh = 0.500000000000000000000000000000000000001, opts = "-bin",
+                   verbose = FALSE, retimg = FALSE))
+}
+```
+
+```{r echo = FALSE, eval = run_prep_rois}
+
+for (i_roi in 1:length(rois)){
+  
+  # define file names for ROI masks
+  roi_ss_fs <- file.path(dirs$rois_ss_dirs[i_roi],
+                         sprintf("P%s_%s_ss_fs.nii.gz", subjects, rois[i_roi]))
+  # use the mean EPI of wholebrain image as a reference
+  mean_epi <- here("data", "mri", "processed", "samespace", paste0("VIRTEM_P", subjects),
+                   paste0("VIRTEM_P", subjects, "_wholebrain.nii.gz"))
+  
+  fnames <- vector(mode = "character", length(subjects))
+  for (i_sub in 1:length(subjects)){
+    
+    # load nifti of mean epi and the roi mask
+    mean_epi_nii <- readNIfTI2(mean_epi[i_sub])
+    roi_nii <- readNIfTI2(roi_ss_fs[i_sub])
+    
+    # find coordinates for sensible slices to plot
+    coords <- arrayInd(which(as.logical(img_data(roi_nii))), dim(img_data(roi_nii)))
+    coords <- c(min(statip::mfv(coords[,1])), 
+                min(statip::mfv(coords[,2])), 
+                min(statip::mfv(coords[,3])))
+        
+    # save a diagnostic plot as a PDF
+    fnames[i_sub] <- paste0(tools::file_path_sans_ext(roi_ss_fs[i_sub], compression = "TRUE"),".pdf")
+    pdf(fnames[i_sub])
+    ortho2(robust_window(mean_epi_nii, probs = c(0, 0.999)), y = roi_nii,
+           col.y = roi_colors[i_roi], xyz = coords,
+           text = sprintf("P%s: %s\nmasked & thresholded", subjects[i_sub], rois[i_roi]),
+           crosshairs = FALSE)
+    invisible(dev.off())
+  }
+
+  # merge PDFs together
+  merged_pdf <- here("data", "mri", "rois", rois[i_roi], paste0(rois[i_roi], "_fs.pdf"))
+  #pdf_combine(fnames, output = merged_pdf) # pdftools doesn't work on remote linux?
+  cmd = paste("pdfunite", paste(fnames, collapse = " "), merged_pdf)
+  system(cmd)
+}
+```

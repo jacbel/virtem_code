@@ -1,0 +1,505 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Define Analysis Functions
+### Analysis Logic {-}
+
+We run both the behavioral analysis and the RSA using two approaches: A summary statistics approach and with linear mixed effect models.  
+
+In the analysis of the timeline task, we test whether virtual time explains remembered times when competing for variance with order and real time in seconds.  
+
+In order to assess the change in pattern similarity that is due to the learning task, we will later calculate the difference of the Fisher transformed mean correlation coefficients for every pair of scenes between the pre and the post picture viewing tasks (see [this section](#quantify-representational-change)). We will analyze how these difference values relate to various predictor variables derived from the learning task, such as the temporal distance between pairs of scenes within a day.   
+
+The two analysis approaches are briefly outlined below.
+
+#### Summary Statistics {-}
+
+The summary statistics approach is based on permutation testing.
+
+```{r}
+# control number of permutations used throughout the analyses
+n_perm <- 10000
+```
+
+We will use ***`r sprintf("%d",n_perm)` random permutations*** throughout the analyses.  
+
+In the summary statistics approach, we use the different time metrics as predictors for the remembered times in the timeline task. We will thus run one GLM per participant. In RSA, we set up a GLM with the given variable from the learning task as a predictor and the pairwise RSA difference values as criterion for every participant.  
+
+The resulting model coefficients are then compared to a null distribution obtained from shuffling the dependent variable of the linear model (i.e. pattern similarity change) for a large number of times. This results in a p-value for each coefficient, which is transformed to a Z-score. The Z-scores are then taken to the second level for group-level statistics.  
+
+This is also described in the methods section of the manuscript:
+
+>For the summary statistics approach, we ran a multiple regression analysis for each participant with virtual time, sequence position (order), and real time since the first event of a day as predictors of responses in the timeline task. To test whether virtual time indeed explained participants’ responses even when competing for variance with order and real time, included in the model as control predictors of no interest, we compared the participant-specific t-values of the resulting regression coefficients against null distributions obtained from shuffling the remembered times against the predictors 10000 times. We converted the resulting p-values to Z-values and tested these against zero using a permutation-based t-test (10000 random sign-flips, Figure 2E).
+
+>In the summary statistics approach, we used the different time metrics as predictors for pattern similarity change. We set up a GLM with the given variable from the day learning task as a predictor and the pairwise representational change values as the criterion for every participant. The t-values of the resulting model coefficients were then compared to a null distribution obtained from shuffling the dependent variable of the linear model (i.e. pattern similarity change) 10000 times. This approach to permutation-testing of regression coefficients controls Type I errors even under situations of collinear regressors (Anderson and Legendre, 1999). Resulting p-values for each coefficient were transformed to a Z-score. The Z-scores were then used for group-level inferential statistics.
+
+We start by defining the function that permutes the dependent variable of the linear model. This approach was described e.g. by Manly ([1997](https://www.taylorfrancis.com/books/9781315273075)) and is referred to as permutation of raw data in Anderson & Legendre ([1999](https://doi.org/10.1080/00949659908811936)), who compare different ways to implement permutation tests for (partial) regression coefficients. Their simulations show that the chosen approach does well in terms of controlling type I errors and power, even under situations of collinear regressors.
+
+```{r}
+# define function that calculates z-value for permutation
+lm_perm_jb <- function(in_dat = df, lm_formula = lm_formula, nsim = 1000){
+  
+  # run the model for original data and store observed t-values
+  lm_fit <- lm(formula = lm_formula, data=in_dat)
+  obs <- coef(summary(lm_fit))[,"t value"]
+  
+  # extract the dependent variable from the formula
+  dv <- str_extract(lm_formula, "[^~]+")
+  dv <- str_replace_all(dv, fixed(" "), "")
+  if(!(dv %in% colnames(in_dat))){stop("Cannot find dependent variable in input data");}
+  
+  # initialize df for permutation
+  data_perm <- in_dat
+  
+  # set aside space for results
+  res <- matrix(nrow = nsim, ncol = length(obs))
+  
+  for (i in 1:nsim) {
+    
+    # scramble response value
+    perm <- sample(nrow(in_dat))
+    dv_dat <- in_dat[dv]
+    data_perm[dv] <- dv_dat[perm,]
+
+    # compute linear model and store the t-value of predictor
+    lm_fit_perm <- lm(formula = lm_formula, data=data_perm)
+    res[i,] <- coef(summary(lm_fit_perm))[,"t value"]
+    }
+  
+  # append the observed value to the list of results
+  res <- rbind(res,obs)
+  
+  # calculate p-value for each coefficient and transform to z
+  p <- rep(0,length(obs))
+  z <- rep(0,length(obs))
+  for (i_coef in 1:length(obs)){
+    p[i_coef] <- sum(res[,i_coef] >= obs[i_coef])/nrow(res)
+    z[i_coef] <- qnorm(1-p[i_coef])
+    }
+  return(z)
+}
+```
+
+The Z-values resulting from this first-level permutation are then analyzed on the group level. For t-tests, we use random sign-flips (c.f. the one-sample t-test in [FSL Randomise](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/GLM#Randomise_details)) to non-parametrically test against 0 or assess within-participant differences between conditions. For this, we use the function defined below that is a reduced version of this [Matlab implementation](https://de.mathworks.com/matlabcentral/fileexchange/29782-mult_comp_perm_t1-data-n_perm-tail-alpha_level-mu-reports-seed_state).  
+
+>Group-level statistics were carried out using permutation-based procedures. For t-tests, we compared the observed t-values against a surrogate distribution obtained from 10000 random sign-flips to non-parametrically test against 0 or to assess within-participant differences between conditions. Permutation-based repeated measures ANOVAs were carried out using the permuco package (Frossard and Renaud, 2019).
+
+```{r}
+# function for permutation-based one-sample t-test against 0
+# requires tidyverse and broom
+# diff should be a vector of values (e.g. differences between paired samples)
+# returns the data frame from broom::tidy(t.test(diff)) with an additional column
+# for the p-value from n_perm random sign flips
+# this function is based on the mult_comp_perm_t1 function for Matlab by David Groppe) 
+paired_t_perm_jb <- function(in_dat, n_perm=10000){
+  
+  # make sure input is a vector
+  in_dat <- unname(unlist(in_dat))
+  
+  # number of observations
+  n <- length(in_dat)
+  
+  # get t of unpermuted data
+  t_stats <- t.test(in_dat) %>% broom::tidy()
+  
+  # run n_perm iterations
+  t_perm <- vector("numeric", n_perm)
+
+  for(i in 1:n_perm){
+    # randomly shuffle sign of each observation and get t-value
+    dat_perm <- in_dat*sample(c(-1,1),n,replace=TRUE)
+    t_perm[i] <- abs(t.test(dat_perm)$statistic)
+  }
+  
+  #add the negative of all values since we assume null hypothesis distribution is symmetric
+  t_perm <-c(t_perm, -t_perm)
+  
+  # add observed t-value so p cannot be 0
+  t_perm <-c(t_perm, t_stats$statistic)
+  
+  # calculate two-tailed p-value
+  p_perm <- mean(t_perm >= abs(t_stats$statistic))*2
+  t_stats <- t_stats %>%
+    tibble::add_column(p_perm = p_perm, .after = "p.value")
+  return(t_stats)
+}
+```
+
+#### Linear Mixed Effects {-}
+
+Linear Mixed Effects models consist of fixed and random effects. In our case the fixed case are of interest and consist of the temporal relationships that could explain remembered times or pattern similarity change (the dependent variables in the behavioral analysis and RSA, respectively). Random effects account for the fact that data points from different participants enter the estimation of the fixed effects.  
+
+Following the recommendation for maximal random effect structures by Barr et al. ([JML, 2013](https://www.sciencedirect.com/science/article/pii/S0749596X12001180)), we first attempt to fit a model with a random effects structure including random intercepts and random slopes for participants. If the model does not converge or results in singular fits, we reduce the random effects structure, attempting to always at least keep random slopes for the fixed effect of interest in the model as these are crucial to avoid anti-conservativity.  
+
+Statistical inference about a model is done using a likelihood ratio tests against a nested, reduced model. The reduced model is identical to the full model, only the fixed effect of interest is removed.
+
+##### LME assumptions {-}
+
+The code below defines a function to generate three diagnostic plots to visually assess the assumptions of a mixed model.  
+
+- Linearity & Homoscedasticity: Residual plot
+- Normality of residuals: QQ-Plot and histogram of the residuals
+
+It returns a ggplot object based on the input LME model. Probably these diagnostic plots will not end up in the manuscript because space is limited.
+
+```{r}
+lmm_diagplots_jb <- function(lmm = lmm_full){
+  
+  # residual plot to inspect homoscedasticity 
+  resids_gg <- ggplot() +
+    geom_point(aes(x = fitted(lmm), y = residuals(lmm)), 
+               size = 1, shape = 16, alpha = 0.5) +
+    geom_smooth(aes(x = fitted(lmm), y = residuals(lmm)),
+                formula = "y ~ x", method='glm', se = TRUE, color = "darkred") +
+    ylab('residuals') + 
+    xlab('fitted values') +
+    ggtitle("Residual Plot")+
+    theme_cowplot()
+  
+  # data frame for QQ plot and histogram
+  df <- data.frame(r = residuals(lmm))
+  
+  # QQ-Plot look at residuals of the model
+  qqplot_gg <- ggplot(df, aes(sample = r)) + 
+    stat_qq(size = 1, shape = 16, alpha = 0.5) + 
+    stat_qq_line(color = "darkred") +
+    ggtitle("QQ-Plot")+
+    theme_cowplot()
+  
+  # Histogram of residuals
+  hist_gg <-ggplot(df, aes(x=r)) + 
+    geom_histogram(aes(y=..density..), colour="black", fill="darkgrey", bins = 50) +
+    geom_density(color="darkred") +
+    xlab("magnitude of residual") +
+    ggtitle("Histogram of Residuals")+
+    theme_cowplot()
+  
+  # collect for final figure
+  diag_fig <- resids_gg + qqplot_gg + hist_gg &
+    theme(text = element_text(size=10),
+          axis.text = element_text(size=8),
+          legend.position = 'auto',
+          aspect.ratio = 1,
+          plot.title = element_text(hjust = 0.5)) &
+    plot_annotation(tag_levels = 'A',
+                    caption = paste0(deparse(formula(lmm)), collapse=""))
+  return (diag_fig)
+}
+```
+
+##### LME Summary Tables {-}
+
+To summarize final models we create tables inspired by the best practice guidelines by Meteyard & Davies ([JML, 2020](http://www.sciencedirect.com/science/article/pii/S0749596X20300061)). Examples can be found on their [OSF page](https://osf.io/bfq39/), in particular the example reporting table on page 4 of [this document](https://osf.io/4wdva/).  
+
+To create these tables we rely on the [broom.mixed package](https://cran.r-project.org/web/packages/broom.mixed/index.html) to get the LME model summary in a tidy format. The tidy dataframes are then converted to [huxtables](https://cran.r-project.org/web/packages/huxtable/index.html), which can be nicely formatted. 
+
+The function below takes as an input the tidy data frames for fixed effects, random effects as well as the ANOVA results from the comparison of the full model against a reduced model without the fixed effect of interest. All are merged into one table to limit the number of tables.
+
+```{r}
+make_lme_huxtable <- function(fix_df, ran_df, aov_mdl, fe_terms=NULL, re_terms=NULL, re_groups=NULL, lme_form=NULL, caption="Summary of Linear Mixed Effects Model"){
+  
+  ########### FIXED EFFECTS
+  # create huxtable for fixed effects and format it
+  fix_hux <- fix_df %>% huxtable::huxtable(., add_colnames = TRUE) %>%
+    
+    # set standard error and t-value column names
+    set_contents(row = 1, col = 4, value = "SE") %>% 
+    set_contents(row = 1, col = 5, value = "t-value") %>% 
+    
+    # merge the confidence column title and reset column name
+    merge_cells(row = 1, col = 6:7) %>% 
+    set_contents(row = 1, col = 6, value = "95% CI") %>% 
+    set_align(row = 1, col = 6, value = "center") %>%
+    
+    # align the contents 
+    set_align(row = 1, col = 2:5, "center") %>%
+    set_align(row = 1, col = 1, "center") %>%
+    set_align(row = 2:nrow(.), col = 3:7, "center") %>%
+    
+    # how many digits to print?
+    set_number_format(row = 2:nrow(.), col = 3:7, 6) %>%
+    set_number_format(row = 2:nrow(.), col = 5, 2) %>%
+    
+    # add header row for fixed effects 
+    dplyr::select(-effect) %>% # remove column to the left because not needed
+    huxtable::insert_row(.,c("fixed effects", rep("",ncol(.)-1)), after=0) %>%
+    set_align(row=1,col=1, value="center") %>%
+    set_header_cols(col=1, value=TRUE) %>%
+    
+    # bottom border
+    set_bottom_border(row=nrow(.), value=0.5)
+  
+  # if names for fixed effect terms are supplied use them
+  if(!is.null(fe_terms)){fix_hux$term[3:nrow(fix_hux)] <- fe_terms}
+
+  ########### RANDOM EFFECTS 
+  # create huxtable for random effects and format it
+  ran_hux <- ran_df %>% huxtable::huxtable(., add_colnames = TRUE) %>% 
+    
+    # how many digits to print?
+    set_number_format(row = 2:nrow(.), col = 4, 6) %>%
+    
+    # align header row
+    set_align(row = 1, col = c(1,2), "left") %>%
+    
+    # add header row for random effects 
+    select(-effect) %>% # remove column to the left because not needed
+    huxtable::insert_row(.,c("random effects", rep("",ncol(.)-1)), after=0) %>%
+    set_align(row=1,col=1, value="center") %>%
+    set_header_cols(col=1, value=TRUE) %>%
+    
+    # center estimate data
+    set_align(row=2:nrow(.),col=ncol(.), value="center") %>%
+    
+    # bottom border
+    set_bottom_border(row=nrow(.), value=0.5)
+
+  # if names for random effect grouping factor are supplied use them
+  if(!is.null(re_groups)){ran_hux$group[3:nrow(ran_hux)] <- re_groups}
+  
+  # if names for random effect terms are supplied use them
+  if(!is.null(re_terms)){ran_hux$term[3:nrow(ran_hux)] <- re_terms}
+  
+  ########### MODEL COMPARISON
+  # determine how many digits of p-value to print
+  if(aov_mdl$`Pr(>Chisq)`[2]>=0.001)
+    {num_fmt<-3} # 3 digits if p>0.001
+  else{
+    num_fmt<-NA # use default -> scientific notation
+    aov_mdl$`Pr(>Chisq)`[2]<-formatC(aov_mdl$`Pr(>Chisq)`[2], format = "e", digits = 2)} 
+  
+  aov_hux <- aov_mdl %>%  as.data.frame() %>% 
+    tibble::rownames_to_column(var ="term") %>%
+    huxtable(add_colnames = TRUE) %>%
+
+    # align contents
+    set_align(row = 1:nrow(.), col = c(2:ncol(.)), "center") %>%
+    set_align(row = 1, col = 1, "left") %>%
+    
+    # add header row for model comparison
+    huxtable::insert_row(.,c("model comparison", rep("",ncol(.)-1)), after=0) %>%
+    #merge_cells(1:nrow(.), col=1) %>%
+    set_align(row=1,col=1, value="center") %>%
+    set_header_cols(col=1, value=TRUE) %>%
+    
+    # add model names
+    set_contents(row = 2:nrow(.), col = "term", value = c("model", "reduced model", "full model")) %>% 
+    set_align(row = 2, col = 2, "left") %>%
+
+    # change some column names
+    set_contents(row = 2, col="Pr(>Chisq)", value = "p") %>%
+    set_contents(row = 2, col="logLik", value = "LL") %>%
+    set_contents(row = 2, col="Df", value = "df") %>% 
+    set_contents(row = 2, col="Chisq", value = "X2") %>%
+    #set_contents(row = 2, col="Chisq", value = expression("$\\chi"^"2")) %>%
+    
+    # how many digits to print? (do at the end because affected by adding columns)
+    set_number_format(row = 3:4, col = 3:7, 2) %>%
+    set_number_format(row = 4, col = 9, num_fmt) %>% 
+    
+    # remove the deviance and BIC column  
+    remove_cols(deviance) %>%
+    remove_cols(BIC) %>%
+    
+    # bottom border
+    set_bottom_border(row=nrow(.), value=0.5)
+    
+  ####### MERGE THE THREE HUXTABLES
+  # to be able to merge the tables, they need to have the same number of columns.
+  # the AOV table has 7 columns, so we add 1 empty columns to the fixed effects
+  # table and 4 empty columns to the random effects table. We merge these with
+  # existing columns immediately
+  ran_hux <-ran_hux %>% mutate(a=NA, b=NA, c=NA, d=NA, .after = "term") %>%
+    merge_across(row = 1:nrow(.), col = 2:6)
+  fix_hux <-fix_hux %>% mutate(a=NA, .after = "term") %>%
+    merge_across(row = 1:nrow(.), col = 1:2)
+  
+  # merge
+  lmm_hux <- huxtable::add_rows(fix_hux, ran_hux) %>%
+    huxtable::add_rows(., aov_hux) %>%
+  
+    # set the header and bottom border
+    set_caption(caption) %>%
+    set_caption_pos("topleft") %>%
+    set_bottom_border(row=nrow(.), value=0.5) %>%
+    add_footnote(sprintf("model: %s; \nSE: standard error, CI: confidence interval, SD: standard deviation, npar: number of parameters, LL: log likelihood, df: degrees of freedom, corr.: correlation", 
+                         lme_form), border = 0.5)
+  
+  return(lmm_hux)
+}
+```
+
+The resulting huxtables nicely summarize the mixed models in the HTML documentation. To collect the tables in a word file that accompanies the manuscript, we convert them to [flextables](https://davidgohel.github.io/flextable/). These can be written to Word documents using the [officer package](https://davidgohel.github.io/officer/). The function below does the conversion plus some touching up to end up with nicely formatted tables in Word.
+
+```{r}
+convert_huxtable_to_flextable <-function(ht = lmm_hux){
+  
+  # define border style to apply to selected cells
+  def_cell_l=officer::fp_cell(border.right = fp_border(), border.top = fp_border())
+  def_cell_t=officer::fp_cell(border.bottom = fp_border(), border.top = fp_border())
+  
+  # define text style to apply to selected cells
+  def_par=officer::fp_par(text.align = "center", padding=3)
+  def_tex=officer::fp_text(bold=TRUE)
+  
+  # find the header rows (where new sections of the table begin)
+  head_rows <- match(c("term", "group", "model"), ht$term)
+  
+  # find the cell where we want to add Chi2
+  x2_cell <- which(ht=="X2", arr.ind = TRUE)
+  
+  # create the flextable
+  ft <- ht %>% huxtable::as_flextable() %>%
+    
+    # add border at the bottom to the rows that have the names 
+    flextable::style(i=head_rows, pr_c = def_cell_t, pr_p = def_par, pr_t = def_tex) %>%
+    flextable::style(i=head_rows-1, pr_c = def_cell_t, pr_p = def_par, pr_t = def_tex) %>%
+    flextable::bg(i=head_rows-1, bg="lightgrey", part="all") %>%
+    
+    # left-align the first and second column (apart from no. of params in model comparison) and add consistent padding
+    flextable::align(., j=c(1,2), align="left") %>%
+    flextable::align(., i = c(head_rows[3], head_rows[3]+1, head_rows[3]+2), j=2, align="center") %>%
+    flextable::padding(., padding = 3, part="all") %>%
+    
+    # set font style
+    flextable::fontsize(size=10, part="all") %>%
+    flextable::font(fontname = font2use) %>%
+    
+    # replace X2 with greek letter chi and superscript 2
+    flextable::compose(i=x2_cell[1], j=x2_cell[2], value = as_paragraph("\U03C7", as_sup("2"))) %>%
+    
+    # autofit to page
+    flextable::set_table_properties(layout="autofit", width=1)
+  
+    # set caption style
+  ft <- flextable::set_caption(ft,caption = ft$caption$value, style="Normal")
+  
+  return(ft)
+}
+```
+  
+Here we open the word file that we want to write the tables to. It is based on a .docx-file where the themes for headings and text was manually modified to match the style of the manuscript.
+
+```{r}
+stables_docx <- officer::read_docx(here("virtem_code", "modified_headings.docx")) 
+
+stables_docx <- stables_docx %>% 
+    officer::body_add_par("Supplemental Tables", style = "heading 1", pos = "on")
+```
+
+### Brain Plots in ggplot {-}
+
+These functions are based on the [ggBrain package](https://neuroconductor.org/help/ggBrain/index.html). Plus, there are two simple custom functions to transform between 1mm MNI and matrix coordinates.  
+
+### ggBrain functions to get template background {-}
+
+The first function returns a ggplot object of the template brain (MNI 1mm in our case).
+
+```{r}
+# function from ggBrain that returns a ggplot object of the template brain
+getggTemplate<-function(col_template,row_ind,col_ind, ...){
+  templateFrame<-getBrainFrame(row_ind=row_ind, col_ind=col_ind, ...)
+  
+  n<-length(col_template)
+  if(n>1) col_cut<-as.numeric(cut(templateFrame$value,n))
+  if(n==1) col_cut=1
+  
+  p<-ggplot()+facet_just_unique(row_ind,col_ind)
+  
+  for(i in 1:n){
+    if(all(col_cut!=i)) next
+    drop_ind<-which(names(templateFrame)=='value') 
+    #so it doesn't conflict with mappings to "value" later on
+    templateFrame_col<-templateFrame[col_cut==i,-drop_ind]
+    p<- p + geom_tile(data=templateFrame_col,aes(x=row,y=col),fill=col_template[i])
+  }
+  p
+}
+
+# another internal function from ggBrain used to plot the template
+facet_just_unique<-function(row_ind,col_ind){
+  if( all(row_ind==row_ind[1]) &  all(col_ind==col_ind[1]))
+    out<-NULL
+  if( all(row_ind==row_ind[1]) & !all(col_ind==col_ind[1]))
+    out<-facet_grid(.~col_ind)
+  if(!all(row_ind==row_ind[1]) &  all(col_ind==col_ind[1]))
+    out<-facet_grid(row_ind~.)
+  if(!all(row_ind==row_ind[1]) & !all(col_ind==col_ind[1]))
+    out<-facet_grid(row_ind~col_ind)
+  return(out)
+}
+```
+
+#### Coordinate transforms {-}
+
+The code section below defines two helper functions that transform between the MNI coordinate system and the matrix coordinates of R. CAVE: Only use with 1mm MNI space.
+
+```{r}
+# to get accurate labels of panels in MNI space, define functions to convert coords
+mni2vox <- function(mni_coords, output_zero_based = FALSE){
+  
+  x<- mni_coords[1] * -1 + 90
+  y<- mni_coords[2] * 1 + 126
+  z<- mni_coords[3] * 1 + 72
+  vox_coords <- c(x,y,z)
+  
+  # add +1 if output coordinates should not be zero-based
+  if(!output_zero_based){vox_coords <- vox_coords+1}
+  
+  return(vox_coords)
+}
+
+# convert from voxel coordinates to MNI with option for whether voxel coordinates are from
+# R (i.e. not zero-based) or FSL (i.e. zero-based)
+vox2mni <- function(vox_coords, input_zero_based = FALSE){
+  
+  # if input coordinates are from R, i.e. not zero-based, subtract -1
+  if(!input_zero_based){vox_coords <- vox_coords-1}
+  
+  # subtract voxel space coordinates of origin (MNI=0,0,0 at 90,126,72 in FSL voxel coordinates)
+  mni_x <- -1*(vox_coords[1]-90)
+  mni_y <- vox_coords[2]-126
+  mni_z <- vox_coords[3]-72
+  
+  mni_coords <- c(mni_x,mni_y,mni_z)
+  return(mni_coords)
+}
+```
+
+### Waiting for Cluster Jobs {-}
+
+The function below is a convenient function to pause the execution of a script until a batch of condor jobs has finished. The function takes the ID of a condor batch as an input. It uses *condor_q* via the system-command. If 0 is returned, it terminates and moves on. Else the function sleeps for (a default of) 60s and then tries again. **No checks are performed whether the jobs finished without errors**. This function merely pauses the execution of the code to wait for long jobs to finish.
+
+
+```{r}
+pause_until_batch_done<- function(batch_id, wait_interval = 60){
+  
+  print(sprintf("Monitoring batch job %s. Checking status every %d seconds.", 
+                batch_id, wait_interval))
+  
+  batch_running <- TRUE
+  tictoc::tic()
+  while (batch_running){
+  
+    # sleep for the specified number of seconds
+    Sys.sleep(wait_interval)
+    
+    # check if batch finished (condor_q returns character(0))
+    status <- system(sprintf("condor_q -l %s", batch_id), intern=TRUE)
+    
+    if(identical(status, character(0))){
+      print("Batch jobs finished. Moving on.")
+      tictoc::toc()
+      batch_running <- FALSE
+    } else{
+      print(sprintf("Batch jobs still running. Waiting another %d seconds.", 
+              wait_interval))
+    }
+  }
+}
+```

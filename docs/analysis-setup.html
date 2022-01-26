@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Analysis Setup | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</title>
+  <meta name="description" content="2 Analysis Setup | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Analysis Setup | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jacbel.github.io/virtem_code/" />
+  
+  <meta property="og:description" content="2 Analysis Setup | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="github-repo" content="jacbel/virtem_code" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Analysis Setup | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  
+  <meta name="twitter:description" content="2 Analysis Setup | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  
+
+<meta name="author" content="Jacob L. S. Bellmund" />
+
+
+<meta name="date" content="2022-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="illustrations-of-task-design-and-analysis-logic.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.1</b> Purpose</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#contents"><i class="fa fa-check"></i><b>1.2</b> Contents</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#contact"><i class="fa fa-check"></i><b>1.3</b> Contact</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#license-information"><i class="fa fa-check"></i><b>1.4</b> License Information</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="analysis-setup.html"><a href="analysis-setup.html"><i class="fa fa-check"></i><b>2</b> Analysis Setup</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="analysis-setup.html"><a href="analysis-setup.html#defining-variables-and-folders"><i class="fa fa-check"></i><b>2.1</b> Defining Variables and Folders</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#folder-structure"><i class="fa fa-check"></i>Folder Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="analysis-setup.html"><a href="analysis-setup.html#define-analysis-functions"><i class="fa fa-check"></i><b>2.2</b> Define Analysis Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#analysis-logic"><i class="fa fa-check"></i>Analysis Logic</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#brain-plots-in-ggplot"><i class="fa fa-check"></i>Brain Plots in ggplot</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#ggbrain-functions-to-get-template-background"><i class="fa fa-check"></i>ggBrain functions to get template background</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#waiting-for-cluster-jobs"><i class="fa fa-check"></i>Waiting for Cluster Jobs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html"><i class="fa fa-check"></i><b>3</b> Illustrations of Task Design and Analysis Logic</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#day-learning-task-design"><i class="fa fa-check"></i><b>3.1</b> Day Learning Task Design</a>
+<ul>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-virtual-and-real-time"><i class="fa fa-check"></i>Events in virtual and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-virtual-time"><i class="fa fa-check"></i>Events in virtual time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-real-time"><i class="fa fa-check"></i>Events in real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#correlations-of-virtual-time-with-order-and-real-time"><i class="fa fa-check"></i>Correlations of virtual time with order and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#time-cues-in-virtual-and-real-time"><i class="fa fa-check"></i>Time cues in virtual and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#supplemental-figure-for-task-design"><i class="fa fa-check"></i>Supplemental figure for task design</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#representational-similarity-analysis-logic"><i class="fa fa-check"></i><b>3.2</b> Representational Similarity Analysis Logic</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html"><i class="fa fa-check"></i><b>4</b> Prepare behavioral data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#sorting-task"><i class="fa fa-check"></i><b>4.1</b> Sorting task</a></li>
+<li class="chapter" data-level="4.2" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#timeline-task"><i class="fa fa-check"></i><b>4.2</b> Timeline task</a></li>
+<li class="chapter" data-level="4.3" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#picture-viewing-tasks"><i class="fa fa-check"></i><b>4.3</b> Picture viewing tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html"><i class="fa fa-check"></i><b>5</b> Behavioral Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#sorting-task-1"><i class="fa fa-check"></i><b>5.1</b> Sorting Task</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#calculate-percentage-of-correct-responses"><i class="fa fa-check"></i>Calculate percentage of correct responses</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#plot-sorting-performance"><i class="fa fa-check"></i>Plot sorting performance</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#sorting-errors-as-a-function-of-sequence-position"><i class="fa fa-check"></i>Sorting errors as a function of sequence position</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#timeline-task-1"><i class="fa fa-check"></i><b>5.2</b> Timeline Task</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#visualize-the-raw-data"><i class="fa fa-check"></i>Visualize the raw data</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#accuracy-of-remembered-times"><i class="fa fa-check"></i>Accuracy of remembered times</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#relationship-of-sorting-errors-and-timeline-errors"><i class="fa fa-check"></i>Relationship of sorting errors and timeline errors</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#time-metrics-underlying-remembered-times"><i class="fa fa-check"></i>Time metrics underlying remembered times</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#compose-figure-for-behavioral-data"><i class="fa fa-check"></i>Compose Figure for Behavioral Data</a></li>
+<li class="chapter" data-level="5.3" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#generalization-bias"><i class="fa fa-check"></i><b>5.3</b> Generalization bias</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#quantify-relative-time-of-other-events"><i class="fa fa-check"></i>Quantify relative time of other events</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#test-generalization-bias"><i class="fa fa-check"></i>Test Generalization Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-of-generalization-bias"><i class="fa fa-check"></i><b>5.4</b> Replication of Generalization Bias</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-data-quantify-relative-time-of-other-events"><i class="fa fa-check"></i>Replication data: Quantify relative time of other events</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-data-test-generalization-bias"><i class="fa fa-check"></i>Replication data: Test Generalization Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors"><i class="fa fa-check"></i><b>5.5</b> Swap Errors</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#descriptives-of-swap-errors"><i class="fa fa-check"></i>Descriptives of swap errors</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors-as-a-function-of-sequence-position"><i class="fa fa-check"></i>Swap errors as a function of sequence position</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-error-more-frequent-than-expected-from-chance"><i class="fa fa-check"></i>Swap error: More frequent than expected from chance?</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors-and-generalization-bias"><i class="fa fa-check"></i>Swap errors and generalization bias</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html"><i class="fa fa-check"></i><b>6</b> Prepare (f)MRI Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#regions-of-interest"><i class="fa fa-check"></i><b>6.1</b> Regions of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#freesurfer-masks"><i class="fa fa-check"></i>FreeSurfer Masks</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#subregion-masks-mni"><i class="fa fa-check"></i>Subregion masks (MNI)</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#final-rois-from-intersection-of-masks"><i class="fa fa-check"></i>Final ROIs from intersection of masks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#group-level-masks"><i class="fa fa-check"></i><b>6.2</b> Group-Level Masks</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#probabilistic-rois-for-visualization"><i class="fa fa-check"></i>Probabilistic ROIs for visualization</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#field-of-view-mask-for-visualization"><i class="fa fa-check"></i>Field of view mask for visualization</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#gray-matter-mask"><i class="fa fa-check"></i>Gray matter mask</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#small-volume-correction-mask"><i class="fa fa-check"></i>Small Volume Correction Mask</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#quantify-representational-change"><i class="fa fa-check"></i><b>6.3</b> Quantify Representational Change</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#get-multi-voxel-patterns-from-rois"><i class="fa fa-check"></i>Get multi-voxel patterns from ROIs</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#calculate-correlation-matrices"><i class="fa fa-check"></i>Calculate correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#calculate-pattern-similarity-change"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#combine-behavioral-and-fmri-data-for-rsa"><i class="fa fa-check"></i><b>6.4</b> Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html"><i class="fa fa-check"></i><b>7</b> Run RSA Searchlight</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-functional-data"><i class="fa fa-check"></i><b>7.1</b> Prepare functional data</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#data-cleaning-extract-residuals-from-motion-parameter-regression"><i class="fa fa-check"></i>Data cleaning: Extract residuals from motion parameter regression</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#extract-relevant-volumes-1"><i class="fa fa-check"></i>Extract relevant volumes</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#concatenate-relevant-volumes"><i class="fa fa-check"></i>Concatenate relevant volumes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#first-level-rsa-searchlight"><i class="fa fa-check"></i><b>7.2</b> First-level RSA searchlight</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#set-analysis-parameters"><i class="fa fa-check"></i>Set analysis parameters</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-rsa-predictions"><i class="fa fa-check"></i>Prepare RSA-predictions</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-lookup-table-for-searchlight"><i class="fa fa-check"></i>Create lookup table for searchlight</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#dataframe-with-input-for-analysis"><i class="fa fa-check"></i>Dataframe with input for analysis</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#searchlight-implementation"><i class="fa fa-check"></i>Searchlight implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#group-level-searchlight-analysis"><i class="fa fa-check"></i><b>7.3</b> Group-level searchlight analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#move-first-level-images-to-mni-space"><i class="fa fa-check"></i>Move first-level images to MNI space</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#merge-and-smooth-first-level-images"><i class="fa fa-check"></i>Merge and smooth first-level images</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#run-fsl-randomise"><i class="fa fa-check"></i>Run FSL Randomise</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#find-searchlight-clusters-and-atlas-labels"><i class="fa fa-check"></i>Find searchlight clusters and atlas labels</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-outlines-of-significant-clusters"><i class="fa fa-check"></i>Create outlines of significant clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-rsa-in-searchlight-peak"><i class="fa fa-check"></i><b>7.4</b> Prepare RSA in searchlight peak</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-the-roi-mask"><i class="fa fa-check"></i>Create the ROI mask</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#calculating-the-correlation-matrices"><i class="fa fa-check"></i>Calculating the correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#calculate-pattern-similarity-change-1"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#combine-behavioral-and-fmri-data-for-rsa-1"><i class="fa fa-check"></i>Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html"><i class="fa fa-check"></i><b>8</b> RSA on Pattern Similarity Change</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#time-metrics-to-quantify-event-relations"><i class="fa fa-check"></i><b>8.1</b> Time metrics to quantify event relations</a></li>
+<li class="chapter" data-level="8.2" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#visualize-regions-of-interests"><i class="fa fa-check"></i><b>8.2</b> Visualize Regions of Interests</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#template-background-image-with-fov"><i class="fa fa-check"></i>Template background image with FOV</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#anterior-hippocampus-roi"><i class="fa fa-check"></i>Anterior hippocampus ROI</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#anterior-lateral-entorhinal-cortex"><i class="fa fa-check"></i>Anterior-lateral entorhinal cortex</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#first-level-rsa"><i class="fa fa-check"></i><b>8.3</b> First-level RSA</a></li>
+<li class="chapter" data-level="8.4" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-sequence"><i class="fa fa-check"></i><b>8.4</b> aHPC: virtual time within sequence</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-3"><i class="fa fa-check"></i>Summary statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-2"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#representational-change-visualization"><i class="fa fa-check"></i>Representational Change Visualization</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#not-driven-by-first-last-event-pairs"><i class="fa fa-check"></i>Not driven by first &amp; last event pairs</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-sequence-when-including-order-real-time"><i class="fa fa-check"></i><b>8.5</b> aHPC: virtual time within sequence when including order &amp; real time</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#one-model-with-multiple-predictors"><i class="fa fa-check"></i>One model with multiple predictors</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-explains-residuals-of-order-and-real-time"><i class="fa fa-check"></i>Virtual time explains residuals of order and real time</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-across-sequences"><i class="fa fa-check"></i><b>8.6</b> aHPC: virtual time across sequences</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-7"><i class="fa fa-check"></i>Summary statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-5"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#representational-change-visualization-1"><i class="fa fa-check"></i>Representational Change Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-across-sequence-when-including-order-real-time"><i class="fa fa-check"></i><b>8.7</b> aHPC: virtual time across sequence when including order &amp; real time</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-8"><i class="fa fa-check"></i>Summary Statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-6"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-vs.-across-sequences"><i class="fa fa-check"></i><b>8.8</b> aHPC: virtual time within vs. across sequences</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#second-level-analysis"><i class="fa fa-check"></i>Second-level analysis</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-7"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-order"><i class="fa fa-check"></i>Interaction of sequence membership and order</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-real-time"><i class="fa fa-check"></i>Interaction of sequence membership and real time</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-virtual-time-when-including-interactions-with-other-time-metrics"><i class="fa fa-check"></i>Interaction of sequence membership and virtual time when including interactions with other time metrics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#mds"><i class="fa fa-check"></i>MDS</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#umap"><i class="fa fa-check"></i>UMAP</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec"><i class="fa fa-check"></i><b>8.9</b> alEC</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-withinacross-sequences-separately"><i class="fa fa-check"></i>alEC: virtual time within/across sequences separately</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-within-vs.-across-sequences"><i class="fa fa-check"></i>alEC: virtual time within vs. across sequences</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-for-all-event-pairs"><i class="fa fa-check"></i>alEC: virtual time for all event pairs</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-for-all-event-pairs-when-including-order-real-time"><i class="fa fa-check"></i>alEC: virtual time for all event pairs when including order &amp; real time</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-vs.-alec"><i class="fa fa-check"></i><b>8.10</b> aHPC vs. alEC</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-12"><i class="fa fa-check"></i>Summary Statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-10"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#searchlight-results"><i class="fa fa-check"></i><b>8.11</b> Searchlight Results</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-within-sequence"><i class="fa fa-check"></i>Virtual Time Within Sequence</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-across-sequences-in-within-searchlight-cluster"><i class="fa fa-check"></i>Virtual Time Across Sequences in Within-Searchlight Cluster</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-across-sequences"><i class="fa fa-check"></i>Virtual Time Across Sequences</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#visualization-of-overlap"><i class="fa fa-check"></i>Visualization of Overlap</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-sequence-interaction"><i class="fa fa-check"></i>Virtual Time &amp; Sequence Interaction</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#exploratory-searchlight-results"><i class="fa fa-check"></i>Exploratory Searchlight Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-of-behavioral-generalization-bias-with-searchlight-effects"><i class="fa fa-check"></i><b>8.12</b> Correlation of behavioral generalization bias with searchlight effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-with-across-sequence-searchlight-effect"><i class="fa fa-check"></i>Correlation with across-sequence searchlight effect</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-with-same-sequence-searchlight-effect"><i class="fa fa-check"></i>Correlation with same-sequence searchlight effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.13" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#mixed-model-summaries"><i class="fa fa-check"></i><b>8.13</b> Mixed Model Summaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#supplemental-figure-1"><i class="fa fa-check"></i>Supplemental Figure</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#supplemental-tables"><i class="fa fa-check"></i>Supplemental Tables</a></li>
+<li class="chapter" data-level="8.13.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#source-data"><i class="fa fa-check"></i><b>8.13.1</b> Source data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html"><i class="fa fa-check"></i><b>9</b> Signal to noise ratio</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#calculate-voxel-wise-temporal-snr"><i class="fa fa-check"></i><b>9.1</b> Calculate voxel-wise temporal SNR</a></li>
+<li class="chapter" data-level="9.2" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#average-tsnr-per-roi"><i class="fa fa-check"></i><b>9.2</b> Average tSNR per ROI</a></li>
+<li class="chapter" data-level="9.3" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#contrast-tsnr-between-ahpc-and-alec"><i class="fa fa-check"></i><b>9.3</b> Contrast tSNR between aHPC and alEC</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html"><i class="fa fa-check"></i><b>10</b> RSA in searchlight peak with different threshold</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#prepare-rsa-in-searchlight-peak-1"><i class="fa fa-check"></i><b>10.1</b> Prepare RSA in searchlight peak</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#create-the-roi-mask-1"><i class="fa fa-check"></i>Create the ROI mask</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#calculating-the-correlation-matrices-1"><i class="fa fa-check"></i>Calculating the correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#calculate-pattern-similarity-change-2"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#combine-behavioral-and-fmri-data-for-rsa-2"><i class="fa fa-check"></i>Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#rsa"><i class="fa fa-check"></i><b>10.2</b> RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html"><i class="fa fa-check"></i><b>11</b> Univariate GLM: Relative time</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#copy-feat-folder-from-preprocessing-to-first-level-glm-directory"><i class="fa fa-check"></i><b>11.1</b> Copy FEAT-folder from Preprocessing to First-Level GLM directory</a></li>
+<li class="chapter" data-level="11.2" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#prepare-glm"><i class="fa fa-check"></i><b>11.2</b> Prepare GLM</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#compute-relative-time"><i class="fa fa-check"></i>Compute relative time</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#write-custom-ev-files-for-fsl-feat"><i class="fa fa-check"></i>Write custom EV files for FSL FEAT</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#glm-design-files"><i class="fa fa-check"></i>GLM Design files</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#prepare-confound-ev"><i class="fa fa-check"></i>Prepare confound EV</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#create-design-matrix"><i class="fa fa-check"></i>Create design matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#run-1st-level-glm-on-htcondor"><i class="fa fa-check"></i><b>11.3</b> Run 1st-level GLM on HTCondor</a></li>
+<li class="chapter" data-level="11.4" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#group-level-1"><i class="fa fa-check"></i><b>11.4</b> Group-level</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#move-first-level-images-to-mni-space-1"><i class="fa fa-check"></i>Move first-level images to MNI space</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#merge-first-level-images"><i class="fa fa-check"></i>Merge first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#smooth-first-level-images"><i class="fa fa-check"></i>Smooth first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#average-first-level-images"><i class="fa fa-check"></i>Average first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#ahpc-roi-analysis"><i class="fa fa-check"></i>aHPC ROI analysis</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#run-fsl-randomise-1"><i class="fa fa-check"></i>Run FSL Randomise</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#results-in-ahpc-and-alec"><i class="fa fa-check"></i>Results in aHPC and alEC</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#fov-results"><i class="fa fa-check"></i>FOV results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="credit.html"><a href="credit.html"><i class="fa fa-check"></i><b>12</b> Credit</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="credit.html"><a href="credit.html#list-of-packages"><i class="fa fa-check"></i><b>12.1</b> List of packages</a></li>
+<li class="chapter" data-level="12.2" data-path="credit.html"><a href="credit.html#references"><i class="fa fa-check"></i><b>12.2</b> References</a></li>
+<li class="chapter" data-level="12.3" data-path="credit.html"><a href="credit.html#session-info"><i class="fa fa-check"></i><b>12.3</b> Session Info</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis-setup" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Analysis Setup</h1>
+<div id="defining-variables-and-folders" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Defining Variables and Folders</h2>
+<p>First, we set up some global variables that will be used throughout the analyses. This includes the identifiers of the subjects to include in the analysis, specifics of the design such as the number of days and events per day and the regions of interest for representational similarity analysis.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysis-setup.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-------- DEFINE GLOBAL VARIABLES ---------</span></span>
+<span id="cb1-2"><a href="analysis-setup.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="analysis-setup.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># list of subject IDs(excluded: 58 and 68 because of bad memory performance and MRI acquisition problems)</span></span>
+<span id="cb1-4"><a href="analysis-setup.html#cb1-4" aria-hidden="true" tabindex="-1"></a>subjects <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;031&quot;</span>, <span class="st">&quot;032&quot;</span>, <span class="st">&quot;033&quot;</span>, <span class="st">&quot;034&quot;</span>, <span class="st">&quot;035&quot;</span>, <span class="st">&quot;036&quot;</span>, <span class="st">&quot;037&quot;</span>, <span class="st">&quot;038&quot;</span>, <span class="st">&quot;039&quot;</span>, <span class="st">&quot;054&quot;</span>, </span>
+<span id="cb1-5"><a href="analysis-setup.html#cb1-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;055&quot;</span>, <span class="st">&quot;056&quot;</span>, <span class="st">&quot;057&quot;</span>, <span class="st">&quot;059&quot;</span>, <span class="st">&quot;061&quot;</span>, <span class="st">&quot;062&quot;</span>, <span class="st">&quot;063&quot;</span>, <span class="st">&quot;064&quot;</span>, <span class="st">&quot;065&quot;</span>, <span class="st">&quot;066&quot;</span>, </span>
+<span id="cb1-6"><a href="analysis-setup.html#cb1-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;069&quot;</span>, <span class="st">&quot;070&quot;</span>, <span class="st">&quot;071&quot;</span>, <span class="st">&quot;072&quot;</span>, <span class="st">&quot;073&quot;</span>, <span class="st">&quot;074&quot;</span>, <span class="st">&quot;075&quot;</span>, <span class="st">&quot;076&quot;</span>)</span>
+<span id="cb1-7"><a href="analysis-setup.html#cb1-7" aria-hidden="true" tabindex="-1"></a>n_subs <span class="ot">&lt;-</span> <span class="fu">length</span>(subjects)</span>
+<span id="cb1-8"><a href="analysis-setup.html#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="analysis-setup.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># PVT scanning runs and blocks within each run</span></span>
+<span id="cb1-10"><a href="analysis-setup.html#cb1-10" aria-hidden="true" tabindex="-1"></a>runs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;pre&quot;</span>, <span class="st">&quot;post&quot;</span>)</span>
+<span id="cb1-11"><a href="analysis-setup.html#cb1-11" aria-hidden="true" tabindex="-1"></a>n_runs <span class="ot">&lt;-</span> <span class="fu">length</span>(runs)</span>
+<span id="cb1-12"><a href="analysis-setup.html#cb1-12" aria-hidden="true" tabindex="-1"></a>n_blocks <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb1-13"><a href="analysis-setup.html#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="analysis-setup.html#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># design parameters</span></span>
+<span id="cb1-15"><a href="analysis-setup.html#cb1-15" aria-hidden="true" tabindex="-1"></a>n_days <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb1-16"><a href="analysis-setup.html#cb1-16" aria-hidden="true" tabindex="-1"></a>n_events_day <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb1-17"><a href="analysis-setup.html#cb1-17" aria-hidden="true" tabindex="-1"></a>n_pics <span class="ot">&lt;-</span> n_days<span class="sc">*</span>n_events_day</span>
+<span id="cb1-18"><a href="analysis-setup.html#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="analysis-setup.html#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Main regions of interest for analyses</span></span>
+<span id="cb1-20"><a href="analysis-setup.html#cb1-20" aria-hidden="true" tabindex="-1"></a>rois <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;aHPC_lr&quot;</span>, <span class="st">&quot;alEC_lr&quot;</span>)</span>
+<span id="cb1-21"><a href="analysis-setup.html#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="analysis-setup.html#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Regions of interest in MNI space</span></span>
+<span id="cb1-23"><a href="analysis-setup.html#cb1-23" aria-hidden="true" tabindex="-1"></a>rois_ec <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;alEC_lr&quot;</span>)</span>
+<span id="cb1-24"><a href="analysis-setup.html#cb1-24" aria-hidden="true" tabindex="-1"></a>rois_hpc <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;aHPC_lr&quot;</span>)</span>
+<span id="cb1-25"><a href="analysis-setup.html#cb1-25" aria-hidden="true" tabindex="-1"></a>rois_mni <span class="ot">&lt;-</span> <span class="fu">c</span>(rois_hpc, rois_ec)</span>
+<span id="cb1-26"><a href="analysis-setup.html#cb1-26" aria-hidden="true" tabindex="-1"></a>roi_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#dd4731&quot;</span>, <span class="st">&quot;#079cd6&quot;</span>)</span>
+<span id="cb1-27"><a href="analysis-setup.html#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="analysis-setup.html#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Regions of interest to get from Freesurfer</span></span>
+<span id="cb1-29"><a href="analysis-setup.html#cb1-29" aria-hidden="true" tabindex="-1"></a>rois_fs <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;hpc_lr&quot;</span>, <span class="st">&quot;ec_lr&quot;</span>)</span>
+<span id="cb1-30"><a href="analysis-setup.html#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># numeric Freesurfer labels</span></span>
+<span id="cb1-31"><a href="analysis-setup.html#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#(https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT)</span></span>
+<span id="cb1-32"><a href="analysis-setup.html#cb1-32" aria-hidden="true" tabindex="-1"></a>labels_fs <span class="ot">=</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">17</span>,<span class="dv">53</span>), <span class="fu">c</span>(<span class="dv">1006</span>,<span class="dv">2006</span>)) </span>
+<span id="cb1-33"><a href="analysis-setup.html#cb1-33" aria-hidden="true" tabindex="-1"></a>roi_colors_fs <span class="ot">&lt;-</span> <span class="fu">wes_palette</span>(<span class="at">n =</span> <span class="fu">length</span>(rois_fs), <span class="at">name =</span> <span class="st">&quot;FantasticFox1&quot;</span>)</span>
+<span id="cb1-34"><a href="analysis-setup.html#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="analysis-setup.html#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Define colors to use in plots</span></span>
+<span id="cb1-36"><a href="analysis-setup.html#cb1-36" aria-hidden="true" tabindex="-1"></a>event_colors <span class="ot">&lt;-</span> scico<span class="sc">::</span><span class="fu">scico</span>(<span class="at">n=</span><span class="dv">5</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="fl">0.6</span>, <span class="at">palette =</span> <span class="st">&quot;bamako&quot;</span>)</span>
+<span id="cb1-37"><a href="analysis-setup.html#cb1-37" aria-hidden="true" tabindex="-1"></a>time_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#26588E&quot;</span>, <span class="st">&quot;#33602D&quot;</span>, <span class="st">&quot;#C1AA6E&quot;</span>) </span>
+<span id="cb1-38"><a href="analysis-setup.html#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="analysis-setup.html#cb1-39" aria-hidden="true" tabindex="-1"></a>aHPC_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#dd4731&quot;</span>, <span class="co"># main</span></span>
+<span id="cb1-40"><a href="analysis-setup.html#cb1-40" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#26588E&quot;</span>, <span class="co"># within main, from scico::scico(n=5, begin = 0.1, end = 0.7, palette = &quot;devon&quot;)[3], </span></span>
+<span id="cb1-41"><a href="analysis-setup.html#cb1-41" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#e31a1c&quot;</span>, <span class="co"># within low</span></span>
+<span id="cb1-42"><a href="analysis-setup.html#cb1-42" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#800026&quot;</span>, <span class="co"># within high</span></span>
+<span id="cb1-43"><a href="analysis-setup.html#cb1-43" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#A54440&quot;</span>, <span class="co"># across main, from scico::scico(n=5, begin = 0.3, end = 0.9, palette = &quot;lajolla&quot;)[3]</span></span>
+<span id="cb1-44"><a href="analysis-setup.html#cb1-44" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#feb24c&quot;</span>, <span class="co"># across low</span></span>
+<span id="cb1-45"><a href="analysis-setup.html#cb1-45" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#fc4e2a&quot;</span>) <span class="co"># across high</span></span>
+<span id="cb1-46"><a href="analysis-setup.html#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(aHPC_colors) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;main&quot;</span>, <span class="st">&quot;within_main&quot;</span>, <span class="st">&quot;within_low&quot;</span>, <span class="st">&quot;within_high&quot;</span>, <span class="st">&quot;across_main&quot;</span>, <span class="st">&quot;across_low&quot;</span>, <span class="st">&quot;across_high&quot;</span>)</span>
+<span id="cb1-47"><a href="analysis-setup.html#cb1-47" aria-hidden="true" tabindex="-1"></a>alEC_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#855C85&quot;</span>, </span>
+<span id="cb1-48"><a href="analysis-setup.html#cb1-48" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#225ea8&quot;</span>, </span>
+<span id="cb1-49"><a href="analysis-setup.html#cb1-49" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#1d91c0&quot;</span>, </span>
+<span id="cb1-50"><a href="analysis-setup.html#cb1-50" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#0c2c84&quot;</span>, </span>
+<span id="cb1-51"><a href="analysis-setup.html#cb1-51" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#7fcdbb&quot;</span>, </span>
+<span id="cb1-52"><a href="analysis-setup.html#cb1-52" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#c7e9b4&quot;</span>, </span>
+<span id="cb1-53"><a href="analysis-setup.html#cb1-53" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;#41b6c4&quot;</span>)</span>
+<span id="cb1-54"><a href="analysis-setup.html#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(alEC_colors) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;main&quot;</span>, <span class="st">&quot;within_main&quot;</span>, <span class="st">&quot;within_low&quot;</span>, <span class="st">&quot;within_high&quot;</span>, <span class="st">&quot;across_main&quot;</span>, <span class="st">&quot;across_low&quot;</span>, <span class="st">&quot;across_high&quot;</span>)</span>
+<span id="cb1-55"><a href="analysis-setup.html#cb1-55" aria-hidden="true" tabindex="-1"></a>day_time_int_color <span class="ot">&lt;-</span> <span class="st">&quot;#F5DF4D&quot;</span></span>
+<span id="cb1-56"><a href="analysis-setup.html#cb1-56" aria-hidden="true" tabindex="-1"></a>time_within_across_color <span class="ot">&lt;-</span> <span class="fu">unname</span>(alEC_colors[<span class="st">&quot;main&quot;</span>])</span>
+<span id="cb1-57"><a href="analysis-setup.html#cb1-57" aria-hidden="true" tabindex="-1"></a>ultimate_gray <span class="ot">&lt;-</span> <span class="st">&quot;#939597&quot;</span></span></code></pre></div>
+<div id="folder-structure" class="section level3 unnumbered">
+<h3>Folder Structure</h3>
+<p>In a second step, we create some folders that will be used during the analysis. These are folders that contain raw data as well as folders into which processed data is written. CAVE: Some Markdown files still create their own folders.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analysis-setup.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-------- SET UP FOLDERS ---------</span></span>
+<span id="cb2-2"><a href="analysis-setup.html#cb2-2" aria-hidden="true" tabindex="-1"></a>dirs <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb2-3"><a href="analysis-setup.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="analysis-setup.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># directory with logs from picture viewing task</span></span>
+<span id="cb2-5"><a href="analysis-setup.html#cb2-5" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>pvt_log_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;logs&quot;</span>, <span class="st">&quot;picture_viewing_task&quot;</span>)</span>
+<span id="cb2-6"><a href="analysis-setup.html#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="analysis-setup.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># directory with logs from day learning task</span></span>
+<span id="cb2-8"><a href="analysis-setup.html#cb2-8" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>dlt_log_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;logs&quot;</span>, <span class="st">&quot;day_learning&quot;</span>)</span>
+<span id="cb2-9"><a href="analysis-setup.html#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="analysis-setup.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># directory with logs from the timeline task</span></span>
+<span id="cb2-11"><a href="analysis-setup.html#cb2-11" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>timeline_dat_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;timeline&quot;</span>)</span>
+<span id="cb2-12"><a href="analysis-setup.html#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="analysis-setup.html#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># directories for freesurfer ROIs</span></span>
+<span id="cb2-14"><a href="analysis-setup.html#cb2-14" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>rois_fs_dirs <span class="ot">=</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rois&quot;</span>, rois_fs) </span>
+<span id="cb2-15"><a href="analysis-setup.html#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="analysis-setup.html#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># directories for final ROIs in analysis space</span></span>
+<span id="cb2-17"><a href="analysis-setup.html#cb2-17" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>rois_ss_dirs <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rois&quot;</span>, rois, <span class="st">&quot;samespace&quot;</span>)</span>
+<span id="cb2-18"><a href="analysis-setup.html#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="analysis-setup.html#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># directories for the MNI ROIs in analysis space</span></span>
+<span id="cb2-20"><a href="analysis-setup.html#cb2-20" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>rois_mni_ss_dirs <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rois&quot;</span>, rois_mni, <span class="st">&quot;samespace&quot;</span>)</span>
+<span id="cb2-21"><a href="analysis-setup.html#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="analysis-setup.html#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># directory where preprocessed data lies for each run and block</span></span>
+<span id="cb2-23"><a href="analysis-setup.html#cb2-23" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>feat_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;processed&quot;</span>, <span class="st">&quot;functionalDataPerBlock&quot;</span>)</span>
+<span id="cb2-24"><a href="analysis-setup.html#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="analysis-setup.html#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># directory with MRI data in the analysis space (samespace)</span></span>
+<span id="cb2-26"><a href="analysis-setup.html#cb2-26" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>samespace_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;processed&quot;</span>, <span class="st">&quot;samespace&quot;</span>)</span>
+<span id="cb2-27"><a href="analysis-setup.html#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="analysis-setup.html#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># base directory for RSA</span></span>
+<span id="cb2-29"><a href="analysis-setup.html#cb2-29" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>rsa_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rsa&quot;</span>)</span>
+<span id="cb2-30"><a href="analysis-setup.html#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="analysis-setup.html#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># directories for RSA correlation matrices</span></span>
+<span id="cb2-32"><a href="analysis-setup.html#cb2-32" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>rsa_roi_corr_mat_dirs <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rsa&quot;</span>, <span class="st">&quot;correlation_matrices&quot;</span>, rois)</span>
+<span id="cb2-33"><a href="analysis-setup.html#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="analysis-setup.html#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># directories for RSA pattern similarity change</span></span>
+<span id="cb2-35"><a href="analysis-setup.html#cb2-35" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>rsa_roi_ps_change_dirs <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rsa&quot;</span>, <span class="st">&quot;pattern_similarity_change&quot;</span>, rois)</span>
+<span id="cb2-36"><a href="analysis-setup.html#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="analysis-setup.html#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># directories for the cleaned timeseries data</span></span>
+<span id="cb2-38"><a href="analysis-setup.html#cb2-38" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>rsa_roi_clean_timeseries_dirs <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rsa&quot;</span>, <span class="st">&quot;clean_roi_timeseries&quot;</span>, rois)</span>
+<span id="cb2-39"><a href="analysis-setup.html#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="analysis-setup.html#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># directories for the relevant volumes of each ROI</span></span>
+<span id="cb2-41"><a href="analysis-setup.html#cb2-41" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>rsa_roi_rel_vol_dirs <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rsa&quot;</span>, <span class="st">&quot;relevant_roi_volumes&quot;</span>, rois)</span>
+<span id="cb2-42"><a href="analysis-setup.html#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="analysis-setup.html#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># directory for data on which to run RSA</span></span>
+<span id="cb2-44"><a href="analysis-setup.html#cb2-44" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>rsa_dat_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rsa&quot;</span>, <span class="st">&quot;data_for_rsa&quot;</span>)</span>
+<span id="cb2-45"><a href="analysis-setup.html#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="analysis-setup.html#cb2-46" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>mask_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;processed&quot;</span>, <span class="st">&quot;group_masks&quot;</span>)</span>
+<span id="cb2-47"><a href="analysis-setup.html#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="analysis-setup.html#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="co"># base directory for RSA searchlights</span></span>
+<span id="cb2-49"><a href="analysis-setup.html#cb2-49" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>searchlight <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rsa&quot;</span>, <span class="st">&quot;searchlight&quot;</span>)</span>
+<span id="cb2-50"><a href="analysis-setup.html#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="analysis-setup.html#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="co"># data for final analysis (this will be shared)</span></span>
+<span id="cb2-52"><a href="analysis-setup.html#cb2-52" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>data4analysis <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data_for_analysis&quot;</span>)</span>
+<span id="cb2-53"><a href="analysis-setup.html#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="analysis-setup.html#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co"># directory for source data for nature communications</span></span>
+<span id="cb2-55"><a href="analysis-setup.html#cb2-55" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>source_dat_dir <span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">&quot;source_data_natcomms&quot;</span>)</span>
+<span id="cb2-56"><a href="analysis-setup.html#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">dir.exists</span>(dirs<span class="sc">$</span>source_dat_dir)){<span class="fu">unlink</span>(dirs<span class="sc">$</span>source_dat_dir)} <span class="co"># delete if already existing to make sure to start with empty directory</span></span>
+<span id="cb2-57"><a href="analysis-setup.html#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="analysis-setup.html#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="co"># directory to save figures to</span></span>
+<span id="cb2-59"><a href="analysis-setup.html#cb2-59" aria-hidden="true" tabindex="-1"></a>fig_dir <span class="ot">=</span> <span class="fu">here</span>(<span class="st">&quot;figures&quot;</span>)</span>
+<span id="cb2-60"><a href="analysis-setup.html#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(fig_dir)){<span class="fu">dir.create</span>(fig_dir)}</span>
+<span id="cb2-61"><a href="analysis-setup.html#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="analysis-setup.html#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="co"># create all the directories</span></span>
+<span id="cb2-63"><a href="analysis-setup.html#cb2-63" aria-hidden="true" tabindex="-1"></a>dirs_created <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">unlist</span>(dirs), <span class="cf">function</span>(x) <span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(x)) <span class="fu">dir.create</span>(x, <span class="at">recursive=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+
+</div>
+</div>
+<div id="define-analysis-functions" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Define Analysis Functions</h2>
+<div id="analysis-logic" class="section level3 unnumbered">
+<h3>Analysis Logic</h3>
+<p>We run both the behavioral analysis and the RSA using two approaches: A summary statistics approach and with linear mixed effect models.</p>
+<p>In the analysis of the timeline task, we test whether virtual time explains remembered times when competing for variance with order and real time in seconds.</p>
+<p>In order to assess the change in pattern similarity that is due to the learning task, we will later calculate the difference of the Fisher transformed mean correlation coefficients for every pair of scenes between the pre and the post picture viewing tasks (see <a href="prepare-fmri-data.html#quantify-representational-change">this section</a>). We will analyze how these difference values relate to various predictor variables derived from the learning task, such as the temporal distance between pairs of scenes within a day.</p>
+<p>The two analysis approaches are briefly outlined below.</p>
+<div id="summary-statistics" class="section level4 unnumbered">
+<h4>Summary Statistics</h4>
+<p>The summary statistics approach is based on permutation testing.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="analysis-setup.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># control number of permutations used throughout the analyses</span></span>
+<span id="cb3-2"><a href="analysis-setup.html#cb3-2" aria-hidden="true" tabindex="-1"></a>n_perm <span class="ot">&lt;-</span> <span class="dv">10000</span></span></code></pre></div>
+<p>We will use <strong><em>10000 random permutations</em></strong> throughout the analyses.</p>
+<p>In the summary statistics approach, we use the different time metrics as predictors for the remembered times in the timeline task. We will thus run one GLM per participant. In RSA, we set up a GLM with the given variable from the learning task as a predictor and the pairwise RSA difference values as criterion for every participant.</p>
+<p>The resulting model coefficients are then compared to a null distribution obtained from shuffling the dependent variable of the linear model (i.e. pattern similarity change) for a large number of times. This results in a p-value for each coefficient, which is transformed to a Z-score. The Z-scores are then taken to the second level for group-level statistics.</p>
+<p>This is also described in the methods section of the manuscript:</p>
+<blockquote>
+<p>For the summary statistics approach, we ran a multiple regression analysis for each participant with virtual time, sequence position (order), and real time since the first event of a day as predictors of responses in the timeline task. To test whether virtual time indeed explained participants’ responses even when competing for variance with order and real time, included in the model as control predictors of no interest, we compared the participant-specific t-values of the resulting regression coefficients against null distributions obtained from shuffling the remembered times against the predictors 10000 times. We converted the resulting p-values to Z-values and tested these against zero using a permutation-based t-test (10000 random sign-flips, Figure 2E).</p>
+</blockquote>
+<blockquote>
+<p>In the summary statistics approach, we used the different time metrics as predictors for pattern similarity change. We set up a GLM with the given variable from the day learning task as a predictor and the pairwise representational change values as the criterion for every participant. The t-values of the resulting model coefficients were then compared to a null distribution obtained from shuffling the dependent variable of the linear model (i.e. pattern similarity change) 10000 times. This approach to permutation-testing of regression coefficients controls Type I errors even under situations of collinear regressors (Anderson and Legendre, 1999). Resulting p-values for each coefficient were transformed to a Z-score. The Z-scores were then used for group-level inferential statistics.</p>
+</blockquote>
+<p>We start by defining the function that permutes the dependent variable of the linear model. This approach was described e.g. by Manly (<a href="https://www.taylorfrancis.com/books/9781315273075">1997</a>) and is referred to as permutation of raw data in Anderson &amp; Legendre (<a href="https://doi.org/10.1080/00949659908811936">1999</a>), who compare different ways to implement permutation tests for (partial) regression coefficients. Their simulations show that the chosen approach does well in terms of controlling type I errors and power, even under situations of collinear regressors.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analysis-setup.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define function that calculates z-value for permutation</span></span>
+<span id="cb4-2"><a href="analysis-setup.html#cb4-2" aria-hidden="true" tabindex="-1"></a>lm_perm_jb <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">in_dat =</span> df, <span class="at">lm_formula =</span> lm_formula, <span class="at">nsim =</span> <span class="dv">1000</span>){</span>
+<span id="cb4-3"><a href="analysis-setup.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-4"><a href="analysis-setup.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># run the model for original data and store observed t-values</span></span>
+<span id="cb4-5"><a href="analysis-setup.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> lm_formula, <span class="at">data=</span>in_dat)</span>
+<span id="cb4-6"><a href="analysis-setup.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  obs <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(lm_fit))[,<span class="st">&quot;t value&quot;</span>]</span>
+<span id="cb4-7"><a href="analysis-setup.html#cb4-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-8"><a href="analysis-setup.html#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># extract the dependent variable from the formula</span></span>
+<span id="cb4-9"><a href="analysis-setup.html#cb4-9" aria-hidden="true" tabindex="-1"></a>  dv <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(lm_formula, <span class="st">&quot;[^~]+&quot;</span>)</span>
+<span id="cb4-10"><a href="analysis-setup.html#cb4-10" aria-hidden="true" tabindex="-1"></a>  dv <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(dv, <span class="fu">fixed</span>(<span class="st">&quot; &quot;</span>), <span class="st">&quot;&quot;</span>)</span>
+<span id="cb4-11"><a href="analysis-setup.html#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span>(dv <span class="sc">%in%</span> <span class="fu">colnames</span>(in_dat))){<span class="fu">stop</span>(<span class="st">&quot;Cannot find dependent variable in input data&quot;</span>);}</span>
+<span id="cb4-12"><a href="analysis-setup.html#cb4-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-13"><a href="analysis-setup.html#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># initialize df for permutation</span></span>
+<span id="cb4-14"><a href="analysis-setup.html#cb4-14" aria-hidden="true" tabindex="-1"></a>  data_perm <span class="ot">&lt;-</span> in_dat</span>
+<span id="cb4-15"><a href="analysis-setup.html#cb4-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-16"><a href="analysis-setup.html#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set aside space for results</span></span>
+<span id="cb4-17"><a href="analysis-setup.html#cb4-17" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> nsim, <span class="at">ncol =</span> <span class="fu">length</span>(obs))</span>
+<span id="cb4-18"><a href="analysis-setup.html#cb4-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-19"><a href="analysis-setup.html#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) {</span>
+<span id="cb4-20"><a href="analysis-setup.html#cb4-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-21"><a href="analysis-setup.html#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># scramble response value</span></span>
+<span id="cb4-22"><a href="analysis-setup.html#cb4-22" aria-hidden="true" tabindex="-1"></a>    perm <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(in_dat))</span>
+<span id="cb4-23"><a href="analysis-setup.html#cb4-23" aria-hidden="true" tabindex="-1"></a>    dv_dat <span class="ot">&lt;-</span> in_dat[dv]</span>
+<span id="cb4-24"><a href="analysis-setup.html#cb4-24" aria-hidden="true" tabindex="-1"></a>    data_perm[dv] <span class="ot">&lt;-</span> dv_dat[perm,]</span>
+<span id="cb4-25"><a href="analysis-setup.html#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="analysis-setup.html#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compute linear model and store the t-value of predictor</span></span>
+<span id="cb4-27"><a href="analysis-setup.html#cb4-27" aria-hidden="true" tabindex="-1"></a>    lm_fit_perm <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> lm_formula, <span class="at">data=</span>data_perm)</span>
+<span id="cb4-28"><a href="analysis-setup.html#cb4-28" aria-hidden="true" tabindex="-1"></a>    res[i,] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(lm_fit_perm))[,<span class="st">&quot;t value&quot;</span>]</span>
+<span id="cb4-29"><a href="analysis-setup.html#cb4-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-30"><a href="analysis-setup.html#cb4-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-31"><a href="analysis-setup.html#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># append the observed value to the list of results</span></span>
+<span id="cb4-32"><a href="analysis-setup.html#cb4-32" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">rbind</span>(res,obs)</span>
+<span id="cb4-33"><a href="analysis-setup.html#cb4-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-34"><a href="analysis-setup.html#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate p-value for each coefficient and transform to z</span></span>
+<span id="cb4-35"><a href="analysis-setup.html#cb4-35" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(obs))</span>
+<span id="cb4-36"><a href="analysis-setup.html#cb4-36" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(obs))</span>
+<span id="cb4-37"><a href="analysis-setup.html#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i_coef <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(obs)){</span>
+<span id="cb4-38"><a href="analysis-setup.html#cb4-38" aria-hidden="true" tabindex="-1"></a>    p[i_coef] <span class="ot">&lt;-</span> <span class="fu">sum</span>(res[,i_coef] <span class="sc">&gt;=</span> obs[i_coef])<span class="sc">/</span><span class="fu">nrow</span>(res)</span>
+<span id="cb4-39"><a href="analysis-setup.html#cb4-39" aria-hidden="true" tabindex="-1"></a>    z[i_coef] <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>p[i_coef])</span>
+<span id="cb4-40"><a href="analysis-setup.html#cb4-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-41"><a href="analysis-setup.html#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
+<span id="cb4-42"><a href="analysis-setup.html#cb4-42" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The Z-values resulting from this first-level permutation are then analyzed on the group level. For t-tests, we use random sign-flips (c.f. the one-sample t-test in <a href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/GLM#Randomise_details">FSL Randomise</a>) to non-parametrically test against 0 or assess within-participant differences between conditions. For this, we use the function defined below that is a reduced version of this <a href="https://de.mathworks.com/matlabcentral/fileexchange/29782-mult_comp_perm_t1-data-n_perm-tail-alpha_level-mu-reports-seed_state">Matlab implementation</a>.</p>
+<blockquote>
+<p>Group-level statistics were carried out using permutation-based procedures. For t-tests, we compared the observed t-values against a surrogate distribution obtained from 10000 random sign-flips to non-parametrically test against 0 or to assess within-participant differences between conditions. Permutation-based repeated measures ANOVAs were carried out using the permuco package (Frossard and Renaud, 2019).</p>
+</blockquote>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="analysis-setup.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function for permutation-based one-sample t-test against 0</span></span>
+<span id="cb5-2"><a href="analysis-setup.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># requires tidyverse and broom</span></span>
+<span id="cb5-3"><a href="analysis-setup.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># diff should be a vector of values (e.g. differences between paired samples)</span></span>
+<span id="cb5-4"><a href="analysis-setup.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># returns the data frame from broom::tidy(t.test(diff)) with an additional column</span></span>
+<span id="cb5-5"><a href="analysis-setup.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># for the p-value from n_perm random sign flips</span></span>
+<span id="cb5-6"><a href="analysis-setup.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># this function is based on the mult_comp_perm_t1 function for Matlab by David Groppe) </span></span>
+<span id="cb5-7"><a href="analysis-setup.html#cb5-7" aria-hidden="true" tabindex="-1"></a>paired_t_perm_jb <span class="ot">&lt;-</span> <span class="cf">function</span>(in_dat, <span class="at">n_perm=</span><span class="dv">10000</span>){</span>
+<span id="cb5-8"><a href="analysis-setup.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-9"><a href="analysis-setup.html#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make sure input is a vector</span></span>
+<span id="cb5-10"><a href="analysis-setup.html#cb5-10" aria-hidden="true" tabindex="-1"></a>  in_dat <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">unlist</span>(in_dat))</span>
+<span id="cb5-11"><a href="analysis-setup.html#cb5-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-12"><a href="analysis-setup.html#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># number of observations</span></span>
+<span id="cb5-13"><a href="analysis-setup.html#cb5-13" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(in_dat)</span>
+<span id="cb5-14"><a href="analysis-setup.html#cb5-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-15"><a href="analysis-setup.html#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get t of unpermuted data</span></span>
+<span id="cb5-16"><a href="analysis-setup.html#cb5-16" aria-hidden="true" tabindex="-1"></a>  t_stats <span class="ot">&lt;-</span> <span class="fu">t.test</span>(in_dat) <span class="sc">%&gt;%</span> broom<span class="sc">::</span><span class="fu">tidy</span>()</span>
+<span id="cb5-17"><a href="analysis-setup.html#cb5-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-18"><a href="analysis-setup.html#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># run n_perm iterations</span></span>
+<span id="cb5-19"><a href="analysis-setup.html#cb5-19" aria-hidden="true" tabindex="-1"></a>  t_perm <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;numeric&quot;</span>, n_perm)</span>
+<span id="cb5-20"><a href="analysis-setup.html#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="analysis-setup.html#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_perm){</span>
+<span id="cb5-22"><a href="analysis-setup.html#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># randomly shuffle sign of each observation and get t-value</span></span>
+<span id="cb5-23"><a href="analysis-setup.html#cb5-23" aria-hidden="true" tabindex="-1"></a>    dat_perm <span class="ot">&lt;-</span> in_dat<span class="sc">*</span><span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>),n,<span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb5-24"><a href="analysis-setup.html#cb5-24" aria-hidden="true" tabindex="-1"></a>    t_perm[i] <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">t.test</span>(dat_perm)<span class="sc">$</span>statistic)</span>
+<span id="cb5-25"><a href="analysis-setup.html#cb5-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-26"><a href="analysis-setup.html#cb5-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-27"><a href="analysis-setup.html#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">#add the negative of all values since we assume null hypothesis distribution is symmetric</span></span>
+<span id="cb5-28"><a href="analysis-setup.html#cb5-28" aria-hidden="true" tabindex="-1"></a>  t_perm <span class="ot">&lt;-</span><span class="fu">c</span>(t_perm, <span class="sc">-</span>t_perm)</span>
+<span id="cb5-29"><a href="analysis-setup.html#cb5-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-30"><a href="analysis-setup.html#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add observed t-value so p cannot be 0</span></span>
+<span id="cb5-31"><a href="analysis-setup.html#cb5-31" aria-hidden="true" tabindex="-1"></a>  t_perm <span class="ot">&lt;-</span><span class="fu">c</span>(t_perm, t_stats<span class="sc">$</span>statistic)</span>
+<span id="cb5-32"><a href="analysis-setup.html#cb5-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-33"><a href="analysis-setup.html#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate two-tailed p-value</span></span>
+<span id="cb5-34"><a href="analysis-setup.html#cb5-34" aria-hidden="true" tabindex="-1"></a>  p_perm <span class="ot">&lt;-</span> <span class="fu">mean</span>(t_perm <span class="sc">&gt;=</span> <span class="fu">abs</span>(t_stats<span class="sc">$</span>statistic))<span class="sc">*</span><span class="dv">2</span></span>
+<span id="cb5-35"><a href="analysis-setup.html#cb5-35" aria-hidden="true" tabindex="-1"></a>  t_stats <span class="ot">&lt;-</span> t_stats <span class="sc">%&gt;%</span></span>
+<span id="cb5-36"><a href="analysis-setup.html#cb5-36" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">add_column</span>(<span class="at">p_perm =</span> p_perm, <span class="at">.after =</span> <span class="st">&quot;p.value&quot;</span>)</span>
+<span id="cb5-37"><a href="analysis-setup.html#cb5-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(t_stats)</span>
+<span id="cb5-38"><a href="analysis-setup.html#cb5-38" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="linear-mixed-effects" class="section level4 unnumbered">
+<h4>Linear Mixed Effects</h4>
+<p>Linear Mixed Effects models consist of fixed and random effects. In our case the fixed case are of interest and consist of the temporal relationships that could explain remembered times or pattern similarity change (the dependent variables in the behavioral analysis and RSA, respectively). Random effects account for the fact that data points from different participants enter the estimation of the fixed effects.</p>
+<p>Following the recommendation for maximal random effect structures by Barr et al. (<a href="https://www.sciencedirect.com/science/article/pii/S0749596X12001180">JML, 2013</a>), we first attempt to fit a model with a random effects structure including random intercepts and random slopes for participants. If the model does not converge or results in singular fits, we reduce the random effects structure, attempting to always at least keep random slopes for the fixed effect of interest in the model as these are crucial to avoid anti-conservativity.</p>
+<p>Statistical inference about a model is done using a likelihood ratio tests against a nested, reduced model. The reduced model is identical to the full model, only the fixed effect of interest is removed.</p>
+<div id="lme-assumptions" class="section level5 unnumbered">
+<h5>LME assumptions</h5>
+<p>The code below defines a function to generate three diagnostic plots to visually assess the assumptions of a mixed model.</p>
+<ul>
+<li>Linearity &amp; Homoscedasticity: Residual plot</li>
+<li>Normality of residuals: QQ-Plot and histogram of the residuals</li>
+</ul>
+<p>It returns a ggplot object based on the input LME model. Probably these diagnostic plots will not end up in the manuscript because space is limited.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="analysis-setup.html#cb6-1" aria-hidden="true" tabindex="-1"></a>lmm_diagplots_jb <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">lmm =</span> lmm_full){</span>
+<span id="cb6-2"><a href="analysis-setup.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-3"><a href="analysis-setup.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># residual plot to inspect homoscedasticity </span></span>
+<span id="cb6-4"><a href="analysis-setup.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  resids_gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a href="analysis-setup.html#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fitted</span>(lmm), <span class="at">y =</span> <span class="fu">residuals</span>(lmm)), </span>
+<span id="cb6-6"><a href="analysis-setup.html#cb6-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">1</span>, <span class="at">shape =</span> <span class="dv">16</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="analysis-setup.html#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fitted</span>(lmm), <span class="at">y =</span> <span class="fu">residuals</span>(lmm)),</span>
+<span id="cb6-8"><a href="analysis-setup.html#cb6-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">formula =</span> <span class="st">&quot;y ~ x&quot;</span>, <span class="at">method=</span><span class="st">&#39;glm&#39;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="analysis-setup.html#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;residuals&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb6-10"><a href="analysis-setup.html#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&#39;fitted values&#39;</span>) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="analysis-setup.html#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Residual Plot&quot;</span>)<span class="sc">+</span></span>
+<span id="cb6-12"><a href="analysis-setup.html#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_cowplot</span>()</span>
+<span id="cb6-13"><a href="analysis-setup.html#cb6-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-14"><a href="analysis-setup.html#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data frame for QQ plot and histogram</span></span>
+<span id="cb6-15"><a href="analysis-setup.html#cb6-15" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">r =</span> <span class="fu">residuals</span>(lmm))</span>
+<span id="cb6-16"><a href="analysis-setup.html#cb6-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-17"><a href="analysis-setup.html#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># QQ-Plot look at residuals of the model</span></span>
+<span id="cb6-18"><a href="analysis-setup.html#cb6-18" aria-hidden="true" tabindex="-1"></a>  qqplot_gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">sample =</span> r)) <span class="sc">+</span> </span>
+<span id="cb6-19"><a href="analysis-setup.html#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_qq</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">shape =</span> <span class="dv">16</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb6-20"><a href="analysis-setup.html#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_qq_line</span>(<span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-21"><a href="analysis-setup.html#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;QQ-Plot&quot;</span>)<span class="sc">+</span></span>
+<span id="cb6-22"><a href="analysis-setup.html#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_cowplot</span>()</span>
+<span id="cb6-23"><a href="analysis-setup.html#cb6-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-24"><a href="analysis-setup.html#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Histogram of residuals</span></span>
+<span id="cb6-25"><a href="analysis-setup.html#cb6-25" aria-hidden="true" tabindex="-1"></a>  hist_gg <span class="ot">&lt;-</span><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>r)) <span class="sc">+</span> </span>
+<span id="cb6-26"><a href="analysis-setup.html#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..), <span class="at">colour=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;darkgrey&quot;</span>, <span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb6-27"><a href="analysis-setup.html#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">&quot;darkred&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-28"><a href="analysis-setup.html#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;magnitude of residual&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-29"><a href="analysis-setup.html#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of Residuals&quot;</span>)<span class="sc">+</span></span>
+<span id="cb6-30"><a href="analysis-setup.html#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_cowplot</span>()</span>
+<span id="cb6-31"><a href="analysis-setup.html#cb6-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-32"><a href="analysis-setup.html#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># collect for final figure</span></span>
+<span id="cb6-33"><a href="analysis-setup.html#cb6-33" aria-hidden="true" tabindex="-1"></a>  diag_fig <span class="ot">&lt;-</span> resids_gg <span class="sc">+</span> qqplot_gg <span class="sc">+</span> hist_gg <span class="sc">&amp;</span></span>
+<span id="cb6-34"><a href="analysis-setup.html#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
+<span id="cb6-35"><a href="analysis-setup.html#cb6-35" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>),</span>
+<span id="cb6-36"><a href="analysis-setup.html#cb6-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.position =</span> <span class="st">&#39;auto&#39;</span>,</span>
+<span id="cb6-37"><a href="analysis-setup.html#cb6-37" aria-hidden="true" tabindex="-1"></a>          <span class="at">aspect.ratio =</span> <span class="dv">1</span>,</span>
+<span id="cb6-38"><a href="analysis-setup.html#cb6-38" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">&amp;</span></span>
+<span id="cb6-39"><a href="analysis-setup.html#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&#39;A&#39;</span>,</span>
+<span id="cb6-40"><a href="analysis-setup.html#cb6-40" aria-hidden="true" tabindex="-1"></a>                    <span class="at">caption =</span> <span class="fu">paste0</span>(<span class="fu">deparse</span>(<span class="fu">formula</span>(lmm)), <span class="at">collapse=</span><span class="st">&quot;&quot;</span>))</span>
+<span id="cb6-41"><a href="analysis-setup.html#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (diag_fig)</span>
+<span id="cb6-42"><a href="analysis-setup.html#cb6-42" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="lme-summary-tables" class="section level5 unnumbered">
+<h5>LME Summary Tables</h5>
+<p>To summarize final models we create tables inspired by the best practice guidelines by Meteyard &amp; Davies (<a href="http://www.sciencedirect.com/science/article/pii/S0749596X20300061">JML, 2020</a>). Examples can be found on their <a href="https://osf.io/bfq39/">OSF page</a>, in particular the example reporting table on page 4 of <a href="https://osf.io/4wdva/">this document</a>.</p>
+<p>To create these tables we rely on the <a href="https://cran.r-project.org/web/packages/broom.mixed/index.html">broom.mixed package</a> to get the LME model summary in a tidy format. The tidy dataframes are then converted to <a href="https://cran.r-project.org/web/packages/huxtable/index.html">huxtables</a>, which can be nicely formatted.</p>
+<p>The function below takes as an input the tidy data frames for fixed effects, random effects as well as the ANOVA results from the comparison of the full model against a reduced model without the fixed effect of interest. All are merged into one table to limit the number of tables.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="analysis-setup.html#cb7-1" aria-hidden="true" tabindex="-1"></a>make_lme_huxtable <span class="ot">&lt;-</span> <span class="cf">function</span>(fix_df, ran_df, aov_mdl, <span class="at">fe_terms=</span><span class="cn">NULL</span>, <span class="at">re_terms=</span><span class="cn">NULL</span>, <span class="at">re_groups=</span><span class="cn">NULL</span>, <span class="at">lme_form=</span><span class="cn">NULL</span>, <span class="at">caption=</span><span class="st">&quot;Summary of Linear Mixed Effects Model&quot;</span>){</span>
+<span id="cb7-2"><a href="analysis-setup.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-3"><a href="analysis-setup.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">########### FIXED EFFECTS</span></span>
+<span id="cb7-4"><a href="analysis-setup.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create huxtable for fixed effects and format it</span></span>
+<span id="cb7-5"><a href="analysis-setup.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  fix_hux <span class="ot">&lt;-</span> fix_df <span class="sc">%&gt;%</span> huxtable<span class="sc">::</span><span class="fu">huxtable</span>(., <span class="at">add_colnames =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="analysis-setup.html#cb7-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-7"><a href="analysis-setup.html#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set standard error and t-value column names</span></span>
+<span id="cb7-8"><a href="analysis-setup.html#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_contents</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">4</span>, <span class="at">value =</span> <span class="st">&quot;SE&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-9"><a href="analysis-setup.html#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_contents</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">5</span>, <span class="at">value =</span> <span class="st">&quot;t-value&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-10"><a href="analysis-setup.html#cb7-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-11"><a href="analysis-setup.html#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># merge the confidence column title and reset column name</span></span>
+<span id="cb7-12"><a href="analysis-setup.html#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">merge_cells</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">7</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-13"><a href="analysis-setup.html#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_contents</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">6</span>, <span class="at">value =</span> <span class="st">&quot;95% CI&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-14"><a href="analysis-setup.html#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">6</span>, <span class="at">value =</span> <span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a href="analysis-setup.html#cb7-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-16"><a href="analysis-setup.html#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># align the contents </span></span>
+<span id="cb7-17"><a href="analysis-setup.html#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, <span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-18"><a href="analysis-setup.html#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-19"><a href="analysis-setup.html#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row =</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(.), <span class="at">col =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, <span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-20"><a href="analysis-setup.html#cb7-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-21"><a href="analysis-setup.html#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># how many digits to print?</span></span>
+<span id="cb7-22"><a href="analysis-setup.html#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_number_format</span>(<span class="at">row =</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(.), <span class="at">col =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, <span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-23"><a href="analysis-setup.html#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_number_format</span>(<span class="at">row =</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(.), <span class="at">col =</span> <span class="dv">5</span>, <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-24"><a href="analysis-setup.html#cb7-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-25"><a href="analysis-setup.html#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add header row for fixed effects </span></span>
+<span id="cb7-26"><a href="analysis-setup.html#cb7-26" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>effect) <span class="sc">%&gt;%</span> <span class="co"># remove column to the left because not needed</span></span>
+<span id="cb7-27"><a href="analysis-setup.html#cb7-27" aria-hidden="true" tabindex="-1"></a>    huxtable<span class="sc">::</span><span class="fu">insert_row</span>(.,<span class="fu">c</span>(<span class="st">&quot;fixed effects&quot;</span>, <span class="fu">rep</span>(<span class="st">&quot;&quot;</span>,<span class="fu">ncol</span>(.)<span class="sc">-</span><span class="dv">1</span>)), <span class="at">after=</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-28"><a href="analysis-setup.html#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row=</span><span class="dv">1</span>,<span class="at">col=</span><span class="dv">1</span>, <span class="at">value=</span><span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-29"><a href="analysis-setup.html#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_header_cols</span>(<span class="at">col=</span><span class="dv">1</span>, <span class="at">value=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-30"><a href="analysis-setup.html#cb7-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-31"><a href="analysis-setup.html#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># bottom border</span></span>
+<span id="cb7-32"><a href="analysis-setup.html#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_bottom_border</span>(<span class="at">row=</span><span class="fu">nrow</span>(.), <span class="at">value=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-33"><a href="analysis-setup.html#cb7-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-34"><a href="analysis-setup.html#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if names for fixed effect terms are supplied use them</span></span>
+<span id="cb7-35"><a href="analysis-setup.html#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(fe_terms)){fix_hux<span class="sc">$</span>term[<span class="dv">3</span><span class="sc">:</span><span class="fu">nrow</span>(fix_hux)] <span class="ot">&lt;-</span> fe_terms}</span>
+<span id="cb7-36"><a href="analysis-setup.html#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="analysis-setup.html#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="do">########### RANDOM EFFECTS </span></span>
+<span id="cb7-38"><a href="analysis-setup.html#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create huxtable for random effects and format it</span></span>
+<span id="cb7-39"><a href="analysis-setup.html#cb7-39" aria-hidden="true" tabindex="-1"></a>  ran_hux <span class="ot">&lt;-</span> ran_df <span class="sc">%&gt;%</span> huxtable<span class="sc">::</span><span class="fu">huxtable</span>(., <span class="at">add_colnames =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-40"><a href="analysis-setup.html#cb7-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-41"><a href="analysis-setup.html#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># how many digits to print?</span></span>
+<span id="cb7-42"><a href="analysis-setup.html#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_number_format</span>(<span class="at">row =</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(.), <span class="at">col =</span> <span class="dv">4</span>, <span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-43"><a href="analysis-setup.html#cb7-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-44"><a href="analysis-setup.html#cb7-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># align header row</span></span>
+<span id="cb7-45"><a href="analysis-setup.html#cb7-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="st">&quot;left&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-46"><a href="analysis-setup.html#cb7-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-47"><a href="analysis-setup.html#cb7-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add header row for random effects </span></span>
+<span id="cb7-48"><a href="analysis-setup.html#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>effect) <span class="sc">%&gt;%</span> <span class="co"># remove column to the left because not needed</span></span>
+<span id="cb7-49"><a href="analysis-setup.html#cb7-49" aria-hidden="true" tabindex="-1"></a>    huxtable<span class="sc">::</span><span class="fu">insert_row</span>(.,<span class="fu">c</span>(<span class="st">&quot;random effects&quot;</span>, <span class="fu">rep</span>(<span class="st">&quot;&quot;</span>,<span class="fu">ncol</span>(.)<span class="sc">-</span><span class="dv">1</span>)), <span class="at">after=</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-50"><a href="analysis-setup.html#cb7-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row=</span><span class="dv">1</span>,<span class="at">col=</span><span class="dv">1</span>, <span class="at">value=</span><span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-51"><a href="analysis-setup.html#cb7-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_header_cols</span>(<span class="at">col=</span><span class="dv">1</span>, <span class="at">value=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-52"><a href="analysis-setup.html#cb7-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-53"><a href="analysis-setup.html#cb7-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># center estimate data</span></span>
+<span id="cb7-54"><a href="analysis-setup.html#cb7-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row=</span><span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(.),<span class="at">col=</span><span class="fu">ncol</span>(.), <span class="at">value=</span><span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-55"><a href="analysis-setup.html#cb7-55" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-56"><a href="analysis-setup.html#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># bottom border</span></span>
+<span id="cb7-57"><a href="analysis-setup.html#cb7-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_bottom_border</span>(<span class="at">row=</span><span class="fu">nrow</span>(.), <span class="at">value=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-58"><a href="analysis-setup.html#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-59"><a href="analysis-setup.html#cb7-59" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if names for random effect grouping factor are supplied use them</span></span>
+<span id="cb7-60"><a href="analysis-setup.html#cb7-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(re_groups)){ran_hux<span class="sc">$</span>group[<span class="dv">3</span><span class="sc">:</span><span class="fu">nrow</span>(ran_hux)] <span class="ot">&lt;-</span> re_groups}</span>
+<span id="cb7-61"><a href="analysis-setup.html#cb7-61" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-62"><a href="analysis-setup.html#cb7-62" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if names for random effect terms are supplied use them</span></span>
+<span id="cb7-63"><a href="analysis-setup.html#cb7-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(re_terms)){ran_hux<span class="sc">$</span>term[<span class="dv">3</span><span class="sc">:</span><span class="fu">nrow</span>(ran_hux)] <span class="ot">&lt;-</span> re_terms}</span>
+<span id="cb7-64"><a href="analysis-setup.html#cb7-64" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-65"><a href="analysis-setup.html#cb7-65" aria-hidden="true" tabindex="-1"></a>  <span class="do">########### MODEL COMPARISON</span></span>
+<span id="cb7-66"><a href="analysis-setup.html#cb7-66" aria-hidden="true" tabindex="-1"></a>  <span class="co"># determine how many digits of p-value to print</span></span>
+<span id="cb7-67"><a href="analysis-setup.html#cb7-67" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(aov_mdl<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;Chisq)</span><span class="st">`</span>[<span class="dv">2</span>]<span class="sc">&gt;=</span><span class="fl">0.001</span>)</span>
+<span id="cb7-68"><a href="analysis-setup.html#cb7-68" aria-hidden="true" tabindex="-1"></a>    {num_fmt<span class="ot">&lt;-</span><span class="dv">3</span>} <span class="co"># 3 digits if p&gt;0.001</span></span>
+<span id="cb7-69"><a href="analysis-setup.html#cb7-69" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{</span>
+<span id="cb7-70"><a href="analysis-setup.html#cb7-70" aria-hidden="true" tabindex="-1"></a>    num_fmt<span class="ot">&lt;-</span><span class="cn">NA</span> <span class="co"># use default -&gt; scientific notation</span></span>
+<span id="cb7-71"><a href="analysis-setup.html#cb7-71" aria-hidden="true" tabindex="-1"></a>    aov_mdl<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;Chisq)</span><span class="st">`</span>[<span class="dv">2</span>]<span class="ot">&lt;-</span><span class="fu">formatC</span>(aov_mdl<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;Chisq)</span><span class="st">`</span>[<span class="dv">2</span>], <span class="at">format =</span> <span class="st">&quot;e&quot;</span>, <span class="at">digits =</span> <span class="dv">2</span>)} </span>
+<span id="cb7-72"><a href="analysis-setup.html#cb7-72" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-73"><a href="analysis-setup.html#cb7-73" aria-hidden="true" tabindex="-1"></a>  aov_hux <span class="ot">&lt;-</span> aov_mdl <span class="sc">%&gt;%</span>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-74"><a href="analysis-setup.html#cb7-74" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var =</span><span class="st">&quot;term&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-75"><a href="analysis-setup.html#cb7-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">huxtable</span>(<span class="at">add_colnames =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-76"><a href="analysis-setup.html#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-77"><a href="analysis-setup.html#cb7-77" aria-hidden="true" tabindex="-1"></a>    <span class="co"># align contents</span></span>
+<span id="cb7-78"><a href="analysis-setup.html#cb7-78" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(.)), <span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-79"><a href="analysis-setup.html#cb7-79" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="st">&quot;left&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-80"><a href="analysis-setup.html#cb7-80" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-81"><a href="analysis-setup.html#cb7-81" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add header row for model comparison</span></span>
+<span id="cb7-82"><a href="analysis-setup.html#cb7-82" aria-hidden="true" tabindex="-1"></a>    huxtable<span class="sc">::</span><span class="fu">insert_row</span>(.,<span class="fu">c</span>(<span class="st">&quot;model comparison&quot;</span>, <span class="fu">rep</span>(<span class="st">&quot;&quot;</span>,<span class="fu">ncol</span>(.)<span class="sc">-</span><span class="dv">1</span>)), <span class="at">after=</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-83"><a href="analysis-setup.html#cb7-83" aria-hidden="true" tabindex="-1"></a>    <span class="co">#merge_cells(1:nrow(.), col=1) %&gt;%</span></span>
+<span id="cb7-84"><a href="analysis-setup.html#cb7-84" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row=</span><span class="dv">1</span>,<span class="at">col=</span><span class="dv">1</span>, <span class="at">value=</span><span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-85"><a href="analysis-setup.html#cb7-85" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_header_cols</span>(<span class="at">col=</span><span class="dv">1</span>, <span class="at">value=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-86"><a href="analysis-setup.html#cb7-86" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-87"><a href="analysis-setup.html#cb7-87" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add model names</span></span>
+<span id="cb7-88"><a href="analysis-setup.html#cb7-88" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_contents</span>(<span class="at">row =</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(.), <span class="at">col =</span> <span class="st">&quot;term&quot;</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">&quot;model&quot;</span>, <span class="st">&quot;reduced model&quot;</span>, <span class="st">&quot;full model&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-89"><a href="analysis-setup.html#cb7-89" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_align</span>(<span class="at">row =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="dv">2</span>, <span class="st">&quot;left&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-90"><a href="analysis-setup.html#cb7-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-91"><a href="analysis-setup.html#cb7-91" aria-hidden="true" tabindex="-1"></a>    <span class="co"># change some column names</span></span>
+<span id="cb7-92"><a href="analysis-setup.html#cb7-92" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_contents</span>(<span class="at">row =</span> <span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;Pr(&gt;Chisq)&quot;</span>, <span class="at">value =</span> <span class="st">&quot;p&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-93"><a href="analysis-setup.html#cb7-93" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_contents</span>(<span class="at">row =</span> <span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;logLik&quot;</span>, <span class="at">value =</span> <span class="st">&quot;LL&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-94"><a href="analysis-setup.html#cb7-94" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_contents</span>(<span class="at">row =</span> <span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;Df&quot;</span>, <span class="at">value =</span> <span class="st">&quot;df&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-95"><a href="analysis-setup.html#cb7-95" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_contents</span>(<span class="at">row =</span> <span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;Chisq&quot;</span>, <span class="at">value =</span> <span class="st">&quot;X2&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-96"><a href="analysis-setup.html#cb7-96" aria-hidden="true" tabindex="-1"></a>    <span class="co">#set_contents(row = 2, col=&quot;Chisq&quot;, value = expression(&quot;$\\chi&quot;^&quot;2&quot;)) %&gt;%</span></span>
+<span id="cb7-97"><a href="analysis-setup.html#cb7-97" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-98"><a href="analysis-setup.html#cb7-98" aria-hidden="true" tabindex="-1"></a>    <span class="co"># how many digits to print? (do at the end because affected by adding columns)</span></span>
+<span id="cb7-99"><a href="analysis-setup.html#cb7-99" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_number_format</span>(<span class="at">row =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">col =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-100"><a href="analysis-setup.html#cb7-100" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_number_format</span>(<span class="at">row =</span> <span class="dv">4</span>, <span class="at">col =</span> <span class="dv">9</span>, num_fmt) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-101"><a href="analysis-setup.html#cb7-101" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-102"><a href="analysis-setup.html#cb7-102" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove the deviance and BIC column  </span></span>
+<span id="cb7-103"><a href="analysis-setup.html#cb7-103" aria-hidden="true" tabindex="-1"></a>    <span class="fu">remove_cols</span>(deviance) <span class="sc">%&gt;%</span></span>
+<span id="cb7-104"><a href="analysis-setup.html#cb7-104" aria-hidden="true" tabindex="-1"></a>    <span class="fu">remove_cols</span>(BIC) <span class="sc">%&gt;%</span></span>
+<span id="cb7-105"><a href="analysis-setup.html#cb7-105" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-106"><a href="analysis-setup.html#cb7-106" aria-hidden="true" tabindex="-1"></a>    <span class="co"># bottom border</span></span>
+<span id="cb7-107"><a href="analysis-setup.html#cb7-107" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_bottom_border</span>(<span class="at">row=</span><span class="fu">nrow</span>(.), <span class="at">value=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-108"><a href="analysis-setup.html#cb7-108" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-109"><a href="analysis-setup.html#cb7-109" aria-hidden="true" tabindex="-1"></a>  <span class="do">####### MERGE THE THREE HUXTABLES</span></span>
+<span id="cb7-110"><a href="analysis-setup.html#cb7-110" aria-hidden="true" tabindex="-1"></a>  <span class="co"># to be able to merge the tables, they need to have the same number of columns.</span></span>
+<span id="cb7-111"><a href="analysis-setup.html#cb7-111" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the AOV table has 7 columns, so we add 1 empty columns to the fixed effects</span></span>
+<span id="cb7-112"><a href="analysis-setup.html#cb7-112" aria-hidden="true" tabindex="-1"></a>  <span class="co"># table and 4 empty columns to the random effects table. We merge these with</span></span>
+<span id="cb7-113"><a href="analysis-setup.html#cb7-113" aria-hidden="true" tabindex="-1"></a>  <span class="co"># existing columns immediately</span></span>
+<span id="cb7-114"><a href="analysis-setup.html#cb7-114" aria-hidden="true" tabindex="-1"></a>  ran_hux <span class="ot">&lt;-</span>ran_hux <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">a=</span><span class="cn">NA</span>, <span class="at">b=</span><span class="cn">NA</span>, <span class="at">c=</span><span class="cn">NA</span>, <span class="at">d=</span><span class="cn">NA</span>, <span class="at">.after =</span> <span class="st">&quot;term&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-115"><a href="analysis-setup.html#cb7-115" aria-hidden="true" tabindex="-1"></a>    <span class="fu">merge_across</span>(<span class="at">row =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.), <span class="at">col =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb7-116"><a href="analysis-setup.html#cb7-116" aria-hidden="true" tabindex="-1"></a>  fix_hux <span class="ot">&lt;-</span>fix_hux <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">a=</span><span class="cn">NA</span>, <span class="at">.after =</span> <span class="st">&quot;term&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-117"><a href="analysis-setup.html#cb7-117" aria-hidden="true" tabindex="-1"></a>    <span class="fu">merge_across</span>(<span class="at">row =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.), <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb7-118"><a href="analysis-setup.html#cb7-118" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-119"><a href="analysis-setup.html#cb7-119" aria-hidden="true" tabindex="-1"></a>  <span class="co"># merge</span></span>
+<span id="cb7-120"><a href="analysis-setup.html#cb7-120" aria-hidden="true" tabindex="-1"></a>  lmm_hux <span class="ot">&lt;-</span> huxtable<span class="sc">::</span><span class="fu">add_rows</span>(fix_hux, ran_hux) <span class="sc">%&gt;%</span></span>
+<span id="cb7-121"><a href="analysis-setup.html#cb7-121" aria-hidden="true" tabindex="-1"></a>    huxtable<span class="sc">::</span><span class="fu">add_rows</span>(., aov_hux) <span class="sc">%&gt;%</span></span>
+<span id="cb7-122"><a href="analysis-setup.html#cb7-122" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-123"><a href="analysis-setup.html#cb7-123" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the header and bottom border</span></span>
+<span id="cb7-124"><a href="analysis-setup.html#cb7-124" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_caption</span>(caption) <span class="sc">%&gt;%</span></span>
+<span id="cb7-125"><a href="analysis-setup.html#cb7-125" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_caption_pos</span>(<span class="st">&quot;topleft&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-126"><a href="analysis-setup.html#cb7-126" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_bottom_border</span>(<span class="at">row=</span><span class="fu">nrow</span>(.), <span class="at">value=</span><span class="fl">0.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-127"><a href="analysis-setup.html#cb7-127" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_footnote</span>(<span class="fu">sprintf</span>(<span class="st">&quot;model: %s; </span><span class="sc">\n</span><span class="st">SE: standard error, CI: confidence interval, SD: standard deviation, npar: number of parameters, LL: log likelihood, df: degrees of freedom, corr.: correlation&quot;</span>, </span>
+<span id="cb7-128"><a href="analysis-setup.html#cb7-128" aria-hidden="true" tabindex="-1"></a>                         lme_form), <span class="at">border =</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-129"><a href="analysis-setup.html#cb7-129" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-130"><a href="analysis-setup.html#cb7-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(lmm_hux)</span>
+<span id="cb7-131"><a href="analysis-setup.html#cb7-131" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The resulting huxtables nicely summarize the mixed models in the HTML documentation. To collect the tables in a word file that accompanies the manuscript, we convert them to <a href="https://davidgohel.github.io/flextable/">flextables</a>. These can be written to Word documents using the <a href="https://davidgohel.github.io/officer/">officer package</a>. The function below does the conversion plus some touching up to end up with nicely formatted tables in Word.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analysis-setup.html#cb8-1" aria-hidden="true" tabindex="-1"></a>convert_huxtable_to_flextable <span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">ht =</span> lmm_hux){</span>
+<span id="cb8-2"><a href="analysis-setup.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-3"><a href="analysis-setup.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define border style to apply to selected cells</span></span>
+<span id="cb8-4"><a href="analysis-setup.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  def_cell_l<span class="ot">=</span>officer<span class="sc">::</span><span class="fu">fp_cell</span>(<span class="at">border.right =</span> <span class="fu">fp_border</span>(), <span class="at">border.top =</span> <span class="fu">fp_border</span>())</span>
+<span id="cb8-5"><a href="analysis-setup.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  def_cell_t<span class="ot">=</span>officer<span class="sc">::</span><span class="fu">fp_cell</span>(<span class="at">border.bottom =</span> <span class="fu">fp_border</span>(), <span class="at">border.top =</span> <span class="fu">fp_border</span>())</span>
+<span id="cb8-6"><a href="analysis-setup.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-7"><a href="analysis-setup.html#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define text style to apply to selected cells</span></span>
+<span id="cb8-8"><a href="analysis-setup.html#cb8-8" aria-hidden="true" tabindex="-1"></a>  def_par<span class="ot">=</span>officer<span class="sc">::</span><span class="fu">fp_par</span>(<span class="at">text.align =</span> <span class="st">&quot;center&quot;</span>, <span class="at">padding=</span><span class="dv">3</span>)</span>
+<span id="cb8-9"><a href="analysis-setup.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  def_tex<span class="ot">=</span>officer<span class="sc">::</span><span class="fu">fp_text</span>(<span class="at">bold=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-10"><a href="analysis-setup.html#cb8-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-11"><a href="analysis-setup.html#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># find the header rows (where new sections of the table begin)</span></span>
+<span id="cb8-12"><a href="analysis-setup.html#cb8-12" aria-hidden="true" tabindex="-1"></a>  head_rows <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">c</span>(<span class="st">&quot;term&quot;</span>, <span class="st">&quot;group&quot;</span>, <span class="st">&quot;model&quot;</span>), ht<span class="sc">$</span>term)</span>
+<span id="cb8-13"><a href="analysis-setup.html#cb8-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-14"><a href="analysis-setup.html#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># find the cell where we want to add Chi2</span></span>
+<span id="cb8-15"><a href="analysis-setup.html#cb8-15" aria-hidden="true" tabindex="-1"></a>  x2_cell <span class="ot">&lt;-</span> <span class="fu">which</span>(ht<span class="sc">==</span><span class="st">&quot;X2&quot;</span>, <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-16"><a href="analysis-setup.html#cb8-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-17"><a href="analysis-setup.html#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create the flextable</span></span>
+<span id="cb8-18"><a href="analysis-setup.html#cb8-18" aria-hidden="true" tabindex="-1"></a>  ft <span class="ot">&lt;-</span> ht <span class="sc">%&gt;%</span> huxtable<span class="sc">::</span><span class="fu">as_flextable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-19"><a href="analysis-setup.html#cb8-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-20"><a href="analysis-setup.html#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add border at the bottom to the rows that have the names </span></span>
+<span id="cb8-21"><a href="analysis-setup.html#cb8-21" aria-hidden="true" tabindex="-1"></a>    flextable<span class="sc">::</span><span class="fu">style</span>(<span class="at">i=</span>head_rows, <span class="at">pr_c =</span> def_cell_t, <span class="at">pr_p =</span> def_par, <span class="at">pr_t =</span> def_tex) <span class="sc">%&gt;%</span></span>
+<span id="cb8-22"><a href="analysis-setup.html#cb8-22" aria-hidden="true" tabindex="-1"></a>    flextable<span class="sc">::</span><span class="fu">style</span>(<span class="at">i=</span>head_rows<span class="dv">-1</span>, <span class="at">pr_c =</span> def_cell_t, <span class="at">pr_p =</span> def_par, <span class="at">pr_t =</span> def_tex) <span class="sc">%&gt;%</span></span>
+<span id="cb8-23"><a href="analysis-setup.html#cb8-23" aria-hidden="true" tabindex="-1"></a>    flextable<span class="sc">::</span><span class="fu">bg</span>(<span class="at">i=</span>head_rows<span class="dv">-1</span>, <span class="at">bg=</span><span class="st">&quot;lightgrey&quot;</span>, <span class="at">part=</span><span class="st">&quot;all&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-24"><a href="analysis-setup.html#cb8-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-25"><a href="analysis-setup.html#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># left-align the first and second column (apart from no. of params in model comparison) and add consistent padding</span></span>
+<span id="cb8-26"><a href="analysis-setup.html#cb8-26" aria-hidden="true" tabindex="-1"></a>    flextable<span class="sc">::</span><span class="fu">align</span>(., <span class="at">j=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">align=</span><span class="st">&quot;left&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-27"><a href="analysis-setup.html#cb8-27" aria-hidden="true" tabindex="-1"></a>    flextable<span class="sc">::</span><span class="fu">align</span>(., <span class="at">i =</span> <span class="fu">c</span>(head_rows[<span class="dv">3</span>], head_rows[<span class="dv">3</span>]<span class="sc">+</span><span class="dv">1</span>, head_rows[<span class="dv">3</span>]<span class="sc">+</span><span class="dv">2</span>), <span class="at">j=</span><span class="dv">2</span>, <span class="at">align=</span><span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-28"><a href="analysis-setup.html#cb8-28" aria-hidden="true" tabindex="-1"></a>    flextable<span class="sc">::</span><span class="fu">padding</span>(., <span class="at">padding =</span> <span class="dv">3</span>, <span class="at">part=</span><span class="st">&quot;all&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-29"><a href="analysis-setup.html#cb8-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-30"><a href="analysis-setup.html#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set font style</span></span>
+<span id="cb8-31"><a href="analysis-setup.html#cb8-31" aria-hidden="true" tabindex="-1"></a>    flextable<span class="sc">::</span><span class="fu">fontsize</span>(<span class="at">size=</span><span class="dv">10</span>, <span class="at">part=</span><span class="st">&quot;all&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-32"><a href="analysis-setup.html#cb8-32" aria-hidden="true" tabindex="-1"></a>    flextable<span class="sc">::</span><span class="fu">font</span>(<span class="at">fontname =</span> font2use) <span class="sc">%&gt;%</span></span>
+<span id="cb8-33"><a href="analysis-setup.html#cb8-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-34"><a href="analysis-setup.html#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># replace X2 with greek letter chi and superscript 2</span></span>
+<span id="cb8-35"><a href="analysis-setup.html#cb8-35" aria-hidden="true" tabindex="-1"></a>    flextable<span class="sc">::</span><span class="fu">compose</span>(<span class="at">i=</span>x2_cell[<span class="dv">1</span>], <span class="at">j=</span>x2_cell[<span class="dv">2</span>], <span class="at">value =</span> <span class="fu">as_paragraph</span>(<span class="st">&quot;\U03C7&quot;</span>, <span class="fu">as_sup</span>(<span class="st">&quot;2&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb8-36"><a href="analysis-setup.html#cb8-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-37"><a href="analysis-setup.html#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># autofit to page</span></span>
+<span id="cb8-38"><a href="analysis-setup.html#cb8-38" aria-hidden="true" tabindex="-1"></a>    flextable<span class="sc">::</span><span class="fu">set_table_properties</span>(<span class="at">layout=</span><span class="st">&quot;autofit&quot;</span>, <span class="at">width=</span><span class="dv">1</span>)</span>
+<span id="cb8-39"><a href="analysis-setup.html#cb8-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-40"><a href="analysis-setup.html#cb8-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set caption style</span></span>
+<span id="cb8-41"><a href="analysis-setup.html#cb8-41" aria-hidden="true" tabindex="-1"></a>  ft <span class="ot">&lt;-</span> flextable<span class="sc">::</span><span class="fu">set_caption</span>(ft,<span class="at">caption =</span> ft<span class="sc">$</span>caption<span class="sc">$</span>value, <span class="at">style=</span><span class="st">&quot;Normal&quot;</span>)</span>
+<span id="cb8-42"><a href="analysis-setup.html#cb8-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-43"><a href="analysis-setup.html#cb8-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ft)</span>
+<span id="cb8-44"><a href="analysis-setup.html#cb8-44" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here we open the word file that we want to write the tables to. It is based on a .docx-file where the themes for headings and text was manually modified to match the style of the manuscript.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analysis-setup.html#cb9-1" aria-hidden="true" tabindex="-1"></a>stables_docx <span class="ot">&lt;-</span> officer<span class="sc">::</span><span class="fu">read_docx</span>(<span class="fu">here</span>(<span class="st">&quot;virtem_code&quot;</span>, <span class="st">&quot;modified_headings.docx&quot;</span>)) </span>
+<span id="cb9-2"><a href="analysis-setup.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="analysis-setup.html#cb9-3" aria-hidden="true" tabindex="-1"></a>stables_docx <span class="ot">&lt;-</span> stables_docx <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="analysis-setup.html#cb9-4" aria-hidden="true" tabindex="-1"></a>    officer<span class="sc">::</span><span class="fu">body_add_par</span>(<span class="st">&quot;Supplemental Tables&quot;</span>, <span class="at">style =</span> <span class="st">&quot;heading 1&quot;</span>, <span class="at">pos =</span> <span class="st">&quot;on&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="brain-plots-in-ggplot" class="section level3 unnumbered">
+<h3>Brain Plots in ggplot</h3>
+<p>These functions are based on the <a href="https://neuroconductor.org/help/ggBrain/index.html">ggBrain package</a>. Plus, there are two simple custom functions to transform between 1mm MNI and matrix coordinates.</p>
+</div>
+<div id="ggbrain-functions-to-get-template-background" class="section level3 unnumbered">
+<h3>ggBrain functions to get template background</h3>
+<p>The first function returns a ggplot object of the template brain (MNI 1mm in our case).</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analysis-setup.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function from ggBrain that returns a ggplot object of the template brain</span></span>
+<span id="cb10-2"><a href="analysis-setup.html#cb10-2" aria-hidden="true" tabindex="-1"></a>getggTemplate<span class="ot">&lt;-</span><span class="cf">function</span>(col_template,row_ind,col_ind, ...){</span>
+<span id="cb10-3"><a href="analysis-setup.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  templateFrame<span class="ot">&lt;-</span><span class="fu">getBrainFrame</span>(<span class="at">row_ind=</span>row_ind, <span class="at">col_ind=</span>col_ind, ...)</span>
+<span id="cb10-4"><a href="analysis-setup.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-5"><a href="analysis-setup.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  n<span class="ot">&lt;-</span><span class="fu">length</span>(col_template)</span>
+<span id="cb10-6"><a href="analysis-setup.html#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(n<span class="sc">&gt;</span><span class="dv">1</span>) col_cut<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(<span class="fu">cut</span>(templateFrame<span class="sc">$</span>value,n))</span>
+<span id="cb10-7"><a href="analysis-setup.html#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(n<span class="sc">==</span><span class="dv">1</span>) col_cut<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb10-8"><a href="analysis-setup.html#cb10-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-9"><a href="analysis-setup.html#cb10-9" aria-hidden="true" tabindex="-1"></a>  p<span class="ot">&lt;-</span><span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">facet_just_unique</span>(row_ind,col_ind)</span>
+<span id="cb10-10"><a href="analysis-setup.html#cb10-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-11"><a href="analysis-setup.html#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb10-12"><a href="analysis-setup.html#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">all</span>(col_cut<span class="sc">!=</span>i)) <span class="cf">next</span></span>
+<span id="cb10-13"><a href="analysis-setup.html#cb10-13" aria-hidden="true" tabindex="-1"></a>    drop_ind<span class="ot">&lt;-</span><span class="fu">which</span>(<span class="fu">names</span>(templateFrame)<span class="sc">==</span><span class="st">&#39;value&#39;</span>) </span>
+<span id="cb10-14"><a href="analysis-setup.html#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">#so it doesn&#39;t conflict with mappings to &quot;value&quot; later on</span></span>
+<span id="cb10-15"><a href="analysis-setup.html#cb10-15" aria-hidden="true" tabindex="-1"></a>    templateFrame_col<span class="ot">&lt;-</span>templateFrame[col_cut<span class="sc">==</span>i,<span class="sc">-</span>drop_ind]</span>
+<span id="cb10-16"><a href="analysis-setup.html#cb10-16" aria-hidden="true" tabindex="-1"></a>    p<span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_tile</span>(<span class="at">data=</span>templateFrame_col,<span class="fu">aes</span>(<span class="at">x=</span>row,<span class="at">y=</span>col),<span class="at">fill=</span>col_template[i])</span>
+<span id="cb10-17"><a href="analysis-setup.html#cb10-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-18"><a href="analysis-setup.html#cb10-18" aria-hidden="true" tabindex="-1"></a>  p</span>
+<span id="cb10-19"><a href="analysis-setup.html#cb10-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-20"><a href="analysis-setup.html#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="analysis-setup.html#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># another internal function from ggBrain used to plot the template</span></span>
+<span id="cb10-22"><a href="analysis-setup.html#cb10-22" aria-hidden="true" tabindex="-1"></a>facet_just_unique<span class="ot">&lt;-</span><span class="cf">function</span>(row_ind,col_ind){</span>
+<span id="cb10-23"><a href="analysis-setup.html#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( <span class="fu">all</span>(row_ind<span class="sc">==</span>row_ind[<span class="dv">1</span>]) <span class="sc">&amp;</span>  <span class="fu">all</span>(col_ind<span class="sc">==</span>col_ind[<span class="dv">1</span>]))</span>
+<span id="cb10-24"><a href="analysis-setup.html#cb10-24" aria-hidden="true" tabindex="-1"></a>    out<span class="ot">&lt;-</span><span class="cn">NULL</span></span>
+<span id="cb10-25"><a href="analysis-setup.html#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( <span class="fu">all</span>(row_ind<span class="sc">==</span>row_ind[<span class="dv">1</span>]) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">all</span>(col_ind<span class="sc">==</span>col_ind[<span class="dv">1</span>]))</span>
+<span id="cb10-26"><a href="analysis-setup.html#cb10-26" aria-hidden="true" tabindex="-1"></a>    out<span class="ot">&lt;-</span><span class="fu">facet_grid</span>(.<span class="sc">~</span>col_ind)</span>
+<span id="cb10-27"><a href="analysis-setup.html#cb10-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">all</span>(row_ind<span class="sc">==</span>row_ind[<span class="dv">1</span>]) <span class="sc">&amp;</span>  <span class="fu">all</span>(col_ind<span class="sc">==</span>col_ind[<span class="dv">1</span>]))</span>
+<span id="cb10-28"><a href="analysis-setup.html#cb10-28" aria-hidden="true" tabindex="-1"></a>    out<span class="ot">&lt;-</span><span class="fu">facet_grid</span>(row_ind<span class="sc">~</span>.)</span>
+<span id="cb10-29"><a href="analysis-setup.html#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">all</span>(row_ind<span class="sc">==</span>row_ind[<span class="dv">1</span>]) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">all</span>(col_ind<span class="sc">==</span>col_ind[<span class="dv">1</span>]))</span>
+<span id="cb10-30"><a href="analysis-setup.html#cb10-30" aria-hidden="true" tabindex="-1"></a>    out<span class="ot">&lt;-</span><span class="fu">facet_grid</span>(row_ind<span class="sc">~</span>col_ind)</span>
+<span id="cb10-31"><a href="analysis-setup.html#cb10-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb10-32"><a href="analysis-setup.html#cb10-32" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div id="coordinate-transforms" class="section level4 unnumbered">
+<h4>Coordinate transforms</h4>
+<p>The code section below defines two helper functions that transform between the MNI coordinate system and the matrix coordinates of R. CAVE: Only use with 1mm MNI space.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analysis-setup.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to get accurate labels of panels in MNI space, define functions to convert coords</span></span>
+<span id="cb11-2"><a href="analysis-setup.html#cb11-2" aria-hidden="true" tabindex="-1"></a>mni2vox <span class="ot">&lt;-</span> <span class="cf">function</span>(mni_coords, <span class="at">output_zero_based =</span> <span class="cn">FALSE</span>){</span>
+<span id="cb11-3"><a href="analysis-setup.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-4"><a href="analysis-setup.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  x<span class="ot">&lt;-</span> mni_coords[<span class="dv">1</span>] <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> <span class="dv">90</span></span>
+<span id="cb11-5"><a href="analysis-setup.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  y<span class="ot">&lt;-</span> mni_coords[<span class="dv">2</span>] <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">126</span></span>
+<span id="cb11-6"><a href="analysis-setup.html#cb11-6" aria-hidden="true" tabindex="-1"></a>  z<span class="ot">&lt;-</span> mni_coords[<span class="dv">3</span>] <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">72</span></span>
+<span id="cb11-7"><a href="analysis-setup.html#cb11-7" aria-hidden="true" tabindex="-1"></a>  vox_coords <span class="ot">&lt;-</span> <span class="fu">c</span>(x,y,z)</span>
+<span id="cb11-8"><a href="analysis-setup.html#cb11-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-9"><a href="analysis-setup.html#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add +1 if output coordinates should not be zero-based</span></span>
+<span id="cb11-10"><a href="analysis-setup.html#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span>output_zero_based){vox_coords <span class="ot">&lt;-</span> vox_coords<span class="sc">+</span><span class="dv">1</span>}</span>
+<span id="cb11-11"><a href="analysis-setup.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-12"><a href="analysis-setup.html#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vox_coords)</span>
+<span id="cb11-13"><a href="analysis-setup.html#cb11-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-14"><a href="analysis-setup.html#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="analysis-setup.html#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># convert from voxel coordinates to MNI with option for whether voxel coordinates are from</span></span>
+<span id="cb11-16"><a href="analysis-setup.html#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># R (i.e. not zero-based) or FSL (i.e. zero-based)</span></span>
+<span id="cb11-17"><a href="analysis-setup.html#cb11-17" aria-hidden="true" tabindex="-1"></a>vox2mni <span class="ot">&lt;-</span> <span class="cf">function</span>(vox_coords, <span class="at">input_zero_based =</span> <span class="cn">FALSE</span>){</span>
+<span id="cb11-18"><a href="analysis-setup.html#cb11-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-19"><a href="analysis-setup.html#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if input coordinates are from R, i.e. not zero-based, subtract -1</span></span>
+<span id="cb11-20"><a href="analysis-setup.html#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span>input_zero_based){vox_coords <span class="ot">&lt;-</span> vox_coords<span class="dv">-1</span>}</span>
+<span id="cb11-21"><a href="analysis-setup.html#cb11-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-22"><a href="analysis-setup.html#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># subtract voxel space coordinates of origin (MNI=0,0,0 at 90,126,72 in FSL voxel coordinates)</span></span>
+<span id="cb11-23"><a href="analysis-setup.html#cb11-23" aria-hidden="true" tabindex="-1"></a>  mni_x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>(vox_coords[<span class="dv">1</span>]<span class="sc">-</span><span class="dv">90</span>)</span>
+<span id="cb11-24"><a href="analysis-setup.html#cb11-24" aria-hidden="true" tabindex="-1"></a>  mni_y <span class="ot">&lt;-</span> vox_coords[<span class="dv">2</span>]<span class="sc">-</span><span class="dv">126</span></span>
+<span id="cb11-25"><a href="analysis-setup.html#cb11-25" aria-hidden="true" tabindex="-1"></a>  mni_z <span class="ot">&lt;-</span> vox_coords[<span class="dv">3</span>]<span class="sc">-</span><span class="dv">72</span></span>
+<span id="cb11-26"><a href="analysis-setup.html#cb11-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-27"><a href="analysis-setup.html#cb11-27" aria-hidden="true" tabindex="-1"></a>  mni_coords <span class="ot">&lt;-</span> <span class="fu">c</span>(mni_x,mni_y,mni_z)</span>
+<span id="cb11-28"><a href="analysis-setup.html#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mni_coords)</span>
+<span id="cb11-29"><a href="analysis-setup.html#cb11-29" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="waiting-for-cluster-jobs" class="section level3 unnumbered">
+<h3>Waiting for Cluster Jobs</h3>
+<p>The function below is a convenient function to pause the execution of a script until a batch of condor jobs has finished. The function takes the ID of a condor batch as an input. It uses <em>condor_q</em> via the system-command. If 0 is returned, it terminates and moves on. Else the function sleeps for (a default of) 60s and then tries again. <strong>No checks are performed whether the jobs finished without errors</strong>. This function merely pauses the execution of the code to wait for long jobs to finish.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analysis-setup.html#cb12-1" aria-hidden="true" tabindex="-1"></a>pause_until_batch_done<span class="ot">&lt;-</span> <span class="cf">function</span>(batch_id, <span class="at">wait_interval =</span> <span class="dv">60</span>){</span>
+<span id="cb12-2"><a href="analysis-setup.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-3"><a href="analysis-setup.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Monitoring batch job %s. Checking status every %d seconds.&quot;</span>, </span>
+<span id="cb12-4"><a href="analysis-setup.html#cb12-4" aria-hidden="true" tabindex="-1"></a>                batch_id, wait_interval))</span>
+<span id="cb12-5"><a href="analysis-setup.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-6"><a href="analysis-setup.html#cb12-6" aria-hidden="true" tabindex="-1"></a>  batch_running <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb12-7"><a href="analysis-setup.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  tictoc<span class="sc">::</span><span class="fu">tic</span>()</span>
+<span id="cb12-8"><a href="analysis-setup.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (batch_running){</span>
+<span id="cb12-9"><a href="analysis-setup.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-10"><a href="analysis-setup.html#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sleep for the specified number of seconds</span></span>
+<span id="cb12-11"><a href="analysis-setup.html#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Sys.sleep</span>(wait_interval)</span>
+<span id="cb12-12"><a href="analysis-setup.html#cb12-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-13"><a href="analysis-setup.html#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># check if batch finished (condor_q returns character(0))</span></span>
+<span id="cb12-14"><a href="analysis-setup.html#cb12-14" aria-hidden="true" tabindex="-1"></a>    status <span class="ot">&lt;-</span> <span class="fu">system</span>(<span class="fu">sprintf</span>(<span class="st">&quot;condor_q -l %s&quot;</span>, batch_id), <span class="at">intern=</span><span class="cn">TRUE</span>)</span>
+<span id="cb12-15"><a href="analysis-setup.html#cb12-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-16"><a href="analysis-setup.html#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">identical</span>(status, <span class="fu">character</span>(<span class="dv">0</span>))){</span>
+<span id="cb12-17"><a href="analysis-setup.html#cb12-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="st">&quot;Batch jobs finished. Moving on.&quot;</span>)</span>
+<span id="cb12-18"><a href="analysis-setup.html#cb12-18" aria-hidden="true" tabindex="-1"></a>      tictoc<span class="sc">::</span><span class="fu">toc</span>()</span>
+<span id="cb12-19"><a href="analysis-setup.html#cb12-19" aria-hidden="true" tabindex="-1"></a>      batch_running <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb12-20"><a href="analysis-setup.html#cb12-20" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
+<span id="cb12-21"><a href="analysis-setup.html#cb12-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Batch jobs still running. Waiting another %d seconds.&quot;</span>, </span>
+<span id="cb12-22"><a href="analysis-setup.html#cb12-22" aria-hidden="true" tabindex="-1"></a>              wait_interval))</span>
+<span id="cb12-23"><a href="analysis-setup.html#cb12-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-24"><a href="analysis-setup.html#cb12-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-25"><a href="analysis-setup.html#cb12-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="illustrations-of-task-design-and-analysis-logic.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

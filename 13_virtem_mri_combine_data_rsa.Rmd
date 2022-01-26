@@ -1,0 +1,119 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Combine behavioral and fMRI data for RSA
+
+To create input for the RSA the next step is to combine the similarity change data with the behavioral data, so that we can do meaningful analyses. First the behavioral data is loaded and brought into the same pair-wise format as the similarity change data. Both datasets are combined for each subject and then written to disk.
+
+
+```{r}
+
+for (i_sub in subjects){
+  
+  # load the behavioral data
+  fn <- file.path(dirs$timeline_dat_dir, sprintf("%s_behavior_tbl_timeline.txt", i_sub))
+  col_types_list <- cols_only(sub_id = col_character(), day = col_factor(), 
+                              event = col_integer(), pic = col_integer(),
+                              virtual_time = col_double(), real_time = col_double(),
+                              memory_time = col_double(), memory_order = col_double(), 
+                              sorted_day = col_integer())
+  beh_dat <- read_csv(fn, col_types = col_types_list)
+  
+  # sort behavioral data according to picture identity
+  beh_dat_ordered <- beh_dat[order(beh_dat$pic),]
+  
+  # find the order of comparisons
+  pairs <- which(upper.tri(matrix(nrow = 20, ncol = 20)), arr.ind=TRUE)
+  
+  # extract the data for the first and second picture in each pair from the behavioral data
+  pic1_dat <- beh_dat_ordered[pairs[,1],]
+  pic2_dat <- beh_dat_ordered[pairs[,2],]
+  colnames(pic1_dat) <- paste0(colnames(pic1_dat), "1")
+  colnames(pic2_dat) <- paste0(colnames(pic2_dat), "2")
+  
+  # combine the two tibbles
+  pair_dat <- cbind(pic1_dat, pic2_dat)
+  
+  # reorder the tibble columns to make a bit more sense
+  pair_dat <- pair_dat %>%
+    select(sub_id1,
+           day1, day2,
+           pic1, pic2,
+           event1, event2, 
+           virtual_time1, virtual_time2, 
+           real_time1, real_time2, 
+           memory_order1, memory_order2, 
+           memory_time1, memory_time2, 
+           sorted_day1, sorted_day2) %>%
+    rename(sub_id = sub_id1)
+  
+  rsa_dat <- tibble()
+  for (i_roi in 1:length(rois)){
+    
+    # load the pattern similarity change data for this ROI
+    fn <- file.path(dirs$rsa_roi_ps_change_dirs[i_roi], 
+                    sprintf("%s_%s_pattern_similarity_change.txt", i_sub, rois[i_roi]))
+    ps_change_dat <- read.csv(fn)
+    
+    # make sure files have the same order
+    assertthat::are_equal(c(pair_dat$pic1, pair_dat$pic2), c(ps_change_dat$pic1, ps_change_dat$pic2))
+    
+    # add column with ROI name
+    ps_change_dat <- add_column(ps_change_dat, roi = rois[i_roi])
+
+    # collect the data from this ROI and merge into long data frame
+    roi_dat <- cbind(pair_dat, ps_change_dat[,3:6])
+    rsa_dat <- rbind(rsa_dat, roi_dat)
+  }
+  
+  # write to file
+  fn <- file.path(dirs$rsa_dat_dir, sprintf("%s_data_for_rsa.txt",i_sub))
+  write.table(rsa_dat, fn, append = FALSE, sep = ",",
+              dec = ".", row.names = FALSE, col.names = TRUE)
+}
+```
+
+
+Finally, the datasets are combined across subjects.
+
+```{r}
+
+# set up a dataframe to collect the data
+rsa_dat = tibble()
+
+for (i_sub in subjects){
+
+  # load data from CSV
+  fn <- file.path(dirs$rsa_dat_dir, sprintf("%s_data_for_rsa.txt",i_sub))
+  col_types_list <- cols_only(
+        sub_id = col_character(),
+        day1 = col_integer(), day2 = col_integer(),
+        event1 = col_integer(), event2 = col_integer(),
+        pic1 = col_integer(), pic2 = col_integer(),
+        virtual_time1 = col_double(), virtual_time2 = col_double(),
+        real_time1 = col_double(), real_time2 = col_double(),
+        memory_time1 = col_double(), memory_time2 = col_double(), 
+        memory_order1 = col_double(), memory_order2 = col_double(), 
+        sorted_day1 = col_integer(), sorted_day2 = col_integer(),
+        pre_corrs  = col_double(), post_corrs = col_double(),
+        ps_change = col_double(), roi = col_factor()
+  )
+  sub_dat <- as_tibble(read_csv(fn, col_types = col_types_list))
+  
+  # append to table with data from all subjects
+  rsa_dat <- bind_rows(sub_dat, rsa_dat)
+}
+
+# sort the data
+rsa_dat <- rsa_dat[with(rsa_dat, order(sub_id, day1, day2, event1, event2)),]
+
+# write to file
+fn <- file.path(dirs$data4analysis, "rsa_data_rois.txt")
+write.table(rsa_dat, fn, append = FALSE, sep = ",",
+            dec = ".", row.names = FALSE, col.names = TRUE)
+```

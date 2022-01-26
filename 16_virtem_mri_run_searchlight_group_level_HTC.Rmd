@@ -1,0 +1,370 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Group-level searchlight analysis
+
+After running the first level analysis, we want to run group-level statistics. Group-level stats will be run using permutation-based one sample t-tests as implemented by the sign-flipping procedure in [FSL Randomise](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Randomise/UserGuide#One-Sample_T-test). This test will be run for all voxels in our field of view as well as in a mask comprising the aHPC and alEC to correct for multiple comparisons within our a priori regions of interest.
+
+First, let's define some parameters and folders for these analyses.
+
+```{r, eval = run_srchlght_lvl2}
+# searchlight radius (used in file names)
+radius <- 3
+
+# analyses that we ran the searchlights for
+searchlights <- c("same_day_vir_time", 
+                  "diff_day_vir_time", 
+                  "day_time_interaction", 
+                  "all_pairs_vir_time"
+                  )
+
+# what smoothing to apply
+FWHM = 3 # in mm
+sigma = FWHM/2.3548 # fslmaths needs sigma not FWHM of kernel
+
+# Output folder
+invisible(lapply(file.path(dirs$data4analysis, "searchlight_results",
+                           searchlights), 
+                 function(x) if(!dir.exists(x)) dir.create(x, recursive=TRUE)))
+
+# folder for condor output
+htc_dir <- here("htc_logs", "srchlght")
+if(!exists(htc_dir)){dir.create(htc_dir, recursive = TRUE)}
+```
+
+### Move first-level images to MNI space {-}
+
+>The resulting t-maps were registered to MNI space for group level statistics and spatially smoothed (FWHM 3mm).
+
+The first level searchlight output is in each participant's common functional space. For group-level stats we need to register the searchlight outputs to MNI (1mm) space. 
+
+```{r, eval = run_srchlght_lvl2}
+# name of transformation matrix file to move from the shared functional space to MNI 1mm
+func2standard <- here("data", "mri", "processed", "wholebrain", 
+                      paste0("VIRTEM_P", rep(subjects, each = length(searchlights)), ".feat"),
+                      "reg", "example_func2standard.mat")
+
+# searchlight result in whole-brain functional space
+in_nii_fn <- file.path(dirs$searchlight, sprintf("first_level_%dvox_radius", radius), 
+                       rep(subjects, each = length(searchlights)),
+                       sprintf("%s_%s.nii.gz", rep(subjects, each = length(searchlights)), searchlights))
+
+# output folder & file name in MNI space
+invisible(lapply(file.path(dirs$searchlight, sprintf("mni_%dvox_radius", radius), 
+                           searchlights, "3d"), 
+                 function(x) if(!dir.exists(x)) dir.create(x, recursive=TRUE)))
+out_nii_fn <- file.path(dirs$searchlight, sprintf("mni_%dvox_radius", radius),
+                        rep(searchlights,n_subs), "3d",
+                        sprintf("%s_%s.nii.gz", 
+                                rep(subjects, each = length(searchlights)), searchlights))
+
+# apply FSL flirt to move from whole-brain functional space to 1mm MNI space
+invisible(mapply(flirt_apply,
+                 infile = in_nii_fn, 
+                 reffile = mni_fname("1"),
+                 initmat = func2standard,
+                 outfile = out_nii_fn,
+                 verbose = FALSE, retimg = FALSE))
+```
+
+### Merge and smooth first-level images {-}
+
+Now that all first-level images are in MNI space, we are ready to concatenate the images across participants. Then, we subject them to Gaussian smoothing.
+
+```{r, eval = run_srchlght_lvl2}
+# field of view mask
+fov_mask <- file.path(dirs$mask_dir, "fov", "fov_mask_mni.nii.gz")
+
+# open the task list
+fn <- file.path(htc_dir, "smooth_searchlights_tasklist.txt")
+con <- file(fn)
+open(con, "w")
+  
+for (i_srchlght in 1:length(searchlights)){
+    
+  # file names of files to merge
+  in_files <- file.path(dirs$searchlight, sprintf("mni_%dvox_radius", radius),
+                        searchlights[i_srchlght], "3d",
+                        sprintf("%s_%s.nii.gz", subjects,searchlights[i_srchlght]))
+  
+  # file name of 4D output file
+  fn_4d <- file.path(dirs$searchlight, sprintf("mni_%dvox_radius", radius),
+                     searchlights[i_srchlght], sprintf("%s_4d.nii.gz", 
+                                                       searchlights[i_srchlght]))
+    
+  # concatenate the images
+  fslmerge(infiles = in_files, direction = "t", outfile = fn_4d, retimg = FALSE, verbose = FALSE)
+    
+    
+  # name of smoothed output file
+  fn_4d_smooth <- file.path(dirs$data4analysis, "searchlight_results",
+                            searchlights[i_srchlght],
+                            sprintf("%s_4d_smooth_fwhm%d.nii.gz", 
+                                    searchlights[i_srchlght], FWHM))
+  
+  # write smoothing command to file
+  writeLines(sprintf("fslmaths %s -s %f -mas %s %s", 
+                     fn_4d, sigma, fov_mask, fn_4d_smooth), con)
+}
+close(con)
+
+# submit to cluster
+cmd <- sprintf("fsl_sub -T 30 -t %s -l %s -M bellmund@cbs.mpg.de -N smooth_srchlghts", fn, htc_dir)
+batch_id <- system(cmd, intern = TRUE)
+
+pause_until_batch_done(batch_id = batch_id, wait_interval = 300)
+```
+
+### Run FSL Randomise {-}
+
+Now we are ready to run FSL Randomise.
+
+>Group level statistics were carried out using random sign flipping implemented with FSL Randomise and threshold-free cluster enhancement. We corrected for multiple comparisons using a small volume correction mask including our a priori regions of interest, the anterior hippocampus and the anterior-lateral entorhinal cortex. 
+
+```{r, eval = run_srchlght_lvl2}
+
+# masks to use
+gm_mask_fn <- file.path(dirs$mask_dir, "gray_matter", "gray_matter_mask.nii.gz")
+svc_mask_fn <- file.path(dirs$mask_dir, "svc", "svc_mask.nii.gz")
+
+# open the tasklist
+fn <- file.path(htc_dir, "randomise_searchlights_tasklist.txt")
+con <- file(fn)
+open(con, "w")
+
+for (i_srchlght in 1:length(searchlights)){
+  
+  # do we want to look at the positive or negative contrast?
+  if (any(searchlights[i_srchlght] == c("same_day_vir_time", "day_time_interaction"))){
+    test_side = ""
+  } else {
+    
+    # we want to test for a negative effect for these searchlights
+    test_side = "_neg"
+    
+    # multiply by -1 to get the negative contrast 
+    orig_file <- file.path(dirs$data4analysis, "searchlight_results",
+                           searchlights[i_srchlght], 
+                           sprintf("%s_4d_smooth_fwhm%d.nii.gz", 
+                                   searchlights[i_srchlght], FWHM))
+    mul_neg1_fn <- file.path(dirs$data4analysis, "searchlight_results",
+                             searchlights[i_srchlght],
+                             sprintf("%s%s_4d_smooth_fwhm%d.nii.gz", 
+                                     searchlights[i_srchlght], test_side, FWHM))
+    fslmaths(file = orig_file, outfile = mul_neg1_fn, opts = "-mul -1")
+  }
+  
+  # 4D input image to run randomise on
+  in_fn <- file.path(dirs$data4analysis, "searchlight_results",
+                     searchlights[i_srchlght],
+                     sprintf("%s%s_4d_smooth_fwhm%d.nii.gz", 
+                             searchlights[i_srchlght], test_side, FWHM))
+    
+  # output file name for FOV
+  out_fn <- file.path(dirs$data4analysis, "searchlight_results",
+                      searchlights[i_srchlght], 
+                      sprintf("%s%s_randomise_fov_fwhm%d",
+                              searchlights[i_srchlght], test_side, FWHM))
+  
+  # define randomise command for full FOV and write to file
+  writeLines(sprintf("randomise -i %s -o %s -1 -T --uncorrp -m %s -n 5000",
+                     in_fn, out_fn, gm_mask_fn),con)
+  
+  # output file name for SVC
+  out_fn <- file.path(dirs$data4analysis, "searchlight_results",
+                      searchlights[i_srchlght], 
+                      sprintf("%s%s_randomise_svc_fwhm%d", 
+                              searchlights[i_srchlght], test_side, FWHM))
+  
+  # define randomise command for small-volume correction and and write to file
+  writeLines(sprintf("randomise -i %s -o %s -1 -T --uncorrp -m %s -n 5000",
+                     in_fn, out_fn, svc_mask_fn),con)
+}
+close(con)
+
+# submit to cluster
+cmd <- sprintf("fsl_sub -T 300 -t %s -l %s -M bellmund@cbs.mpg.de -N randomise_srchlghts", fn, htc_dir)
+batch_id <- system(cmd, intern = TRUE)
+
+pause_until_batch_done(batch_id = batch_id, wait_interval = 600)
+```
+
+### Find searchlight clusters and atlas labels {-}
+
+Next, we do an automated search in the Randomise results. This is done via [FSL cluster](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Cluster) and the result is stored in a text file. Then, we add atlas labels based on the Harvard-Oxford Cortical/Subcortial Structural Atlas using [FSL atlasquery](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlasquery).
+
+Here is a function that runs the atlasquery command and removes some excess characters around the return string.
+
+```{r}
+find_FSL_atlas_label <- function(atlas = "Harvard-Oxford Cortical Structural Atlas", x=-20, y=-3, z=-26){
+  
+  # build FSL atlasquery command and send to command line
+  cmd<- sprintf('atlasquery -a "%s" -c %s', atlas,sprintf("%f,%f,%f",x,y,z))
+  cmd<-sprintf("%s | sed 's/<b>//g' | sed 's/<\\/b><br>/\\,/g'", cmd) # based on FSL autoaq (l.106)
+  string <- system(cmd,intern=TRUE)
+  
+  # remove atlas name
+  label <- stringr::str_remove(string, sprintf("%s,", atlas))
+  
+  return(label)
+}
+```
+
+We extract clusters that are significant at p<0.05 after correcting for multiple comparisons using small volume correction. To explore the searchlight results beyond the hippocampal-entorhinal region, we look for clusters at a threshold of p<0.001 uncorrected with a minimum extent of 30 voxels.
+
+>We corrected for multiple comparisons using a small volume correction mask including our a priori regions of interest, the anterior hippocampus and the anterior-lateral entorhinal cortex. Further, we used a liberal threshold of puncorrected<0.001 to explore the data for additional effects within our field of view. Exploratory searchlight results are shown in Supplemental Figure 7 and clusters with a minimum extent of 30 voxels are listed in Supplemental Tables 9, 11 and 12.
+
+```{r, eval = run_srchlght_lvl2}
+
+for (i_srchlght in 1:length(searchlights)){
+  
+  # searchlight with positive or negative contrast?
+  if (any(searchlights[i_srchlght] == c("same_day_vir_time", "day_time_interaction"))){
+    test_side <- ""
+  } else {
+    test_side <- "_neg"
+  }
+  
+  # file with t-values
+  t_fn <- file.path(dirs$data4analysis, "searchlight_results",
+                    searchlights[i_srchlght], 
+                    sprintf("%s%s_randomise_fov_fwhm%d_tstat1.nii.gz",
+                            searchlights[i_srchlght], test_side, FWHM))
+
+  # SVC-CORRECTED CLUSTERS
+  # file with corrected p-values based on SVC
+  corrp_fn <- file.path(dirs$data4analysis, "searchlight_results",
+                          searchlights[i_srchlght], 
+                          sprintf("%s%s_randomise_svc_fwhm%d_tfce_corrp_tstat1.nii.gz",
+                                  searchlights[i_srchlght], test_side, FWHM))
+  
+  # output text file for clusters significant after small volume correction
+  cluster_fn <- file.path(dirs$data4analysis, "searchlight_results",
+                                searchlights[i_srchlght], 
+                                sprintf("cluster_%s%s_svc_corrp.txt",
+                                        searchlights[i_srchlght], test_side, FWHM))
+  cmd <- sprintf('cluster -i %s -t 0.95 -c %s --mm > %s', 
+                 corrp_fn, t_fn, cluster_fn)
+  system(cmd)
+  
+  # read the cluster file
+  cluster_df <- readr::read_tsv(cluster_fn, 
+                              col_types = c("dddddddddd____"))
+  colnames(cluster_df) <- c("cluster_index", "n_voxel", "max_1minusp",
+                            "x", "y", "z", "cog_x", "cog_y", "cog_z", "t_extr")
+  
+  # add columns for atlas label info
+  cluster_df <- cluster_df %>% 
+    tibble::add_column(Harvard_Oxford_Cortical = NA, .before = "cluster_index") %>%
+    tibble::add_column(Harvard_Oxford_Subcortical = NA, .before = "cluster_index")
+    
+  # get atlas label info
+  if (nrow(cluster_df)>0){
+    for (i in 1:nrow(cluster_df)){
+      cluster_df$Harvard_Oxford_Cortical[i] <- find_FSL_atlas_label(
+        atlas = "Harvard-Oxford Cortical Structural Atlas", 
+        x=cluster_df$x[i], y=cluster_df$y[i], z=cluster_df$z[i])
+      
+      cluster_df$Harvard_Oxford_Subcortical[i] <- find_FSL_atlas_label(
+        atlas = "Harvard-Oxford Subcortical Structural Atlas", 
+        x=cluster_df$x[i], y=cluster_df$y[i], z=cluster_df$z[i])
+    }
+  }
+  
+  # write to new file
+  fn <- file.path(dirs$data4analysis, "searchlight_results",
+                  searchlights[i_srchlght], 
+                  sprintf("cluster_%s%s_svc_corrp_atlas.txt",
+                          searchlights[i_srchlght], test_side, FWHM))
+  write_tsv(cluster_df, path=fn)
+  
+  # FOV CLUSTERS AT p<0.001 UNCORRECTED
+  # file with uncorrected p-values in entire FOV
+  uncorrp_fn <- file.path(dirs$data4analysis, "searchlight_results",
+                          searchlights[i_srchlght], 
+                          sprintf("%s%s_randomise_fov_fwhm%d_tfce_p_tstat1.nii.gz",
+                                  searchlights[i_srchlght], test_side, FWHM))
+  # output text file for clusters significant after small volume correction
+  cluster_fn <- file.path(dirs$data4analysis, "searchlight_results",
+                                searchlights[i_srchlght], 
+                                sprintf("cluster_%s%s_fov_uncorrp.txt",
+                                        searchlights[i_srchlght], test_side, FWHM))
+  cmd <- sprintf('cluster -i %s -t 0.999 -c %s --mm --minextent=30 > %s', 
+                 uncorrp_fn, t_fn, cluster_fn)
+  system(cmd)
+  
+  # read the cluster file
+  cluster_df <- readr::read_tsv(cluster_fn, 
+                              col_types = c("dddddddddd____"))
+  colnames(cluster_df) <- c("cluster_index", "n_voxel", "max_1minusp",
+                            "x", "y", "z", "cog_x", "cog_y", "cog_z", "t_extr")
+  
+  # add columns for atlas label info
+  cluster_df <- cluster_df %>% 
+    tibble::add_column(Harvard_Oxford_Cortical = NA, .before = "cluster_index") %>%
+    tibble::add_column(Harvard_Oxford_Subcortical = NA, .before = "cluster_index")
+    
+  # get atlas label info
+  for (i in 1:nrow(cluster_df)){
+    cluster_df$Harvard_Oxford_Cortical[i] <- find_FSL_atlas_label(
+      atlas = "Harvard-Oxford Cortical Structural Atlas", 
+      x=cluster_df$cog_x[i], y=cluster_df$cog_y[i], z=cluster_df$cog_z[i])
+    
+    cluster_df$Harvard_Oxford_Subcortical[i] <- find_FSL_atlas_label(
+      atlas = "Harvard-Oxford Subcortical Structural Atlas", 
+      x=cluster_df$cog_x[i], y=cluster_df$cog_y[i], z=cluster_df$cog_z[i])
+  }
+  
+  # write to new file
+  fn <- file.path(dirs$data4analysis, "searchlight_results",
+                  searchlights[i_srchlght], 
+                  sprintf("cluster_%s%s_fov_uncorrp_atlas.txt",
+                          searchlights[i_srchlght], test_side, FWHM))
+  write_tsv(cluster_df, path=fn)
+}
+```
+
+### Create outlines of significant clusters {-}
+
+To later show which voxels survive corrections for multiple comparisons based on our small-volume correction, we create an outline of the clusters surviving at corrected p<0.05. We do this by dilating a binarized mask of this effect with a spherical kernel with a radius of 2mm.
+
+>voxels within black outline are significant after correction for multiple comparisons using small volume correction
+
+#### Same Day Event Pairs{-}
+
+```{r, eval = run_srchlght_lvl2}
+
+# to create an outline of the significant cluster, we threshold the small-volume corrected p-image
+# at 0.95 (i.e. 1-0.05) and binarize it. Then we dilate it using a spherical kernel.
+corrpsvc_fn <- file.path(dirs$data4analysis, "searchlight_results", "same_day_vir_time",
+                     "same_day_vir_time_randomise_svc_fwhm3_tfce_corrp_tstat1.nii.gz")
+outl_fn <- file.path(dirs$data4analysis, "searchlight_results", "same_day_vir_time",
+                     "same_day_vir_time_randomise_svc_fwhm3_tfce_corrp_outline.nii.gz")
+fslmaths(file=corrpsvc_fn,outfile = outl_fn, opts = "-thr 0.95 -bin", 
+         retimg = FALSE, verbose = FALSE)
+outl_nii <- fslmaths(file=outl_fn, outfile = outl_fn, 
+                     opts = sprintf("-kernel sphere 2 -dilM -sub %s", outl_fn),
+                     verbose = FALSE)
+
+```
+
+#### Sequence-Time Interaction {-}
+
+```{r, eval = run_srchlght_lvl2}
+# to create an outline of the significant cluster, we threshold the small-volume corrected p-image
+# at 0.95 (i.e. 1-0.05) and binarize it. Then we dilate it using a spherical kernel.
+corrpsvc_fn <- file.path(dirs$data4analysis, "searchlight_results","day_time_interaction",
+                         "day_time_interaction_randomise_svc_fwhm3_tfce_corrp_tstat1.nii.gz")
+outl_fn <- file.path(dirs$data4analysis, "searchlight_results","day_time_interaction",
+                     "day_time_interaction_randomise_svc_fwhm3_tfce_corrp_outline.nii.gz")
+fslmaths(file=corrpsvc_fn,outfile = outl_fn, opts = "-thr 0.95 -bin", 
+         retimg = FALSE, verbose = FALSE)
+outl_nii <- fslmaths(file=outl_fn, outfile = outl_fn, 
+                     opts = sprintf("-kernel sphere 2 -dilM -sub %s", outl_fn), 
+                     verbose = FALSE)
+```

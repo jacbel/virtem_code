@@ -1,0 +1,342 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+# Prepare behavioral data
+
+As a first step, we create a design table for each participant that collects information about the assignment of events to virtual days and when the events occur with respect to virtual time and real time (seconds).
+
+```{r eval = run_prep_beh}
+# define the function
+virtem_behavior_prepare_design_tbl <- function(subjects = c("031", "032")){
+
+  # load design file with virtual time
+  fname <- here("data", "behavior", "design", "daysTime.txt")
+  virtual_time <- read.csv(fname, header = FALSE)
+  virtual_time <- c(t(as.matrix(virtual_time)))
+  
+  # load design file with times of events in actual time in seconds (after day start) --> real time
+  fname <- here("data", "behavior", "design", "daysTimeS.txt")
+  real_time <- read.csv(fname, header = FALSE)
+  real_time <- c(t(as.matrix(real_time)))
+  
+  for (i_sub in 1:length(subjects)){
+    sub_id <- subjects[i_sub]
+    
+    # initialize the tibble
+    design_tbl <- tibble(sub_id = rep(sub_id, n_days * n_events_day), 
+                         day=c(rep(1,5),rep(2,5),rep(3,5),rep(4,5)),
+                         event=rep(1:n_events_day,4), virtual_time, 
+                         real_time, pic = numeric(n_days * n_events_day))
+
+    # load design file to get stimulus assignments
+    fname <- here("data", "behavior", "logs", "input_files", sprintf("P%s_input.txt", sub_id))
+    input_data <- read.table(fname)
+    
+    # extract the trials where pics were presented
+    pic_trial_idx = input_data[,5] == 1; # picture trial if column 5 is a 1
+    pic_trials <- input_data[pic_trial_idx,]
+    
+    # assign the 5 picture IDs of each day to the respective days
+    for (i_day in 1:n_days){
+          all_reps <- pic_trials[pic_trials[,3]==i_day,6] # all repetitions for this day
+          design_tbl$pic[design_tbl$day==i_day] <- all_reps[1:n_events_day] # extract IDs for first rep
+          
+          # check assumption that IDs are correct is met
+          if (!identical(all_reps, rep(all_reps[1:n_events_day],7))){
+                stop("error when finding picture IDs for subject ", sub_id)
+          }
+    }
+    
+    # sanity check: compare to Lorena's day order
+    #fname <- here("data", "behavior", "design", sprintf("P%s_daysOrder.txt", sub_id))
+    #days_order <- read.csv(fname, header = FALSE)
+    #days_order <- c(t(as.matrix(days_order)))
+    #stopifnot(all(days_order == design_tbl$pic))
+    
+    # write design tibble to file for this subject
+    out_dir = here("data", "behavior", "design_tbl")
+    if(!dir.exists(out_dir)){dir.create(out_dir)}
+    write_csv(design_tbl, file.path(out_dir, sprintf("%s_design_tbl.txt", sub_id)))
+  }
+}
+
+# call the function to get the design tibble for each subject and write it to file
+virtem_behavior_prepare_design_tbl(subjects = subjects)
+
+```
+
+## Sorting task
+
+Here is a description of the task from the methods:  
+
+>The day sorting task (Figure 1D) was performed in front of a computer screen. The 20 event images from the day learning task were presented on the screen in a miniature version. They were arranged in a circle around a central area displaying 4 rectangles. Participants were instructed to drag and drop all events of the same sequence into the same rectangle with a computer mouse. Participants freely chose which rectangle corresponded to which sequence as the sequence were not identifiable by any label and were presented in differing orders across mini-blocks during learning. 
+
+Thus, in analysis, we take the grouping as provided by the rectangles and assign the four groups of events to the four days in a way that maximizes the overlap between actual days and sorted days. This may be trivial if performance is perfect or very high, but if several scenes were mixed up between days, it can become difficult to ascertain which day participants were trying to re-assemble. The best fitting permutation is written to file.
+
+>For analysis of the sorting task, we took the grouping of event images as provided by the participants and assigned them to the four sequences to ensure maximal overlap between actual and sorted sequence memberships. While the assignment of groupings to sequences is unambiguous when performance is, as in our sample, high, this procedure is potentially liberal at lower performance levels. We then calculated the percentage of correctly sorted event images (Figure 2A). 
+
+```{r eval = run_prep_beh}
+
+# define function to prepare the data from the day sorting task
+virtem_behavior_prepare_data_day_sorting <- function(subjects = c("036", "037")){
+      
+  # initialize
+  n_correct = numeric(length(subjects))
+  out_dir = here("data", "behavior", "day_sorting")
+  if(!dir.exists(out_dir)){dir.create(out_dir)}
+  
+  for (i_sub in 1:length(subjects)){
+    sub_id <- subjects[i_sub]
+    
+    # load design file with true assignment of stimuli to days
+    fname <- here("data", "behavior", "design_tbl", sprintf("%s_design_tbl.txt", sub_id))
+    col_classes <- c("sub_id" = "c", "day"="n", "event"="n", "pic"="n")
+    design_tbl <- as_tibble(read_csv(fname, col_types = col_classes))
+    
+    # load the data from the day sorting task and store what we need
+    fname <- here("data", "behavior", "logs", "day_sorting", 
+                  sprintf("%s_rectangles_results.mat", sub_id))
+    sorting_log <- readMat(fname)
+    obj_pos <- sorting_log$objectPositions
+    
+    # extract quadrant for  each image
+    pic_q <- numeric(n_days*n_events_day)
+    for (i_pic in 1:nrow(obj_pos)){
+          # coordinates of current image
+          curr_x <- obj_pos[i_pic,1]
+          curr_y <- obj_pos[i_pic,2]
+          
+          if (curr_x < 0 && curr_y > 0){ # x smaller than 0, y bigger than 0 --> quadrant 1
+                pic_q[i_pic] <- 1
+          }  
+          else if (curr_x > 0 && curr_y > 0){ # x bigger than 0, y bigger than 0 --> quadrant 2
+                pic_q[i_pic] <- 2
+          }
+          else if (curr_x < 0 && curr_y < 0){ # x smaller than 0, y smaller than 0 --> quadrant 3
+                pic_q[i_pic] <- 3
+          }
+          else if (curr_x > 0 && curr_y < 0){ # x bigger than 0, y smaller than 0 --> quadrant 4
+                pic_q[i_pic] <- 4
+          }
+          else {stop("Error, can't sort!")}
+    }
+    
+    # match quadrant number to days for all possible combinations
+    # surely there must be a better way to get all combinations as a matrix?!
+    all_perms <- t(array(unlist(permn(1:4)), dim = c(4, 24)))
+    n_matches <- numeric(nrow(all_perms))
+    
+    for (i_perm in 1:nrow(all_perms)){
+          
+          # get vector with pic-day assignment for this permutation
+          comb_to_test <-numeric(20)
+          for (i_day in 1:n_days){
+                comb_to_test[design_tbl$pic[design_tbl$day == all_perms[i_perm, i_day]]] <- i_day
+          }
+          
+          # count the number of matches
+          n_matches[i_perm] <- sum(comb_to_test == pic_q)
+    }
+    
+    # find the best permutation and the number of hits
+    winner_perm <- which.max(n_matches)
+    n_correct[i_sub] <- max(n_matches)
+    
+    # sort the behavioral responses in the same way as the design table
+    to_sort <- 1:20 # this works because the data in the sorting task logfile follows the picture number
+    sort_idx <- match(design_tbl$pic,to_sort)
+    stopifnot(design_tbl$pic == to_sort[sort_idx]) # make sure we have identical vectors now
+    sorted_pic_q <- pic_q[sort_idx]
+    
+    # store which pic was sorted to which day based on winning permutation
+    design_tbl$sorted_day <- numeric(n_days*n_events_day)
+    for (i_day in 1:n_days){
+          
+          # recode the day labels to match the day labels in the design tibble
+          idx <- sorted_pic_q == i_day
+          design_tbl$sorted_day[idx] <- all_perms[winner_perm,i_day]
+    }
+    stopifnot(sum(design_tbl$day == design_tbl$sorted_day) == n_correct[i_sub])
+    
+    # write design tibble to file for this subject
+    write_csv(design_tbl, 
+              file.path(out_dir,sprintf("%s_behavior_tbl_day_sorting.txt", sub_id)))
+  }
+}
+
+# call the function for all subjects
+virtem_behavior_prepare_data_day_sorting(subjects = subjects)
+```
+
+## Timeline task
+
+>In this task, participants saw a timeline ranging from 6 a.m. to midnight together with miniature versions of the five event images belonging to one sequence (Figure 1E). Participants were instructed to drag and drop the event images next to the timeline so that scene positions reflected the event times they had inferred in the day learning task. To facilitate precise alignment to the timeline, event images were shown with an outward pointing triangle on their left side, on which participants were instructed to base their responses.
+
+Participants responses are read out from the logfiles of this task and converted to virtual hours. The data are saved in the text file including all behavioral data (*virtem_behavioral_data.txt*).
+
+```{r eval = run_prep_beh}
+# define the function to prepare data from the timeline task
+virtem_behavior_prepare_data_timeline <- function(subjects = c("036", "037", "039")){
+      
+  # initialize
+  out_dir = here("data", "behavior", "timeline")
+  if(!dir.exists(out_dir)){dir.create(out_dir)}
+  
+  for (i_sub in 1:length(subjects)){
+    sub_id <- subjects[i_sub]
+    
+    # load design file with true assignment of stimuli to days (& data from day sorting)
+    fname <- here("data", "behavior", "day_sorting", 
+                  sprintf("%s_behavior_tbl_day_sorting.txt", sub_id))
+    col_classes <- c("sub_id" = "c", "day"="n", "event"="n", "virtual_time" = "d", 
+                     "real_time" = "d", "pic"="n", "sorted_day" = "d")
+    design_tbl <- as_tibble(read_csv(fname, col_types = col_classes))
+    
+    # add column for remembered time based on timeline task
+    design_tbl$memory_time <- numeric(n_days * n_events_day)
+    
+    for (i_day in 1:n_days){
+          
+      # load the data from the timeline task from this day
+      fname <- here("data", "behavior", "logs", "timeline", 
+                    sprintf("%s_timeline_results_day%d.mat", sub_id, i_day))
+      timeline_log <- readMat(fname)
+      
+      for (i_pic in 1:n_events_day){
+            
+        # get the number of this picture
+        pic_name <- timeline_log$ud[[2]][1+(i_pic-1)*2]
+        pic <- as.numeric(str_extract(pic_name, "\\d{1,2}"))
+
+        # which row in our table are we looking at
+        tbl_idx <- which(design_tbl$pic == pic)
+        
+        # extract the response from the logfile and transform it to be in virtual hours
+        design_tbl$memory_time[tbl_idx] <- (timeline_log$objectPositions[i_pic,2]+0.5)*18+6
+      }
+    }
+    
+  # store the remembered order for each virtual day based on remembered times
+    design_tbl <- design_tbl %>% 
+      group_by(day) %>% 
+      mutate(
+        memory_order = rank(memory_time, ties.method = "first"))
+    
+    # write design tibble to file for this subject
+    write_csv(design_tbl,
+              file.path(out_dir, sprintf("%s_behavior_tbl_timeline.txt", sub_id)))
+  }
+}
+
+# run for all subjects
+virtem_behavior_prepare_data_timeline(subjects = subjects)
+```
+
+Now we are ready to combine the data from the two memory tests into the final dataframe that we write to file for the actual analyses.
+
+```{r}
+# define function
+virtem_behavior_prepare_data_combine_across_subjects <- function(subjects = c("036", "037")){
+      
+  # set up a dataframe to collect the data
+  beh_data = tibble()
+  
+  for (i_sub in 1:length(subjects)){
+    sub_id <- subjects[i_sub]
+    
+    # load data from CSV
+    fname <- here("data", "behavior", "timeline", 
+                  sprintf("%s_behavior_tbl_timeline.txt", sub_id))
+    col_types_list <- cols_only(
+          sub_id = col_integer(),
+          day = col_integer(),
+          event = col_integer(),
+          pic = col_integer(),
+          virtual_time = col_double(),
+          real_time = col_double(),
+          memory_time = col_double(),
+          memory_order = col_double(),
+          sorted_day = col_integer())
+    timeline_tbl <- as_tibble(read_csv(fname, col_types = col_types_list))
+    
+    # append to table with data from all subjects
+    beh_data <- bind_rows(beh_data, timeline_tbl)
+  }
+  
+  # reorder to have a more intuitive order
+  beh_data <- beh_data[,c(1,2,3,6,4,5,8,9,7)]
+  
+  # write data to file
+  write_csv(beh_data, file.path(dirs$data4analysis, "behavioral_data.txt"))
+}
+
+# combine behavioral data frames across subjects
+virtem_behavior_prepare_data_combine_across_subjects(subjects = subjects)
+```
+
+We have a similar dataframe from Nicole Montijn's study conducted at Utrecht University that we will later use to replicate the generalization bias. Let's move it to the folder with the analysis data.
+
+```{r}
+# copy to analysis data folder (that will be shared)
+fname <- here("data", "behavior", "replication_data_montijn", "beh_dataNDM.txt")
+file.copy(fname, dirs$data4analysis)
+```
+
+## Picture viewing tasks
+
+>In the picture viewing tasks (Figure 1B), participants viewed a stream of the event images. Their task was to look at the images attentively and to respond via a button press whenever a target picture, which showed the father feeding the family’s dog, was presented.
+
+Below, we check how well participants detected the targets.
+
+```{r}
+
+pvt_target_detect <- tibble()
+
+for (i_run in 1:n_runs){
+  for (i_sub in 1:length(subjects)){
+    
+
+    # load the logfile for this run (pre or post)
+    log_fn <- file.path(dirs$pvt_log_dir, sprintf('P%s_%svirtem.txt', subjects[i_sub], runs[i_run]))
+    log <- read.table(log_fn)
+    colnames(log) <- c("pic", "fix_start", "pic_start", "volume", "response", "RT", "trial_end")
+    
+    # add column for block and subject ID to log
+    log <- log %>% 
+      add_column(run = runs[i_run]) %>%
+      add_column(sub_id = subjects[i_sub])
+    
+    # calculate proportion of hits and average RT
+    curr_dat <- log %>% 
+      filter(pic == 21) %>%
+      summarise(sub_id = unique(sub_id),
+                run = unique(run),
+                perc_hits = sum(response)/nrow(.)*100,
+                avg_rt = mean(RT[response==1])) # calculate average RT for hits
+    
+    # add to the overall tibble
+    pvt_target_detect <- rbind(pvt_target_detect, curr_dat)
+  }
+}
+      
+head(pvt_target_detect)
+
+# calculate mean and standard deviation across participants
+pvt_target_detect_summary <- pvt_target_detect %>% 
+  group_by(run) %>%
+  summarise(mean_perc_hits = mean(perc_hits),
+            sd_perc_hits = sd(perc_hits),
+            mean_rt = mean(avg_rt),
+            sd_rt = sd(avg_rt),
+            .groups="drop")
+head(pvt_target_detect_summary)
+```
+
+Target detection in picture viewing task:  
+Pre-learning: `r format(round(pvt_target_detect_summary%>%filter(run=="pre")%>%select(mean_perc_hits)%>%as.numeric(),2), nsmall = 2)`% ± `r format(round(round(pvt_target_detect_summary%>%filter(run=="pre")%>%select(sd_perc_hits)%>%as.numeric(),2),2), nsmall = 2)`% mean±standard deviation of percentage of hits; `r format(round(pvt_target_detect_summary%>%filter(run=="pre")%>%select(mean_rt)%>%as.numeric(),2), nsmall = 2)`ms ± `r format(round(round(pvt_target_detect_summary%>%filter(run=="pre")%>%select(sd_rt)%>%as.numeric(),2),2), nsmall = 2)`ms mean±standard deviation of average reaction times  
+
+Post-learning: `r format(round(pvt_target_detect_summary%>%filter(run=="post")%>%select(mean_perc_hits)%>%as.numeric(),2), nsmall = 2)`% ± `r format(round(round(pvt_target_detect_summary%>%filter(run=="post")%>%select(sd_perc_hits)%>%as.numeric(),2),2), nsmall = 2)`% mean±standard deviation of percentage of hits; `r format(round(pvt_target_detect_summary%>%filter(run=="post")%>%select(mean_rt)%>%as.numeric(),2), nsmall = 2)`ms ± `r format(round(round(pvt_target_detect_summary%>%filter(run=="post")%>%select(sd_rt)%>%as.numeric(),2),2), nsmall = 2)`ms mean±standard deviation of average reaction times

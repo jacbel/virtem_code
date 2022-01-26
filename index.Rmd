@@ -1,0 +1,70 @@
+--- 
+title: "Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences"
+subtitle: "Research Documentation  for VIRTEM"
+author: 
+- name: "Jacob L. S. Bellmund"
+  affiliation: "Max Planck Institute for Human Cognitive and Brain Sciences"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+site: bookdown::bookdown_site
+documentclass: book
+link-citations: yes
+github-repo: jacbel/virtem_code
+url: 'https://jacbel.github.io/virtem_code/'
+description: "Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences"
+geometry: margin=2cm
+fontfamily: mathpazo
+fontsize: 11pt
+classoption: openany
+# spacing: double
+---
+
+# Overview
+
+## Purpose
+
+This website is intended to provide research documentation for our manuscript:
+
+>Bellmund, J. L. S., Deuker, D., Montijn, N. D., & Doeller, C. F. (2021). Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences. *bioRxiv*. [https://doi.org/10.1101/2021.04.23.440002](https://doi.org/10.1101/2021.04.23.440002)
+
+The website documents the analysis of the virtual time project (**virtem** for short as it investigates the impact of **vir**tual **tem**poral distances on event representations in the hippocampus and entorhinal cortex). It is based on R markdown files that implement the individual analysis steps. The individual markdown files are merged using bookdown.
+
+On this website, beginning after the basic preprocessing of the MRI data, all preparatory analysis steps, statistical analyses and the generation of data figures are documented. Data to reproduce the statistical analyses will be made available upon publication.
+
+## Contents
+
+1. [**Overview**](#overview): General information about the contents of this website.  
+2. [**Analysis Setup**](#analysis-setup): Here some variables and folder are defined  
+3. [**Illustrations of Task Design and Analysis Logic**](#illustrations-of-task-design-and-analysis-logic): Illustrates features of the design & analysis
+4. [**Prepare behavioral data**](#prepare-behavioral-data): Builds a data frame from individual log files   
+5. [**Behavioral Analysis**](#behavioral-analysis): Statistical analysis of behavioral data
+6. [**Prepare (f)MRI Data**](#prepare-fmri-data): Quantifies representational change in regions of interest   
+7. [**Run RSA Searchlight**](#run-rsa-searchlight): Implements RSA searchlights on participant and group level  
+8. [**RSA on Pattern Similarity Change**](#rsa-on-pattern-similarity-change): Statistical analysis of representational change
+9. [**Signal to noise ratio**](#signal-to-noise-ratio): tSNR in the regions of interest
+10. [**Credit**](#credit): References and versions of used packages
+
+## Contact
+
+Dr. Jacob L. S. Bellmund is a postdoc in the [Psychology Department](https://doellerlab.com/) of the [Max Planck Institute for Human Cognitive and Brain Sciences](https://www.cbs.mpg.de/en) in Leipzig, Germany. You can contact Jacob via [e-mail](mailto:bellmund@cbs.mpg.de), follow him on [Twitter](https://twitter.com/jacobbellmund), find him on [ResearchGate](https://www.researchgate.net/profile/Jacob-Bellmund-2) and  [LinkedIn](https://www.linkedin.com/in/jacob-bellmund), or visit his [website](https://www.jacobbellmund.com) to find out more about his work.
+
+##  License Information
+
+Please cite our work!  
+
+The manuscript can be found on bioRxiv soon, here is the reference:  
+
+>Bellmund, J. L. S., Deuker, D., Montijn, N. D., & Doeller, C. F. (2021). Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences. *bioRxiv*. [https://doi.org/10.1101/2021.04.23.440002](https://doi.org/10.1101/2021.04.23.440002)
+
+The analyses documented on this website build on third-party code and software (R packages, FSL etc.) as well as custom code. The custom code, written by Jacob Bellmund, is available under the MIT License, see license text below. Code/software from third-parties may have different licenses. Please respect and credit the work of others. If you are a licensor and think we did not credit your work appropriately, please reach out via [e-mail](mailto:bellmund@cbs.mpg.de).
+
+**License for custom code**
+
+>MIT License
+>
+>Copyright (c) 2021 Jacob L. S. Bellmund
+>
+>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+>
+>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+>
+>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

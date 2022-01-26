@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</title>
+  <meta name="description" content="Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jacbel.github.io/virtem_code/" />
+  
+  <meta property="og:description" content="Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="github-repo" content="jacbel/virtem_code" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  
+  <meta name="twitter:description" content="Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  
+
+<meta name="author" content="Jacob L. S. Bellmund" />
+
+
+<meta name="date" content="2022-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="analysis-setup.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.1</b> Purpose</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#contents"><i class="fa fa-check"></i><b>1.2</b> Contents</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#contact"><i class="fa fa-check"></i><b>1.3</b> Contact</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#license-information"><i class="fa fa-check"></i><b>1.4</b> License Information</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="analysis-setup.html"><a href="analysis-setup.html"><i class="fa fa-check"></i><b>2</b> Analysis Setup</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="analysis-setup.html"><a href="analysis-setup.html#defining-variables-and-folders"><i class="fa fa-check"></i><b>2.1</b> Defining Variables and Folders</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#folder-structure"><i class="fa fa-check"></i>Folder Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="analysis-setup.html"><a href="analysis-setup.html#define-analysis-functions"><i class="fa fa-check"></i><b>2.2</b> Define Analysis Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#analysis-logic"><i class="fa fa-check"></i>Analysis Logic</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#brain-plots-in-ggplot"><i class="fa fa-check"></i>Brain Plots in ggplot</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#ggbrain-functions-to-get-template-background"><i class="fa fa-check"></i>ggBrain functions to get template background</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#waiting-for-cluster-jobs"><i class="fa fa-check"></i>Waiting for Cluster Jobs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html"><i class="fa fa-check"></i><b>3</b> Illustrations of Task Design and Analysis Logic</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#day-learning-task-design"><i class="fa fa-check"></i><b>3.1</b> Day Learning Task Design</a>
+<ul>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-virtual-and-real-time"><i class="fa fa-check"></i>Events in virtual and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-virtual-time"><i class="fa fa-check"></i>Events in virtual time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-real-time"><i class="fa fa-check"></i>Events in real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#correlations-of-virtual-time-with-order-and-real-time"><i class="fa fa-check"></i>Correlations of virtual time with order and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#time-cues-in-virtual-and-real-time"><i class="fa fa-check"></i>Time cues in virtual and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#supplemental-figure-for-task-design"><i class="fa fa-check"></i>Supplemental figure for task design</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#representational-similarity-analysis-logic"><i class="fa fa-check"></i><b>3.2</b> Representational Similarity Analysis Logic</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html"><i class="fa fa-check"></i><b>4</b> Prepare behavioral data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#sorting-task"><i class="fa fa-check"></i><b>4.1</b> Sorting task</a></li>
+<li class="chapter" data-level="4.2" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#timeline-task"><i class="fa fa-check"></i><b>4.2</b> Timeline task</a></li>
+<li class="chapter" data-level="4.3" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#picture-viewing-tasks"><i class="fa fa-check"></i><b>4.3</b> Picture viewing tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html"><i class="fa fa-check"></i><b>5</b> Behavioral Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#sorting-task-1"><i class="fa fa-check"></i><b>5.1</b> Sorting Task</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#calculate-percentage-of-correct-responses"><i class="fa fa-check"></i>Calculate percentage of correct responses</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#plot-sorting-performance"><i class="fa fa-check"></i>Plot sorting performance</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#sorting-errors-as-a-function-of-sequence-position"><i class="fa fa-check"></i>Sorting errors as a function of sequence position</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#timeline-task-1"><i class="fa fa-check"></i><b>5.2</b> Timeline Task</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#visualize-the-raw-data"><i class="fa fa-check"></i>Visualize the raw data</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#accuracy-of-remembered-times"><i class="fa fa-check"></i>Accuracy of remembered times</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#relationship-of-sorting-errors-and-timeline-errors"><i class="fa fa-check"></i>Relationship of sorting errors and timeline errors</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#time-metrics-underlying-remembered-times"><i class="fa fa-check"></i>Time metrics underlying remembered times</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#compose-figure-for-behavioral-data"><i class="fa fa-check"></i>Compose Figure for Behavioral Data</a></li>
+<li class="chapter" data-level="5.3" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#generalization-bias"><i class="fa fa-check"></i><b>5.3</b> Generalization bias</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#quantify-relative-time-of-other-events"><i class="fa fa-check"></i>Quantify relative time of other events</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#test-generalization-bias"><i class="fa fa-check"></i>Test Generalization Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-of-generalization-bias"><i class="fa fa-check"></i><b>5.4</b> Replication of Generalization Bias</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-data-quantify-relative-time-of-other-events"><i class="fa fa-check"></i>Replication data: Quantify relative time of other events</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-data-test-generalization-bias"><i class="fa fa-check"></i>Replication data: Test Generalization Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors"><i class="fa fa-check"></i><b>5.5</b> Swap Errors</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#descriptives-of-swap-errors"><i class="fa fa-check"></i>Descriptives of swap errors</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors-as-a-function-of-sequence-position"><i class="fa fa-check"></i>Swap errors as a function of sequence position</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-error-more-frequent-than-expected-from-chance"><i class="fa fa-check"></i>Swap error: More frequent than expected from chance?</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors-and-generalization-bias"><i class="fa fa-check"></i>Swap errors and generalization bias</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html"><i class="fa fa-check"></i><b>6</b> Prepare (f)MRI Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#regions-of-interest"><i class="fa fa-check"></i><b>6.1</b> Regions of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#freesurfer-masks"><i class="fa fa-check"></i>FreeSurfer Masks</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#subregion-masks-mni"><i class="fa fa-check"></i>Subregion masks (MNI)</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#final-rois-from-intersection-of-masks"><i class="fa fa-check"></i>Final ROIs from intersection of masks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#group-level-masks"><i class="fa fa-check"></i><b>6.2</b> Group-Level Masks</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#probabilistic-rois-for-visualization"><i class="fa fa-check"></i>Probabilistic ROIs for visualization</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#field-of-view-mask-for-visualization"><i class="fa fa-check"></i>Field of view mask for visualization</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#gray-matter-mask"><i class="fa fa-check"></i>Gray matter mask</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#small-volume-correction-mask"><i class="fa fa-check"></i>Small Volume Correction Mask</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#quantify-representational-change"><i class="fa fa-check"></i><b>6.3</b> Quantify Representational Change</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#get-multi-voxel-patterns-from-rois"><i class="fa fa-check"></i>Get multi-voxel patterns from ROIs</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#calculate-correlation-matrices"><i class="fa fa-check"></i>Calculate correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#calculate-pattern-similarity-change"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#combine-behavioral-and-fmri-data-for-rsa"><i class="fa fa-check"></i><b>6.4</b> Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html"><i class="fa fa-check"></i><b>7</b> Run RSA Searchlight</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-functional-data"><i class="fa fa-check"></i><b>7.1</b> Prepare functional data</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#data-cleaning-extract-residuals-from-motion-parameter-regression"><i class="fa fa-check"></i>Data cleaning: Extract residuals from motion parameter regression</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#extract-relevant-volumes-1"><i class="fa fa-check"></i>Extract relevant volumes</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#concatenate-relevant-volumes"><i class="fa fa-check"></i>Concatenate relevant volumes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#first-level-rsa-searchlight"><i class="fa fa-check"></i><b>7.2</b> First-level RSA searchlight</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#set-analysis-parameters"><i class="fa fa-check"></i>Set analysis parameters</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-rsa-predictions"><i class="fa fa-check"></i>Prepare RSA-predictions</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-lookup-table-for-searchlight"><i class="fa fa-check"></i>Create lookup table for searchlight</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#dataframe-with-input-for-analysis"><i class="fa fa-check"></i>Dataframe with input for analysis</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#searchlight-implementation"><i class="fa fa-check"></i>Searchlight implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#group-level-searchlight-analysis"><i class="fa fa-check"></i><b>7.3</b> Group-level searchlight analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#move-first-level-images-to-mni-space"><i class="fa fa-check"></i>Move first-level images to MNI space</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#merge-and-smooth-first-level-images"><i class="fa fa-check"></i>Merge and smooth first-level images</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#run-fsl-randomise"><i class="fa fa-check"></i>Run FSL Randomise</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#find-searchlight-clusters-and-atlas-labels"><i class="fa fa-check"></i>Find searchlight clusters and atlas labels</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-outlines-of-significant-clusters"><i class="fa fa-check"></i>Create outlines of significant clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-rsa-in-searchlight-peak"><i class="fa fa-check"></i><b>7.4</b> Prepare RSA in searchlight peak</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-the-roi-mask"><i class="fa fa-check"></i>Create the ROI mask</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#calculating-the-correlation-matrices"><i class="fa fa-check"></i>Calculating the correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#calculate-pattern-similarity-change-1"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#combine-behavioral-and-fmri-data-for-rsa-1"><i class="fa fa-check"></i>Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html"><i class="fa fa-check"></i><b>8</b> RSA on Pattern Similarity Change</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#time-metrics-to-quantify-event-relations"><i class="fa fa-check"></i><b>8.1</b> Time metrics to quantify event relations</a></li>
+<li class="chapter" data-level="8.2" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#visualize-regions-of-interests"><i class="fa fa-check"></i><b>8.2</b> Visualize Regions of Interests</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#template-background-image-with-fov"><i class="fa fa-check"></i>Template background image with FOV</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#anterior-hippocampus-roi"><i class="fa fa-check"></i>Anterior hippocampus ROI</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#anterior-lateral-entorhinal-cortex"><i class="fa fa-check"></i>Anterior-lateral entorhinal cortex</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#first-level-rsa"><i class="fa fa-check"></i><b>8.3</b> First-level RSA</a></li>
+<li class="chapter" data-level="8.4" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-sequence"><i class="fa fa-check"></i><b>8.4</b> aHPC: virtual time within sequence</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-3"><i class="fa fa-check"></i>Summary statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-2"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#representational-change-visualization"><i class="fa fa-check"></i>Representational Change Visualization</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#not-driven-by-first-last-event-pairs"><i class="fa fa-check"></i>Not driven by first &amp; last event pairs</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-sequence-when-including-order-real-time"><i class="fa fa-check"></i><b>8.5</b> aHPC: virtual time within sequence when including order &amp; real time</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#one-model-with-multiple-predictors"><i class="fa fa-check"></i>One model with multiple predictors</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-explains-residuals-of-order-and-real-time"><i class="fa fa-check"></i>Virtual time explains residuals of order and real time</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-across-sequences"><i class="fa fa-check"></i><b>8.6</b> aHPC: virtual time across sequences</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-7"><i class="fa fa-check"></i>Summary statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-5"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#representational-change-visualization-1"><i class="fa fa-check"></i>Representational Change Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-across-sequence-when-including-order-real-time"><i class="fa fa-check"></i><b>8.7</b> aHPC: virtual time across sequence when including order &amp; real time</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-8"><i class="fa fa-check"></i>Summary Statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-6"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-vs.-across-sequences"><i class="fa fa-check"></i><b>8.8</b> aHPC: virtual time within vs. across sequences</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#second-level-analysis"><i class="fa fa-check"></i>Second-level analysis</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-7"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-order"><i class="fa fa-check"></i>Interaction of sequence membership and order</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-real-time"><i class="fa fa-check"></i>Interaction of sequence membership and real time</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-virtual-time-when-including-interactions-with-other-time-metrics"><i class="fa fa-check"></i>Interaction of sequence membership and virtual time when including interactions with other time metrics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#mds"><i class="fa fa-check"></i>MDS</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#umap"><i class="fa fa-check"></i>UMAP</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec"><i class="fa fa-check"></i><b>8.9</b> alEC</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-withinacross-sequences-separately"><i class="fa fa-check"></i>alEC: virtual time within/across sequences separately</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-within-vs.-across-sequences"><i class="fa fa-check"></i>alEC: virtual time within vs. across sequences</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-for-all-event-pairs"><i class="fa fa-check"></i>alEC: virtual time for all event pairs</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-for-all-event-pairs-when-including-order-real-time"><i class="fa fa-check"></i>alEC: virtual time for all event pairs when including order &amp; real time</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-vs.-alec"><i class="fa fa-check"></i><b>8.10</b> aHPC vs. alEC</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-12"><i class="fa fa-check"></i>Summary Statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-10"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#searchlight-results"><i class="fa fa-check"></i><b>8.11</b> Searchlight Results</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-within-sequence"><i class="fa fa-check"></i>Virtual Time Within Sequence</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-across-sequences-in-within-searchlight-cluster"><i class="fa fa-check"></i>Virtual Time Across Sequences in Within-Searchlight Cluster</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-across-sequences"><i class="fa fa-check"></i>Virtual Time Across Sequences</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#visualization-of-overlap"><i class="fa fa-check"></i>Visualization of Overlap</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-sequence-interaction"><i class="fa fa-check"></i>Virtual Time &amp; Sequence Interaction</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#exploratory-searchlight-results"><i class="fa fa-check"></i>Exploratory Searchlight Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-of-behavioral-generalization-bias-with-searchlight-effects"><i class="fa fa-check"></i><b>8.12</b> Correlation of behavioral generalization bias with searchlight effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-with-across-sequence-searchlight-effect"><i class="fa fa-check"></i>Correlation with across-sequence searchlight effect</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-with-same-sequence-searchlight-effect"><i class="fa fa-check"></i>Correlation with same-sequence searchlight effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.13" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#mixed-model-summaries"><i class="fa fa-check"></i><b>8.13</b> Mixed Model Summaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#supplemental-figure-1"><i class="fa fa-check"></i>Supplemental Figure</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#supplemental-tables"><i class="fa fa-check"></i>Supplemental Tables</a></li>
+<li class="chapter" data-level="8.13.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#source-data"><i class="fa fa-check"></i><b>8.13.1</b> Source data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html"><i class="fa fa-check"></i><b>9</b> Signal to noise ratio</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#calculate-voxel-wise-temporal-snr"><i class="fa fa-check"></i><b>9.1</b> Calculate voxel-wise temporal SNR</a></li>
+<li class="chapter" data-level="9.2" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#average-tsnr-per-roi"><i class="fa fa-check"></i><b>9.2</b> Average tSNR per ROI</a></li>
+<li class="chapter" data-level="9.3" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#contrast-tsnr-between-ahpc-and-alec"><i class="fa fa-check"></i><b>9.3</b> Contrast tSNR between aHPC and alEC</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html"><i class="fa fa-check"></i><b>10</b> RSA in searchlight peak with different threshold</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#prepare-rsa-in-searchlight-peak-1"><i class="fa fa-check"></i><b>10.1</b> Prepare RSA in searchlight peak</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#create-the-roi-mask-1"><i class="fa fa-check"></i>Create the ROI mask</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#calculating-the-correlation-matrices-1"><i class="fa fa-check"></i>Calculating the correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#calculate-pattern-similarity-change-2"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#combine-behavioral-and-fmri-data-for-rsa-2"><i class="fa fa-check"></i>Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#rsa"><i class="fa fa-check"></i><b>10.2</b> RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html"><i class="fa fa-check"></i><b>11</b> Univariate GLM: Relative time</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#copy-feat-folder-from-preprocessing-to-first-level-glm-directory"><i class="fa fa-check"></i><b>11.1</b> Copy FEAT-folder from Preprocessing to First-Level GLM directory</a></li>
+<li class="chapter" data-level="11.2" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#prepare-glm"><i class="fa fa-check"></i><b>11.2</b> Prepare GLM</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#compute-relative-time"><i class="fa fa-check"></i>Compute relative time</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#write-custom-ev-files-for-fsl-feat"><i class="fa fa-check"></i>Write custom EV files for FSL FEAT</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#glm-design-files"><i class="fa fa-check"></i>GLM Design files</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#prepare-confound-ev"><i class="fa fa-check"></i>Prepare confound EV</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#create-design-matrix"><i class="fa fa-check"></i>Create design matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#run-1st-level-glm-on-htcondor"><i class="fa fa-check"></i><b>11.3</b> Run 1st-level GLM on HTCondor</a></li>
+<li class="chapter" data-level="11.4" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#group-level-1"><i class="fa fa-check"></i><b>11.4</b> Group-level</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#move-first-level-images-to-mni-space-1"><i class="fa fa-check"></i>Move first-level images to MNI space</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#merge-first-level-images"><i class="fa fa-check"></i>Merge first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#smooth-first-level-images"><i class="fa fa-check"></i>Smooth first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#average-first-level-images"><i class="fa fa-check"></i>Average first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#ahpc-roi-analysis"><i class="fa fa-check"></i>aHPC ROI analysis</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#run-fsl-randomise-1"><i class="fa fa-check"></i>Run FSL Randomise</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#results-in-ahpc-and-alec"><i class="fa fa-check"></i>Results in aHPC and alEC</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#fov-results"><i class="fa fa-check"></i>FOV results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="credit.html"><a href="credit.html"><i class="fa fa-check"></i><b>12</b> Credit</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="credit.html"><a href="credit.html#list-of-packages"><i class="fa fa-check"></i><b>12.1</b> List of packages</a></li>
+<li class="chapter" data-level="12.2" data-path="credit.html"><a href="credit.html#references"><i class="fa fa-check"></i><b>12.2</b> References</a></li>
+<li class="chapter" data-level="12.3" data-path="credit.html"><a href="credit.html#session-info"><i class="fa fa-check"></i><b>12.3</b> Session Info</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</h1>
+<h2 class="subtitle"><em>Research Documentation for VIRTEM</em></h2>
+<p class="author"><em>Jacob L. S. Bellmund</em></p>
+<p class="date"><em>25 January 2022</em></p>
+</div>
+<div id="overview" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Overview</h1>
+<div id="purpose" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Purpose</h2>
+<p>This website is intended to provide research documentation for our manuscript:</p>
+<blockquote>
+<p>Bellmund, J. L. S., Deuker, D., Montijn, N. D., &amp; Doeller, C. F. (2021). Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences. <em>bioRxiv</em>. <a href="https://doi.org/10.1101/2021.04.23.440002">https://doi.org/10.1101/2021.04.23.440002</a></p>
+</blockquote>
+<p>The website documents the analysis of the virtual time project (<strong>virtem</strong> for short as it investigates the impact of <strong>vir</strong>tual <strong>tem</strong>poral distances on event representations in the hippocampus and entorhinal cortex). It is based on R markdown files that implement the individual analysis steps. The individual markdown files are merged using bookdown.</p>
+<p>On this website, beginning after the basic preprocessing of the MRI data, all preparatory analysis steps, statistical analyses and the generation of data figures are documented. Data to reproduce the statistical analyses will be made available upon publication.</p>
+</div>
+<div id="contents" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Contents</h2>
+<ol style="list-style-type: decimal">
+<li><a href="index.html#overview"><strong>Overview</strong></a>: General information about the contents of this website.<br />
+</li>
+<li><a href="analysis-setup.html#analysis-setup"><strong>Analysis Setup</strong></a>: Here some variables and folder are defined<br />
+</li>
+<li><a href="illustrations-of-task-design-and-analysis-logic.html#illustrations-of-task-design-and-analysis-logic"><strong>Illustrations of Task Design and Analysis Logic</strong></a>: Illustrates features of the design &amp; analysis</li>
+<li><a href="prepare-behavioral-data.html#prepare-behavioral-data"><strong>Prepare behavioral data</strong></a>: Builds a data frame from individual log files<br />
+</li>
+<li><a href="behavioral-analysis.html#behavioral-analysis"><strong>Behavioral Analysis</strong></a>: Statistical analysis of behavioral data</li>
+<li><a href="prepare-fmri-data.html#prepare-fmri-data"><strong>Prepare (f)MRI Data</strong></a>: Quantifies representational change in regions of interest<br />
+</li>
+<li><a href="run-rsa-searchlight.html#run-rsa-searchlight"><strong>Run RSA Searchlight</strong></a>: Implements RSA searchlights on participant and group level<br />
+</li>
+<li><a href="rsa-on-pattern-similarity-change.html#rsa-on-pattern-similarity-change"><strong>RSA on Pattern Similarity Change</strong></a>: Statistical analysis of representational change</li>
+<li><a href="signal-to-noise-ratio.html#signal-to-noise-ratio"><strong>Signal to noise ratio</strong></a>: tSNR in the regions of interest</li>
+<li><a href="credit.html#credit"><strong>Credit</strong></a>: References and versions of used packages</li>
+</ol>
+</div>
+<div id="contact" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Contact</h2>
+<p>Dr. Jacob L. S. Bellmund is a postdoc in the <a href="https://doellerlab.com/">Psychology Department</a> of the <a href="https://www.cbs.mpg.de/en">Max Planck Institute for Human Cognitive and Brain Sciences</a> in Leipzig, Germany. You can contact Jacob via <a href="mailto:bellmund@cbs.mpg.de">e-mail</a>, follow him on <a href="https://twitter.com/jacobbellmund">Twitter</a>, find him on <a href="https://www.researchgate.net/profile/Jacob-Bellmund-2">ResearchGate</a> and <a href="https://www.linkedin.com/in/jacob-bellmund">LinkedIn</a>, or visit his <a href="https://www.jacobbellmund.com">website</a> to find out more about his work.</p>
+</div>
+<div id="license-information" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> License Information</h2>
+<p>Please cite our work!</p>
+<p>The manuscript can be found on bioRxiv soon, here is the reference:</p>
+<blockquote>
+<p>Bellmund, J. L. S., Deuker, D., Montijn, N. D., &amp; Doeller, C. F. (2021). Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences. <em>bioRxiv</em>. <a href="https://doi.org/10.1101/2021.04.23.440002">https://doi.org/10.1101/2021.04.23.440002</a></p>
+</blockquote>
+<p>The analyses documented on this website build on third-party code and software (R packages, FSL etc.) as well as custom code. The custom code, written by Jacob Bellmund, is available under the MIT License, see license text below. Code/software from third-parties may have different licenses. Please respect and credit the work of others. If you are a licensor and think we did not credit your work appropriately, please reach out via <a href="mailto:bellmund@cbs.mpg.de">e-mail</a>.</p>
+<p><strong>License for custom code</strong></p>
+<blockquote>
+<p>MIT License</p>
+<p>Copyright (c) 2021 Jacob L. S. Bellmund</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</blockquote>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="analysis-setup.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

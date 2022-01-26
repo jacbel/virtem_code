@@ -1,0 +1,121 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Signal to noise ratio
+
+>The temporal signal-to-noise ratio was quantified as the mean unsmoothed signal over time divided by its standard deviation. It was calculated for each voxel and then averaged across voxels in a region of interest. 
+
+We want to contrast the signal to noise ratio in our regions of interest. We will look at both the temporal and spatial signal to noise ratio. We will used the cleaned voxel time series that we also extracted the multi-voxel patterns from for this.
+
+```{r, eval = run_prep_snr}
+
+snr_dir <- here("data", "mri", "processed", "SNR")
+invisible(lapply(file.path(snr_dir, subjects), 
+                 function(x) if(!dir.exists(x)) dir.create(x, recursive = TRUE)))
+
+```
+
+## Calculate voxel-wise temporal SNR
+
+The first step is to calculate the temporal signal to noise ratio for each voxel. We use fslmaths for that via the fslr-package. Specifically, the tSNR of a voxel is its temporal mean divided by its standard deviation over time. This is done for each of the ten blocks of each run of the picture viewing task.
+
+```{r, eval = run_prep_snr}
+
+# build a tibble with the info we'll need tp build the file names (will be overwritten later)
+snr_df <- tibble(subject = rep(subjects, each = n_runs*n_blocks),
+                 run = rep(rep(runs, each = n_blocks), n_subs),
+                 run_no = rep(rep(c(1,2), each = n_blocks), n_subs),
+                 block = rep(c(1:n_blocks), n_runs*n_subs)
+                 )
+
+# create the file names to use
+filt_func_fn <- file.path(dirs$samespace_dir,
+                          paste0("VIRTEM_P", snr_df$subject),
+                          sprintf("VIRTEM_P%s_RSA_%02d_Block%02d_func.nii.gz",
+                                  snr_df$subject, snr_df$run_no, snr_df$block)) 
+tMean_fn <- file.path(snr_dir, snr_df$subject, 
+                      sprintf("%s_RSA_%s_block%02d_tMean.nii.gz",
+                              snr_df$subject, snr_df$run, snr_df$block))
+tSd_fn <- file.path(snr_dir, snr_df$subject,
+                    sprintf("%s_RSA_%s_block%02d_tSd.nii.gz",
+                            snr_df$subject, snr_df$run, snr_df$block))
+tSNR_fn <- file.path(snr_dir, snr_df$subject,
+                     sprintf("%s_RSA_%s_block%02d_tSNR.nii.gz",
+                             snr_df$subject, snr_df$run, snr_df$block))
+
+# define function to calculate tSNR
+calc_tSNR <- function(fourD_fn=NULL, tMean_fn=NULL, tStd_fn=NULL, tSNR_fn=NULL){
+  
+# calculate temporal mean for each voxel
+fslr::fsl_maths(file = fourD_fn, opts = "-Tmean", outfile = tMean_fn,
+               verbose = FALSE, retimg = FALSE)
+
+# calculate temporal mean for each voxel
+fslr::fsl_maths(file = fourD_fn, opts = "-Tstd", outfile = tStd_fn,
+               verbose = FALSE, retimg = FALSE)
+
+# calculate temporal mean for each voxel
+fslr::fsl_div(file = tMean_fn, file2 = tStd_fn, outfile = tSNR_fn,
+             verbose = FALSE, retimg = FALSE)
+}
+  
+# apply to images in questions (invisible to avoid overly long output)
+invisible(mapply(calc_tSNR, fourD_fn=filt_func_fn, tMean_fn=tMean_fn, tStd_fn=tSd_fn, tSNR_fn=tSNR_fn))
+```
+
+
+## Average tSNR per ROI
+
+To find the average tSNR for a given ROI, we load the tSNR image and the ROI mask before calculating the mean across voxels. Here we define the function that returns the mean tSNR, given the file names of the tSNR image and the ROI masks.
+
+```{r, eval = run_prep_snr}
+
+# function to calculate the mean tSNR for an ROI
+get_ROI_tSNR <- function(roi_fn, tSNR_fn){
+  
+  # load images
+  tSNR_nii <- neurobase::readNIfTI2(tSNR_fn)
+  roi_nii <- neurobase::readNIfTI2(roi_fn)
+  
+  # the tSNR values of the ROI voxels
+  snr_dat <- tSNR_nii[roi_nii==1]
+  
+  # return the average
+  return(mean(snr_dat))
+}
+```
+
+Let's apply the function and store the tSNR values for each block in each run.
+
+```{r, eval = run_prep_snr}
+snr_df <- tibble(subject = rep(subjects, each = n_runs*n_blocks*length(rois)),
+                 roi = rep(rep(rois, each = n_runs * n_blocks),n_subs),
+                 run = rep(rep(runs, each = n_blocks), length(rois)*n_subs),
+                 block = rep(c(1:n_blocks), n_runs*length(rois)*n_subs),
+                 tSNR = NA)
+
+for (i in 1:nrow(snr_df)){
+  
+  snr_df$tSNR[i] <- get_ROI_tSNR(roi_fn = here("data", "mri", "rois", snr_df$roi[i], "samespace",
+                                               sprintf("P%s_%s_ss_fs.nii.gz", 
+                                                       snr_df$subject[i], snr_df$roi[i])), 
+                                 tSNR_fn = file.path(snr_dir, snr_df$subject[i],
+                                                     sprintf("%s_RSA_%s_block%02d_tSNR.nii.gz",
+                                                             snr_df$subject[i], snr_df$run[i], snr_df$block[i])))
+}
+```
+
+Lastly, we want to write out the dataframe with the tSNR values for later analysis.
+
+```{r, eval = run_prep_snr}
+# save the relevant data
+fn <- file.path(dirs$data4analysis, "snr.txt")
+write.table(snr_df, file = fn, append = FALSE, sep = ",", dec = ".", 
+            row.names = FALSE, col.names = TRUE)
+
+```

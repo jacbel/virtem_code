@@ -1,0 +1,294 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Quantify Representational Change
+### Get multi-voxel patterns from ROIs {-}
+
+We want to run RSA on the multi-voxel patterns corresponding to the object presentations during the picture viewing tasks. For this, we use the data as it was preprocessed by Lorena Deuker. We will do some further cleaning and extract the relevant volumes from the time series to eventually run RSA.
+
+#### Preprocessing {-}
+>Preprocessing was performed using FSL FEAT (version 6.00). Functional scans from the picture viewing tasks and the whole-brain functional scan were submitted to motion correction and high-pass filtering using FSL FEAT. For the two picture viewing tasks, data from each mini-block was preprocessed independently. For those participants with a field map scan, distortion correction was applied to the functional data sets. No spatial smoothing was performed. Functional images from the two picture viewing tasks were then registered to the preprocessed mean image of the whole-brain functional scan. The whole-brain functional images were registered to the individual structural scans. The structural scans were in turn normalized to the MNI template (1-mm resolution). Gray matter segmentation was done on the structural images, and the results were mapped back to the space of the whole-brain functional scan for later use in the analysis.
+
+#### Extract ROI time series and calculate residuals from motion parameter regression {-}
+
+In this first section of the script we will create a dataframe that includes the relevant file names for the files that are needed to extract the clean time series. These files include the motion parameters from FSL FEAT, which was run on the functional data from the picture viewing task. As described above, these data were split into 10 blocks. We will use the preprocessed FEAT output images which were already co-registered to the analysis space ('samespace'). Further, we will use a mask to only include voxels with data in all blocks. This mask has already been created and is available in the analysis space. Additionally, we will use the graymatter mask and ROI masks(both already co-registered to the analysis space).
+
+>Representational similarity analysis (RSA) (Kriegeskorte et al., 2008) was first implemented separately for the pre- and post-learning picture viewing task. It was carried out in ROIs co-registered to the whole-brain functional image and in searchlight analyses (see below). For the ROI analyses, preprocessed data were intersected with the participant-specific anterior hippocampus and anterolateral entorhinal cortex ROI masks as well as a brain mask obtained during preprocessing (only voxels within the brain mask in all mini-blocks were analyzed) and the gray matter mask. For each voxel within the ROI mask, motion parameters from FSL MCFLIRT were used as predictors in a general linear model (GLM) with the voxel time series as the dependent variable. The residuals of this GLM (i.e. data that could not be explained by motion) were taken to the next analysis step.  
+
+Build data frame with files and folders:
+```{r, eval = run_clean_func_data}
+
+#PREPARE DATA FRAME FOR CLEANING
+
+# create a tibble with filenames etc for data cleaning, start with subject IDs
+func_dat_df <- tibble(subject = rep(as.numeric(subjects), each = n_runs * n_blocks))
+# add run info (run 1 and 2 equal the pre and post PVT)
+func_dat_df <- add_column(func_dat_df, run = rep(rep(1:n_runs, each = n_blocks), n_subs))
+# add block information (blocks 1 to 10 are the PVT blocks preprocessed separately)
+func_dat_df <- add_column(func_dat_df, block = rep(1:n_blocks, n_subs*n_runs))
+# add the motion parameter file
+func_dat_df <- add_column(func_dat_df, mc_par_fn = 
+                            file.path(dirs$feat_dir,
+                                      paste0("VIRTEM_P0", func_dat_df$subject),
+                                      sprintf("RSA_%02d_Block%02d.feat",
+                                              func_dat_df$run, func_dat_df$block),
+                                      "mc", "prefiltered_func_data_mcf.par"))
+# add the functional data file
+func_dat_df <- add_column(func_dat_df, filtered_func = 
+                            file.path(dirs$samespace_dir,
+                                      paste0("VIRTEM_P0", func_dat_df$subject),
+                                      sprintf("VIRTEM_P%03d_RSA_%02d_Block%02d_func.nii.gz",
+                                              func_dat_df$subject, func_dat_df$run, func_dat_df$block)))
+# add the brain mask data file
+func_dat_df <- add_column(func_dat_df, brain_mask = 
+                            file.path(dirs$samespace_dir,
+                                      paste0("VIRTEM_P0", func_dat_df$subject),
+                                      sprintf("VIRTEM_P%03d_common_mask_perBlock.nii.gz",
+                                              func_dat_df$subject)))
+
+# add the graymatter mask file
+func_dat_df <- add_column(func_dat_df, gray_mask = 
+                            file.path(dirs$samespace_dir,
+                                      paste0("VIRTEM_P0", func_dat_df$subject),
+                                      sprintf("VIRTEM_P%03d_common_graymatter_mask.nii.gz",
+                                              func_dat_df$subject)))
+
+# add output directory
+func_dat_df <- add_column(func_dat_df, out_dir = list(dirs$rsa_roi_clean_timeseries_dirs))
+
+# add list of ROIs
+func_dat_df <- add_column(func_dat_df, rois = list(rois))
+
+# add list of ROI file names
+func_dat_df <- add_column(func_dat_df, roi_dirs = list(dirs$rois_ss_dirs))
+```
+
+##### Define the function used to clean functional data {-}
+
+In this next section, we will first define a function and then run it on all datasets. In this function, the preprocessed data will be loaded and transformed to matrix format. A combined mask is generated from the respective ROI mask and the graymatter and brain masks. For every voxel within this mask, movement correction parameters are used as predictors in a GLM with the voxel time series as dependent variable. Finally, the residuals from this GLM (i.e. what could not be explained by motion) will be written to a text file. 
+
+```{r, eval = run_clean_func_data}
+
+# DEFINE THE FUNCTION TO GET THE RESIDUAL TIME SERIES 
+run_motion_glm <- function(df = func_dat_df[1,]){
+  
+  # load the motion params and convert to tibble
+  mc_pars <- read.table(df$mc_par_fn, header = FALSE)
+  mp_df <- as_tibble(mc_pars)
+  colnames(mp_df) <- paste0("mp", 1:6)
+  
+  # load the brain mask and linearize it 
+  brain_mask_nii <- readNIfTI2(df$brain_mask)
+  brain_mask_lin <- c(brain_mask_nii)
+  assertthat::assert_that(all.equal(unique(brain_mask_lin), c(0,1)))
+  
+  # load the graymatter mask and linearize it and threshold it at 0.7
+  gray_mask_nii <- readNIfTI2(df$gray_mask)
+  gray_mask_lin <- c(gray_mask_nii) > 0.7
+  
+  # load the functional data
+  func_nii <- readNIfTI2(df$filtered_func)
+  
+  # create matrix from the functional data with voxels in rows and volumes in columns
+  n_vols <- dim(func_nii)[4]
+  func_dat_mat <- matrix(nrow = prod(dim(func_nii)[1:3]), ncol = n_vols)
+  for(i_vol in 1:n_vols){
+    func_dat_mat[,i_vol] <- c(func_nii[,,,i_vol])
+  }
+  
+  # define the roi files    
+  roi_files <- file.path(df$roi_dirs[[1]], 
+                         sprintf("P%03d_%s_ss_fs.nii.gz", df$subject, df$rois[[1]]))
+  
+  # loop over the ROIs
+  for(i_roi in 1:length(roi_files)){
+
+    # load the current ROI and linearize
+    roi_nii <- readNIfTI2(roi_files[i_roi])
+    roi_lin <- c(roi_nii)
+    
+    # make sure masks and functional data have the same number of voxels
+    assertthat::assert_that(length(roi_lin) == length(gray_mask_lin))
+    assertthat::assert_that(length(roi_lin) == length(brain_mask_lin))
+    assertthat::assert_that(length(roi_lin) == dim(func_dat_mat)[1])
+    assertthat::assert_that(n_vols == nrow(mc_pars))
+
+    # create a mask combining the ROI, the graymatter, and the functional brain mask
+    comb_mask <- as.logical(roi_lin) #& gray_mask_lin & as.logical(brain_mask_lin)
+        
+    # run the GLM for each voxel in the combined mask
+    roi_dat <- func_dat_mat[comb_mask,]
+      
+    # initialize output for cleaned timeseries and then loop over all voxels
+    roi_dat_clean <- matrix(nrow = sum(comb_mask), ncol = n_vols)
+    for(i_vox in 1:sum(comb_mask)){
+      
+      # extract this voxel's data and merge with motion params
+      vox_dat <- roi_dat[i_vox,]
+      vox_df <- tibble(vox_dat)
+      vox_df <- cbind(vox_df, mp_df)
+      
+      # run the glm and store the residuals
+      roi_dat_clean[i_vox,] <- resid(glm('vox_dat~mp1+mp2+mp3+mp4+mp5+mp6', data = vox_df))
+    }
+    
+    # write clean timeseries data of this ROI to file 
+    fn <- sprintf("%03d_run%02d_block%02d_%s_clean_timeseries.txt",
+                  df$subject, df$run, df$block, df$rois[[1]][i_roi])
+    out_dir_sub <- file.path(df$out_dir[[1]][i_roi], sprintf("%03d",df$subject))
+    if(!dir.exists(out_dir_sub)){dir.create(out_dir_sub)}                    
+    write.table(roi_dat_clean, file.path(out_dir_sub, fn), append = FALSE, sep = ",", dec = ".",
+                row.names = FALSE, col.names = FALSE)
+  }
+}
+```
+
+##### Apply cleaning function {-}
+
+Now we are ready to apply the cleaning function to all blocks of all participants. Typically, this should be run in parallel to save time.
+
+```{r, eval = run_clean_func_data}
+# next step depends on whether we are in parallel or serial mode
+if (!run_parallel){ # run serially
+
+  # run the function for each row of the data frame,
+  # i.e. for each block in each run for each subject
+  for(i in 1:nrow(func_dat_df)){
+    
+    tic(sprintf("Subject %s, run %d, block %d",
+                func_dat_df$subject[i], func_dat_df$run[i], func_dat_df$block[i]))
+    run_motion_glm(df = func_dat_df[i,])
+    toc()
+  }
+  
+} else if (run_parallel){ # run in parallel, assumes CBS HTCondor is available
+  
+  # expand the data frame and write to file
+  func_dat_df_long <- unnest(func_dat_df, cols = c(rois, out_dir, roi_dirs))
+  fn <- file.path(here("data","mri", "rsa", "clean_roi_timeseries"),
+                  "htc_config_clean_time_series.txt")
+  fn_def <- cat(sprintf('"fn <- "%s"',fn))
+  write.table(func_dat_df_long, fn,
+              append = FALSE, sep = ",", dec = ".", row.names = FALSE, col.names = TRUE)
+  
+  # store the function definition as text
+  func_def <- capture.output(run_motion_glm)
+  func_def[1] <- paste0("run_motion_glm <- ",func_def[1])
+  #func_def <- func_def[-length(func_def)]
+  
+  #write the Rscript that we want to run
+  rscript_fn <- here("data","mri", "rsa", "clean_roi_timeseries", "run_clean_timeseries.R")
+  con <- file(rscript_fn)
+  open(con, "w")
+  writeLines(c(
+    "\n# handle input",
+    "args = commandArgs()",
+    "i <- as.numeric(args[length(args)])",
+    "\n#load required packages",
+    noquote(sprintf('lib_dir <- "%s"',"/data/pt_02261/virtem/virtem_code/R3.6.1/library/Linux")),
+    '.libPaths(c(lib_dir,.libPaths()))',
+    'lapply(c("oro.nifti", "assertthat", "dplyr", "neurobase"), library, character.only = TRUE)',
+    "\n# read the data and transform ROI column back to list",
+    noquote(sprintf('fn <- "%s"',fn)),
+    'func_dat_df <- read.table(fn, sep = ",", header = TRUE, stringsAsFactors = FALSE)',
+    "\n#define the function to run motion GLM",
+    func_def,
+    "\n# run the function on one line of the data frame",
+    "run_motion_glm(df = func_dat_df[i,])"),con)
+  close(con)
+  
+  # folder for condor output
+  htc_dir <- here("htc_logs", "clean_timeseries")
+  if(!exists(htc_dir)){dir.create(htc_dir, recursive = TRUE)}
+  
+  # write the submit script
+  fn <- here("data","mri", "rsa", "clean_roi_timeseries", "run_clean_timeseries.submit")
+  con <- file(fn)
+  open(con, "w")
+  writeLines(c(
+    "universe = vanilla",
+    "executable = /afs/cbs.mpg.de/software/scripts/envwrap",
+    "request_memory = 9000",
+    "notification = error"
+    ),con)
+
+    for (i in 1:nrow(func_dat_df_long)){
+        writeLines(c(
+        sprintf("\narguments = R+ --version 3.6.1 Rscript %s %d", rscript_fn, i),
+        sprintf("log = %s/%d.log", htc_dir, i),
+        sprintf("output = %s/%d.out", htc_dir, i),
+        sprintf("error = %s/%d.err", htc_dir, i),
+        sprintf("Queue\n")),con)
+        }
+  close(con)
+  
+  # submit to condor
+  #system("reset-memory-max")
+  batch_id <- system(paste("condor_submit", fn), intern = TRUE)
+  batch_id <- regmatches(batch_id[2], gregexpr("[[:digit:]]+", batch_id[2]))[[1]][2]
+  #system("reset-memory-max")
+  
+  sprintf("submitted jobs (ID = %s) to clean time series in ROIs. Time to wait...", batch_id)
+  pause_until_batch_done(batch_id = batch_id, wait_interval = 300)
+}
+```
+
+#### Extract relevant volumes {-}
+
+As the presentation of images in the PVT pre and post blocks was locked to the onset of a new volume (see above), the second volume after image onset was selected for every trial (effectively covering the time between 2270-4540 ms after stimulus onset).
+
+In this step, we split the presentation logfile from the picture viewing task into the 10 blocks. We reference the volume count to the first volume of each block and extract the relevant volumes from the cleaned ROI timeseries data, accounting for the temporal offset. This is done for each ROI and each block separately in both the pre and post runs. The data are written to file. These output files include the multi-voxel patterns (rows) for each image (columns) that was presented during the picture viewing tasks, including the catch images. The columns are sorted based on the presentation order during the picture viewing task.
+
+>As the presentation of images in the picture viewing tasks was locked to the onset of a new volume (see above), the second volume after image onset was selected for every trial, effectively covering the time between 2270 and 4540 ms after stimulus onset. 
+
+```{r, eval = extract_func_data}
+offset_tr = 2
+
+for (i_sub in subjects){
+  for (i_run in 1:n_runs){
+    
+    # load the logfile for this run (pre or post)
+    log_fn <- file.path(dirs$pvt_log_dir, sprintf('P%s_%svirtem.txt', i_sub, runs[i_run]))
+    log <- read.table(log_fn)
+    colnames(log) <- c("pic", "fix_start", "pic_start", "volume", "response", "RT", "trial_end")
+    
+    # split the log file into the 10 blocks
+    log_split <- split(log, rep(1:10, each = 21))
+    
+    # reference volume numbers to the first volume of that block
+    vol_block <- lapply(log_split, function(x){x$volume - x$volume[1]})
+    log_split <- mapply(cbind, log_split, "vol_block"=vol_block, SIMPLIFY=FALSE)
+    
+    for (i_roi in rois){
+      for (i_block in 1:10){
+      
+        # load the ROI timeseries
+        fn <- sprintf("%s_run%02d_block%02d_%s_clean_timeseries.txt",
+                      i_sub, i_run, i_block, i_roi)
+        dir <- file.path(dirs$rsa_dir, "clean_roi_timeseries", i_roi, i_sub)
+        roi_dat <- read.table(file.path(dir, fn), sep = ",", dec = ".")
+        
+        # index of relevant volumes when accounting for offset
+        rel_vols <- log_split[[i_block]]$vol_block + offset_tr
+        
+        # extract the relevant volumes from the ROI timeseries data
+        if(i_block == 1){rel_dat <- roi_dat[,rel_vols]} else{ 
+          rel_dat <- cbind(rel_dat, roi_dat[,rel_vols])}
+      }
+      
+      # save the relevant data
+      out_dir <- file.path(dirs$rsa_dir, "relevant_roi_volumes", i_roi)
+      if(!dir.exists(out_dir)){dir.create(out_dir, recursive = TRUE)}
+      fn <- sprintf("%s_%s_%s_relevant_volumes.txt", i_sub, i_roi, runs[i_run])
+      write.table(rel_dat, file.path(out_dir, fn), append = FALSE, sep = ",",
+                  dec = ".", row.names = FALSE, col.names = FALSE)
+    }
+  }
+}
+
+```

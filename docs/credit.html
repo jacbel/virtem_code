@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</title>
+  <meta name="description" content="12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jacbel.github.io/virtem_code/" />
+  
+  <meta property="og:description" content="12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="github-repo" content="jacbel/virtem_code" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  
+  <meta name="twitter:description" content="12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  
+
+<meta name="author" content="Jacob L. S. Bellmund" />
+
+
+<meta name="date" content="2022-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="univariate-glm-relative-time.html"/>
+
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.1</b> Purpose</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#contents"><i class="fa fa-check"></i><b>1.2</b> Contents</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#contact"><i class="fa fa-check"></i><b>1.3</b> Contact</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#license-information"><i class="fa fa-check"></i><b>1.4</b> License Information</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="analysis-setup.html"><a href="analysis-setup.html"><i class="fa fa-check"></i><b>2</b> Analysis Setup</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="analysis-setup.html"><a href="analysis-setup.html#defining-variables-and-folders"><i class="fa fa-check"></i><b>2.1</b> Defining Variables and Folders</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#folder-structure"><i class="fa fa-check"></i>Folder Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="analysis-setup.html"><a href="analysis-setup.html#define-analysis-functions"><i class="fa fa-check"></i><b>2.2</b> Define Analysis Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#analysis-logic"><i class="fa fa-check"></i>Analysis Logic</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#brain-plots-in-ggplot"><i class="fa fa-check"></i>Brain Plots in ggplot</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#ggbrain-functions-to-get-template-background"><i class="fa fa-check"></i>ggBrain functions to get template background</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#waiting-for-cluster-jobs"><i class="fa fa-check"></i>Waiting for Cluster Jobs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html"><i class="fa fa-check"></i><b>3</b> Illustrations of Task Design and Analysis Logic</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#day-learning-task-design"><i class="fa fa-check"></i><b>3.1</b> Day Learning Task Design</a>
+<ul>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-virtual-and-real-time"><i class="fa fa-check"></i>Events in virtual and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-virtual-time"><i class="fa fa-check"></i>Events in virtual time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-real-time"><i class="fa fa-check"></i>Events in real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#correlations-of-virtual-time-with-order-and-real-time"><i class="fa fa-check"></i>Correlations of virtual time with order and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#time-cues-in-virtual-and-real-time"><i class="fa fa-check"></i>Time cues in virtual and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#supplemental-figure-for-task-design"><i class="fa fa-check"></i>Supplemental figure for task design</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#representational-similarity-analysis-logic"><i class="fa fa-check"></i><b>3.2</b> Representational Similarity Analysis Logic</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html"><i class="fa fa-check"></i><b>4</b> Prepare behavioral data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#sorting-task"><i class="fa fa-check"></i><b>4.1</b> Sorting task</a></li>
+<li class="chapter" data-level="4.2" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#timeline-task"><i class="fa fa-check"></i><b>4.2</b> Timeline task</a></li>
+<li class="chapter" data-level="4.3" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#picture-viewing-tasks"><i class="fa fa-check"></i><b>4.3</b> Picture viewing tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html"><i class="fa fa-check"></i><b>5</b> Behavioral Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#sorting-task-1"><i class="fa fa-check"></i><b>5.1</b> Sorting Task</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#calculate-percentage-of-correct-responses"><i class="fa fa-check"></i>Calculate percentage of correct responses</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#plot-sorting-performance"><i class="fa fa-check"></i>Plot sorting performance</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#sorting-errors-as-a-function-of-sequence-position"><i class="fa fa-check"></i>Sorting errors as a function of sequence position</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#timeline-task-1"><i class="fa fa-check"></i><b>5.2</b> Timeline Task</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#visualize-the-raw-data"><i class="fa fa-check"></i>Visualize the raw data</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#accuracy-of-remembered-times"><i class="fa fa-check"></i>Accuracy of remembered times</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#relationship-of-sorting-errors-and-timeline-errors"><i class="fa fa-check"></i>Relationship of sorting errors and timeline errors</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#time-metrics-underlying-remembered-times"><i class="fa fa-check"></i>Time metrics underlying remembered times</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#compose-figure-for-behavioral-data"><i class="fa fa-check"></i>Compose Figure for Behavioral Data</a></li>
+<li class="chapter" data-level="5.3" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#generalization-bias"><i class="fa fa-check"></i><b>5.3</b> Generalization bias</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#quantify-relative-time-of-other-events"><i class="fa fa-check"></i>Quantify relative time of other events</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#test-generalization-bias"><i class="fa fa-check"></i>Test Generalization Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-of-generalization-bias"><i class="fa fa-check"></i><b>5.4</b> Replication of Generalization Bias</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-data-quantify-relative-time-of-other-events"><i class="fa fa-check"></i>Replication data: Quantify relative time of other events</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-data-test-generalization-bias"><i class="fa fa-check"></i>Replication data: Test Generalization Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors"><i class="fa fa-check"></i><b>5.5</b> Swap Errors</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#descriptives-of-swap-errors"><i class="fa fa-check"></i>Descriptives of swap errors</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors-as-a-function-of-sequence-position"><i class="fa fa-check"></i>Swap errors as a function of sequence position</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-error-more-frequent-than-expected-from-chance"><i class="fa fa-check"></i>Swap error: More frequent than expected from chance?</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors-and-generalization-bias"><i class="fa fa-check"></i>Swap errors and generalization bias</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html"><i class="fa fa-check"></i><b>6</b> Prepare (f)MRI Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#regions-of-interest"><i class="fa fa-check"></i><b>6.1</b> Regions of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#freesurfer-masks"><i class="fa fa-check"></i>FreeSurfer Masks</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#subregion-masks-mni"><i class="fa fa-check"></i>Subregion masks (MNI)</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#final-rois-from-intersection-of-masks"><i class="fa fa-check"></i>Final ROIs from intersection of masks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#group-level-masks"><i class="fa fa-check"></i><b>6.2</b> Group-Level Masks</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#probabilistic-rois-for-visualization"><i class="fa fa-check"></i>Probabilistic ROIs for visualization</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#field-of-view-mask-for-visualization"><i class="fa fa-check"></i>Field of view mask for visualization</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#gray-matter-mask"><i class="fa fa-check"></i>Gray matter mask</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#small-volume-correction-mask"><i class="fa fa-check"></i>Small Volume Correction Mask</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#quantify-representational-change"><i class="fa fa-check"></i><b>6.3</b> Quantify Representational Change</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#get-multi-voxel-patterns-from-rois"><i class="fa fa-check"></i>Get multi-voxel patterns from ROIs</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#calculate-correlation-matrices"><i class="fa fa-check"></i>Calculate correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#calculate-pattern-similarity-change"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#combine-behavioral-and-fmri-data-for-rsa"><i class="fa fa-check"></i><b>6.4</b> Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html"><i class="fa fa-check"></i><b>7</b> Run RSA Searchlight</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-functional-data"><i class="fa fa-check"></i><b>7.1</b> Prepare functional data</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#data-cleaning-extract-residuals-from-motion-parameter-regression"><i class="fa fa-check"></i>Data cleaning: Extract residuals from motion parameter regression</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#extract-relevant-volumes-1"><i class="fa fa-check"></i>Extract relevant volumes</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#concatenate-relevant-volumes"><i class="fa fa-check"></i>Concatenate relevant volumes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#first-level-rsa-searchlight"><i class="fa fa-check"></i><b>7.2</b> First-level RSA searchlight</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#set-analysis-parameters"><i class="fa fa-check"></i>Set analysis parameters</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-rsa-predictions"><i class="fa fa-check"></i>Prepare RSA-predictions</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-lookup-table-for-searchlight"><i class="fa fa-check"></i>Create lookup table for searchlight</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#dataframe-with-input-for-analysis"><i class="fa fa-check"></i>Dataframe with input for analysis</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#searchlight-implementation"><i class="fa fa-check"></i>Searchlight implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#group-level-searchlight-analysis"><i class="fa fa-check"></i><b>7.3</b> Group-level searchlight analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#move-first-level-images-to-mni-space"><i class="fa fa-check"></i>Move first-level images to MNI space</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#merge-and-smooth-first-level-images"><i class="fa fa-check"></i>Merge and smooth first-level images</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#run-fsl-randomise"><i class="fa fa-check"></i>Run FSL Randomise</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#find-searchlight-clusters-and-atlas-labels"><i class="fa fa-check"></i>Find searchlight clusters and atlas labels</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-outlines-of-significant-clusters"><i class="fa fa-check"></i>Create outlines of significant clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-rsa-in-searchlight-peak"><i class="fa fa-check"></i><b>7.4</b> Prepare RSA in searchlight peak</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-the-roi-mask"><i class="fa fa-check"></i>Create the ROI mask</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#calculating-the-correlation-matrices"><i class="fa fa-check"></i>Calculating the correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#calculate-pattern-similarity-change-1"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#combine-behavioral-and-fmri-data-for-rsa-1"><i class="fa fa-check"></i>Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html"><i class="fa fa-check"></i><b>8</b> RSA on Pattern Similarity Change</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#time-metrics-to-quantify-event-relations"><i class="fa fa-check"></i><b>8.1</b> Time metrics to quantify event relations</a></li>
+<li class="chapter" data-level="8.2" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#visualize-regions-of-interests"><i class="fa fa-check"></i><b>8.2</b> Visualize Regions of Interests</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#template-background-image-with-fov"><i class="fa fa-check"></i>Template background image with FOV</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#anterior-hippocampus-roi"><i class="fa fa-check"></i>Anterior hippocampus ROI</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#anterior-lateral-entorhinal-cortex"><i class="fa fa-check"></i>Anterior-lateral entorhinal cortex</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#first-level-rsa"><i class="fa fa-check"></i><b>8.3</b> First-level RSA</a></li>
+<li class="chapter" data-level="8.4" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-sequence"><i class="fa fa-check"></i><b>8.4</b> aHPC: virtual time within sequence</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-3"><i class="fa fa-check"></i>Summary statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-2"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#representational-change-visualization"><i class="fa fa-check"></i>Representational Change Visualization</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#not-driven-by-first-last-event-pairs"><i class="fa fa-check"></i>Not driven by first &amp; last event pairs</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-sequence-when-including-order-real-time"><i class="fa fa-check"></i><b>8.5</b> aHPC: virtual time within sequence when including order &amp; real time</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#one-model-with-multiple-predictors"><i class="fa fa-check"></i>One model with multiple predictors</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-explains-residuals-of-order-and-real-time"><i class="fa fa-check"></i>Virtual time explains residuals of order and real time</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-across-sequences"><i class="fa fa-check"></i><b>8.6</b> aHPC: virtual time across sequences</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-7"><i class="fa fa-check"></i>Summary statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-5"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#representational-change-visualization-1"><i class="fa fa-check"></i>Representational Change Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-across-sequence-when-including-order-real-time"><i class="fa fa-check"></i><b>8.7</b> aHPC: virtual time across sequence when including order &amp; real time</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-8"><i class="fa fa-check"></i>Summary Statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-6"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-vs.-across-sequences"><i class="fa fa-check"></i><b>8.8</b> aHPC: virtual time within vs. across sequences</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#second-level-analysis"><i class="fa fa-check"></i>Second-level analysis</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-7"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-order"><i class="fa fa-check"></i>Interaction of sequence membership and order</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-real-time"><i class="fa fa-check"></i>Interaction of sequence membership and real time</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-virtual-time-when-including-interactions-with-other-time-metrics"><i class="fa fa-check"></i>Interaction of sequence membership and virtual time when including interactions with other time metrics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#mds"><i class="fa fa-check"></i>MDS</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#umap"><i class="fa fa-check"></i>UMAP</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec"><i class="fa fa-check"></i><b>8.9</b> alEC</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-withinacross-sequences-separately"><i class="fa fa-check"></i>alEC: virtual time within/across sequences separately</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-within-vs.-across-sequences"><i class="fa fa-check"></i>alEC: virtual time within vs. across sequences</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-for-all-event-pairs"><i class="fa fa-check"></i>alEC: virtual time for all event pairs</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-for-all-event-pairs-when-including-order-real-time"><i class="fa fa-check"></i>alEC: virtual time for all event pairs when including order &amp; real time</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-vs.-alec"><i class="fa fa-check"></i><b>8.10</b> aHPC vs. alEC</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-12"><i class="fa fa-check"></i>Summary Statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-10"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#searchlight-results"><i class="fa fa-check"></i><b>8.11</b> Searchlight Results</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-within-sequence"><i class="fa fa-check"></i>Virtual Time Within Sequence</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-across-sequences-in-within-searchlight-cluster"><i class="fa fa-check"></i>Virtual Time Across Sequences in Within-Searchlight Cluster</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-across-sequences"><i class="fa fa-check"></i>Virtual Time Across Sequences</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#visualization-of-overlap"><i class="fa fa-check"></i>Visualization of Overlap</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-sequence-interaction"><i class="fa fa-check"></i>Virtual Time &amp; Sequence Interaction</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#exploratory-searchlight-results"><i class="fa fa-check"></i>Exploratory Searchlight Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-of-behavioral-generalization-bias-with-searchlight-effects"><i class="fa fa-check"></i><b>8.12</b> Correlation of behavioral generalization bias with searchlight effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-with-across-sequence-searchlight-effect"><i class="fa fa-check"></i>Correlation with across-sequence searchlight effect</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-with-same-sequence-searchlight-effect"><i class="fa fa-check"></i>Correlation with same-sequence searchlight effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.13" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#mixed-model-summaries"><i class="fa fa-check"></i><b>8.13</b> Mixed Model Summaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#supplemental-figure-1"><i class="fa fa-check"></i>Supplemental Figure</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#supplemental-tables"><i class="fa fa-check"></i>Supplemental Tables</a></li>
+<li class="chapter" data-level="8.13.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#source-data"><i class="fa fa-check"></i><b>8.13.1</b> Source data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html"><i class="fa fa-check"></i><b>9</b> Signal to noise ratio</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#calculate-voxel-wise-temporal-snr"><i class="fa fa-check"></i><b>9.1</b> Calculate voxel-wise temporal SNR</a></li>
+<li class="chapter" data-level="9.2" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#average-tsnr-per-roi"><i class="fa fa-check"></i><b>9.2</b> Average tSNR per ROI</a></li>
+<li class="chapter" data-level="9.3" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#contrast-tsnr-between-ahpc-and-alec"><i class="fa fa-check"></i><b>9.3</b> Contrast tSNR between aHPC and alEC</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html"><i class="fa fa-check"></i><b>10</b> RSA in searchlight peak with different threshold</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#prepare-rsa-in-searchlight-peak-1"><i class="fa fa-check"></i><b>10.1</b> Prepare RSA in searchlight peak</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#create-the-roi-mask-1"><i class="fa fa-check"></i>Create the ROI mask</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#calculating-the-correlation-matrices-1"><i class="fa fa-check"></i>Calculating the correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#calculate-pattern-similarity-change-2"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#combine-behavioral-and-fmri-data-for-rsa-2"><i class="fa fa-check"></i>Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#rsa"><i class="fa fa-check"></i><b>10.2</b> RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html"><i class="fa fa-check"></i><b>11</b> Univariate GLM: Relative time</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#copy-feat-folder-from-preprocessing-to-first-level-glm-directory"><i class="fa fa-check"></i><b>11.1</b> Copy FEAT-folder from Preprocessing to First-Level GLM directory</a></li>
+<li class="chapter" data-level="11.2" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#prepare-glm"><i class="fa fa-check"></i><b>11.2</b> Prepare GLM</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#compute-relative-time"><i class="fa fa-check"></i>Compute relative time</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#write-custom-ev-files-for-fsl-feat"><i class="fa fa-check"></i>Write custom EV files for FSL FEAT</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#glm-design-files"><i class="fa fa-check"></i>GLM Design files</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#prepare-confound-ev"><i class="fa fa-check"></i>Prepare confound EV</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#create-design-matrix"><i class="fa fa-check"></i>Create design matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#run-1st-level-glm-on-htcondor"><i class="fa fa-check"></i><b>11.3</b> Run 1st-level GLM on HTCondor</a></li>
+<li class="chapter" data-level="11.4" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#group-level-1"><i class="fa fa-check"></i><b>11.4</b> Group-level</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#move-first-level-images-to-mni-space-1"><i class="fa fa-check"></i>Move first-level images to MNI space</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#merge-first-level-images"><i class="fa fa-check"></i>Merge first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#smooth-first-level-images"><i class="fa fa-check"></i>Smooth first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#average-first-level-images"><i class="fa fa-check"></i>Average first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#ahpc-roi-analysis"><i class="fa fa-check"></i>aHPC ROI analysis</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#run-fsl-randomise-1"><i class="fa fa-check"></i>Run FSL Randomise</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#results-in-ahpc-and-alec"><i class="fa fa-check"></i>Results in aHPC and alEC</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#fov-results"><i class="fa fa-check"></i>FOV results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="credit.html"><a href="credit.html"><i class="fa fa-check"></i><b>12</b> Credit</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="credit.html"><a href="credit.html#list-of-packages"><i class="fa fa-check"></i><b>12.1</b> List of packages</a></li>
+<li class="chapter" data-level="12.2" data-path="credit.html"><a href="credit.html#references"><i class="fa fa-check"></i><b>12.2</b> References</a></li>
+<li class="chapter" data-level="12.3" data-path="credit.html"><a href="credit.html#session-info"><i class="fa fa-check"></i><b>12.3</b> Session Info</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="credit" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Credit</h1>
+<div id="list-of-packages" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> List of packages</h2>
+<p>Here is a list of packages used in the analysis and references to them. It is created using the <a href="https://github.com/Pakillo/grateful">grateful package</a>.</p>
+<p>Unfortunately, not all packages provide all information, so there are a few warning messages. The code below generates a markdown file with references that we read in and print below.</p>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="credit.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(grateful<span class="sc">::</span><span class="fu">cite_packages</span>(<span class="at">all.pkg =</span> <span class="cn">FALSE</span>, <span class="at">include.rmd=</span><span class="cn">FALSE</span>, <span class="at">style =</span> <span class="st">&quot;cell&quot;</span>,</span>
+<span id="cb544-2"><a href="credit.html#cb544-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">out.format =</span> <span class="st">&quot;md&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning in FUN(X[[i]], ...): no date field in DESCRIPTION file of package &#39;extrafont&#39;</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): no date field in DESCRIPTION file of package &#39;ggBrain&#39;</code></pre>
+<pre><code>## 
+## 
+## processing file: refs.Rmd</code></pre>
+<pre><code>## output file: refs.knit.md</code></pre>
+<pre><code>## 
+## Output created: citations.md</code></pre>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="credit.html#cb550-1" aria-hidden="true" tabindex="-1"></a>used_pkgs <span class="ot">&lt;-</span><span class="fu">readLines</span>(<span class="fu">here</span>(<span class="st">&quot;virtem_code&quot;</span>, <span class="st">&quot;citations.md&quot;</span>))</span>
+<span id="cb550-2"><a href="credit.html#cb550-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb550-3"><a href="credit.html#cb550-3" aria-hidden="true" tabindex="-1"></a>ref_line <span class="ot">&lt;-</span> <span class="fu">which</span>(used_pkgs<span class="sc">==</span><span class="st">&quot;References&quot;</span>)</span>
+<span id="cb550-4"><a href="credit.html#cb550-4" aria-hidden="true" tabindex="-1"></a>used_pkgs[ref_line] <span class="ot">&lt;-</span> <span class="st">&quot;### References {-}&quot;</span></span>
+<span id="cb550-5"><a href="credit.html#cb550-5" aria-hidden="true" tabindex="-1"></a>used_pkgs[ref_line<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb550-6"><a href="credit.html#cb550-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(used_pkgs, <span class="at">collapse =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">cat</span>()</span></code></pre></div>
+<ul>
+<li>base (R Core Team, 2019)</li>
+<li>extrafont (Chang, 2020)</li>
+<li>ggBrain (Fisher, 2020)</li>
+<li>grateful (Rodríguez-Sánchez and Hutchins, 2020)</li>
+<li>effsize (Torchiano, 2020)</li>
+<li>patchwork (Pedersen, 2020a)</li>
+<li>scico (Pedersen and Crameri, 2020)</li>
+<li>ggcorrplot (Kassambara, 2019)</li>
+<li>umap (Konopka, 2020)</li>
+<li>smacof (de Leeuw and Mair, 2009)</li>
+<li>e1071 (Meyer et al., 2019)</li>
+<li>colorspace (Stauffer et al., 2009)</li>
+<li>plotrix (J, 2006)</li>
+<li>permuco (Frossard and Renaud, 2019)</li>
+<li>afex (Singmann et al., 2020)</li>
+<li>sjmisc (Lüdecke, 2018a)</li>
+<li>gghalves (Tiedemann, 2020)</li>
+<li>huxtable (Hugh-Jones, 2020)</li>
+<li>tidystats (Sleegers, 2020)</li>
+<li>flextable (Gohel, 2020a)</li>
+<li>matrixStats (Bengtsson, 2020)</li>
+<li>emmeans (Lenth, 2020)</li>
+<li>ggeffects (Lüdecke, 2018b)</li>
+<li>broom.mixed (Bolker and Robinson, 2020)</li>
+<li>lmerTest (Kuznetsova et al., 2017)</li>
+<li>car (Fox and Weisberg, 2019)</li>
+<li>carData (Fox et al., 2020)</li>
+<li>texreg (Leifeld, 2013)</li>
+<li>officer (Gohel, 2020b)</li>
+<li>lme4 (Bates et al., 2015)</li>
+<li>Matrix (Bates and Maechler, 2019)</li>
+<li>DescTools (al., 2020)</li>
+<li>corrplot (<strong>corrplot?</strong>)</li>
+<li>tictoc (Izrailev, 2014)</li>
+<li>freesurfer (<strong>freesurfer?</strong>)</li>
+<li>fslr (<strong>fslr?</strong>)</li>
+<li>neurobase (Muschelli, 2020)</li>
+<li>oro.nifti (Whitcher et al., 2011)</li>
+<li>Hmisc (Harrell Jr et al., 2020)</li>
+<li>Formula (Zeileis and Croissant, 2010)</li>
+<li>survival (<strong>survival?</strong>)</li>
+<li>lattice (Sarkar, 2008)</li>
+<li>smooth (Svetunkov, 2020a)</li>
+<li>greybox (Svetunkov, 2020b)</li>
+<li>lavaan (Rosseel, 2012)</li>
+<li>cowplot (Wilke, 2019)</li>
+<li>ggforce (Pedersen, 2020b)</li>
+<li>statip (Poncet and The R Core Team, 2019)</li>
+<li>broom (Robinson et al., 2021)</li>
+<li>here (Müller, 2017)</li>
+<li>wesanderson (Ram and Wickham, 2018)</li>
+<li>bookdown (Xie, 2016)</li>
+<li>assertr (Fischetti, 2020)</li>
+<li>mgsub (Ewing, 2019)</li>
+<li>tinytex (Xie, 2019)</li>
+<li>combinat (Chasalow, 2012)</li>
+<li>devtools (Wickham et al., 2020a)</li>
+<li>usethis (Wickham and Bryan, 2020)</li>
+<li>forcats (Wickham, 2020)</li>
+<li>stringr (Wickham, 2019)</li>
+<li>dplyr (Wickham et al., 2020b)</li>
+<li>purrr (Henry and Wickham, 2020)</li>
+<li>readr (Wickham and Hester, 2021)</li>
+<li>tidyr (Wickham and Henry, 2020)</li>
+<li>tibble (Müller and Wickham, 2021)</li>
+<li>ggplot2 (Wickham, 2016)</li>
+<li>tidyverse (Wickham et al., 2019)</li>
+<li>R.matlab (Bengtsson, 2018)</li>
+</ul>
+</div>
+<div id="references" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> References</h2>
+<p>al., A.S. et mult. (2020). DescTools: Tools for descriptive statistics.</p>
+<p>Bates, D., and Maechler, M. (2019). Matrix: Sparse and dense matrix
+classes and methods.</p>
+<p>Bates, D., Mächler, M., Bolker, B., and Walker, S. (2015). Fitting
+linear mixed-effects models using <span class="nocase">lme4</span>.
+Journal of Statistical Software <em>67</em>, 1–48.</p>
+<p>Bengtsson, H. (2018). R.matlab: Read and write MAT files and call MATLAB
+from within r.</p>
+<p>Bengtsson, H. (2020). matrixStats: Functions that apply to rows and
+columns of matrices (and to vectors).</p>
+<p>Bolker, B., and Robinson, D. (2020). Broom.mixed: Tidying methods for
+mixed models.</p>
+<p>Chang, W. (2020). Extrafont: Tools for using fonts.</p>
+<p>Chasalow, S. (2012). Combinat: Combinatorics utilities.</p>
+<p>de Leeuw, J., and Mair, P. (2009). Multidimensional scaling using
+majorization: SMACOF in R. Journal of Statistical Software <em>31</em>, 1–30.</p>
+<p>Ewing, M. (2019). Mgsub: Safe, multiple, simultaneous string
+substitution.</p>
+<p>Fischetti, T. (2020). Assertr: Assertive programming for r analysis
+pipelines.</p>
+<p>Fisher, A. (2020). ggBrain: Ggplot brain images.</p>
+<p>Fox, J., and Weisberg, S. (2019). An R companion to applied regression
+(Thousand Oaks CA: Sage).</p>
+<p>Fox, J., Weisberg, S., and Price, B. (2020). carData: Companion to
+applied regression data sets.</p>
+<p>Frossard, J., and Renaud, O. (2019). Permuco: Permutation tests for
+regression, (repeated measures) ANOVA/ANCOVA and comparison of signals.</p>
+<p>Gohel, D. (2020a). Flextable: Functions for tabular reporting.</p>
+<p>Gohel, D. (2020b). Officer: Manipulation of microsoft word and
+PowerPoint documents.</p>
+<p>Harrell Jr, F.E., Charles Dupont, with contributions from, and others.,
+many (2020). Hmisc: Harrell miscellaneous.</p>
+<p>Henry, L., and Wickham, H. (2020). Purrr: Functional programming tools.</p>
+<p>Hugh-Jones, D. (2020). Huxtable: Easily create and style tables for
+LaTeX, HTML and other formats.</p>
+<p>Izrailev, S. (2014). Tictoc: Functions for timing r scripts, as well as
+implementations of stack and list structures.</p>
+<p>J, L. (2006). Plotrix: A package in the red light district of r. R-News
+<em>6</em>, 8–12.</p>
+<p>Kassambara, A. (2019). Ggcorrplot: Visualization of a correlation matrix
+using ’ggplot2’.</p>
+<p>Konopka, T. (2020). Umap: Uniform manifold approximation and projection.</p>
+<p>Kuznetsova, A., Brockhoff, P.B., and Christensen, R.H.B. (2017). <span class="nocase">lmerTest</span> package: Tests in linear mixed effects
+models. Journal of Statistical Software <em>82</em>, 1–26.</p>
+<p>Leifeld, P. (2013). <span class="nocase">texreg</span>: Conversion of
+statistical model output in R to LaTeX and HTML tables. Journal of
+Statistical Software <em>55</em>, 1–24.</p>
+<p>Lenth, R. (2020). Emmeans: Estimated marginal means, aka least-squares
+means.</p>
+<p>Lüdecke, D. (2018a). Sjmisc: Data and variable transformation functions.
+Journal of Open Source Software <em>3</em>, 754.</p>
+<p>Lüdecke, D. (2018b). Ggeffects: Tidy data frames of marginal effects
+from regression models. Journal of Open Source Software <em>3</em>, 772.</p>
+<p>Meyer, D., Dimitriadou, E., Hornik, K., Weingessel, A., and Leisch, F.
+(2019). e1071: Misc functions of the department of statistics,
+probability theory group (formerly: E1071), TU wien.</p>
+<p>Müller, K. (2017). Here: A simpler way to find your files.</p>
+<p>Müller, K., and Wickham, H. (2021). Tibble: Simple data frames.</p>
+<p>Muschelli, J. (2020). Neurobase: ’Neuroconductor’ base package with
+helper functions for ’nifti’ objects.</p>
+<p>Pedersen, T.L. (2020a). Patchwork: The composer of plots.</p>
+<p>Pedersen, T.L. (2020b). Ggforce: Accelerating ’ggplot2’.</p>
+<p>Pedersen, T.L., and Crameri, F. (2020). Scico: Colour palettes based on
+the scientific colour-maps.</p>
+<p>Poncet, P., and The R Core Team (2019). Statip: Statistical functions
+for probability distributions and regression.</p>
+<p>R Core Team (2019). R: A language and environment for statistical
+computing (Vienna, Austria: R Foundation for Statistical Computing).</p>
+<p>Ram, K., and Wickham, H. (2018). Wesanderson: A wes anderson palette
+generator.</p>
+<p>Robinson, D., Hayes, A., and Couch, S. (2021). Broom: Convert
+statistical objects into tidy tibbles.</p>
+<p>Rodríguez-Sánchez, F., and Hutchins, S.D. (2020). Grateful: Facilitate
+citation of r packages.</p>
+<p>Rosseel, Y. (2012). <span class="nocase">lavaan</span>: An R package for
+structural equation modeling. Journal of Statistical Software <em>48</em>,
+1–36.</p>
+<p>Sarkar, D. (2008). Lattice: Multivariate data visualization with r (New
+York: Springer).</p>
+<p>Singmann, H., Bolker, B., Westfall, J., Aust, F., and Ben-Shachar, M.S.
+(2020). Afex: Analysis of factorial experiments.</p>
+<p>Sleegers, W. (2020). Tidystats: Save output of statistical tests.</p>
+<p>Stauffer, R., Mayr, G.J., Dabernig, M., and Zeileis, A. (2009).
+Somewhere over the rainbow: How to make effective use of colors in
+meteorological visualizations. Bulletin of the American Meteorological
+Society <em>96</em>, 203–216.</p>
+<p>Svetunkov, I. (2020a). Smooth: Forecasting using state space models.</p>
+<p>Svetunkov, I. (2020b). Greybox: Toolbox for model building and
+forecasting.</p>
+<p>Tiedemann, F. (2020). Gghalves: Compose half-half plots using your
+favourite geoms.</p>
+<p>Torchiano, M. (2020). Effsize: Efficient effect size computation.</p>
+<p>Whitcher, B., Schmid, V.J., and Thornton, A. (2011). Working with the
+DICOM and NIfTI data standards in R. Journal of Statistical Software
+<em>44</em>, 1–28.</p>
+<p>Wickham, H. (2016). ggplot2: Elegant graphics for data analysis
+(Springer-Verlag New York).</p>
+<p>Wickham, H. (2019). Stringr: Simple, consistent wrappers for common
+string operations.</p>
+<p>Wickham, H. (2020). Forcats: Tools for working with categorical
+variables (factors).</p>
+<p>Wickham, H., and Bryan, J. (2020). Usethis: Automate package and project
+setup.</p>
+<p>Wickham, H., and Henry, L. (2020). Tidyr: Tidy messy data.</p>
+<p>Wickham, H., and Hester, J. (2021). Readr: Read rectangular text data.</p>
+<p>Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L.D., François,
+R., Grolemund, G., Hayes, A., Henry, L., Hester, J., et al. (2019).
+Welcome to the <span class="nocase">tidyverse</span>. Journal of Open
+Source Software <em>4</em>, 1686.</p>
+<p>Wickham, H., Hester, J., and Chang, W. (2020a). Devtools: Tools to make
+developing r packages easier.</p>
+<p>Wickham, H., François, R., Henry, L., and Müller, K. (2020b). Dplyr: A
+grammar of data manipulation.</p>
+<p>Wilke, C.O. (2019). Cowplot: Streamlined plot theme and plot annotations
+for ’ggplot2’.</p>
+<p>Xie, Y. (2016). Bookdown: Authoring books and technical documents with R
+markdown (Boca Raton, Florida: Chapman; Hall/CRC).</p>
+<p>Xie, Y. (2019). TinyTeX: A lightweight, cross-platform, and
+easy-to-maintain LaTeX distribution based on TeX live. TUGboat 30–32.</p>
+<p>Zeileis, A., and Croissant, Y. (2010). Extended model formulas in R:
+Multiple parts and multiple responses. Journal of Statistical Software
+<em>34</em>, 1–13.</p>
+</div>
+<div id="session-info" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> Session Info</h2>
+<p>Lastly, we run session info, using the version from the devtools package.</p>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="credit.html#cb551-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<pre><code>## ─ Session info ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 3.6.1 (2019-07-05)
+##  os       Ubuntu 18.04.6 LTS          
+##  system   x86_64, linux-gnu           
+##  ui       RStudio                     
+##  language (EN)                        
+##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
+##  tz       Europe/Berlin               
+##  date     2022-01-25                  
+## 
+## ─ Packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+##  !  package      * version     date       lib source                                 
+##     abind          1.4-5       2016-07-21 [1] CRAN (R 3.6.1)                         
+##     acepack        1.4.1       2016-10-29 [1] CRAN (R 3.6.1)                         
+##     afex         * 0.27-2      2020-03-28 [1] CRAN (R 3.6.1)                         
+##     askpass        1.1         2019-01-13 [1] CRAN (R 3.6.1)                         
+##     assertr      * 2.7         2020-02-05 [1] CRAN (R 3.6.1)                         
+##     assertthat     0.2.1       2019-03-21 [1] CRAN (R 3.6.1)                         
+##     backports      1.1.8       2020-06-17 [1] CRAN (R 3.6.1)                         
+##     base64enc      0.1-3       2015-07-28 [1] CRAN (R 3.6.1)                         
+##     bit            4.0.4       2020-08-04 [2] CRAN (R 3.6.1)                         
+##     bit64          4.0.5       2020-08-30 [2] CRAN (R 3.6.1)                         
+##     bitops         1.0-6       2013-08-17 [1] CRAN (R 3.6.1)                         
+##     blob           1.2.1       2020-01-20 [1] CRAN (R 3.6.1)                         
+##     bookdown     * 0.19        2020-05-15 [1] CRAN (R 3.6.1)                         
+##     boot           1.3-22      2019-04-02 [3] CRAN (R 3.6.1)                         
+##     broom        * 0.7.9       2021-07-27 [1] CRAN (R 3.6.1)                         
+##     broom.mixed  * 0.2.6       2020-05-17 [1] CRAN (R 3.6.1)                         
+##     callr          3.4.3       2020-03-28 [1] CRAN (R 3.6.1)                         
+##     candisc        0.8-3       2020-04-22 [1] CRAN (R 3.6.1)                         
+##     car          * 3.0-8       2020-05-21 [1] CRAN (R 3.6.1)                         
+##     carData      * 3.0-4       2020-05-22 [1] CRAN (R 3.6.1)                         
+##     cellranger     1.1.0       2016-07-27 [1] CRAN (R 3.6.1)                         
+##     checkmate      2.0.0       2020-02-06 [1] CRAN (R 3.6.1)                         
+##     checkpoint     0.4.10      2020-10-29 [1] CRAN (R 3.6.1)                         
+##     class          7.3-15      2019-01-01 [3] CRAN (R 3.6.1)                         
+##     cli            2.2.0       2020-11-20 [1] CRAN (R 3.6.1)                         
+##     clue           0.3-57      2019-02-25 [1] CRAN (R 3.6.1)                         
+##     cluster        2.1.0       2019-06-19 [3] CRAN (R 3.6.1)                         
+##     coda           0.19-3      2019-07-05 [1] CRAN (R 3.6.1)                         
+##     codetools      0.2-16      2018-12-24 [3] CRAN (R 3.6.1)                         
+##  P  colorspace   * 2.0-2       2021-06-24 [2] CRAN (R 3.6.1)                         
+##     combinat     * 0.0-8       2012-10-29 [1] CRAN (R 3.6.1)                         
+##     commonmark     1.7         2018-12-01 [1] CRAN (R 3.6.1)                         
+##     corrplot     * 0.84        2017-10-16 [1] CRAN (R 3.6.1)                         
+##     cowplot      * 1.0.0       2019-07-11 [1] CRAN (R 3.6.1)                         
+##  VP crayon         1.4.1       2017-09-16 [2] CRAN (R 3.6.1)                         
+##     curl           4.3         2019-12-02 [1] CRAN (R 3.6.1)                         
+##     data.table     1.13.4      2020-12-08 [1] CRAN (R 3.6.1)                         
+##     DBI            1.1.0       2019-12-15 [1] CRAN (R 3.6.1)                         
+##     dbplyr         1.4.4       2020-05-27 [1] CRAN (R 3.6.1)                         
+##     desc           1.2.0       2018-05-01 [1] CRAN (R 3.6.1)                         
+##     DescTools    * 0.99.36     2020-05-23 [1] CRAN (R 3.6.1)                         
+##     devtools     * 2.3.0       2020-04-10 [1] CRAN (R 3.6.1)                         
+##  VP digest         0.6.27      2021-09-23 [2] CRAN (R 3.6.1)                         
+##     doParallel     1.0.15      2019-08-02 [1] CRAN (R 3.6.1)                         
+##     dplyr        * 1.0.0       2020-05-29 [1] CRAN (R 3.6.1)                         
+##     e1071        * 1.7-3       2019-11-26 [1] CRAN (R 3.6.1)                         
+##     effsize      * 0.8.1       2020-10-05 [1] CRAN (R 3.6.1)                         
+##     ellipse        0.4.2       2020-05-27 [1] CRAN (R 3.6.1)                         
+##  VP ellipsis       0.3.2       2020-05-15 [2] CRAN (R 3.6.1)                         
+##     emmeans      * 1.4.7       2020-05-25 [1] CRAN (R 3.6.1)                         
+##     estimability   1.3         2018-02-11 [1] CRAN (R 3.6.1)                         
+##  P  evaluate       0.14        2019-05-28 [2] CRAN (R 3.6.1)                         
+##     expm           0.999-4     2019-03-21 [1] CRAN (R 3.6.1)                         
+##     extrafont    * 0.17.0.9000 2020-12-22 [1] Github (wch/extrafont@cfa3269)         
+##     extrafontdb    1.0         2012-06-11 [1] CRAN (R 3.6.1)                         
+##  VP fansi          0.5.0       2020-01-08 [2] CRAN (R 3.6.1)                         
+##     farver         2.0.3       2020-01-16 [1] CRAN (R 3.6.1)                         
+##     flextable    * 0.6.1       2020-12-08 [1] CRAN (R 3.6.1)                         
+##     forcats      * 0.5.0       2020-03-01 [1] CRAN (R 3.6.1)                         
+##     foreach        1.5.0       2020-03-30 [1] CRAN (R 3.6.1)                         
+##     forecast       8.12        2020-03-31 [1] CRAN (R 3.6.1)                         
+##     foreign        0.8-71      2018-07-20 [3] CRAN (R 3.6.1)                         
+##     Formula      * 1.2-3       2018-05-03 [1] CRAN (R 3.6.1)                         
+##     fracdiff       1.5-1       2020-01-24 [1] CRAN (R 3.6.1)                         
+##     freesurfer   * 1.6.7       2020-03-30 [1] CRAN (R 3.6.1)                         
+##     fs             1.4.1       2020-04-04 [1] CRAN (R 3.6.1)                         
+##     fslr         * 2.24.1      2019-08-05 [1] CRAN (R 3.6.1)                         
+##     gdata          2.18.0      2017-06-06 [1] CRAN (R 3.6.1)                         
+##     gdtools        0.2.2       2020-04-03 [1] CRAN (R 3.6.1)                         
+##     generics       0.0.2       2018-11-29 [1] CRAN (R 3.6.1)                         
+##     ggBrain      * 0.1.2       2020-11-18 [1] Github (neuroconductor/ggBrain@cae74e5)
+##     ggcorrplot   * 0.1.3       2019-05-19 [1] CRAN (R 3.6.1)                         
+##     ggeffects    * 0.15.0      2020-06-16 [1] CRAN (R 3.6.1)                         
+##     ggforce      * 0.3.2       2020-06-23 [1] CRAN (R 3.6.1)                         
+##     gghalves     * 0.1.0       2020-03-28 [1] CRAN (R 3.6.1)                         
+##     ggplot2      * 3.3.2       2020-06-19 [1] CRAN (R 3.6.1)                         
+##     glue           1.4.1       2020-05-13 [1] CRAN (R 3.6.1)                         
+##     grateful     * 0.0.2       2020-12-18 [1] Github (Pakillo/grateful@552b4bd)      
+##     greybox      * 0.6.0       2020-05-20 [1] CRAN (R 3.6.1)                         
+##     gridExtra      2.3         2017-09-09 [1] CRAN (R 3.6.1)                         
+##     gtable         0.3.0       2019-03-25 [1] CRAN (R 3.6.1)                         
+##     gtools         3.8.2       2020-03-31 [1] CRAN (R 3.6.1)                         
+##     haven          2.3.1       2020-06-01 [1] CRAN (R 3.6.1)                         
+##     heplots        1.3-5       2018-04-03 [1] CRAN (R 3.6.1)                         
+##     here         * 0.1         2017-05-28 [1] CRAN (R 3.6.1)                         
+##     highr          0.8         2019-03-20 [1] CRAN (R 3.6.1)                         
+##     Hmisc        * 4.4-0       2020-03-23 [1] CRAN (R 3.6.1)                         
+##  VP hms            1.1.0       2020-01-08 [2] CRAN (R 3.6.1)                         
+##     htmlTable      2.0.0       2020-06-21 [1] CRAN (R 3.6.1)                         
+##  VP htmltools      0.5.1.1     2020-06-16 [2] CRAN (R 3.6.1)                         
+##     htmlwidgets    1.5.1       2019-10-08 [1] CRAN (R 3.6.1)                         
+##     httr           1.4.1       2019-08-05 [1] CRAN (R 3.6.1)                         
+##     huxtable     * 5.0.0       2020-06-15 [1] CRAN (R 3.6.1)                         
+##     insight        0.8.5       2020-06-08 [1] CRAN (R 3.6.1)                         
+##     iterators      1.0.12      2019-07-26 [1] CRAN (R 3.6.1)                         
+##     jpeg           0.1-8.1     2019-10-24 [1] CRAN (R 3.6.1)                         
+##     jsonlite       1.6.1       2020-02-02 [1] CRAN (R 3.6.1)                         
+##  VP knitr          1.33        2020-02-06 [2] CRAN (R 3.6.1)                         
+##     labeling       0.3         2014-08-23 [1] CRAN (R 3.6.1)                         
+##     lamW           1.3.2       2020-05-25 [1] CRAN (R 3.6.1)                         
+##     lattice      * 0.20-38     2018-11-04 [3] CRAN (R 3.6.1)                         
+##     latticeExtra   0.6-29      2019-12-19 [1] CRAN (R 3.6.1)                         
+##     lavaan       * 0.6-6       2020-05-13 [1] CRAN (R 3.6.1)                         
+##  VP lifecycle      1.0.0       2020-03-06 [2] CRAN (R 3.6.1)                         
+##     lme4         * 1.1-23      2020-04-07 [1] CRAN (R 3.6.1)                         
+##     lmerTest     * 3.1-2       2020-04-08 [1] CRAN (R 3.6.1)                         
+##     lmtest         0.9-37      2019-04-30 [1] CRAN (R 3.6.1)                         
+##     lubridate      1.7.9       2020-06-08 [1] CRAN (R 3.6.1)                         
+##  VP magrittr       2.0.1       2014-11-22 [2] CRAN (R 3.6.1)                         
+##     MASS           7.3-51.4    2019-03-31 [3] CRAN (R 3.6.1)                         
+##     Matrix       * 1.2-17      2019-03-22 [3] CRAN (R 3.6.1)                         
+##     matrixStats  * 0.56.0      2020-03-13 [1] CRAN (R 3.6.1)                         
+##     memoise        1.1.0       2017-04-21 [1] CRAN (R 3.6.1)                         
+##     mgcv           1.8-28      2019-03-21 [3] CRAN (R 3.6.1)                         
+##     mgsub        * 1.7.1       2019-03-13 [1] CRAN (R 3.6.1)                         
+##     mice           3.11.0      2020-08-05 [1] CRAN (R 3.6.1)                         
+##     minqa          1.2.4       2014-10-09 [1] CRAN (R 3.6.1)                         
+##     mnormt         1.5-6       2020-02-03 [1] CRAN (R 3.6.1)                         
+##     modelr         0.1.8       2020-05-19 [1] CRAN (R 3.6.1)                         
+##  P  munsell        0.5.0       2018-06-12 [2] CRAN (R 3.6.1)                         
+##     mvtnorm        1.1-1       2020-06-09 [1] CRAN (R 3.6.1)                         
+##     neurobase    * 1.29.0      2020-01-14 [1] CRAN (R 3.6.1)                         
+##     nlme           3.1-140     2019-05-12 [3] CRAN (R 3.6.1)                         
+##     nloptr         1.2.2.1     2020-03-11 [1] CRAN (R 3.6.1)                         
+##     nnet           7.3-12      2016-02-02 [3] CRAN (R 3.6.1)                         
+##     nnls           1.4         2012-03-19 [1] CRAN (R 3.6.1)                         
+##     numDeriv       2016.8-1.1  2019-06-06 [1] CRAN (R 3.6.1)                         
+##     officer      * 0.3.15      2020-11-01 [1] CRAN (R 3.6.1)                         
+##     openssl        1.4.1       2019-07-18 [1] CRAN (R 3.6.1)                         
+##     openxlsx       4.1.5       2020-05-06 [1] CRAN (R 3.6.1)                         
+##     oro.nifti    * 0.10.3      2020-06-08 [1] CRAN (R 3.6.1)                         
+##     patchwork    * 1.1.1       2020-12-17 [1] CRAN (R 3.6.1)                         
+##     pbivnorm       0.6.0       2015-01-23 [1] CRAN (R 3.6.1)                         
+##     permuco      * 1.1.0       2019-12-19 [1] CRAN (R 3.6.1)                         
+##     permute        0.9-5       2019-03-12 [1] CRAN (R 3.6.1)                         
+##  VP pillar         1.6.2       2020-05-05 [2] CRAN (R 3.6.1)                         
+##     pkgbuild       1.0.8       2020-05-07 [1] CRAN (R 3.6.1)                         
+##  P  pkgconfig      2.0.3       2019-09-22 [2] CRAN (R 3.6.1)                         
+##     pkgload        1.1.0       2020-05-29 [1] CRAN (R 3.6.1)                         
+##     plotrix      * 3.7-8       2020-04-16 [1] CRAN (R 3.6.1)                         
+##  P  plyr           1.8.6       2020-03-03 [2] CRAN (R 3.6.1)                         
+##     png            0.1-7       2013-12-03 [1] CRAN (R 3.6.1)                         
+##     polyclip       1.10-0      2019-03-14 [1] CRAN (R 3.6.1)                         
+##     polynom        1.4-0       2019-03-22 [1] CRAN (R 3.6.1)                         
+##     pracma         2.2.9       2019-12-15 [1] CRAN (R 3.6.1)                         
+##     prettyunits    1.1.1       2020-01-24 [1] CRAN (R 3.6.1)                         
+##     processx       3.4.2       2020-02-09 [1] CRAN (R 3.6.1)                         
+##     ps             1.3.3       2020-05-08 [1] CRAN (R 3.6.1)                         
+##     purrr        * 0.3.4       2020-04-17 [1] CRAN (R 3.6.1)                         
+##     quadprog       1.5-8       2019-11-20 [1] CRAN (R 3.6.1)                         
+##     quantmod       0.4.17      2020-03-31 [1] CRAN (R 3.6.1)                         
+##     R.matlab     * 3.6.2       2018-09-27 [1] CRAN (R 3.6.1)                         
+##     R.methodsS3    1.8.0       2020-02-14 [1] CRAN (R 3.6.1)                         
+##     R.oo           1.23.0      2019-11-03 [1] CRAN (R 3.6.1)                         
+##     R.utils        2.9.2       2019-12-08 [1] CRAN (R 3.6.1)                         
+##  VP R6             2.5.0       2019-11-12 [2] CRAN (R 3.6.1)                         
+##  P  RColorBrewer   1.1-2       2014-12-07 [2] CRAN (R 3.6.1)                         
+##  VP Rcpp           1.0.7       2020-04-09 [2] CRAN (R 3.6.1)                         
+##     RcppParallel   5.0.1       2020-05-06 [1] CRAN (R 3.6.1)                         
+##  VP readr        * 2.0.0       2018-12-21 [2] CRAN (R 3.6.1)                         
+##     readxl         1.3.1       2019-03-13 [1] CRAN (R 3.6.1)                         
+##  VP remotes        2.4.0       2020-02-15 [2] CRAN (R 3.6.1)                         
+##     reprex         0.3.0       2019-05-16 [1] CRAN (R 3.6.1)                         
+##  P  reshape2       1.4.4       2020-04-09 [2] CRAN (R 3.6.1)                         
+##     reticulate     1.20        2021-05-03 [1] CRAN (R 3.6.1)                         
+##     rio            0.5.16      2018-11-26 [1] CRAN (R 3.6.1)                         
+##  VP rlang          0.4.11      2020-05-02 [2] CRAN (R 3.6.1)                         
+##  VP rmarkdown      2.9         2021-09-14 [2] CRAN (R 3.6.1)                         
+##     RNifti         1.1.0       2020-01-31 [1] CRAN (R 3.6.1)                         
+##     rpart          4.1-15      2019-04-12 [3] CRAN (R 3.6.1)                         
+##     rprojroot      1.3-2       2018-01-03 [1] CRAN (R 3.6.1)                         
+##     RSpectra       0.16-0      2019-12-01 [1] CRAN (R 3.6.1)                         
+##     rstudioapi     0.11        2020-02-07 [1] CRAN (R 3.6.1)                         
+##     Rttf2pt1       1.3.8       2020-12-22 [1] Github (wch/Rttf2pt1@000efae)          
+##     rvest          0.3.5       2019-11-08 [1] CRAN (R 3.6.1)                         
+##  P  scales         1.1.1       2020-05-11 [2] CRAN (R 3.6.1)                         
+##  P  scico        * 1.2.0       2020-06-08 [2] CRAN (R 3.6.1)                         
+##     sessioninfo    1.1.1       2018-11-05 [1] CRAN (R 3.6.1)                         
+##     sjlabelled     1.1.5       2020-05-25 [1] CRAN (R 3.6.1)                         
+##     sjmisc       * 2.8.5       2020-05-28 [1] CRAN (R 3.6.1)                         
+##     smacof       * 2.1-1       2020-06-29 [1] CRAN (R 3.6.1)                         
+##     smooth       * 2.6.0       2020-06-17 [1] CRAN (R 3.6.1)                         
+##     statip       * 0.2.3       2019-11-17 [1] CRAN (R 3.6.1)                         
+##     statmod        1.4.34      2020-02-17 [1] CRAN (R 3.6.1)                         
+##  VP stringi        1.7.3       2020-02-17 [2] CRAN (R 3.6.1)                         
+##  P  stringr      * 1.4.0       2019-02-10 [2] CRAN (R 3.6.1)                         
+##     survival     * 3.2-3       2020-06-13 [1] CRAN (R 3.6.1)                         
+##     systemfonts    0.3.2       2020-09-29 [1] CRAN (R 3.6.1)                         
+##     testthat       2.3.2       2020-03-02 [1] CRAN (R 3.6.1)                         
+##     texreg       * 1.37.5      2020-06-18 [1] CRAN (R 3.6.1)                         
+##  VP tibble       * 3.1.3       2020-04-20 [2] CRAN (R 3.6.1)                         
+##     tictoc       * 1.0         2014-06-17 [1] CRAN (R 3.6.1)                         
+##     tidyr        * 1.1.0       2020-05-20 [1] CRAN (R 3.6.1)                         
+##     tidyselect     1.1.0       2020-05-11 [1] CRAN (R 3.6.1)                         
+##     tidystats    * 0.4.1       2020-06-15 [1] CRAN (R 3.6.1)                         
+##     tidyverse    * 1.3.0       2019-11-21 [1] CRAN (R 3.6.1)                         
+##     timeDate       3043.102    2018-02-21 [1] CRAN (R 3.6.1)                         
+##     tinytex      * 0.24        2020-06-20 [1] CRAN (R 3.6.1)                         
+##     TMB            1.7.16      2020-01-15 [1] CRAN (R 3.6.1)                         
+##     tseries        0.10-47     2019-06-05 [1] CRAN (R 3.6.1)                         
+##     TTR            0.23-6      2019-12-15 [1] CRAN (R 3.6.1)                         
+##     tweenr         1.0.1       2018-12-14 [1] CRAN (R 3.6.1)                         
+##     tzdb           0.1.2       2021-07-20 [2] CRAN (R 3.6.1)                         
+##     umap         * 0.2.7.0     2020-11-04 [1] CRAN (R 3.6.1)                         
+##     urca           1.3-0       2016-09-06 [1] CRAN (R 3.6.1)                         
+##     usethis      * 1.6.1       2020-04-29 [1] CRAN (R 3.6.1)                         
+##  VP utf8           1.2.2       2018-05-24 [2] CRAN (R 3.6.1)                         
+##     uuid           0.1-4       2020-02-26 [1] CRAN (R 3.6.1)                         
+##  VP vctrs          0.3.8       2020-06-05 [2] CRAN (R 3.6.1)                         
+##     vroom          1.5.3       2021-07-14 [2] CRAN (R 3.6.1)                         
+##     weights        1.0.1       2020-02-12 [1] CRAN (R 3.6.1)                         
+##     wesanderson  * 0.3.6       2018-04-20 [1] CRAN (R 3.6.1)                         
+##     withr          2.2.0       2020-04-20 [1] CRAN (R 3.6.1)                         
+##     wordcloud      2.6         2018-08-24 [1] CRAN (R 3.6.1)                         
+##  VP xfun           0.24        2020-06-21 [2] CRAN (R 3.6.1)                         
+##     xml2           1.3.2       2020-04-23 [1] CRAN (R 3.6.1)                         
+##     xtable         1.8-4       2019-04-21 [1] CRAN (R 3.6.1)                         
+##     xts            0.12-0      2020-01-19 [1] CRAN (R 3.6.1)                         
+##  P  yaml           2.2.1       2020-02-01 [2] CRAN (R 3.6.1)                         
+##     zip            2.1.1       2020-08-27 [1] CRAN (R 3.6.1)                         
+##     zoo            1.8-8       2020-05-02 [1] CRAN (R 3.6.1)                         
+## 
+## [1] /data/pt_02261/virtem/virtem_code/R3.6.1/library/Linux
+## [2] /data/hu_bellmund/R/x86_64-pc-linux-gnu-library/3.6
+## [3] /afs/cbs.mpg.de/software/r/3.6.1/ubuntu-bionic-amd64/lib/R/library
+## 
+##  V ── Loaded and on-disk version mismatch.
+##  P ── Loaded and on-disk path mismatch.</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="univariate-glm-relative-time.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Prepare (f)MRI Data
+## Regions of Interest
+We want to run ROI-based representational similarity analyses to test how the hippocampal-entorhinal system represents the learned temporal relationships. We will focus our analysis on the anterior hippocampus (aHPC) and anterolateral entorhinal cortex (alEC). 
+
+>Following our previous work on sequence representations in the hippocampus and entorhinal cortex (Bellmund et al., 2019; Deuker et al., 2016), we focused our analysis on the anterior hippocampus and the anterior-lateral entorhinal cortex. 
+
+To define participant-specific ROI masks, we want to combine masks from the individual Freesurfer parcellations of the HPC and EC with masks dividing the subregions of the HPC and EC. Specifically, these are based on the Harvard-Oxford atlas distributed with FSL for the hippocampus and on the EC subregion masks from [Navarro Schröder et al. (eLife, 2015)](http://elifesciences.org/content/4/e06738).
+
+We use the Freesurfer segmentation as run by Lorena Deuker. This was obtained via the recon-all command. All masks will be co-registered to the analysis space, which is the space of the wholebrain functional images. This relies on the FSL transformation matrices and warp files obtained from running FEAT on the wholebrain functional images.
+
+### FreeSurfer Masks {-}
+
+>Region of interest (ROI) masks were based on participant-specific FreeSurfer segmentations (version 6.0.0-2), which yielded masks for the entire hippocampus and entorhinal cortex. These were co-registered to participants’ functional space. 
+
+#### Create Masks from Parcellation {-}
+First, we want to create nifti masks from the FreeSurfer parcellation. These are saved in the space of the participant's highres structural space.
+
+```{r, eval = run_prep_rois}
+
+# create freesurfer subfolder for in each ROI folder
+invisible(lapply(file.path(dirs$rois_fs_dirs, "freesurfer_highres_space"),
+                 function(x) if(!dir.exists(x)) dir.create(x)))
+
+for (sub_id in subjects){
+    
+  # get the name of the ROIs(fs = from freesurfer, hs = highres space)
+  out_roi_fn <- file.path(dirs$rois_fs_dirs, "freesurfer_highres_space", 
+                          sprintf("P%s_%s_fs_hs.nii.gz", sub_id, rois_fs))
+
+  # load the structural image
+  highres_fn <- here("data", "mri", "processed", "wholebrain", 
+                     paste0("VIRTEM_P", sub_id, ".feat"), "reg", "highres.nii.gz")
+  highres_nii <- readNIfTI2(highres_fn)
+        
+  # load the freesurfer output
+  freesurf_fn <- here("data", "mri", "freesurfer", 
+                      paste0("VIRTEM_P", sub_id), "mri", "aparc+aseg-in-rawavg.nii")
+  aparc_nii <- readNIfTI2(freesurf_fn)
+
+  for (i_roi in 1:length(rois_fs)){
+    
+    # initialize all mask voxels as zeros
+    mask_idx <- array(0, dim(img_data(highres_nii)))
+    
+    # set voxels of the ROI to one            
+    mask_idx[img_data(aparc_nii) %in% labels_fs[[i_roi]]] <- 1
+    
+    # create nifti based on the Freesurfer image
+    roi_nii <- highres_nii
+    img_data(roi_nii) <- mask_idx
+    
+    # write the nifti to file
+    writenii(nim = roi_nii, filename = out_roi_fn[i_roi])
+    
+    # find coordinates for sensible slices to plot (most frequent value in each dim)
+    coords <- arrayInd(which(as.logical(mask_idx)), dim(mask_idx))
+    coords <- c(min(statip::mfv(coords[,1])), 
+                min(statip::mfv(coords[,2])), 
+                min(statip::mfv(coords[,3])))
+    
+    # save a diagnostic plot as a PDF
+    fname <- tools::file_path_sans_ext(out_roi_fn[i_roi], compression = "TRUE")
+    pdf(paste0(fname,".pdf"))
+    ortho2(robust_window(highres_nii, probs = c(0, 0.999)), y = roi_nii,
+           col.y = roi_colors_fs[i_roi], xyz = coords,
+           text = sprintf("P%s: %s", sub_id, rois_fs[i_roi]),
+           crosshairs = FALSE)
+    invisible(dev.off())
+  } 
+}
+```
+
+
+To get an overview of the ROIs that we just created, we create a merged PDF of the diagnostic plots. We do this for each ROI separately. The files are saved to the specific ROI folders.
+
+```{r, eval = run_prep_rois}
+# create a PDF of diagnostic plots for each ROI
+for (i_roi in 1:length(rois_fs)){
+  
+  # find all the PDF files of this ROI
+  fnames <- tools::file_path_sans_ext(
+  sprintf("P%s_%s_fs_hs.nii.gz", subjects, rois_fs[i_roi]), compression = "TRUE")
+  fnames <- file.path(dirs$rois_fs_dirs[i_roi], "freesurfer_highres_space",
+                      paste0(fnames, ".pdf"))
+  
+  # merge PDFs together
+  merged_pdf <- here("data", "mri", "rois", rois_fs[i_roi], 
+               paste0(rois_fs[i_roi], "_freesurfer_highres_space.pdf"))
+  cmd = paste("pdfunite", paste(fnames, collapse = " "), merged_pdf)
+  system(cmd)
+}
+```
+
+
+#### Coregister FreeSurfer masks to functional space {-}
+
+Next we coregister the masks from FreeSurfer from the highres structural space to the functional analysis space. For this we will use FSL flirt based on the registration files obtained during preprocessing of the wholebrain functional images. Further we will mask them with our partial field of view mask based on the sequence used during the picture viewing tasks.
+
+To make sure everything went well, we create diagnostic image for every subject, which we collect in a PDF for visual inspection. 
+
+```{r, eval = run_prep_rois}
+
+# create samespace freesurfer subfolder for in each ROI folder
+invisible(lapply(file.path(dirs$rois_fs_dirs, "freesurfer_samespace"),
+                 function(x) if(!dir.exists(x)) dir.create(x)))
+
+# name of transformation matrix file to move from highres to functional space
+highres2func <- here("data", "mri", "processed", "wholebrain", 
+                     paste0("VIRTEM_P", subjects, ".feat"),
+                     "reg", "highres2example_func.mat")
+
+# use the mean EPI of wholebrain image as a reference
+mean_epi <- here("data", "mri", "processed", "samespace", paste0("VIRTEM_P", subjects),
+                 paste0("VIRTEM_P", subjects, "_wholebrain.nii.gz"))
+
+# functional mask (picture viewing tasks not scanned with wholebrain coverage)
+brain_mask_ss <- here("data", "mri", "processed", "samespace", 
+                      paste0("VIRTEM_P", subjects),
+                      paste0("VIRTEM_P", subjects, "_common_mask.nii.gz"))
+
+for (i_roi in 1:length(rois_fs)){
+  
+  # define the file names of ROI files in highres space
+  roi_hs <- file.path(dirs$rois_fs_dirs[i_roi], "freesurfer_highres_space", 
+                        sprintf("P%s_%s_fs_hs.nii.gz", 
+                                subjects, rois_fs[i_roi]))
+  
+  # define output files in samespace (ss) = analysis space based on the wholebrain EPI
+  roi_ss <- file.path(dirs$rois_fs_dirs[i_roi], "freesurfer_samespace", 
+                      sprintf("P%s_%s_fs_ss.nii.gz", subjects, rois_fs[i_roi]))
+  
+  # define file names for masked ROI files
+  roi_ss_masked <- file.path(dirs$rois_fs_dirs[i_roi], "freesurfer_samespace", 
+                      sprintf("P%s_%s_fs_ss_masked.nii.gz", 
+                              subjects, rois_fs[i_roi]))
+
+  
+  # apply FSL flirt to move ROI from highres to wholebrain functional space
+  out <- mapply(flirt_apply, infile = roi_hs, reffile = mean_epi, 
+                initmat = highres2func, outfile = roi_ss,
+                verbose = FALSE, retimg = FALSE)
+  
+  # mask to make sure to reduce to partial field of view 
+  invisible(mapply(fsl_maths, file = roi_ss, opts = sprintf("-min %s", brain_mask_ss), outfile = roi_ss_masked,
+                   verbose = FALSE, retimg = FALSE))
+}
+```
+
+```{r eval = run_prep_rois}
+# Diagnostic plotting
+for (i_roi in 1:length(rois_fs)){
+  
+  # define file names for binarized masks
+  roi_to_plot <- file.path(dirs$rois_fs_dirs[i_roi], "freesurfer_samespace", 
+                           sprintf("P%s_%s_fs_ss_masked.nii.gz", 
+                                   subjects, rois_fs[i_roi]))
+  
+  fnames <- vector(mode = "character", length(subjects))
+  for (i_sub in 1:length(subjects)){
+    
+    # load nifti of mean epi and the roi mask
+    mean_epi_nii <- readNIfTI2(mean_epi[i_sub])
+    roi_nii <- readNIfTI2(roi_to_plot[i_sub])
+    
+    # find coordinates for sensible slices to plot
+    coords <- arrayInd(which(as.logical(img_data(roi_nii))), dim(img_data(roi_nii)))
+    coords <- c(min(statip::mfv(coords[,1])), 
+                min(statip::mfv(coords[,2])), 
+                min(statip::mfv(coords[,3])))
+        
+    # save a diagnostic plot as a PDF
+    fnames[i_sub] <- paste0(tools::file_path_sans_ext(roi_to_plot[i_sub], compression = "TRUE"),".pdf")
+    pdf(fnames[i_sub])
+    ortho2(robust_window(mean_epi_nii, probs = c(0, 0.999)), y = roi_nii,
+           col.y = roi_colors_fs[i_roi], xyz = coords,
+           text = sprintf("P%s: %s\nmasked", subjects[i_sub], rois_fs[i_roi]),
+           crosshairs = FALSE)
+    invisible(dev.off())
+  }
+  
+  # merge PDFs together
+  merged_pdf <- here("data", "mri", "rois", rois_fs[i_roi], 
+               paste0(rois_fs[i_roi], "_freesurfer_samespace_masked.pdf"))
+  #pdf_combine(fnames, output = merged_pdf) # pdftools doesn't work on remote linux?
+  cmd = paste("pdfunite", paste(fnames, collapse = " "), merged_pdf)
+  system(cmd)
+}
+```

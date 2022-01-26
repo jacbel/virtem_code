@@ -1,0 +1,309 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Prepare RSA in searchlight peak
+
+To show that overlapping clusters of voxels drive both the within- and across sequence effects, we will run the across-sequence analysis in the cluster of voxels that show the within-day effect. Because these are independent comparisons, we can use the within-day searchlight to define a region of interest for the across-day analysis.
+
+>To test whether within- and across-sequence representations overlap, we defined an ROI based on the within-sequence searchlight analysis. Specifically, voxels belonging to the cluster around the peak voxel, thresholded at p<0.01 uncorrected within our small volume correction mask, were included. The analysis of representational change was then carried out as described for the other ROIs above.
+
+### Create the ROI mask {-}
+
+The first steps are to prepare the ROI mask we want to use. Thus, we need to threshold the ROI from the main analysis in MNI space and move the resulting mask to each participant's functional space for the analysis.
+
+```{r, eval = run_prep_srchlgh_peak_RSA}
+
+# threshold the searchlight results
+in_fn <- file.path(dirs$data4analysis, "searchlight_results", "same_day_vir_time",
+              "same_day_vir_time_randomise_svc_fwhm3_tfce_p_tstat1.nii.gz")
+svc_fn <- file.path(dirs$mask_dir, "svc", "svc_mask.nii.gz")
+bin_fn <- here("data", "mri", "rois", "mni_masks", "searchlight_same-day_svc.nii.gz")
+fsl_thresh(file = in_fn, outfile = bin_fn, thresh = 0.99, opts = sprintf("-bin -mas %s", svc_fn),
+           verbose = FALSE, retimg = FALSE)
+
+# peak cluster is in left hemisphere, so don't include any voxels in right hemisphere
+lh_fn <- here("data", "mri", "rois", "mni_masks", "left_hemi.nii.gz")
+fsl_maths(file=bin_fn, outfile = lh_fn, opts = "-mul 0 -add 1 -roi 91 182 0 218 0 182 0 1",
+          retimg = FALSE, verbose = FALSE)
+fsl_mul(file=bin_fn, file2=lh_fn, outfile=bin_fn,
+        retimg = FALSE, verbose = FALSE)
+
+# let's have a look at the mask we created
+mni_nii <- readNIfTI2(mni_fname("1"))
+roi_nii <- readNIfTI2(bin_fn)
+coords <- c(statip::mfv1(which(roi_nii==1, arr.ind = TRUE)[,1]), 
+            statip::mfv1(which(roi_nii==1, arr.ind = TRUE)[,2]),
+            statip::mfv1(which(roi_nii==1, arr.ind = TRUE)[,3]))
+ortho2(mni_nii, y = roi_nii, xyz = coords, add.orient = TRUE)
+
+# check the number of voxels in this ROI
+sum(c(roi_nii))
+```
+
+The resulting ROI mask is now coregistered from MNI 1mm space to the analysis space of the wholebrain functional sequence. Finally, it is thresholded at a probability of 0.5.
+
+```{r, eval = run_prep_srchlgh_peak_RSA}
+samespace_dir <- here("data", "mri", "rois", "same-day_searchlight", "samespace")
+if (!dir.exists(samespace_dir)){dir.create(samespace_dir, recursive = TRUE)}
+
+# name of transformation matrix file to move from highres to functional space
+standard2func <- here("data", "mri", "processed", "wholebrain", 
+                      paste0("VIRTEM_P", subjects, ".feat"),
+                      "reg", "standard2example_func.mat")
+
+# use the mean EPI of wholebrain image as a reference
+mean_epi <- here("data", "mri", "processed", "samespace", paste0("VIRTEM_P", subjects),
+                 paste0("VIRTEM_P", subjects, "_wholebrain.nii.gz"))
+
+# define output files in samespace (ss) = analysis space based on the wholebrain EPI
+roi_ss <- file.path(samespace_dir, sprintf("P%s_%s_ss.nii.gz", 
+                                           subjects, "same-day_searchlight"))
+
+# apply FSL flirt to move ROI from standard to wholebrain functional space
+invisible(mapply(flirt_apply, infile = bin_fn, reffile = mean_epi, 
+                 initmat = standard2func, outfile = roi_ss,
+                 verbose = FALSE, retimg = FALSE))
+
+# use fslmaths to binarize the masked ROIs using a threshold of 0.5
+out <- mapply(fsl_thresh, file = roi_ss, outfile = roi_ss, thresh = 0.5, opts = "-bin",
+              verbose = FALSE, retimg = FALSE)
+```
+
+
+### Calculating the correlation matrices {-}
+
+The following steps are analogous to the preparation of the functional data in the ROI and searchlight analyses. For the main searchlight analyses we already cleaned the voxel-wise time series and extracted the volumes relevant to RSA. Thus, to calculate the correlation matrices and to calculate pattern similarity changes, we fall back onto the scripts from the main ROI analyses and the searchlight.
+
+
+```{r, eval = run_prep_srchlgh_peak_RSA}
+
+# for all 10x10 comparisons we will be averaging all comparisons apart from the diagonal
+# to exclude same_block comparisons
+no_diag <- matrix(data = TRUE, nrow=10, ncol = 10)
+diag(no_diag)<- FALSE
+
+out_dir <- here("data", "mri","rsa","correlation_matrices", "same-day_searchlight")
+if (!dir.exists(out_dir)){dir.create(out_dir, recursive = TRUE)}
+
+for (i_sub in subjects){
+  
+  # load the ROI based on the searchlight
+  roi_fn <-file.path(samespace_dir, sprintf("P%s_%s_ss.nii.gz", 
+                                            i_sub, "same-day_searchlight"))
+  roi_nii <- readNIfTI(roi_fn, reorient=FALSE)
+  
+  # array indices of ROI voxels
+  roi_vox <- which(roi_nii == 1, arr.ind=TRUE)
+  sprintf("%s: %d voxels\n", i_sub, nrow(roi_vox))
+  
+  for (i_run in 1:n_runs){
+    
+    # load the relevant functional volumes
+    rel_vol_fn <- file.path(dirs$searchlight, "rel_vols_4D", 
+                                  sprintf("%s_run%02d_rel_vols.nii.gz", i_sub, i_run))
+    func_nii <- readNIfTI(rel_vol_fn, reorient=FALSE)
+    
+    # get the ROI voxels
+    rel_dat <- array(NA, c(n_pics*n_blocks, nrow(roi_vox)));  # images in rows (ROI voxels), voxels in columns
+    for (i in 1:nrow(roi_vox)) {   # i <- 1
+          
+        curr_vox <- func_nii[roi_vox[i,1], roi_vox[i,2], roi_vox[i,3],]
+        if (sd(curr_vox) > 0) {rel_dat[,i] <- curr_vox} else { stop("zero variance voxel")}
+     }
+
+    # data is in repetition (row) by voxel (col) format, so we transpose 
+    # to get a voxel x repetition format
+    rel_dat <- t(rel_dat)
+    
+    # calculate correlation matrix (trial by trial) for pre and post run
+    cor_mat_trial <- cor(rel_dat, rel_dat)
+
+    # initialize condition by condition correlation matrix for pre and post run
+    corr_mat <- matrix(nrow = 20, ncol = 20)
+    
+    # loop over all picture comparisons
+    for(i_pic1 in 1:20){
+      for(i_pic2 in 1:20){
+        
+        # extract the current 10x10 correlation matrix
+        i1 <- (1+(i_pic1-1)*10):(i_pic1*10)
+        i2 <- (1+(i_pic2-1)*10):(i_pic2*10)
+        curr_mat <- cor_mat_trial[i1, i2]
+
+        # average the correlations while excluding diagonal (same block comparisons)
+        corr_mat[i_pic1, i_pic2] <- mean(curr_mat[no_diag])
+      }
+    }
+    
+    # save the correlation matrix
+    fn <- file.path(out_dir, sprintf("%s_%s_%s_corr_mat.txt", 
+                                     i_sub, "same-day_searchlight", runs[i_run]))
+    write.table(corr_mat, fn, append = FALSE, sep = ",",
+                dec = ".", row.names = FALSE, col.names = FALSE)
+  }
+}
+```
+
+### Calculate Pattern Similarity Change {-}
+
+In the next step, we calculate how the correlation between patterns change from the first to the second picture viewing task, i.e. through the day learning task. To do this, we load both correlation matrices and reduce them to the upper triangle, excluding the diagonal. Then, the correlations are Fisher Z-transformed and the similarity values from the pre-learning picture viewing task are subtracted from those of the post-learning picture viewing task to isolate pattern similarity change. The correlations and their changes are then saved together with information about the pictures that were compared.
+
+This part is based on the corresponding script from the main ROI analyses.
+```{r}
+
+in_dir <- here("data", "mri","rsa","correlation_matrices", "same-day_searchlight")
+out_dir <- here("data", "mri","rsa","pattern_similarity_change", "same-day_searchlight")
+if (!dir.exists(out_dir)){dir.create(out_dir, recursive = TRUE)}
+
+for(i_sub in subjects){
+
+  # load pre correlation matrix
+  fn <- file.path(in_dir, sprintf("%s_%s_pre_corr_mat.txt", 
+                                  i_sub, "same-day_searchlight"))
+  corr_mat_pre <- read.table(fn, sep = ",", dec = ".")    
+  
+  # load post correlation matrix
+  fn <- file.path(in_dir, sprintf("%s_%s_post_corr_mat.txt", 
+                                  i_sub, "same-day_searchlight"))
+  corr_mat_post <- read.table(fn, sep = ",", dec = ".")
+  
+  # reduce to upper triangle of correlations (without diagonal)
+  pre_corrs <- corr_mat_pre[upper.tri(corr_mat_pre, diag = FALSE)]
+  post_corrs <- corr_mat_post[upper.tri(corr_mat_post, diag = FALSE)]
+  
+  # create a tibble with the correlations 
+  pics <- which(upper.tri(corr_mat_post), arr.ind=TRUE)
+  corr_df <- tibble(pic1 = pics[,1], pic2 = pics[,2], pre_corrs, post_corrs)
+  
+  # Fisher Z transform correlations and calculate pattern similarity change
+  # by subtracting the pre-correlations from the post-correlations
+  corr_df$ps_change <- FisherZ(corr_df$post_corrs) - FisherZ(corr_df$pre_corrs)
+  
+  # write to file
+  fn <- file.path(out_dir, sprintf("%s_%s_pattern_similarity_change.txt", 
+                                   i_sub, "same-day_searchlight"))
+  write.table(corr_df, fn, append = FALSE, sep = ",",
+              dec = ".", row.names = FALSE, col.names = TRUE)
+}
+```
+
+
+### Combine behavioral and fMRI data for RSA {-}
+
+To create input for the RSA the next step is to combine the similarity change data with the behavioral data, so that we can do meaningful analyses. First the behavioral data is loaded and brought into the same pair-wise format as the similarity change data. Both datasets are combined for each subject and then written to disk.
+
+This part is based on the corresponding script from the main ROI analyses.
+
+```{r}
+
+in_dir <- here("data", "mri","rsa","pattern_similarity_change", "same-day_searchlight")
+out_dir <- here("data", "mri","rsa","data_for_rsa")
+if (!dir.exists(out_dir)){dir.create(out_dir, recursive = TRUE)}
+
+for (i_sub in subjects){
+  
+  # load the behavioral data
+  fn <- file.path(dirs$timeline_dat_dir, sprintf("%s_behavior_tbl_timeline.txt", i_sub))
+  col_types_list <- cols_only(sub_id = col_character(), day = col_factor(), 
+                              event = col_integer(), pic = col_integer(),
+                              virtual_time = col_double(), real_time = col_double(),
+                              memory_time = col_double(), memory_order = col_double(), 
+                              sorted_day = col_integer())
+  beh_dat <- read_csv(fn, col_types = col_types_list)
+  
+  # sort behavioral data according to picture identity
+  beh_dat_ordered <- beh_dat[order(beh_dat$pic),]
+  
+  # find the order of comparisons
+  pairs <- which(upper.tri(matrix(nrow = 20, ncol = 20)), arr.ind=TRUE)
+  
+  # extract the data for the first and second picture in each pair from the behavioral data
+  pic1_dat <- beh_dat_ordered[pairs[,1],]
+  pic2_dat <- beh_dat_ordered[pairs[,2],]
+  colnames(pic1_dat) <- paste0(colnames(pic1_dat), "1")
+  colnames(pic2_dat) <- paste0(colnames(pic2_dat), "2")
+  
+  # combine the two tibbles
+  pair_dat <- cbind(pic1_dat, pic2_dat)
+  
+  # reorder the tibble columns to make a bit more sense
+  pair_dat <- pair_dat %>%
+    select(sub_id1,
+           day1, day2,
+           pic1, pic2,
+           event1, event2, 
+           virtual_time1, virtual_time2, 
+           real_time1, real_time2, 
+           memory_order1, memory_order2, 
+           memory_time1, memory_time2, 
+           sorted_day1, sorted_day2) %>%
+    rename(sub_id = sub_id1)
+  
+  rsa_dat <- tibble()
+
+  # load the pattern similarity change data for this ROI
+  fn <- file.path(in_dir, sprintf("%s_%s_pattern_similarity_change.txt", 
+                                  i_sub, "same-day_searchlight"))
+  ps_change_dat <- read.csv(fn)
+  
+  # make sure files have the same order
+  assertthat::are_equal(c(pair_dat$pic1, pair_dat$pic2), c(ps_change_dat$pic1, ps_change_dat$pic2))
+  
+  # add column with ROI name
+  ps_change_dat <- add_column(ps_change_dat, roi = "same-day_searchlight")
+
+  # collect the data from this ROI and merge into long data frame
+  roi_dat <- cbind(pair_dat, ps_change_dat[,3:6])
+  rsa_dat <- rbind(rsa_dat, roi_dat)
+  
+  # write to file
+  fn <- file.path(dirs$rsa_dat_dir, sprintf("%s_data_for_rsa_same-day_searchlight.txt",i_sub))
+  write.table(rsa_dat, fn, append = FALSE, sep = ",",
+              dec = ".", row.names = FALSE, col.names = TRUE)
+}
+```
+
+
+Finally, the datasets are combined across subjects.
+
+```{r}
+
+# set up a dataframe to collect the data
+rsa_dat = tibble()
+
+for (i_sub in subjects){
+
+  # load data from CSV
+  fn <- file.path(out_dir, sprintf("%s_data_for_rsa_same-day_searchlight.txt",i_sub))
+  col_types_list <- cols_only(
+        sub_id = col_character(),
+        day1 = col_integer(), day2 = col_integer(),
+        event1 = col_integer(), event2 = col_integer(),
+        pic1 = col_integer(), pic2 = col_integer(),
+        virtual_time1 = col_double(), virtual_time2 = col_double(),
+        real_time1 = col_double(), real_time2 = col_double(),
+        memory_time1 = col_double(), memory_time2 = col_double(), 
+        memory_order1 = col_double(), memory_order2 = col_double(), 
+        sorted_day1 = col_integer(), sorted_day2 = col_integer(),
+        pre_corrs  = col_double(), post_corrs = col_double(),
+        ps_change = col_double(), roi = col_factor()
+  )
+  sub_dat <- as_tibble(read_csv(fn, col_types = col_types_list))
+  
+  # append to table with data from all subjects
+  rsa_dat <- bind_rows(sub_dat, rsa_dat)
+}
+
+# sort the data
+rsa_dat <- rsa_dat[with(rsa_dat, order(sub_id, day1, day2, event1, event2)),]
+
+# write to file
+fn <- file.path(dirs$data4analysis, "rsa_data_in_same-seq_searchlight_peak.txt")
+write.table(rsa_dat, fn, append = FALSE, sep = ",",
+            dec = ".", row.names = FALSE, col.names = TRUE)
+```

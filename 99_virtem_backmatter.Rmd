@@ -1,0 +1,35 @@
+---
+author: "Jacob L. S. Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Credit
+## List of packages
+Here is a list of packages used in the analysis and references to them. It is created using the [grateful package](https://github.com/Pakillo/grateful).  
+
+Unfortunately, not all packages provide all information, so there are a few warning messages. The code below generates a markdown file with references that we read in and print below. 
+
+```{r, results='hide'}
+invisible(grateful::cite_packages(all.pkg = FALSE, include.rmd=FALSE, style = "cell",
+                                  out.format = "md"))
+```
+
+```{r, results = 'asis'}
+used_pkgs <-readLines(here("virtem_code", "citations.md"))
+
+ref_line <- which(used_pkgs=="References")
+used_pkgs[ref_line] <- "### References {-}"
+used_pkgs[ref_line+1] <- ""
+paste(used_pkgs, collapse = '\n') %>% cat()
+```
+
+## Session Info
+
+Lastly, we run session info, using the version from the devtools package.
+
+```{r}
+devtools::session_info()
+```

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 RSA in searchlight peak withdifferent threshold | Parametric modulation relative time</title>
+  <meta name="description" content="Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 RSA in searchlight peak withdifferent threshold | Parametric modulation relative time" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jacbel.github.io/virtem_code/" />
+  
+  <meta property="og:description" content="Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="github-repo" content="jacbel/virtem_code" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 RSA in searchlight peak withdifferent threshold | Parametric modulation relative time" />
+  
+  <meta name="twitter:description" content="Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  
+
+<meta name="author" content="Jacob L. S. Bellmund" />
+
+
+<meta name="date" content="2022-01-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="signal-to-noise-ratio.html"/>
+<link rel="next" href="univariate-glm-relative-time.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="overview.html"><a href="overview.html#purpose"><i class="fa fa-check"></i><b>1.1</b> Purpose</a></li>
+<li class="chapter" data-level="1.2" data-path="overview.html"><a href="overview.html#contents"><i class="fa fa-check"></i><b>1.2</b> Contents</a></li>
+<li class="chapter" data-level="1.3" data-path="overview.html"><a href="overview.html#contact"><i class="fa fa-check"></i><b>1.3</b> Contact</a></li>
+<li class="chapter" data-level="1.4" data-path="overview.html"><a href="overview.html#license-information"><i class="fa fa-check"></i><b>1.4</b> License Information</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="analysis-setup.html"><a href="analysis-setup.html"><i class="fa fa-check"></i><b>2</b> Analysis Setup</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="analysis-setup.html"><a href="analysis-setup.html#defining-variables-and-folders"><i class="fa fa-check"></i><b>2.1</b> Defining Variables and Folders</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#folder-structure"><i class="fa fa-check"></i>Folder Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="analysis-setup.html"><a href="analysis-setup.html#define-analysis-functions"><i class="fa fa-check"></i><b>2.2</b> Define Analysis Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#analysis-logic"><i class="fa fa-check"></i>Analysis Logic</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#brain-plots-in-ggplot"><i class="fa fa-check"></i>Brain Plots in ggplot</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#ggbrain-functions-to-get-template-background"><i class="fa fa-check"></i>ggBrain functions to get template background</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#waiting-for-cluster-jobs"><i class="fa fa-check"></i>Waiting for Cluster Jobs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html"><i class="fa fa-check"></i><b>3</b> Illustrations of Task Design and Analysis Logic</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#day-learning-task-design"><i class="fa fa-check"></i><b>3.1</b> Day Learning Task Design</a>
+<ul>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-virtual-and-real-time"><i class="fa fa-check"></i>Events in virtual and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-virtual-time"><i class="fa fa-check"></i>Events in virtual time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-real-time"><i class="fa fa-check"></i>Events in real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#correlations-of-virtual-time-with-order-and-real-time"><i class="fa fa-check"></i>Correlations of virtual time with order and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#time-cues-in-virtual-and-real-time"><i class="fa fa-check"></i>Time cues in virtual and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#supplemental-figure-for-task-design"><i class="fa fa-check"></i>Supplemental figure for task design</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#representational-similarity-analysis-logic"><i class="fa fa-check"></i><b>3.2</b> Representational Similarity Analysis Logic</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html"><i class="fa fa-check"></i><b>4</b> Prepare behavioral data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#sorting-task"><i class="fa fa-check"></i><b>4.1</b> Sorting task</a></li>
+<li class="chapter" data-level="4.2" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#timeline-task"><i class="fa fa-check"></i><b>4.2</b> Timeline task</a></li>
+<li class="chapter" data-level="4.3" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#picture-viewing-tasks"><i class="fa fa-check"></i><b>4.3</b> Picture viewing tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html"><i class="fa fa-check"></i><b>5</b> Behavioral Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#sorting-task-1"><i class="fa fa-check"></i><b>5.1</b> Sorting Task</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#calculate-percentage-of-correct-responses"><i class="fa fa-check"></i>Calculate percentage of correct responses</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#plot-sorting-performance"><i class="fa fa-check"></i>Plot sorting performance</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#sorting-errors-as-a-function-of-sequence-position"><i class="fa fa-check"></i>Sorting errors as a function of sequence position</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#timeline-task-1"><i class="fa fa-check"></i><b>5.2</b> Timeline Task</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#visualize-the-raw-data"><i class="fa fa-check"></i>Visualize the raw data</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#accuracy-of-remembered-times"><i class="fa fa-check"></i>Accuracy of remembered times</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#relationship-of-sorting-errors-and-timeline-errors"><i class="fa fa-check"></i>Relationship of sorting errors and timeline errors</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#time-metrics-underlying-remembered-times"><i class="fa fa-check"></i>Time metrics underlying remembered times</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#compose-figure-for-behavioral-data"><i class="fa fa-check"></i>Compose Figure for Behavioral Data</a></li>
+<li class="chapter" data-level="5.3" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#generalization-bias"><i class="fa fa-check"></i><b>5.3</b> Generalization bias</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#quantify-relative-time-of-other-events"><i class="fa fa-check"></i>Quantify relative time of other events</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#test-generalization-bias"><i class="fa fa-check"></i>Test Generalization Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-of-generalization-bias"><i class="fa fa-check"></i><b>5.4</b> Replication of Generalization Bias</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-data-quantify-relative-time-of-other-events"><i class="fa fa-check"></i>Replication data: Quantify relative time of other events</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-data-test-generalization-bias"><i class="fa fa-check"></i>Replication data: Test Generalization Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors"><i class="fa fa-check"></i><b>5.5</b> Swap Errors</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#descriptives-of-swap-errors"><i class="fa fa-check"></i>Descriptives of swap errors</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors-as-a-function-of-sequence-position"><i class="fa fa-check"></i>Swap errors as a function of sequence position</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-error-more-frequent-than-expected-from-chance"><i class="fa fa-check"></i>Swap error: More frequent than expected from chance?</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors-and-generalization-bias"><i class="fa fa-check"></i>Swap errors and generalization bias</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html"><i class="fa fa-check"></i><b>6</b> Prepare (f)MRI Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#regions-of-interest"><i class="fa fa-check"></i><b>6.1</b> Regions of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#freesurfer-masks"><i class="fa fa-check"></i>FreeSurfer Masks</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#subregion-masks-mni"><i class="fa fa-check"></i>Subregion masks (MNI)</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#final-rois-from-intersection-of-masks"><i class="fa fa-check"></i>Final ROIs from intersection of masks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#group-level-masks"><i class="fa fa-check"></i><b>6.2</b> Group-Level Masks</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#probabilistic-rois-for-visualization"><i class="fa fa-check"></i>Probabilistic ROIs for visualization</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#field-of-view-mask-for-visualization"><i class="fa fa-check"></i>Field of view mask for visualization</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#gray-matter-mask"><i class="fa fa-check"></i>Gray matter mask</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#small-volume-correction-mask"><i class="fa fa-check"></i>Small Volume Correction Mask</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#quantify-representational-change"><i class="fa fa-check"></i><b>6.3</b> Quantify Representational Change</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#get-multi-voxel-patterns-from-rois"><i class="fa fa-check"></i>Get multi-voxel patterns from ROIs</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#calculate-correlation-matrices"><i class="fa fa-check"></i>Calculate correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#calculate-pattern-similarity-change"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#combine-behavioral-and-fmri-data-for-rsa"><i class="fa fa-check"></i><b>6.4</b> Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html"><i class="fa fa-check"></i><b>7</b> Run RSA Searchlight</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-functional-data"><i class="fa fa-check"></i><b>7.1</b> Prepare functional data</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#data-cleaning-extract-residuals-from-motion-parameter-regression"><i class="fa fa-check"></i>Data cleaning: Extract residuals from motion parameter regression</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#extract-relevant-volumes-1"><i class="fa fa-check"></i>Extract relevant volumes</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#concatenate-relevant-volumes"><i class="fa fa-check"></i>Concatenate relevant volumes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#first-level-rsa-searchlight"><i class="fa fa-check"></i><b>7.2</b> First-level RSA searchlight</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#set-analysis-parameters"><i class="fa fa-check"></i>Set analysis parameters</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-rsa-predictions"><i class="fa fa-check"></i>Prepare RSA-predictions</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-lookup-table-for-searchlight"><i class="fa fa-check"></i>Create lookup table for searchlight</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#dataframe-with-input-for-analysis"><i class="fa fa-check"></i>Dataframe with input for analysis</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#searchlight-implementation"><i class="fa fa-check"></i>Searchlight implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#group-level-searchlight-analysis"><i class="fa fa-check"></i><b>7.3</b> Group-level searchlight analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#move-first-level-images-to-mni-space"><i class="fa fa-check"></i>Move first-level images to MNI space</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#merge-and-smooth-first-level-images"><i class="fa fa-check"></i>Merge and smooth first-level images</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#run-fsl-randomise"><i class="fa fa-check"></i>Run FSL Randomise</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#find-searchlight-clusters-and-atlas-labels"><i class="fa fa-check"></i>Find searchlight clusters and atlas labels</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-outlines-of-significant-clusters"><i class="fa fa-check"></i>Create outlines of significant clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-rsa-in-searchlight-peak"><i class="fa fa-check"></i><b>7.4</b> Prepare RSA in searchlight peak</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-the-roi-mask"><i class="fa fa-check"></i>Create the ROI mask</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#calculating-the-correlation-matrices"><i class="fa fa-check"></i>Calculating the correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#calculate-pattern-similarity-change-1"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#combine-behavioral-and-fmri-data-for-rsa-1"><i class="fa fa-check"></i>Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html"><i class="fa fa-check"></i><b>8</b> RSA on Pattern Similarity Change</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#time-metrics-to-quantify-event-relations"><i class="fa fa-check"></i><b>8.1</b> Time metrics to quantify event relations</a></li>
+<li class="chapter" data-level="8.2" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#visualize-regions-of-interests"><i class="fa fa-check"></i><b>8.2</b> Visualize Regions of Interests</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#template-background-image-with-fov"><i class="fa fa-check"></i>Template background image with FOV</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#anterior-hippocampus-roi"><i class="fa fa-check"></i>Anterior hippocampus ROI</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#anterior-lateral-entorhinal-cortex"><i class="fa fa-check"></i>Anterior-lateral entorhinal cortex</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#first-level-rsa"><i class="fa fa-check"></i><b>8.3</b> First-level RSA</a></li>
+<li class="chapter" data-level="8.4" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-sequence"><i class="fa fa-check"></i><b>8.4</b> aHPC: virtual time within sequence</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-3"><i class="fa fa-check"></i>Summary statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-2"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="8.4.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#representational-change-visualization"><i class="fa fa-check"></i><b>8.4.1</b> Representational Change Visualization</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#not-driven-by-first-last-event-pairs"><i class="fa fa-check"></i>Not driven by first &amp; last event pairs</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-sequence-when-including-order-real-time"><i class="fa fa-check"></i><b>8.5</b> aHPC: virtual time within sequence when including order &amp; real time</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#one-model-with-multiple-predictors"><i class="fa fa-check"></i>One model with multiple predictors</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-explains-residuals-of-order-and-real-time"><i class="fa fa-check"></i>Virtual time explains residuals of order and real time</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-across-sequences"><i class="fa fa-check"></i><b>8.6</b> aHPC: virtual time across sequences</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-7"><i class="fa fa-check"></i>Summary statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-5"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="8.6.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#representational-change-visualization-1"><i class="fa fa-check"></i><b>8.6.1</b> Representational Change Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-across-sequence-when-including-order-real-time"><i class="fa fa-check"></i><b>8.7</b> aHPC: virtual time across sequence when including order &amp; real time</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-8"><i class="fa fa-check"></i>Summary Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-vs.-across-sequences"><i class="fa fa-check"></i><b>8.8</b> aHPC: virtual time within vs. across sequences</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#second-level-analysis"><i class="fa fa-check"></i>Second-level analysis</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-6"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-order"><i class="fa fa-check"></i>Interaction of sequence membership and order</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-real-time"><i class="fa fa-check"></i>Interaction of sequence membership and real time</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-virtual-time-when-including-interactions-with-other-time-metrics"><i class="fa fa-check"></i>Interaction of sequence membership and virtual time when including interactions with other time metrics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#mds"><i class="fa fa-check"></i>MDS</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#umap"><i class="fa fa-check"></i>UMAP</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec"><i class="fa fa-check"></i><b>8.9</b> alEC</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-withinacross-sequences-separately"><i class="fa fa-check"></i>alEC: virtual time within/across sequences separately</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-within-vs.-across-sequences"><i class="fa fa-check"></i>alEC: virtual time within vs. across sequences</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-for-all-event-pairs"><i class="fa fa-check"></i>alEC: virtual time for all event pairs</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-for-all-event-pairs-when-including-order-real-time"><i class="fa fa-check"></i>alEC: virtual time for all event pairs when including order &amp; real time</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-vs.-alec"><i class="fa fa-check"></i><b>8.10</b> aHPC vs. alEC</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-12"><i class="fa fa-check"></i>Summary Statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-9"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#searchlight-results"><i class="fa fa-check"></i><b>8.11</b> Searchlight Results</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-within-sequence"><i class="fa fa-check"></i>Virtual Time Within Sequence</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-across-sequences-in-within-searchlight-cluster"><i class="fa fa-check"></i>Virtual Time Across Sequences in Within-Searchlight Cluster</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-across-sequences"><i class="fa fa-check"></i>Virtual Time Across Sequences</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#visualization-of-overlap"><i class="fa fa-check"></i>Visualization of Overlap</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-sequence-interaction"><i class="fa fa-check"></i>Virtual Time &amp; Sequence Interaction</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#exploratory-searchlight-results"><i class="fa fa-check"></i>Exploratory Searchlight Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-of-behavioral-generalization-bias-with-searchlight-effects"><i class="fa fa-check"></i><b>8.12</b> Correlation of behavioral generalization bias with searchlight effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-with-across-sequence-searchlight-effect"><i class="fa fa-check"></i>Correlation with across-sequence searchlight effect</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-with-same-sequence-searchlight-effect"><i class="fa fa-check"></i>Correlation with same-sequence searchlight effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.13" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#mixed-model-summaries"><i class="fa fa-check"></i><b>8.13</b> Mixed Model Summaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#supplemental-figure-1"><i class="fa fa-check"></i>Supplemental Figure</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#supplemental-tables"><i class="fa fa-check"></i>Supplemental Tables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html"><i class="fa fa-check"></i><b>9</b> Signal to noise ratio</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#calculate-voxel-wise-temporal-snr"><i class="fa fa-check"></i><b>9.1</b> Calculate voxel-wise temporal SNR</a></li>
+<li class="chapter" data-level="9.2" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#average-tsnr-per-roi"><i class="fa fa-check"></i><b>9.2</b> Average tSNR per ROI</a></li>
+<li class="chapter" data-level="9.3" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#contrast-tsnr-between-ahpc-and-alec"><i class="fa fa-check"></i><b>9.3</b> Contrast tSNR between aHPC and alEC</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rsa-in-searchlight-peak-withdifferent-threshold.html"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html"><i class="fa fa-check"></i><b>10</b> RSA in searchlight peak withdifferent threshold</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="rsa-in-searchlight-peak-withdifferent-threshold.html"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#prepare-rsa-in-searchlight-peak-1"><i class="fa fa-check"></i><b>10.1</b> Prepare RSA in searchlight peak</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-withdifferent-threshold.html"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#create-the-roi-mask-1"><i class="fa fa-check"></i>Create the ROI mask</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-withdifferent-threshold.html"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#calculating-the-correlation-matrices-1"><i class="fa fa-check"></i>Calculating the correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-withdifferent-threshold.html"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#calculate-pattern-similarity-change-2"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-withdifferent-threshold.html"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#combine-behavioral-and-fmri-data-for-rsa-2"><i class="fa fa-check"></i>Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="rsa-in-searchlight-peak-withdifferent-threshold.html"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#rsa"><i class="fa fa-check"></i><b>10.2</b> RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html"><i class="fa fa-check"></i><b>11</b> Univariate GLM: Relative time</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#copy-feat-folder-from-preprocessing-to-first-level-glm-directory"><i class="fa fa-check"></i><b>11.1</b> Copy FEAT-folder from Preprocessing to First-Level GLM directory</a></li>
+<li class="chapter" data-level="11.2" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#prepare-glm"><i class="fa fa-check"></i><b>11.2</b> Prepare GLM</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#compute-relative-time"><i class="fa fa-check"></i>Compute relative time</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#write-custom-ev-files-for-fsl-feat"><i class="fa fa-check"></i>Write custom EV files for FSL FEAT</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#glm-design-files"><i class="fa fa-check"></i>GLM Design files</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#prepare-confound-ev"><i class="fa fa-check"></i>Prepare confound EV</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#create-design-matrix"><i class="fa fa-check"></i>Create design matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#run-1st-level-glm-on-htcondor"><i class="fa fa-check"></i><b>11.3</b> Run 1st-level GLM on HTCondor</a></li>
+<li class="chapter" data-level="11.4" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#group-level-1"><i class="fa fa-check"></i><b>11.4</b> Group-level</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#move-first-level-images-to-mni-space-1"><i class="fa fa-check"></i>Move first-level images to MNI space</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#merge-first-level-images"><i class="fa fa-check"></i>Merge first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#smooth-first-level-images"><i class="fa fa-check"></i>Smooth first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#average-first-level-images"><i class="fa fa-check"></i>Average first-level images</a></li>
+<li class="chapter" data-level="11.4.1" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#ahpc-roi-analysis"><i class="fa fa-check"></i><b>11.4.1</b> aHPC ROI analysis</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#run-fsl-randomise-1"><i class="fa fa-check"></i>Run FSL Randomise</a></li>
+<li class="chapter" data-level="11.4.2" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#results-in-ahpc-and-alec"><i class="fa fa-check"></i><b>11.4.2</b> Results in aHPC and alEC</a></li>
+<li class="chapter" data-level="11.4.3" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#fov-results"><i class="fa fa-check"></i><b>11.4.3</b> FOV results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="credit.html"><a href="credit.html"><i class="fa fa-check"></i><b>12</b> Credit</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="credit.html"><a href="credit.html#list-of-packages"><i class="fa fa-check"></i><b>12.1</b> List of packages</a></li>
+<li class="chapter" data-level="12.2" data-path="credit.html"><a href="credit.html#references"><i class="fa fa-check"></i><b>12.2</b> References</a></li>
+<li class="chapter" data-level="12.3" data-path="credit.html"><a href="credit.html#session-info"><i class="fa fa-check"></i><b>12.3</b> Session Info</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Parametric modulation relative time</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rsa-in-searchlight-peak-withdifferent-threshold" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> RSA in searchlight peak withdifferent threshold</h1>
+<p>This section is to address a reviewer comment about whether the results of this analysis differ when running it with a different threshold (p&lt;0.001 rather than p&lt;0.01) to define the ROI based on the same-sequence searchlight. The code below is thus copied from the original script and modified to include the different p-threshold.</p>
+<div id="prepare-rsa-in-searchlight-peak-1" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Prepare RSA in searchlight peak</h2>
+<p>To show that overlapping clusters of voxels drive both the within- and across sequence effects, we will run the across-sequence analysis in the cluster of voxels that show the within-day effect. Because these are independent comparisons, we can use the within-day searchlight to define a region of interest for the across-day analysis.</p>
+<div id="create-the-roi-mask-1" class="section level3 unnumbered">
+<h3>Create the ROI mask</h3>
+<p>The first steps are to prepare the ROI mask we want to use. Thus, we need to threshold the ROI from the main analysis in MNI space and move the resulting mask to each participant’s functional space for the analysis.</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb469-1" aria-hidden="true" tabindex="-1"></a>threshs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;uncorrp001lh&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i_thresh <span class="cf">in</span> threshs){ </span>
+<span id="cb470-2"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb470-3"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># threshold the searchlight results</span></span>
+<span id="cb470-4"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i_thresh <span class="sc">==</span> <span class="st">&quot;corrp05&quot;</span> <span class="sc">|</span> i_thresh <span class="sc">==</span> <span class="st">&quot;corrp05lh&quot;</span>){</span>
+<span id="cb470-5"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-5" aria-hidden="true" tabindex="-1"></a>    in_fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dirs<span class="sc">$</span>data4analysis, <span class="st">&quot;searchlight_results&quot;</span>, <span class="st">&quot;same_day_vir_time&quot;</span>,</span>
+<span id="cb470-6"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-6" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;same_day_vir_time_randomise_svc_fwhm3_tfce_corrp_tstat1.nii.gz&quot;</span>)  </span>
+<span id="cb470-7"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
+<span id="cb470-8"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-8" aria-hidden="true" tabindex="-1"></a>    in_fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dirs<span class="sc">$</span>data4analysis, <span class="st">&quot;searchlight_results&quot;</span>, <span class="st">&quot;same_day_vir_time&quot;</span>,</span>
+<span id="cb470-9"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-9" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;same_day_vir_time_randomise_svc_fwhm3_tfce_p_tstat1.nii.gz&quot;</span>)</span>
+<span id="cb470-10"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb470-11"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb470-12"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-12" aria-hidden="true" tabindex="-1"></a>  svc_fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dirs<span class="sc">$</span>mask_dir, <span class="st">&quot;svc&quot;</span>, <span class="st">&quot;svc_mask.nii.gz&quot;</span>)</span>
+<span id="cb470-13"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-13" aria-hidden="true" tabindex="-1"></a>  bin_fn <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rois&quot;</span>, <span class="st">&quot;mni_masks&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;searchlight_same-day_svc_%s.nii.gz&quot;</span>, i_thresh))</span>
+<span id="cb470-14"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fsl_thresh</span>(<span class="at">file =</span> in_fn, <span class="at">outfile =</span> bin_fn, <span class="at">thresh =</span> <span class="fl">0.95</span>, <span class="at">opts =</span> <span class="fu">sprintf</span>(<span class="st">&quot;-bin -mas %s&quot;</span>, svc_fn),</span>
+<span id="cb470-15"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">retimg =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb470-16"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb470-17"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># peak cluster is in left hemisphere, so don&#39;t include any voxels in right hemisphere</span></span>
+<span id="cb470-18"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i_thresh <span class="sc">==</span> <span class="st">&quot;uncorrp001lh&quot;</span> <span class="sc">|</span> i_thresh <span class="sc">==</span> <span class="st">&quot;corrp05lh&quot;</span>){</span>
+<span id="cb470-19"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb470-20"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-20" aria-hidden="true" tabindex="-1"></a>    lh_fn <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rois&quot;</span>, <span class="st">&quot;mni_masks&quot;</span>, <span class="st">&quot;left_hemi.nii.gz&quot;</span>)</span>
+<span id="cb470-21"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fsl_maths</span>(<span class="at">file=</span>bin_fn, <span class="at">outfile =</span> lh_fn, <span class="at">opts =</span> <span class="st">&quot;-mul 0 -add 1 -roi 91 182 0 218 0 182 0 1&quot;</span>,</span>
+<span id="cb470-22"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">retimg =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb470-23"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fsl_mul</span>(<span class="at">file=</span>bin_fn, <span class="at">file2=</span>lh_fn, <span class="at">outfile=</span>bin_fn,</span>
+<span id="cb470-24"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">retimg =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb470-25"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb470-26"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb470-27"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># let&#39;s have a look at the mask we created</span></span>
+<span id="cb470-28"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-28" aria-hidden="true" tabindex="-1"></a>  mni_nii <span class="ot">&lt;-</span> <span class="fu">readNIfTI2</span>(<span class="fu">mni_fname</span>(<span class="st">&quot;1&quot;</span>))</span>
+<span id="cb470-29"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-29" aria-hidden="true" tabindex="-1"></a>  roi_nii <span class="ot">&lt;-</span> <span class="fu">readNIfTI2</span>(bin_fn)</span>
+<span id="cb470-30"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-30" aria-hidden="true" tabindex="-1"></a>  coords <span class="ot">&lt;-</span> <span class="fu">c</span>(statip<span class="sc">::</span><span class="fu">mfv1</span>(<span class="fu">which</span>(roi_nii<span class="sc">==</span><span class="dv">1</span>, <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)[,<span class="dv">1</span>]), </span>
+<span id="cb470-31"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-31" aria-hidden="true" tabindex="-1"></a>              statip<span class="sc">::</span><span class="fu">mfv1</span>(<span class="fu">which</span>(roi_nii<span class="sc">==</span><span class="dv">1</span>, <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)[,<span class="dv">2</span>]),</span>
+<span id="cb470-32"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-32" aria-hidden="true" tabindex="-1"></a>              statip<span class="sc">::</span><span class="fu">mfv1</span>(<span class="fu">which</span>(roi_nii<span class="sc">==</span><span class="dv">1</span>, <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)[,<span class="dv">3</span>]))</span>
+<span id="cb470-33"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ortho2</span>(mni_nii, <span class="at">y =</span> roi_nii, <span class="at">xyz =</span> coords, <span class="at">add.orient =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb470-34"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb470-35"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># check the number of voxels in this ROI</span></span>
+<span id="cb470-36"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">c</span>(roi_nii))</span>
+<span id="cb470-37"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb470-37" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The resulting ROI mask is now coregistered from MNI 1mm space to the analysis space of the wholebrain functional sequence. Finally, it is thresholded at a probability of 0.5.</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i_thresh <span class="cf">in</span> threshs){ </span>
+<span id="cb471-2"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb471-3"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-3" aria-hidden="true" tabindex="-1"></a>  samespace_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;rois&quot;</span>, <span class="st">&quot;same-day_searchlight&quot;</span>, <span class="st">&quot;samespace&quot;</span>)</span>
+<span id="cb471-4"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(samespace_dir)){<span class="fu">dir.create</span>(samespace_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>)}</span>
+<span id="cb471-5"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb471-6"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># name of transformation matrix file to move from highres to functional space</span></span>
+<span id="cb471-7"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-7" aria-hidden="true" tabindex="-1"></a>  standard2func <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;processed&quot;</span>, <span class="st">&quot;wholebrain&quot;</span>, </span>
+<span id="cb471-8"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-8" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">paste0</span>(<span class="st">&quot;VIRTEM_P&quot;</span>, subjects, <span class="st">&quot;.feat&quot;</span>),</span>
+<span id="cb471-9"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-9" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;reg&quot;</span>, <span class="st">&quot;standard2example_func.mat&quot;</span>)</span>
+<span id="cb471-10"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb471-11"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># use the mean EPI of wholebrain image as a reference</span></span>
+<span id="cb471-12"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-12" aria-hidden="true" tabindex="-1"></a>  mean_epi <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>, <span class="st">&quot;processed&quot;</span>, <span class="st">&quot;samespace&quot;</span>, <span class="fu">paste0</span>(<span class="st">&quot;VIRTEM_P&quot;</span>, subjects),</span>
+<span id="cb471-13"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-13" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">paste0</span>(<span class="st">&quot;VIRTEM_P&quot;</span>, subjects, <span class="st">&quot;_wholebrain.nii.gz&quot;</span>))</span>
+<span id="cb471-14"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb471-15"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define output files in samespace (ss) = analysis space based on the wholebrain EPI</span></span>
+<span id="cb471-16"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-16" aria-hidden="true" tabindex="-1"></a>  roi_ss <span class="ot">&lt;-</span> <span class="fu">file.path</span>(samespace_dir, <span class="fu">sprintf</span>(<span class="st">&quot;P%s_%s_%s_ss.nii.gz&quot;</span>, </span>
+<span id="cb471-17"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-17" aria-hidden="true" tabindex="-1"></a>                                             subjects, <span class="st">&quot;same-day_searchlight&quot;</span>, i_thresh))</span>
+<span id="cb471-18"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb471-19"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># apply FSL flirt to move ROI from standard to wholebrain functional space</span></span>
+<span id="cb471-20"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(<span class="fu">mapply</span>(flirt_apply, <span class="at">infile =</span> bin_fn, <span class="at">reffile =</span> mean_epi, </span>
+<span id="cb471-21"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-21" aria-hidden="true" tabindex="-1"></a>                   <span class="at">initmat =</span> standard2func, <span class="at">outfile =</span> roi_ss,</span>
+<span id="cb471-22"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-22" aria-hidden="true" tabindex="-1"></a>                   <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">retimg =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb471-23"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb471-24"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># use fslmaths to binarize the masked ROIs using a threshold of 0.5</span></span>
+<span id="cb471-25"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-25" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">mapply</span>(fsl_thresh, <span class="at">file =</span> roi_ss, <span class="at">outfile =</span> roi_ss, <span class="at">thresh =</span> <span class="fl">0.5</span>, <span class="at">opts =</span> <span class="st">&quot;-bin&quot;</span>,</span>
+<span id="cb471-26"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-26" aria-hidden="true" tabindex="-1"></a>                <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">retimg =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb471-27"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb471-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="calculating-the-correlation-matrices-1" class="section level3 unnumbered">
+<h3>Calculating the correlation matrices</h3>
+<p>The following steps are analogous to the preparation of the functional data in the ROI and searchlight analyses. For the main searchlight analyses we already cleaned the voxel-wise time series and extracted the volumes relevant to RSA. Thus, to calculate the correlation matrices and to calculate pattern similarity changes, we fall back onto the scripts from the main ROI analyses and the searchlight.</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i_thresh <span class="cf">in</span> threshs){ </span>
+<span id="cb472-2"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-2" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb472-3"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for all 10x10 comparisons we will be averaging all comparisons apart from the diagonal</span></span>
+<span id="cb472-4"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># to exclude same_block comparisons</span></span>
+<span id="cb472-5"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-5" aria-hidden="true" tabindex="-1"></a>  no_diag <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="cn">TRUE</span>, <span class="at">nrow=</span><span class="dv">10</span>, <span class="at">ncol =</span> <span class="dv">10</span>)</span>
+<span id="cb472-6"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">diag</span>(no_diag)<span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb472-7"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb472-8"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-8" aria-hidden="true" tabindex="-1"></a>  out_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>,<span class="st">&quot;rsa&quot;</span>,<span class="st">&quot;correlation_matrices&quot;</span>, <span class="st">&quot;same-day_searchlight&quot;</span>)</span>
+<span id="cb472-9"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(out_dir)){<span class="fu">dir.create</span>(out_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>)}</span>
+<span id="cb472-10"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb472-11"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i_sub <span class="cf">in</span> subjects){</span>
+<span id="cb472-12"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb472-13"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load the ROI based on the searchlight</span></span>
+<span id="cb472-14"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-14" aria-hidden="true" tabindex="-1"></a>    roi_fn <span class="ot">&lt;-</span><span class="fu">file.path</span>(samespace_dir, <span class="fu">sprintf</span>(<span class="st">&quot;P%s_%s_%s_ss.nii.gz&quot;</span>, </span>
+<span id="cb472-15"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-15" aria-hidden="true" tabindex="-1"></a>                                              i_sub, <span class="st">&quot;same-day_searchlight&quot;</span>, i_thresh))</span>
+<span id="cb472-16"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-16" aria-hidden="true" tabindex="-1"></a>    roi_nii <span class="ot">&lt;-</span> <span class="fu">readNIfTI</span>(roi_fn, <span class="at">reorient=</span><span class="cn">FALSE</span>)</span>
+<span id="cb472-17"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb472-18"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># array indices of ROI voxels</span></span>
+<span id="cb472-19"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-19" aria-hidden="true" tabindex="-1"></a>    roi_vox <span class="ot">&lt;-</span> <span class="fu">which</span>(roi_nii <span class="sc">==</span> <span class="dv">1</span>, <span class="at">arr.ind=</span><span class="cn">TRUE</span>)</span>
+<span id="cb472-20"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">&quot;%s: %d voxels</span><span class="sc">\n</span><span class="st">&quot;</span>, i_sub, <span class="fu">nrow</span>(roi_vox))</span>
+<span id="cb472-21"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb472-22"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i_run <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_runs){</span>
+<span id="cb472-23"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-23" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb472-24"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-24" aria-hidden="true" tabindex="-1"></a>      <span class="co"># load the relevant functional volumes</span></span>
+<span id="cb472-25"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-25" aria-hidden="true" tabindex="-1"></a>      rel_vol_fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dirs<span class="sc">$</span>searchlight, <span class="st">&quot;rel_vols_4D&quot;</span>, </span>
+<span id="cb472-26"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-26" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">sprintf</span>(<span class="st">&quot;%s_run%02d_rel_vols.nii.gz&quot;</span>, i_sub, i_run))</span>
+<span id="cb472-27"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-27" aria-hidden="true" tabindex="-1"></a>      func_nii <span class="ot">&lt;-</span> <span class="fu">readNIfTI</span>(rel_vol_fn, <span class="at">reorient=</span><span class="cn">FALSE</span>)</span>
+<span id="cb472-28"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-28" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb472-29"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-29" aria-hidden="true" tabindex="-1"></a>      <span class="co"># get the ROI voxels</span></span>
+<span id="cb472-30"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-30" aria-hidden="true" tabindex="-1"></a>      rel_dat <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NA</span>, <span class="fu">c</span>(n_pics<span class="sc">*</span>n_blocks, <span class="fu">nrow</span>(roi_vox)));  <span class="co"># images in rows (ROI voxels), voxels in columns</span></span>
+<span id="cb472-31"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-31" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(roi_vox)) {   <span class="co"># i &lt;- 1</span></span>
+<span id="cb472-32"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-32" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb472-33"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-33" aria-hidden="true" tabindex="-1"></a>          curr_vox <span class="ot">&lt;-</span> func_nii[roi_vox[i,<span class="dv">1</span>], roi_vox[i,<span class="dv">2</span>], roi_vox[i,<span class="dv">3</span>],]</span>
+<span id="cb472-34"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-34" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (<span class="fu">sd</span>(curr_vox) <span class="sc">&gt;</span> <span class="dv">0</span>) {rel_dat[,i] <span class="ot">&lt;-</span> curr_vox} <span class="cf">else</span> { <span class="fu">stop</span>(<span class="st">&quot;zero variance voxel&quot;</span>)}</span>
+<span id="cb472-35"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-35" aria-hidden="true" tabindex="-1"></a>       }</span>
+<span id="cb472-36"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb472-37"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-37" aria-hidden="true" tabindex="-1"></a>      <span class="co"># data is in repetition (row) by voxel (col) format, so we transpose </span></span>
+<span id="cb472-38"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-38" aria-hidden="true" tabindex="-1"></a>      <span class="co"># to get a voxel x repetition format</span></span>
+<span id="cb472-39"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-39" aria-hidden="true" tabindex="-1"></a>      rel_dat <span class="ot">&lt;-</span> <span class="fu">t</span>(rel_dat)</span>
+<span id="cb472-40"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-40" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb472-41"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-41" aria-hidden="true" tabindex="-1"></a>      <span class="co"># calculate correlation matrix (trial by trial) for pre and post run</span></span>
+<span id="cb472-42"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-42" aria-hidden="true" tabindex="-1"></a>      cor_mat_trial <span class="ot">&lt;-</span> <span class="fu">cor</span>(rel_dat, rel_dat)</span>
+<span id="cb472-43"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb472-44"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-44" aria-hidden="true" tabindex="-1"></a>      <span class="co"># initialize condition by condition correlation matrix for pre and post run</span></span>
+<span id="cb472-45"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-45" aria-hidden="true" tabindex="-1"></a>      corr_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">20</span>, <span class="at">ncol =</span> <span class="dv">20</span>)</span>
+<span id="cb472-46"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-46" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb472-47"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-47" aria-hidden="true" tabindex="-1"></a>      <span class="co"># loop over all picture comparisons</span></span>
+<span id="cb472-48"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-48" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span>(i_pic1 <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>){</span>
+<span id="cb472-49"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(i_pic2 <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>){</span>
+<span id="cb472-50"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-50" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb472-51"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-51" aria-hidden="true" tabindex="-1"></a>          <span class="co"># extract the current 10x10 correlation matrix</span></span>
+<span id="cb472-52"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-52" aria-hidden="true" tabindex="-1"></a>          i1 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">+</span>(i_pic1<span class="dv">-1</span>)<span class="sc">*</span><span class="dv">10</span>)<span class="sc">:</span>(i_pic1<span class="sc">*</span><span class="dv">10</span>)</span>
+<span id="cb472-53"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-53" aria-hidden="true" tabindex="-1"></a>          i2 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">+</span>(i_pic2<span class="dv">-1</span>)<span class="sc">*</span><span class="dv">10</span>)<span class="sc">:</span>(i_pic2<span class="sc">*</span><span class="dv">10</span>)</span>
+<span id="cb472-54"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-54" aria-hidden="true" tabindex="-1"></a>          curr_mat <span class="ot">&lt;-</span> cor_mat_trial[i1, i2]</span>
+<span id="cb472-55"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-55" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb472-56"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-56" aria-hidden="true" tabindex="-1"></a>          <span class="co"># average the correlations while excluding diagonal (same block comparisons)</span></span>
+<span id="cb472-57"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-57" aria-hidden="true" tabindex="-1"></a>          corr_mat[i_pic1, i_pic2] <span class="ot">&lt;-</span> <span class="fu">mean</span>(curr_mat[no_diag])</span>
+<span id="cb472-58"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-58" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb472-59"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-59" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb472-60"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-60" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb472-61"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-61" aria-hidden="true" tabindex="-1"></a>      <span class="co"># save the correlation matrix</span></span>
+<span id="cb472-62"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-62" aria-hidden="true" tabindex="-1"></a>      fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(out_dir, <span class="fu">sprintf</span>(<span class="st">&quot;%s_%s_%s_%s_corr_mat.txt&quot;</span>, </span>
+<span id="cb472-63"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-63" aria-hidden="true" tabindex="-1"></a>                                       i_sub, <span class="st">&quot;same-day_searchlight&quot;</span>, i_thresh, runs[i_run]))</span>
+<span id="cb472-64"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-64" aria-hidden="true" tabindex="-1"></a>      <span class="fu">write.table</span>(corr_mat, fn, <span class="at">append =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb472-65"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-65" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb472-66"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-66" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb472-67"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-67" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb472-68"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb472-68" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="calculate-pattern-similarity-change-2" class="section level3 unnumbered">
+<h3>Calculate Pattern Similarity Change</h3>
+<p>In the next step, we calculate how the correlation between patterns change from the first to the second picture viewing task, i.e. through the day learning task. To do this, we load both correlation matrices and reduce them to the upper triangle, excluding the diagonal. Then, the correlations are Fisher Z-transformed and the similarity values from the pre-learning picture viewing task are subtracted from those of the post-learning picture viewing task to isolate pattern similarity change. The correlations and their changes are then saved together with information about the pictures that were compared.</p>
+<p>This part is based on the corresponding script from the main ROI analyses.</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-1" aria-hidden="true" tabindex="-1"></a>in_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>,<span class="st">&quot;rsa&quot;</span>,<span class="st">&quot;correlation_matrices&quot;</span>, <span class="st">&quot;same-day_searchlight&quot;</span>)</span>
+<span id="cb473-2"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-2" aria-hidden="true" tabindex="-1"></a>out_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>,<span class="st">&quot;rsa&quot;</span>,<span class="st">&quot;pattern_similarity_change&quot;</span>, <span class="st">&quot;same-day_searchlight&quot;</span>)</span>
+<span id="cb473-3"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(out_dir)){<span class="fu">dir.create</span>(out_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>)}</span>
+<span id="cb473-4"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb473-5"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i_thresh <span class="cf">in</span> threshs){ </span>
+<span id="cb473-6"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb473-7"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i_sub <span class="cf">in</span> subjects){</span>
+<span id="cb473-8"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb473-9"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load pre correlation matrix</span></span>
+<span id="cb473-10"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-10" aria-hidden="true" tabindex="-1"></a>    fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(in_dir, <span class="fu">sprintf</span>(<span class="st">&quot;%s_%s_%s_pre_corr_mat.txt&quot;</span>, </span>
+<span id="cb473-11"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-11" aria-hidden="true" tabindex="-1"></a>                                    i_sub, <span class="st">&quot;same-day_searchlight&quot;</span>, i_thresh))</span>
+<span id="cb473-12"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-12" aria-hidden="true" tabindex="-1"></a>    corr_mat_pre <span class="ot">&lt;-</span> <span class="fu">read.table</span>(fn, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>)    </span>
+<span id="cb473-13"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb473-14"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load post correlation matrix</span></span>
+<span id="cb473-15"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-15" aria-hidden="true" tabindex="-1"></a>    fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(in_dir, <span class="fu">sprintf</span>(<span class="st">&quot;%s_%s_%s_post_corr_mat.txt&quot;</span>, </span>
+<span id="cb473-16"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-16" aria-hidden="true" tabindex="-1"></a>                                    i_sub, <span class="st">&quot;same-day_searchlight&quot;</span>, i_thresh))</span>
+<span id="cb473-17"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-17" aria-hidden="true" tabindex="-1"></a>    corr_mat_post <span class="ot">&lt;-</span> <span class="fu">read.table</span>(fn, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb473-18"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb473-19"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># reduce to upper triangle of correlations (without diagonal)</span></span>
+<span id="cb473-20"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-20" aria-hidden="true" tabindex="-1"></a>    pre_corrs <span class="ot">&lt;-</span> corr_mat_pre[<span class="fu">upper.tri</span>(corr_mat_pre, <span class="at">diag =</span> <span class="cn">FALSE</span>)]</span>
+<span id="cb473-21"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-21" aria-hidden="true" tabindex="-1"></a>    post_corrs <span class="ot">&lt;-</span> corr_mat_post[<span class="fu">upper.tri</span>(corr_mat_post, <span class="at">diag =</span> <span class="cn">FALSE</span>)]</span>
+<span id="cb473-22"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb473-23"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create a tibble with the correlations </span></span>
+<span id="cb473-24"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-24" aria-hidden="true" tabindex="-1"></a>    pics <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">upper.tri</span>(corr_mat_post), <span class="at">arr.ind=</span><span class="cn">TRUE</span>)</span>
+<span id="cb473-25"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-25" aria-hidden="true" tabindex="-1"></a>    corr_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">pic1 =</span> pics[,<span class="dv">1</span>], <span class="at">pic2 =</span> pics[,<span class="dv">2</span>], pre_corrs, post_corrs)</span>
+<span id="cb473-26"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb473-27"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fisher Z transform correlations and calculate pattern similarity change</span></span>
+<span id="cb473-28"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># by subtracting the pre-correlations from the post-correlations</span></span>
+<span id="cb473-29"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-29" aria-hidden="true" tabindex="-1"></a>    corr_df<span class="sc">$</span>ps_change <span class="ot">&lt;-</span> <span class="fu">FisherZ</span>(corr_df<span class="sc">$</span>post_corrs) <span class="sc">-</span> <span class="fu">FisherZ</span>(corr_df<span class="sc">$</span>pre_corrs)</span>
+<span id="cb473-30"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb473-31"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write to file</span></span>
+<span id="cb473-32"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-32" aria-hidden="true" tabindex="-1"></a>    fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(out_dir, <span class="fu">sprintf</span>(<span class="st">&quot;%s_%s_%s_pattern_similarity_change.txt&quot;</span>, </span>
+<span id="cb473-33"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-33" aria-hidden="true" tabindex="-1"></a>                                     i_sub, <span class="st">&quot;same-day_searchlight&quot;</span>, i_thresh))</span>
+<span id="cb473-34"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write.table</span>(corr_df, fn, <span class="at">append =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb473-35"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-35" aria-hidden="true" tabindex="-1"></a>                <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb473-36"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb473-37"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb473-37" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="combine-behavioral-and-fmri-data-for-rsa-2" class="section level3 unnumbered">
+<h3>Combine behavioral and fMRI data for RSA</h3>
+<p>To create input for the RSA the next step is to combine the similarity change data with the behavioral data, so that we can do meaningful analyses. First the behavioral data is loaded and brought into the same pair-wise format as the similarity change data. Both datasets are combined for each subject and then written to disk.</p>
+<p>This part is based on the corresponding script from the main ROI analyses.</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-1" aria-hidden="true" tabindex="-1"></a>in_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>,<span class="st">&quot;rsa&quot;</span>,<span class="st">&quot;pattern_similarity_change&quot;</span>, <span class="st">&quot;same-day_searchlight&quot;</span>)</span>
+<span id="cb474-2"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-2" aria-hidden="true" tabindex="-1"></a>out_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mri&quot;</span>,<span class="st">&quot;rsa&quot;</span>,<span class="st">&quot;data_for_rsa&quot;</span>)</span>
+<span id="cb474-3"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(out_dir)){<span class="fu">dir.create</span>(out_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>)}</span>
+<span id="cb474-4"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb474-5"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i_thresh <span class="cf">in</span> threshs){ </span>
+<span id="cb474-6"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb474-7"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i_sub <span class="cf">in</span> subjects){</span>
+<span id="cb474-8"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb474-9"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load the behavioral data</span></span>
+<span id="cb474-10"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-10" aria-hidden="true" tabindex="-1"></a>    fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dirs<span class="sc">$</span>timeline_dat_dir, <span class="fu">sprintf</span>(<span class="st">&quot;%s_behavior_tbl_timeline.txt&quot;</span>, i_sub))</span>
+<span id="cb474-11"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-11" aria-hidden="true" tabindex="-1"></a>    col_types_list <span class="ot">&lt;-</span> <span class="fu">cols_only</span>(<span class="at">sub_id =</span> <span class="fu">col_character</span>(), <span class="at">day =</span> <span class="fu">col_factor</span>(), </span>
+<span id="cb474-12"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">event =</span> <span class="fu">col_integer</span>(), <span class="at">pic =</span> <span class="fu">col_integer</span>(),</span>
+<span id="cb474-13"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-13" aria-hidden="true" tabindex="-1"></a>                                <span class="at">virtual_time =</span> <span class="fu">col_double</span>(), <span class="at">real_time =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb474-14"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-14" aria-hidden="true" tabindex="-1"></a>                                <span class="at">memory_time =</span> <span class="fu">col_double</span>(), <span class="at">memory_order =</span> <span class="fu">col_double</span>(), </span>
+<span id="cb474-15"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-15" aria-hidden="true" tabindex="-1"></a>                                <span class="at">sorted_day =</span> <span class="fu">col_integer</span>())</span>
+<span id="cb474-16"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-16" aria-hidden="true" tabindex="-1"></a>    beh_dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(fn, <span class="at">col_types =</span> col_types_list)</span>
+<span id="cb474-17"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb474-18"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sort behavioral data according to picture identity</span></span>
+<span id="cb474-19"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-19" aria-hidden="true" tabindex="-1"></a>    beh_dat_ordered <span class="ot">&lt;-</span> beh_dat[<span class="fu">order</span>(beh_dat<span class="sc">$</span>pic),]</span>
+<span id="cb474-20"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb474-21"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># find the order of comparisons</span></span>
+<span id="cb474-22"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-22" aria-hidden="true" tabindex="-1"></a>    pairs <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">upper.tri</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">20</span>, <span class="at">ncol =</span> <span class="dv">20</span>)), <span class="at">arr.ind=</span><span class="cn">TRUE</span>)</span>
+<span id="cb474-23"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb474-24"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extract the data for the first and second picture in each pair from the behavioral data</span></span>
+<span id="cb474-25"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-25" aria-hidden="true" tabindex="-1"></a>    pic1_dat <span class="ot">&lt;-</span> beh_dat_ordered[pairs[,<span class="dv">1</span>],]</span>
+<span id="cb474-26"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-26" aria-hidden="true" tabindex="-1"></a>    pic2_dat <span class="ot">&lt;-</span> beh_dat_ordered[pairs[,<span class="dv">2</span>],]</span>
+<span id="cb474-27"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">colnames</span>(pic1_dat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">colnames</span>(pic1_dat), <span class="st">&quot;1&quot;</span>)</span>
+<span id="cb474-28"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">colnames</span>(pic2_dat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">colnames</span>(pic2_dat), <span class="st">&quot;2&quot;</span>)</span>
+<span id="cb474-29"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb474-30"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># combine the two tibbles</span></span>
+<span id="cb474-31"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-31" aria-hidden="true" tabindex="-1"></a>    pair_dat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(pic1_dat, pic2_dat)</span>
+<span id="cb474-32"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb474-33"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># reorder the tibble columns to make a bit more sense</span></span>
+<span id="cb474-34"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-34" aria-hidden="true" tabindex="-1"></a>    pair_dat <span class="ot">&lt;-</span> pair_dat <span class="sc">%&gt;%</span></span>
+<span id="cb474-35"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(sub_id1,</span>
+<span id="cb474-36"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-36" aria-hidden="true" tabindex="-1"></a>             day1, day2,</span>
+<span id="cb474-37"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-37" aria-hidden="true" tabindex="-1"></a>             pic1, pic2,</span>
+<span id="cb474-38"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-38" aria-hidden="true" tabindex="-1"></a>             event1, event2, </span>
+<span id="cb474-39"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-39" aria-hidden="true" tabindex="-1"></a>             virtual_time1, virtual_time2, </span>
+<span id="cb474-40"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-40" aria-hidden="true" tabindex="-1"></a>             real_time1, real_time2, </span>
+<span id="cb474-41"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-41" aria-hidden="true" tabindex="-1"></a>             memory_order1, memory_order2, </span>
+<span id="cb474-42"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-42" aria-hidden="true" tabindex="-1"></a>             memory_time1, memory_time2, </span>
+<span id="cb474-43"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-43" aria-hidden="true" tabindex="-1"></a>             sorted_day1, sorted_day2) <span class="sc">%&gt;%</span></span>
+<span id="cb474-44"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rename</span>(<span class="at">sub_id =</span> sub_id1)</span>
+<span id="cb474-45"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb474-46"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-46" aria-hidden="true" tabindex="-1"></a>    rsa_dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb474-47"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb474-48"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load the pattern similarity change data for this ROI</span></span>
+<span id="cb474-49"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-49" aria-hidden="true" tabindex="-1"></a>    fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(in_dir, <span class="fu">sprintf</span>(<span class="st">&quot;%s_%s_%s_pattern_similarity_change.txt&quot;</span>, </span>
+<span id="cb474-50"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-50" aria-hidden="true" tabindex="-1"></a>                                    i_sub, <span class="st">&quot;same-day_searchlight&quot;</span>, i_thresh))</span>
+<span id="cb474-51"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-51" aria-hidden="true" tabindex="-1"></a>    ps_change_dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(fn)</span>
+<span id="cb474-52"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb474-53"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># make sure files have the same order</span></span>
+<span id="cb474-54"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-54" aria-hidden="true" tabindex="-1"></a>    assertthat<span class="sc">::</span><span class="fu">are_equal</span>(<span class="fu">c</span>(pair_dat<span class="sc">$</span>pic1, pair_dat<span class="sc">$</span>pic2), <span class="fu">c</span>(ps_change_dat<span class="sc">$</span>pic1, ps_change_dat<span class="sc">$</span>pic2))</span>
+<span id="cb474-55"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-55" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb474-56"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add column with ROI name</span></span>
+<span id="cb474-57"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-57" aria-hidden="true" tabindex="-1"></a>    ps_change_dat <span class="ot">&lt;-</span> <span class="fu">add_column</span>(ps_change_dat, <span class="at">roi =</span> <span class="fu">paste0</span>(<span class="st">&quot;same-day_searchlight_&quot;</span>, i_thresh))</span>
+<span id="cb474-58"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-58" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb474-59"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># collect the data from this ROI and merge into long data frame</span></span>
+<span id="cb474-60"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-60" aria-hidden="true" tabindex="-1"></a>    roi_dat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(pair_dat, ps_change_dat[,<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>])</span>
+<span id="cb474-61"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-61" aria-hidden="true" tabindex="-1"></a>    rsa_dat <span class="ot">&lt;-</span> <span class="fu">rbind</span>(rsa_dat, roi_dat)</span>
+<span id="cb474-62"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-62" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb474-63"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write to file</span></span>
+<span id="cb474-64"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-64" aria-hidden="true" tabindex="-1"></a>    fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dirs<span class="sc">$</span>rsa_dat_dir, <span class="fu">sprintf</span>(<span class="st">&quot;%s_data_for_rsa_same-day_searchlight_%s.txt&quot;</span>, i_sub, i_thresh))</span>
+<span id="cb474-65"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write.table</span>(rsa_dat, fn, <span class="at">append =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb474-66"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-66" aria-hidden="true" tabindex="-1"></a>                <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb474-67"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-67" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb474-68"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb474-68" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Finally, the datasets are combined across subjects.</p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up a dataframe to collect the data</span></span>
+<span id="cb475-2"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-2" aria-hidden="true" tabindex="-1"></a>rsa_dat <span class="ot">=</span> <span class="fu">tibble</span>()</span>
+<span id="cb475-3"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i_thresh <span class="cf">in</span> threshs){ </span>
+<span id="cb475-4"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb475-5"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i_sub <span class="cf">in</span> subjects){</span>
+<span id="cb475-6"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb475-7"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load data from CSV</span></span>
+<span id="cb475-8"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-8" aria-hidden="true" tabindex="-1"></a>    fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(out_dir, <span class="fu">sprintf</span>(<span class="st">&quot;%s_data_for_rsa_same-day_searchlight_%s.txt&quot;</span>,i_sub, i_thresh))</span>
+<span id="cb475-9"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-9" aria-hidden="true" tabindex="-1"></a>    col_types_list <span class="ot">&lt;-</span> <span class="fu">cols_only</span>(</span>
+<span id="cb475-10"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">sub_id =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb475-11"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">day1 =</span> <span class="fu">col_integer</span>(), <span class="at">day2 =</span> <span class="fu">col_integer</span>(),</span>
+<span id="cb475-12"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">event1 =</span> <span class="fu">col_integer</span>(), <span class="at">event2 =</span> <span class="fu">col_integer</span>(),</span>
+<span id="cb475-13"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">pic1 =</span> <span class="fu">col_integer</span>(), <span class="at">pic2 =</span> <span class="fu">col_integer</span>(),</span>
+<span id="cb475-14"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">virtual_time1 =</span> <span class="fu">col_double</span>(), <span class="at">virtual_time2 =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb475-15"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">real_time1 =</span> <span class="fu">col_double</span>(), <span class="at">real_time2 =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb475-16"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">memory_time1 =</span> <span class="fu">col_double</span>(), <span class="at">memory_time2 =</span> <span class="fu">col_double</span>(), </span>
+<span id="cb475-17"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">memory_order1 =</span> <span class="fu">col_double</span>(), <span class="at">memory_order2 =</span> <span class="fu">col_double</span>(), </span>
+<span id="cb475-18"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">sorted_day1 =</span> <span class="fu">col_integer</span>(), <span class="at">sorted_day2 =</span> <span class="fu">col_integer</span>(),</span>
+<span id="cb475-19"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">pre_corrs  =</span> <span class="fu">col_double</span>(), <span class="at">post_corrs =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb475-20"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">ps_change =</span> <span class="fu">col_double</span>(), <span class="at">roi =</span> <span class="fu">col_factor</span>()</span>
+<span id="cb475-21"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb475-22"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-22" aria-hidden="true" tabindex="-1"></a>    sub_dat <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">read_csv</span>(fn, <span class="at">col_types =</span> col_types_list))</span>
+<span id="cb475-23"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb475-24"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># append to table with data from all subjects</span></span>
+<span id="cb475-25"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-25" aria-hidden="true" tabindex="-1"></a>    rsa_dat <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(sub_dat, rsa_dat)</span>
+<span id="cb475-26"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb475-27"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb475-28"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sort the data</span></span>
+<span id="cb475-29"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-29" aria-hidden="true" tabindex="-1"></a>  rsa_dat <span class="ot">&lt;-</span> rsa_dat[<span class="fu">with</span>(rsa_dat, <span class="fu">order</span>(sub_id, day1, day2, event1, event2)),]</span>
+<span id="cb475-30"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb475-31"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># write to file</span></span>
+<span id="cb475-32"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-32" aria-hidden="true" tabindex="-1"></a>  fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dirs<span class="sc">$</span>data4analysis, <span class="fu">sprintf</span>(<span class="st">&quot;rsa_data_in_same-seq_searchlight_peak_%s.txt&quot;</span>, i_thresh))</span>
+<span id="cb475-33"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.table</span>(rsa_dat, fn, <span class="at">append =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb475-34"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-34" aria-hidden="true" tabindex="-1"></a>              <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb475-35"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb475-35" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="rsa" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> RSA</h2>
+<p>We use permutation-based linear model to analyze the data with a summary statistics approach.</p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define function that calculates z-value for permutation</span></span>
+<span id="cb476-2"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-2" aria-hidden="true" tabindex="-1"></a>lm_perm_jb2 <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">in_dat =</span> df, <span class="at">lm_formula =</span> lm_formula, <span class="at">nsim =</span> <span class="dv">1000</span>){</span>
+<span id="cb476-3"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb476-4"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># run the model for original data and store observed t-values</span></span>
+<span id="cb476-5"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-5" aria-hidden="true" tabindex="-1"></a>  lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> lm_formula, <span class="at">data=</span>in_dat)</span>
+<span id="cb476-6"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-6" aria-hidden="true" tabindex="-1"></a>  obs <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(lm_fit))[,<span class="st">&quot;t value&quot;</span>]</span>
+<span id="cb476-7"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb476-8"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># extract the dependent variable from the formula</span></span>
+<span id="cb476-9"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-9" aria-hidden="true" tabindex="-1"></a>  dv <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(lm_formula, <span class="st">&quot;[^~]+&quot;</span>)</span>
+<span id="cb476-10"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-10" aria-hidden="true" tabindex="-1"></a>  dv <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(dv, <span class="fu">fixed</span>(<span class="st">&quot; &quot;</span>), <span class="st">&quot;&quot;</span>)</span>
+<span id="cb476-11"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span>(dv <span class="sc">%in%</span> <span class="fu">colnames</span>(in_dat))){<span class="fu">stop</span>(<span class="st">&quot;Cannot find dependent variable in input data&quot;</span>);}</span>
+<span id="cb476-12"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb476-13"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># initialize df for permutation</span></span>
+<span id="cb476-14"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-14" aria-hidden="true" tabindex="-1"></a>  data_perm <span class="ot">&lt;-</span> in_dat</span>
+<span id="cb476-15"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb476-16"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set aside space for results</span></span>
+<span id="cb476-17"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-17" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> nsim, <span class="at">ncol =</span> <span class="fu">length</span>(obs))</span>
+<span id="cb476-18"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb476-19"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim) {</span>
+<span id="cb476-20"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb476-21"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># scramble response value</span></span>
+<span id="cb476-22"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-22" aria-hidden="true" tabindex="-1"></a>    perm <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(in_dat))</span>
+<span id="cb476-23"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-23" aria-hidden="true" tabindex="-1"></a>    dv_dat <span class="ot">&lt;-</span> in_dat[dv]</span>
+<span id="cb476-24"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-24" aria-hidden="true" tabindex="-1"></a>    data_perm[dv] <span class="ot">&lt;-</span> dv_dat[perm,]</span>
+<span id="cb476-25"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb476-26"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compute linear model and store the t-value of predictor</span></span>
+<span id="cb476-27"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-27" aria-hidden="true" tabindex="-1"></a>    lm_fit_perm <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> lm_formula, <span class="at">data=</span>data_perm)</span>
+<span id="cb476-28"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-28" aria-hidden="true" tabindex="-1"></a>    res[i,] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(lm_fit_perm))[,<span class="st">&quot;t value&quot;</span>]</span>
+<span id="cb476-29"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb476-30"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb476-31"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># append the observed value to the list of results</span></span>
+<span id="cb476-32"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-32" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">rbind</span>(res,obs)</span>
+<span id="cb476-33"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb476-34"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate p-value for each coefficient and transform to z</span></span>
+<span id="cb476-35"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-35" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(obs))</span>
+<span id="cb476-36"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-36" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(obs))</span>
+<span id="cb476-37"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i_coef <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(obs)){</span>
+<span id="cb476-38"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-38" aria-hidden="true" tabindex="-1"></a>    p[i_coef] <span class="ot">&lt;-</span> <span class="fu">sum</span>(res[,i_coef] <span class="sc">&lt;=</span> obs[i_coef])<span class="sc">/</span><span class="fu">nrow</span>(res)</span>
+<span id="cb476-39"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-39" aria-hidden="true" tabindex="-1"></a>    z[i_coef] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span><span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>p[i_coef])</span>
+<span id="cb476-40"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb476-41"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
+<span id="cb476-42"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb476-42" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now run the linear model for each participant and do group-level stats.</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i_thresh <span class="cf">in</span> threshs){ </span>
+<span id="cb477-2"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-3"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># load the data</span></span>
+<span id="cb477-4"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-4" aria-hidden="true" tabindex="-1"></a>  col_types_list <span class="ot">&lt;-</span> <span class="fu">cols_only</span>(</span>
+<span id="cb477-5"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">sub_id =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb477-6"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">day1 =</span> <span class="fu">col_integer</span>(), <span class="at">day2 =</span> <span class="fu">col_integer</span>(),</span>
+<span id="cb477-7"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">virtual_time1 =</span> <span class="fu">col_double</span>(), <span class="at">virtual_time2 =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb477-8"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">ps_change =</span> <span class="fu">col_double</span>(), <span class="at">roi =</span> <span class="fu">col_factor</span>())</span>
+<span id="cb477-9"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-9" aria-hidden="true" tabindex="-1"></a>  fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dirs<span class="sc">$</span>data4analysis, <span class="fu">sprintf</span>(<span class="st">&quot;rsa_data_in_same-seq_searchlight_peak_%s.txt&quot;</span>, i_thresh))</span>
+<span id="cb477-10"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-10" aria-hidden="true" tabindex="-1"></a>  rsa_dat_within_cluster <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">read_csv</span>(fn, <span class="at">col_types =</span> col_types_list))</span>
+<span id="cb477-11"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-12"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-13"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-13" aria-hidden="true" tabindex="-1"></a>  <span class="do">## PREAPARE RSA</span></span>
+<span id="cb477-14"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create predictors for RSA</span></span>
+<span id="cb477-15"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-15" aria-hidden="true" tabindex="-1"></a>  rsa_dat_within_cluster <span class="ot">&lt;-</span> rsa_dat_within_cluster <span class="sc">%&gt;%</span></span>
+<span id="cb477-16"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb477-17"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-17" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb477-18"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-18" aria-hidden="true" tabindex="-1"></a>      <span class="co"># pair of events from say or different day (dv = deviation code)</span></span>
+<span id="cb477-19"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">same_day =</span> day1 <span class="sc">==</span> day2,</span>
+<span id="cb477-20"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">same_day_dv =</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(same_day, <span class="at">from =</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>), <span class="at">to =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)),</span>
+<span id="cb477-21"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-21" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb477-22"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-22" aria-hidden="true" tabindex="-1"></a>      <span class="co"># absolute difference in time metrics</span></span>
+<span id="cb477-23"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">vir_time_diff =</span> <span class="fu">abs</span>(virtual_time1 <span class="sc">-</span> virtual_time2)) <span class="sc">%&gt;%</span></span>
+<span id="cb477-24"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb477-25"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># z-score the time metric predictors (within each subject)</span></span>
+<span id="cb477-26"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sub_id) <span class="sc">%&gt;%</span></span>
+<span id="cb477-27"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_at</span>(<span class="fu">c</span>(<span class="st">&quot;vir_time_diff&quot;</span>), scale, <span class="at">scale =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb477-28"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb477-29"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb477-30"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-30" aria-hidden="true" tabindex="-1"></a>  <span class="do">##### First-level RSA {-}</span></span>
+<span id="cb477-31"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-32"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">179</span>) <span class="co"># set seed for reproducibility</span></span>
+<span id="cb477-33"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-34"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do RSA using linear model and calculate z-score for model fit based on permutations</span></span>
+<span id="cb477-35"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-35" aria-hidden="true" tabindex="-1"></a>  rsa_fit_within_cluster2 <span class="ot">&lt;-</span> rsa_dat_within_cluster <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(sub_id, same_day) <span class="sc">%&gt;%</span></span>
+<span id="cb477-36"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-36" aria-hidden="true" tabindex="-1"></a>            <span class="co"># run the linear model</span></span>
+<span id="cb477-37"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-37" aria-hidden="true" tabindex="-1"></a>            <span class="fu">do</span>(<span class="at">z =</span> <span class="fu">lm_perm_jb2</span>(<span class="at">in_dat =</span> ., <span class="at">lm_formula =</span> <span class="st">&quot;ps_change ~ vir_time_diff&quot;</span>, <span class="at">nsim =</span> n_perm)) <span class="sc">%&gt;%</span></span>
+<span id="cb477-38"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">z =</span> <span class="fu">list</span>(<span class="fu">setNames</span>(z, <span class="fu">c</span>(<span class="st">&quot;z_intercept&quot;</span>, <span class="st">&quot;z_virtual_time&quot;</span>)))) <span class="sc">%&gt;%</span></span>
+<span id="cb477-39"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_wider</span>(z)</span>
+<span id="cb477-40"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-40" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-41"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add group column used for plotting</span></span>
+<span id="cb477-42"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-42" aria-hidden="true" tabindex="-1"></a>  rsa_fit_within_cluster2<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="dv">1</span>)</span>
+<span id="cb477-43"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-44"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add a factor with character labels for within/across days and one to later color control in facets</span></span>
+<span id="cb477-45"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-45" aria-hidden="true" tabindex="-1"></a>  rsa_fit_within_cluster2 <span class="ot">&lt;-</span> rsa_fit_within_cluster2 <span class="sc">%&gt;%</span> </span>
+<span id="cb477-46"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">same_day_char =</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(same_day, </span>
+<span id="cb477-47"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-47" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">from =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), </span>
+<span id="cb477-48"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-48" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;across days&quot;</span>, <span class="st">&quot;within days&quot;</span>), </span>
+<span id="cb477-49"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-49" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">warn_missing =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb477-50"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-50" aria-hidden="true" tabindex="-1"></a>           <span class="at">same_day_char =</span> <span class="fu">factor</span>(same_day_char, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;within days&quot;</span>, <span class="st">&quot;across days&quot;</span>)))</span>
+<span id="cb477-51"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-51" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-52"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-52" aria-hidden="true" tabindex="-1"></a>  <span class="co"># run a group-level t-test on the different sequence RSA fits in the within-searchlight cluster</span></span>
+<span id="cb477-53"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-53" aria-hidden="true" tabindex="-1"></a>  stats <span class="ot">&lt;-</span> rsa_fit_within_cluster2 <span class="sc">%&gt;%</span> </span>
+<span id="cb477-54"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(same_day <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb477-55"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(z_virtual_time) <span class="sc">%&gt;%</span> </span>
+<span id="cb477-56"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paired_t_perm_jb</span> (., <span class="at">n_perm =</span> n_perm)</span>
+<span id="cb477-57"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-57" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-58"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-58" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cohen&#39;s d with Hedges&#39; correction for one sample using non-central t-distribution for CI</span></span>
+<span id="cb477-59"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-59" aria-hidden="true" tabindex="-1"></a>  d<span class="ot">&lt;-</span><span class="fu">cohen.d</span>(<span class="at">d=</span>(rsa_fit_within_cluster2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(same_day <span class="sc">==</span> <span class="cn">FALSE</span>))<span class="sc">$</span>z_virtual_time, </span>
+<span id="cb477-60"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-60" aria-hidden="true" tabindex="-1"></a>             <span class="at">f=</span><span class="cn">NA</span>, <span class="at">paired=</span><span class="cn">TRUE</span>, <span class="at">hedges.correction=</span><span class="cn">TRUE</span>, <span class="at">noncentral=</span><span class="cn">TRUE</span>)</span>
+<span id="cb477-61"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-61" aria-hidden="true" tabindex="-1"></a>  stats<span class="sc">$</span>d <span class="ot">&lt;-</span> d<span class="sc">$</span>estimate</span>
+<span id="cb477-62"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-62" aria-hidden="true" tabindex="-1"></a>  stats<span class="sc">$</span>dCI_low <span class="ot">&lt;-</span> d<span class="sc">$</span>conf.int[[<span class="dv">1</span>]]</span>
+<span id="cb477-63"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-63" aria-hidden="true" tabindex="-1"></a>  stats<span class="sc">$</span>dCI_high <span class="ot">&lt;-</span> d<span class="sc">$</span>conf.int[[<span class="dv">2</span>]]</span>
+<span id="cb477-64"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-64" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb477-65"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-65" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print results</span></span>
+<span id="cb477-66"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">huxtable</span>(stats) <span class="sc">%&gt;%</span> <span class="fu">theme_article</span>()</span>
+<span id="cb477-67"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb477-67" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Summary Statistics: t-test against 0 for virtual time across sequences in within-sequence searchlight peak (thresholded at p&lt;0.001)<br />
+t<sub>27</sub>=-1.98, p=0.056, d=-0.36, 95% CI [-0.77, 0.01]</p>
+<p>Compare the results using the two different thresholds with a permutation-based t-test on the difference.</p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add column for cluster</span></span>
+<span id="cb478-2"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-2" aria-hidden="true" tabindex="-1"></a>rsa_fit_within_cluster2 <span class="ot">&lt;-</span> rsa_fit_within_cluster2 <span class="sc">%&gt;%</span> </span>
+<span id="cb478-3"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">thresh =</span> <span class="st">&quot;v2&quot;</span>)</span>
+<span id="cb478-4"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-4" aria-hidden="true" tabindex="-1"></a>rsa_fit_within_cluster <span class="ot">&lt;-</span> rsa_fit_within_cluster <span class="sc">%&gt;%</span> </span>
+<span id="cb478-5"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">thresh =</span> <span class="st">&quot;v1&quot;</span>)</span>
+<span id="cb478-6"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb478-7"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-7" aria-hidden="true" tabindex="-1"></a><span class="co"># merge data frames and select across-sequence values</span></span>
+<span id="cb478-8"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-8" aria-hidden="true" tabindex="-1"></a>rsa_fit_within_cluster_comp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(rsa_fit_within_cluster, rsa_fit_within_cluster2) <span class="sc">%&gt;%</span></span>
+<span id="cb478-9"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(same_day <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
+<span id="cb478-10"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb478-11"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-11" aria-hidden="true" tabindex="-1"></a><span class="co"># run permutation-based t-test on the difference between the two sets of results</span></span>
+<span id="cb478-12"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-12" aria-hidden="true" tabindex="-1"></a>stats <span class="ot">&lt;-</span> rsa_fit_within_cluster_comp <span class="sc">%&gt;%</span></span>
+<span id="cb478-13"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>z_intercept) <span class="sc">%&gt;%</span></span>
+<span id="cb478-14"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> thresh, <span class="at">values_from =</span> z_virtual_time) <span class="sc">%&gt;%</span></span>
+<span id="cb478-15"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">thresh_diff =</span> v1 <span class="sc">-</span> v2) <span class="sc">%&gt;%</span></span>
+<span id="cb478-16"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(thresh_diff) <span class="sc">%&gt;%</span></span>
+<span id="cb478-17"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paired_t_perm_jb</span> (., <span class="at">n_perm =</span> n_perm)</span>
+<span id="cb478-18"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb478-19"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-19" aria-hidden="true" tabindex="-1"></a><span class="co"># print results</span></span>
+<span id="cb478-20"><a href="rsa-in-searchlight-peak-withdifferent-threshold.html#cb478-20" aria-hidden="true" tabindex="-1"></a><span class="fu">huxtable</span>(stats) <span class="sc">%&gt;%</span> <span class="fu">theme_article</span>()</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-263">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-263">Table 10.1: </span> </caption><col><col><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt; font-weight: bold;">estimate</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">statistic</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p.value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p_perm</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">parameter</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">conf.low</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">conf.high</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">method</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt; font-weight: bold;">alternative</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt; font-weight: normal;">-0.088</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.947</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.352</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.338</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">27</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.279</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.103</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">One Sample t-test</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt; font-weight: normal;">two.sided</td></tr>
+</table>
+
+<p>Summary Statistics: t-test between RSA results in searchlight cluster defined on different thresholds (p&lt;0.01 vs. p&lt;0.001)
+t<sub>27</sub>=-0.95, p=0.338</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="signal-to-noise-ratio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="univariate-glm-relative-time.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

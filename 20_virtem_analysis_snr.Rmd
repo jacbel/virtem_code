@@ -1,0 +1,135 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+## Contrast tSNR between aHPC and alEC
+
+We begin by loading the SNR data from file.
+
+```{r }
+
+# load data from CSV
+fn <- file.path(dirs$data4analysis, "snr.txt")
+col_types_list <- cols_only(
+      subject = col_factor(),
+      roi = col_factor(levels = rois),
+      run = col_factor(levels = runs),
+      block = col_double(),
+      tSNR = col_double()
+      )
+snr_data <- as_tibble(read_csv(fn, col_types = col_types_list))
+
+head(snr_data)
+```
+
+
+To contrast the global tSNR between the aHPC and the alEC, we need to average across all blocks and runs to obtain one value per ROI per participant.
+
+```{r}
+
+# calculate the average tSNR per ROI for each suject
+snr_data %>% filter(roi == "aHPC_lr" | roi == "alEC_lr") %>%
+  group_by(subject, roi) %>%
+  summarise(tSNR = mean(tSNR), .groups="drop") -> snr_avg
+```
+
+To test whether the tSNR differs between the aHPC and the alEC we run a permutation-based t-test on the within-subject differences.
+
+```{r}
+set.seed(56) # set seed for reproducibility
+
+stats <- snr_avg %>%
+  filter(roi=="aHPC_lr" | roi == "alEC_lr") %>%
+  group_by(subject) %>%
+  summarise(tSNR_diff = tSNR[roi=="aHPC_lr"]-tSNR[roi=="alEC_lr"],.groups = "drop") %>%
+  # test difference against 0
+  select(tSNR_diff) %>% 
+  paired_t_perm_jb (., n_perm = n_perm)
+  
+# Cohen's d with Hedges' correction for paired samples using non-central t-distribution for CI
+d<-cohen.d(d=(snr_avg %>% filter(roi == "aHPC_lr"))$tSNR, 
+           f=(snr_avg %>% filter(roi == "alEC_lr"))$tSNR, 
+           paired=TRUE, pooled=TRUE, hedges.correction=TRUE, noncentral=TRUE)
+stats$d <- d$estimate
+stats$dCI_low <- d$conf.int[[1]]
+stats$dCI_high <- d$conf.int[[2]]
+
+# print results
+huxtable(stats) %>% theme_article()
+```
+
+Summary Statistics: paired t-test comparing tSNR in aHPC and alEC
+t~`r stats$parameter`~=`r round(stats$statistic,2)`, p=`r format(round(stats$p_perm, 3), nsmall = 3)`, d=`r format(round(stats$d, 2), nsmall = 2)`, 95% CI [`r format(round(stats$dCI_low, 2), nsmall = 2)`, `r format(round(stats$dCI_high, 2), nsmall = 2)`]  
+
+
+Here is a plot of the results
+
+```{r}
+
+# add column with custom jitter
+snr_avg <- snr_avg %>% 
+  mutate(x_jit = as.numeric(roi) + rep(jitter(rep(0,n_subs), amount=0.05), each=2) * rep(c(1,-1),n_subs))
+
+snr_figa <- ggplot(data=snr_avg, aes(x=roi, y=tSNR, fill = roi, color = roi)) +
+  geom_boxplot(aes(group=roi), position = position_nudge(x = 0, y = 0), 
+               width = .1, colour = "black", outlier.shape = NA) +
+  scale_fill_manual(values = unname(c(aHPC_colors["within_main"], alEC_colors["main"]))) +
+  scale_color_manual(values = unname(c(aHPC_colors["within_main"], alEC_colors["main"])),
+                     name = "roi", labels=c("aHPC", "alEC")) +
+  gghalves::geom_half_violin(data = snr_avg %>% filter(roi == "aHPC_lr"), 
+                             aes(x=roi, y=tSNR),
+                             position=position_nudge(-0.1),
+                             side = "l", color = NA) +
+  gghalves::geom_half_violin(data = snr_avg %>% filter(roi == "alEC_lr"), 
+                             aes(x=roi, y=tSNR),
+                             position=position_nudge(0.1),
+                             side = "r", color = NA) +
+  stat_summary(fun = mean, geom = "point", size = 1, shape = 16,
+               position = position_nudge(c(-0.1, 0.1)), colour = "black") + 
+  stat_summary(fun.data = mean_se, geom = "errorbar",
+               position = position_nudge(c(-0.1, 0.1)), colour = "black", width = 0, size = 0.5) +
+  geom_line(aes(x = x_jit, group=subject,), color = ultimate_gray, 
+            position = position_nudge(c(0.15, -0.15))) +
+  geom_point(aes(x=x_jit, fill = roi), position = position_nudge(c(0.15, -0.15)),
+             shape=16, size = 1) +
+  scale_x_discrete(labels = c("aHPC", "alEC")) +
+  ylab('tSNR') + xlab('ROI') +    
+  guides(fill= "none", color=guide_legend(override.aes=list(fill=NA, alpha = 1, size=2))) +
+  #annotate(geom = "line",x=c(1.3, 1.7), y=25, size=0.5) +
+  annotate(geom = "text", x = c(1.5), y = Inf, 
+           label = 'underline("   ***   ")', hjust = 0.5, vjust = 1, parse = TRUE) +
+  guides(fill= "none", color=guide_legend(override.aes=list(fill=NA, alpha = 1, size=2))) +
+  theme_cowplot() + 
+  theme(text = element_text(size=10, family = font2use), axis.text = element_text(size=8),
+        legend.position = "right") 
+```
+
+Save the figure with theme to match the other figures.
+
+```{r}
+snr_fig <- snr_figa +
+  theme(plot.tag = element_text(size = 10, face="bold"), 
+        plot.tag.position = "topleft",
+        #plot.margin=grid::unit(c(5,8,5,0), "pt"),
+        text = element_text(size=10, family=font2use),
+        legend.text=element_text(size=8),
+        legend.title=element_blank(),
+        legend.position = 'bottom',
+        legend.spacing.x = unit(1, 'mm'),
+        legend.key.size = unit(3,"mm"),
+        legend.margin = margin(0,0,0,1, unit="cm"))
+
+# save and print
+fn <- here("figures", "sf08")
+ggsave(paste0(fn, ".pdf"), plot=snr_fig, units = "cm",
+         width = 5, height = 10, dpi = "retina", device = cairo_pdf)
+ggsave(paste0(fn, ".png"), plot=snr_fig, units = "cm",
+         width = 5, height = 10, dpi = "retina", device = "png")
+snr_fig
+
+```
+  
+>Supplemental Figure 6. Temporal signal-to-noise ratio in the anterior hippocampus and the anterior-lateral entorhinal cortex. A. The temporal signal-to-noise ratio was quantified as the mean unsmoothed signal over time divided by its standard deviation. It was calculated for each voxel and then averaged across voxels in a region of interest. The temporal signal-to-noise ratio was higher in the anterior hippocampus (aHPC) than in the anterior-lateral entorhinal cortex (alEC, summary statistics: t27=12.43, p<0.001). Circles show individual participant values; boxplot shows median and upper/lower quartile along with whiskers extending to most extreme data point within 1.5 interquartile ranges above/below the upper/lower quartile; black circle with error bars corresponds to mean±S.E.M.; distribution shows probability density function of data points. *** p<0.001 

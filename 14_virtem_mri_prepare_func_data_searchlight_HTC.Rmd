@@ -1,0 +1,291 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+# Run RSA Searchlight
+## Prepare functional data
+
+We want to run RSA on the multi-voxel patterns corresponding to the object presentations during the picture viewing tasks. For this, we use the data as it was preprocessed by Lorena Deuker. We will do some further cleaning and extract the relevant volumes from the time series to eventually run RSA searchlights. What will be done in the following sections has been done previously for the ROI data only. Now we do it for the whole field of view in preparation of the RSA searchlights.
+
+### Data cleaning: Extract residuals from motion parameter regression {-}
+
+In this first section of the script we will create a dataframe that includes the relevant file names for the files that are needed to calculate the clean time series. These files include the motion parameters from FSL FEAT, which was run on the functional data from the picture viewing task. As described above, these data were split into 10 blocks. We will use the preprocessed FEAT output images which were already co-registered to the analysis space ('samespace'). Further, we will use a mask to only include voxels with data in all blocks. This mask has already been created and is available in the analysis space. 
+
+```{r, eval = run_prep_srchlght}
+
+#PREPARE DATA FRAME FOR CLEANING
+
+# create a tibble with filenames etc for data cleaning, start with subject IDs
+func_dat_df <- tibble(subject = rep(as.numeric(subjects), each = n_runs * n_blocks))
+# add run info (run 1 and 2 equal the pre and post PVT)
+func_dat_df <- add_column(func_dat_df, run = rep(rep(1:n_runs, each = n_blocks), n_subs))
+# add block information (blocks 1 to 10 are the PVT blocks preprocessed separately)
+func_dat_df <- add_column(func_dat_df, block = rep(1:n_blocks, n_subs*n_runs))
+# add the motion parameter file
+func_dat_df <- add_column(func_dat_df, mc_par_fn = 
+                            file.path(dirs$feat_dir,
+                                      paste0("VIRTEM_P0", func_dat_df$subject),
+                                      sprintf("RSA_%02d_Block%02d.feat",
+                                              func_dat_df$run, func_dat_df$block),
+                                      "mc", "prefiltered_func_data_mcf.par"))
+# add the functional data file
+func_dat_df <- add_column(func_dat_df, filtered_func = 
+                            file.path(dirs$samespace_dir,
+                                      paste0("VIRTEM_P0", func_dat_df$subject),
+                                      sprintf("VIRTEM_P%03d_RSA_%02d_Block%02d_func.nii.gz",
+                                              func_dat_df$subject, func_dat_df$run, func_dat_df$block)))
+# add the brain mask data file
+func_dat_df <- add_column(func_dat_df, brain_mask = 
+                            file.path(dirs$samespace_dir,
+                                      paste0("VIRTEM_P0", func_dat_df$subject),
+                                      sprintf("VIRTEM_P%03d_common_mask_perBlock.nii.gz",
+                                              func_dat_df$subject)))
+
+# add output directory
+func_dat_df <- add_column(func_dat_df, out_dir = file.path(dirs$searchlight, "clean_timeseries"))
+if(!dir.exists(file.path(dirs$searchlight, "clean_timeseries"))){
+  dir.create(file.path(dirs$searchlight, "clean_timeseries"))
+}
+```
+
+
+#### Define function for data cleaning {-}
+
+In this next section, we will first define a function and then run it on all datasets. In this function, the preprocessed data will be loaded and transformed to matrix format. For every voxel within the brain mask, movement correction parameters are used as predictors in a GLM with the voxel time series as dependent variable. Finally, the residuals from this GLM (i.e. what could not be explained by motion) will be written to a text file. 
+
+```{r, eval = run_prep_srchlght}
+
+# DEFINE THE FUNCTION TO GET THE RESIDUAL TIME SERIES 
+run_motion_glm <- function(df = func_dat_df[1,]){
+  
+  # load the motion params and convert to tibble
+  mc_pars <- read.table(df$mc_par_fn, header = FALSE)
+  mp_df <- as_tibble(mc_pars)
+  colnames(mp_df) <- paste0("mp", 1:6)
+  
+  # load the brain mask, check it's only zeros and ones, then convert to logical
+  brain_mask_nii <- readNIfTI2(df$brain_mask)
+  assertthat::assert_that(all.equal(unique(c(img_data(brain_mask_nii))), c(0,1)))
+  brain_mask <- array(NA, dim(brain_mask_nii))
+  brain_mask[] <- as.logical(img_data(brain_mask_nii))
+  
+  # load the functional data
+  func_nii <- readNIfTI2(df$filtered_func)
+  
+  # initialize output
+  clean_dat <- array(0, dim(func_nii))
+  
+  counter <- 0
+  for (i_dim1 in 1:dim(func_nii)[1]){
+    for (i_dim2 in 1:dim(func_nii)[2]){
+      for (i_dim3 in 1:dim(func_nii)[3]){
+        if (brain_mask[i_dim1,i_dim2,i_dim3]){
+          
+          # extract this voxel's data and merge with motion params
+          mp_df$vox_dat <- func_nii[i_dim1,i_dim2,i_dim3,]
+          
+          # run the glm and store the residuals
+          clean_dat[i_dim1,i_dim2,i_dim3,] <- resid(glm('vox_dat~mp1+mp2+mp3+mp4+mp5+mp6', data = mp_df))
+        }
+      
+      # print a message to show progress
+      counter <-counter+1
+      if (counter%%(prod(dim(func_nii)[1:3])/100) == 0) {
+        print(paste0((counter/prod(dim(func_nii)[1:3])*100), "% done"))}     
+      }
+    }
+  }
+    
+  # create nifti with same header info as original data from clean time series
+  clean_dat_nii = copyNIfTIHeader(img = func_nii, arr = clean_dat)
+  
+  # create output folder
+  out_dir_sub <- file.path(df$out_dir, sprintf("%03d",df$subject))
+  if(!dir.exists(out_dir_sub)){dir.create(out_dir_sub, recursive = TRUE)}
+  
+  # write cleaned nifti to file
+  fn <- sprintf("%03d_run%02d_block%02d_clean_func_data.nii.gz",
+              df$subject, df$run, df$block)
+  writenii(nim = clean_dat_nii, filename = file.path(out_dir_sub,fn))
+}
+```
+
+#### Run data cleaning {-}
+
+Now actually run the function either in parallel or serially.
+
+```{r, eval = run_prep_srchlght}
+# next step depends on whether we are in parallel or serial mode
+if (!run_parallel){ # run serially
+
+  print("Attempting to run motion parameter cleaning serially. This will take a very long time if runnning for all subjects")
+  # run the function for each row of the data frame,
+  # i.e. for each block in each run for each subject
+  for(i in 1:nrow(func_dat_df)){
+    
+    tic(sprintf("Subject %s, run %d, block %d",
+                func_dat_df$subject[i], func_dat_df$run[i], func_dat_df$block[i]))
+    run_motion_glm(df = func_dat_df[i,])
+    toc()
+  }
+  
+} else if (run_parallel){ # run in parallel, assumes CBS HTCondor is available
+  
+  # write the data frame to file
+  fn <- file.path(here("data","mri", "rsa", "searchlight", "clean_timeseries"),
+                  "htc_config_clean_time_series.txt")
+  fn_def <- cat(sprintf('"fn <- "%s"',fn))
+  write.table(func_dat_df, fn,
+              append = FALSE, sep = ",", dec = ".", row.names = FALSE, col.names = TRUE)
+  
+  # store the function definition as text
+  func_def <- capture.output(run_motion_glm)
+  func_def[1] <- paste0("run_motion_glm <- ",func_def[1])
+  #func_def <- func_def[-length(func_def)]
+  
+  #write the Rscript that we want to run
+  rscript_fn <- here("data","mri", "rsa", "searchlight", "clean_timeseries", "run_clean_timeseries.R")
+  con <- file(rscript_fn)
+  open(con, "w")
+  writeLines(c(
+    "\n# handle input",
+    "args = commandArgs()",
+    "i <- as.numeric(args[length(args)])",
+    "\n#load required packages",
+    noquote(sprintf('lib_dir <- "%s"',"/data/pt_02261/virtem/virtem_code/R3.6.1/library/Linux")),
+    '.libPaths(c(lib_dir,.libPaths()))',
+    'lapply(c("oro.nifti", "assertthat", "dplyr", "neurobase"), library, character.only = TRUE)',
+    "\n# read the data and transform ROI column back to list",
+    noquote(sprintf('fn <- "%s"',fn)),
+    'func_dat_df <- read.table(fn, sep = ",", header = TRUE, stringsAsFactors = FALSE)',
+    "\n#define the function to run motion GLM",
+    func_def,
+    "\n# run the function on one line of the data frame",
+    "run_motion_glm(df = func_dat_df[i,])"),con)
+  close(con)
+  
+  # folder for condor output
+  htc_dir <- here("htc_logs", "clean_timeseries")
+  if(!exists(htc_dir)){dir.create(htc_dir, recursive = TRUE)}
+  
+  # write the submit script
+  fn <- here("data","mri", "rsa", "searchlight", "clean_timeseries", "run_clean_timeseries.submit")
+  con <- file(fn)
+  open(con, "w")
+  writeLines(c(
+    "universe = vanilla",
+    "executable = /afs/cbs.mpg.de/software/scripts/envwrap",
+    "request_memory = 9000",
+    "notification = error"
+    ),con)
+
+    for (i in 1:nrow(func_dat_df)){
+        writeLines(c(
+        sprintf("\narguments = R+ --version 3.6.1 Rscript %s %d", rscript_fn, i),
+        sprintf("log = %s/%d.log", htc_dir, i),
+        sprintf("output = %s/%d.out", htc_dir, i),
+        sprintf("error = %s/%d.err", htc_dir, i),
+        sprintf("Queue\n")),con)
+        }
+  close(con)
+  
+  # submit to condor
+  #system("reset-memory-max")
+  batch_id <- system(paste("condor_submit", fn), intern = TRUE)
+  batch_id <- regmatches(batch_id[2], gregexpr("[[:digit:]]+", batch_id[2]))[[1]][2]
+  cat(sprintf("submitted jobs (ID = %s) to clean time series for searchlights. Time to wait...", batch_id))
+  pause_until_batch_done(batch_id = batch_id, wait_interval = 600)
+  
+
+  #system("reset-memory-max")
+  #system("condor_q")
+}
+
+```
+
+### Extract relevant volumes {-}
+
+As the presentation of images in the PVT pre and post blocks was locked to the onset of a new volume (see above), the second volume after image onset was selected for every trial (effectively covering the time between 2270-4540 ms after stimulus onset).
+
+In this step, we split the presentation logfile from the picture viewing task into the 10 blocks. We reference the volume count to the first volume of each block and extract the relevant volumes from the cleaned 4D timeseries data, accounting for the temporal offset. This is done for each block separately in both the pre and post runs. The data are written to 3D-niftis. 
+
+```{r, eval = run_prep_srchlght}
+offset_tr = 2
+
+for (i_sub in subjects){
+  for (i_run in 1:n_runs){
+    
+    # load the logfile for this run (pre or post)
+    log_fn <- file.path(dirs$pvt_log_dir, sprintf('P%s_%svirtem.txt', i_sub, runs[i_run]))
+    log <- read.table(log_fn)
+    colnames(log) <- c("pic", "fix_start", "pic_start", "volume", "response", "RT", "trial_end")
+    
+    # split the log file into the 10 blocks
+    log_split <- split(log, rep(1:10, each = 21))
+    
+    # reference volume numbers to the first volume of that block
+    vol_block <- lapply(log_split, function(x){x$volume - x$volume[1]})
+    log_split <- mapply(cbind, log_split, "vol_block"=vol_block, SIMPLIFY=FALSE)
+    
+    for (i_block in 1:n_blocks){
+      
+      # define the full 4D file
+      clean_func_fn <- file.path(dirs$searchlight, "clean_timeseries", i_sub,
+                                 sprintf("%s_run%02d_block%02d_clean_func_data.nii.gz",
+                                         i_sub, i_run, i_block))
+  
+      # index of relevant volumes when accounting for offset
+      rel_vols <- log_split[[i_block]]$vol_block + offset_tr
+      
+      # extract the relevant volumes from the ROI timeseries data
+      out_dir <- file.path(dirs$searchlight, "rel_vols_3D", i_sub)
+      if(!dir.exists(out_dir)){dir.create(out_dir, recursive = TRUE)}
+
+      for (i_vol in 1:length(rel_vols)){
+        # subtract 1 from volume number because of 0-based FSL indexing
+        fslroi(file = clean_func_fn, tmin = rel_vols[i_vol]-1, tsize = 1, 
+               outfile = file.path(out_dir, 
+                                   sprintf("%s_run%02d_block%02d_pic%02d.nii.gz",
+                                           i_sub, i_run, i_block, log_split[[i_block]]$pic[i_vol])),
+               verbose = FALSE)
+      }
+    }
+  }
+}
+
+```
+
+### Concatenate relevant volumes {-}
+
+Next, we create 4D-files for both the pre and the post run. Each file will have consist of 200 (20 relevant pictures x 10 blocks) volumes. We take care to order the volumes according to picture identity as this is most convenient for later RSA.
+
+```{r, eval = run_prep_srchlght}
+
+for (i_sub in subjects){
+  for (i_run in 1:n_runs){
+    
+    # files to concatenate
+    in_dir <- file.path(dirs$searchlight, "rel_vols_3D", i_sub)
+    files <- c(file.path(in_dir, sprintf("%s_run%02d_block%02d_pic%02d.nii.gz",
+                                         i_sub, i_run, c(rep(1:10,n_pics)), c(rep(1:n_pics, each = n_blocks)))))
+    
+    # output file
+    out_dir <- file.path(dirs$searchlight, "rel_vols_4D")
+    if(!dir.exists(out_dir)){dir.create(out_dir, recursive = TRUE)}
+    fn <- file.path(out_dir, sprintf("%s_run%02d_rel_vols.nii.gz", 
+                                     i_sub, i_run)) 
+    
+    # merge the files
+    fslmerge(infiles = files, direction = "t", outfile = fn, 
+             retimg = FALSE, verbose = FALSE)
+    
+    # change datatype to short to save space and memory for the cluster jobs
+    fslmaths(file = fn, outfile = fn, retimg = FALSE,
+             opts = "-odt short", opts_after_outfile = TRUE, verbose = FALSE)
+  }
+}
+
+```

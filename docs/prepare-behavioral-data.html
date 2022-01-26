@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Prepare behavioral data | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</title>
+  <meta name="description" content="4 Prepare behavioral data | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Prepare behavioral data | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jacbel.github.io/virtem_code/" />
+  
+  <meta property="og:description" content="4 Prepare behavioral data | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="github-repo" content="jacbel/virtem_code" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Prepare behavioral data | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  
+  <meta name="twitter:description" content="4 Prepare behavioral data | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  
+
+<meta name="author" content="Jacob L. S. Bellmund" />
+
+
+<meta name="date" content="2022-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="illustrations-of-task-design-and-analysis-logic.html"/>
+<link rel="next" href="behavioral-analysis.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.1</b> Purpose</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#contents"><i class="fa fa-check"></i><b>1.2</b> Contents</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#contact"><i class="fa fa-check"></i><b>1.3</b> Contact</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#license-information"><i class="fa fa-check"></i><b>1.4</b> License Information</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="analysis-setup.html"><a href="analysis-setup.html"><i class="fa fa-check"></i><b>2</b> Analysis Setup</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="analysis-setup.html"><a href="analysis-setup.html#defining-variables-and-folders"><i class="fa fa-check"></i><b>2.1</b> Defining Variables and Folders</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#folder-structure"><i class="fa fa-check"></i>Folder Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="analysis-setup.html"><a href="analysis-setup.html#define-analysis-functions"><i class="fa fa-check"></i><b>2.2</b> Define Analysis Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#analysis-logic"><i class="fa fa-check"></i>Analysis Logic</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#brain-plots-in-ggplot"><i class="fa fa-check"></i>Brain Plots in ggplot</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#ggbrain-functions-to-get-template-background"><i class="fa fa-check"></i>ggBrain functions to get template background</a></li>
+<li class="chapter" data-level="" data-path="analysis-setup.html"><a href="analysis-setup.html#waiting-for-cluster-jobs"><i class="fa fa-check"></i>Waiting for Cluster Jobs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html"><i class="fa fa-check"></i><b>3</b> Illustrations of Task Design and Analysis Logic</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#day-learning-task-design"><i class="fa fa-check"></i><b>3.1</b> Day Learning Task Design</a>
+<ul>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-virtual-and-real-time"><i class="fa fa-check"></i>Events in virtual and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-virtual-time"><i class="fa fa-check"></i>Events in virtual time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#events-in-real-time"><i class="fa fa-check"></i>Events in real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#correlations-of-virtual-time-with-order-and-real-time"><i class="fa fa-check"></i>Correlations of virtual time with order and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#time-cues-in-virtual-and-real-time"><i class="fa fa-check"></i>Time cues in virtual and real time</a></li>
+<li class="chapter" data-level="" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#supplemental-figure-for-task-design"><i class="fa fa-check"></i>Supplemental figure for task design</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="illustrations-of-task-design-and-analysis-logic.html"><a href="illustrations-of-task-design-and-analysis-logic.html#representational-similarity-analysis-logic"><i class="fa fa-check"></i><b>3.2</b> Representational Similarity Analysis Logic</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html"><i class="fa fa-check"></i><b>4</b> Prepare behavioral data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#sorting-task"><i class="fa fa-check"></i><b>4.1</b> Sorting task</a></li>
+<li class="chapter" data-level="4.2" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#timeline-task"><i class="fa fa-check"></i><b>4.2</b> Timeline task</a></li>
+<li class="chapter" data-level="4.3" data-path="prepare-behavioral-data.html"><a href="prepare-behavioral-data.html#picture-viewing-tasks"><i class="fa fa-check"></i><b>4.3</b> Picture viewing tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html"><i class="fa fa-check"></i><b>5</b> Behavioral Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#sorting-task-1"><i class="fa fa-check"></i><b>5.1</b> Sorting Task</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#calculate-percentage-of-correct-responses"><i class="fa fa-check"></i>Calculate percentage of correct responses</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#plot-sorting-performance"><i class="fa fa-check"></i>Plot sorting performance</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#sorting-errors-as-a-function-of-sequence-position"><i class="fa fa-check"></i>Sorting errors as a function of sequence position</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#timeline-task-1"><i class="fa fa-check"></i><b>5.2</b> Timeline Task</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#visualize-the-raw-data"><i class="fa fa-check"></i>Visualize the raw data</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#accuracy-of-remembered-times"><i class="fa fa-check"></i>Accuracy of remembered times</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#relationship-of-sorting-errors-and-timeline-errors"><i class="fa fa-check"></i>Relationship of sorting errors and timeline errors</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#time-metrics-underlying-remembered-times"><i class="fa fa-check"></i>Time metrics underlying remembered times</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#compose-figure-for-behavioral-data"><i class="fa fa-check"></i>Compose Figure for Behavioral Data</a></li>
+<li class="chapter" data-level="5.3" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#generalization-bias"><i class="fa fa-check"></i><b>5.3</b> Generalization bias</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#quantify-relative-time-of-other-events"><i class="fa fa-check"></i>Quantify relative time of other events</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#test-generalization-bias"><i class="fa fa-check"></i>Test Generalization Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-of-generalization-bias"><i class="fa fa-check"></i><b>5.4</b> Replication of Generalization Bias</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-data-quantify-relative-time-of-other-events"><i class="fa fa-check"></i>Replication data: Quantify relative time of other events</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#replication-data-test-generalization-bias"><i class="fa fa-check"></i>Replication data: Test Generalization Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors"><i class="fa fa-check"></i><b>5.5</b> Swap Errors</a>
+<ul>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#descriptives-of-swap-errors"><i class="fa fa-check"></i>Descriptives of swap errors</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors-as-a-function-of-sequence-position"><i class="fa fa-check"></i>Swap errors as a function of sequence position</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-error-more-frequent-than-expected-from-chance"><i class="fa fa-check"></i>Swap error: More frequent than expected from chance?</a></li>
+<li class="chapter" data-level="" data-path="behavioral-analysis.html"><a href="behavioral-analysis.html#swap-errors-and-generalization-bias"><i class="fa fa-check"></i>Swap errors and generalization bias</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html"><i class="fa fa-check"></i><b>6</b> Prepare (f)MRI Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#regions-of-interest"><i class="fa fa-check"></i><b>6.1</b> Regions of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#freesurfer-masks"><i class="fa fa-check"></i>FreeSurfer Masks</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#subregion-masks-mni"><i class="fa fa-check"></i>Subregion masks (MNI)</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#final-rois-from-intersection-of-masks"><i class="fa fa-check"></i>Final ROIs from intersection of masks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#group-level-masks"><i class="fa fa-check"></i><b>6.2</b> Group-Level Masks</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#probabilistic-rois-for-visualization"><i class="fa fa-check"></i>Probabilistic ROIs for visualization</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#field-of-view-mask-for-visualization"><i class="fa fa-check"></i>Field of view mask for visualization</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#gray-matter-mask"><i class="fa fa-check"></i>Gray matter mask</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#small-volume-correction-mask"><i class="fa fa-check"></i>Small Volume Correction Mask</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#quantify-representational-change"><i class="fa fa-check"></i><b>6.3</b> Quantify Representational Change</a>
+<ul>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#get-multi-voxel-patterns-from-rois"><i class="fa fa-check"></i>Get multi-voxel patterns from ROIs</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#calculate-correlation-matrices"><i class="fa fa-check"></i>Calculate correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#calculate-pattern-similarity-change"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="prepare-fmri-data.html"><a href="prepare-fmri-data.html#combine-behavioral-and-fmri-data-for-rsa"><i class="fa fa-check"></i><b>6.4</b> Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html"><i class="fa fa-check"></i><b>7</b> Run RSA Searchlight</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-functional-data"><i class="fa fa-check"></i><b>7.1</b> Prepare functional data</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#data-cleaning-extract-residuals-from-motion-parameter-regression"><i class="fa fa-check"></i>Data cleaning: Extract residuals from motion parameter regression</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#extract-relevant-volumes-1"><i class="fa fa-check"></i>Extract relevant volumes</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#concatenate-relevant-volumes"><i class="fa fa-check"></i>Concatenate relevant volumes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#first-level-rsa-searchlight"><i class="fa fa-check"></i><b>7.2</b> First-level RSA searchlight</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#set-analysis-parameters"><i class="fa fa-check"></i>Set analysis parameters</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-rsa-predictions"><i class="fa fa-check"></i>Prepare RSA-predictions</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-lookup-table-for-searchlight"><i class="fa fa-check"></i>Create lookup table for searchlight</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#dataframe-with-input-for-analysis"><i class="fa fa-check"></i>Dataframe with input for analysis</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#searchlight-implementation"><i class="fa fa-check"></i>Searchlight implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#group-level-searchlight-analysis"><i class="fa fa-check"></i><b>7.3</b> Group-level searchlight analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#move-first-level-images-to-mni-space"><i class="fa fa-check"></i>Move first-level images to MNI space</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#merge-and-smooth-first-level-images"><i class="fa fa-check"></i>Merge and smooth first-level images</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#run-fsl-randomise"><i class="fa fa-check"></i>Run FSL Randomise</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#find-searchlight-clusters-and-atlas-labels"><i class="fa fa-check"></i>Find searchlight clusters and atlas labels</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-outlines-of-significant-clusters"><i class="fa fa-check"></i>Create outlines of significant clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#prepare-rsa-in-searchlight-peak"><i class="fa fa-check"></i><b>7.4</b> Prepare RSA in searchlight peak</a>
+<ul>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#create-the-roi-mask"><i class="fa fa-check"></i>Create the ROI mask</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#calculating-the-correlation-matrices"><i class="fa fa-check"></i>Calculating the correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#calculate-pattern-similarity-change-1"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+<li class="chapter" data-level="" data-path="run-rsa-searchlight.html"><a href="run-rsa-searchlight.html#combine-behavioral-and-fmri-data-for-rsa-1"><i class="fa fa-check"></i>Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html"><i class="fa fa-check"></i><b>8</b> RSA on Pattern Similarity Change</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#time-metrics-to-quantify-event-relations"><i class="fa fa-check"></i><b>8.1</b> Time metrics to quantify event relations</a></li>
+<li class="chapter" data-level="8.2" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#visualize-regions-of-interests"><i class="fa fa-check"></i><b>8.2</b> Visualize Regions of Interests</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#template-background-image-with-fov"><i class="fa fa-check"></i>Template background image with FOV</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#anterior-hippocampus-roi"><i class="fa fa-check"></i>Anterior hippocampus ROI</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#anterior-lateral-entorhinal-cortex"><i class="fa fa-check"></i>Anterior-lateral entorhinal cortex</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#first-level-rsa"><i class="fa fa-check"></i><b>8.3</b> First-level RSA</a></li>
+<li class="chapter" data-level="8.4" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-sequence"><i class="fa fa-check"></i><b>8.4</b> aHPC: virtual time within sequence</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-3"><i class="fa fa-check"></i>Summary statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-2"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#representational-change-visualization"><i class="fa fa-check"></i>Representational Change Visualization</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#not-driven-by-first-last-event-pairs"><i class="fa fa-check"></i>Not driven by first &amp; last event pairs</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-sequence-when-including-order-real-time"><i class="fa fa-check"></i><b>8.5</b> aHPC: virtual time within sequence when including order &amp; real time</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#one-model-with-multiple-predictors"><i class="fa fa-check"></i>One model with multiple predictors</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-explains-residuals-of-order-and-real-time"><i class="fa fa-check"></i>Virtual time explains residuals of order and real time</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-across-sequences"><i class="fa fa-check"></i><b>8.6</b> aHPC: virtual time across sequences</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-7"><i class="fa fa-check"></i>Summary statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-5"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#representational-change-visualization-1"><i class="fa fa-check"></i>Representational Change Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-across-sequence-when-including-order-real-time"><i class="fa fa-check"></i><b>8.7</b> aHPC: virtual time across sequence when including order &amp; real time</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-8"><i class="fa fa-check"></i>Summary Statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-6"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-virtual-time-within-vs.-across-sequences"><i class="fa fa-check"></i><b>8.8</b> aHPC: virtual time within vs. across sequences</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#second-level-analysis"><i class="fa fa-check"></i>Second-level analysis</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-7"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-order"><i class="fa fa-check"></i>Interaction of sequence membership and order</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-real-time"><i class="fa fa-check"></i>Interaction of sequence membership and real time</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#interaction-of-sequence-membership-and-virtual-time-when-including-interactions-with-other-time-metrics"><i class="fa fa-check"></i>Interaction of sequence membership and virtual time when including interactions with other time metrics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#mds"><i class="fa fa-check"></i>MDS</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#umap"><i class="fa fa-check"></i>UMAP</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec"><i class="fa fa-check"></i><b>8.9</b> alEC</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-withinacross-sequences-separately"><i class="fa fa-check"></i>alEC: virtual time within/across sequences separately</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-within-vs.-across-sequences"><i class="fa fa-check"></i>alEC: virtual time within vs. across sequences</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-for-all-event-pairs"><i class="fa fa-check"></i>alEC: virtual time for all event pairs</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#alec-virtual-time-for-all-event-pairs-when-including-order-real-time"><i class="fa fa-check"></i>alEC: virtual time for all event pairs when including order &amp; real time</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-vs.-alec"><i class="fa fa-check"></i><b>8.10</b> aHPC vs. alEC</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-12"><i class="fa fa-check"></i>Summary Statistics</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-10"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#searchlight-results"><i class="fa fa-check"></i><b>8.11</b> Searchlight Results</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-within-sequence"><i class="fa fa-check"></i>Virtual Time Within Sequence</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-across-sequences-in-within-searchlight-cluster"><i class="fa fa-check"></i>Virtual Time Across Sequences in Within-Searchlight Cluster</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-across-sequences"><i class="fa fa-check"></i>Virtual Time Across Sequences</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#visualization-of-overlap"><i class="fa fa-check"></i>Visualization of Overlap</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#virtual-time-sequence-interaction"><i class="fa fa-check"></i>Virtual Time &amp; Sequence Interaction</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#exploratory-searchlight-results"><i class="fa fa-check"></i>Exploratory Searchlight Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-of-behavioral-generalization-bias-with-searchlight-effects"><i class="fa fa-check"></i><b>8.12</b> Correlation of behavioral generalization bias with searchlight effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-with-across-sequence-searchlight-effect"><i class="fa fa-check"></i>Correlation with across-sequence searchlight effect</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#correlation-with-same-sequence-searchlight-effect"><i class="fa fa-check"></i>Correlation with same-sequence searchlight effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.13" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#mixed-model-summaries"><i class="fa fa-check"></i><b>8.13</b> Mixed Model Summaries</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#supplemental-figure-1"><i class="fa fa-check"></i>Supplemental Figure</a></li>
+<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#supplemental-tables"><i class="fa fa-check"></i>Supplemental Tables</a></li>
+<li class="chapter" data-level="8.13.1" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#source-data"><i class="fa fa-check"></i><b>8.13.1</b> Source data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html"><i class="fa fa-check"></i><b>9</b> Signal to noise ratio</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#calculate-voxel-wise-temporal-snr"><i class="fa fa-check"></i><b>9.1</b> Calculate voxel-wise temporal SNR</a></li>
+<li class="chapter" data-level="9.2" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#average-tsnr-per-roi"><i class="fa fa-check"></i><b>9.2</b> Average tSNR per ROI</a></li>
+<li class="chapter" data-level="9.3" data-path="signal-to-noise-ratio.html"><a href="signal-to-noise-ratio.html#contrast-tsnr-between-ahpc-and-alec"><i class="fa fa-check"></i><b>9.3</b> Contrast tSNR between aHPC and alEC</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html"><i class="fa fa-check"></i><b>10</b> RSA in searchlight peak with different threshold</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#prepare-rsa-in-searchlight-peak-1"><i class="fa fa-check"></i><b>10.1</b> Prepare RSA in searchlight peak</a>
+<ul>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#create-the-roi-mask-1"><i class="fa fa-check"></i>Create the ROI mask</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#calculating-the-correlation-matrices-1"><i class="fa fa-check"></i>Calculating the correlation matrices</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#calculate-pattern-similarity-change-2"><i class="fa fa-check"></i>Calculate Pattern Similarity Change</a></li>
+<li class="chapter" data-level="" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#combine-behavioral-and-fmri-data-for-rsa-2"><i class="fa fa-check"></i>Combine behavioral and fMRI data for RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="rsa-in-searchlight-peak-with-different-threshold.html"><a href="rsa-in-searchlight-peak-with-different-threshold.html#rsa"><i class="fa fa-check"></i><b>10.2</b> RSA</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html"><i class="fa fa-check"></i><b>11</b> Univariate GLM: Relative time</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#copy-feat-folder-from-preprocessing-to-first-level-glm-directory"><i class="fa fa-check"></i><b>11.1</b> Copy FEAT-folder from Preprocessing to First-Level GLM directory</a></li>
+<li class="chapter" data-level="11.2" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#prepare-glm"><i class="fa fa-check"></i><b>11.2</b> Prepare GLM</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#compute-relative-time"><i class="fa fa-check"></i>Compute relative time</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#write-custom-ev-files-for-fsl-feat"><i class="fa fa-check"></i>Write custom EV files for FSL FEAT</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#glm-design-files"><i class="fa fa-check"></i>GLM Design files</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#prepare-confound-ev"><i class="fa fa-check"></i>Prepare confound EV</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#create-design-matrix"><i class="fa fa-check"></i>Create design matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#run-1st-level-glm-on-htcondor"><i class="fa fa-check"></i><b>11.3</b> Run 1st-level GLM on HTCondor</a></li>
+<li class="chapter" data-level="11.4" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#group-level-1"><i class="fa fa-check"></i><b>11.4</b> Group-level</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#move-first-level-images-to-mni-space-1"><i class="fa fa-check"></i>Move first-level images to MNI space</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#merge-first-level-images"><i class="fa fa-check"></i>Merge first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#smooth-first-level-images"><i class="fa fa-check"></i>Smooth first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#average-first-level-images"><i class="fa fa-check"></i>Average first-level images</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#ahpc-roi-analysis"><i class="fa fa-check"></i>aHPC ROI analysis</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#run-fsl-randomise-1"><i class="fa fa-check"></i>Run FSL Randomise</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#results-in-ahpc-and-alec"><i class="fa fa-check"></i>Results in aHPC and alEC</a></li>
+<li class="chapter" data-level="" data-path="univariate-glm-relative-time.html"><a href="univariate-glm-relative-time.html#fov-results"><i class="fa fa-check"></i>FOV results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="credit.html"><a href="credit.html"><i class="fa fa-check"></i><b>12</b> Credit</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="credit.html"><a href="credit.html#list-of-packages"><i class="fa fa-check"></i><b>12.1</b> List of packages</a></li>
+<li class="chapter" data-level="12.2" data-path="credit.html"><a href="credit.html#references"><i class="fa fa-check"></i><b>12.2</b> References</a></li>
+<li class="chapter" data-level="12.3" data-path="credit.html"><a href="credit.html#session-info"><i class="fa fa-check"></i><b>12.3</b> Session Info</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="prepare-behavioral-data" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Prepare behavioral data</h1>
+<p>As a first step, we create a design table for each participant that collects information about the assignment of events to virtual days and when the events occur with respect to virtual time and real time (seconds).</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="prepare-behavioral-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the function</span></span>
+<span id="cb26-2"><a href="prepare-behavioral-data.html#cb26-2" aria-hidden="true" tabindex="-1"></a>virtem_behavior_prepare_design_tbl <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">subjects =</span> <span class="fu">c</span>(<span class="st">&quot;031&quot;</span>, <span class="st">&quot;032&quot;</span>)){</span>
+<span id="cb26-3"><a href="prepare-behavioral-data.html#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="prepare-behavioral-data.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># load design file with virtual time</span></span>
+<span id="cb26-5"><a href="prepare-behavioral-data.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  fname <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;design&quot;</span>, <span class="st">&quot;daysTime.txt&quot;</span>)</span>
+<span id="cb26-6"><a href="prepare-behavioral-data.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  virtual_time <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(fname, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-7"><a href="prepare-behavioral-data.html#cb26-7" aria-hidden="true" tabindex="-1"></a>  virtual_time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">t</span>(<span class="fu">as.matrix</span>(virtual_time)))</span>
+<span id="cb26-8"><a href="prepare-behavioral-data.html#cb26-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-9"><a href="prepare-behavioral-data.html#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># load design file with times of events in actual time in seconds (after day start) --&gt; real time</span></span>
+<span id="cb26-10"><a href="prepare-behavioral-data.html#cb26-10" aria-hidden="true" tabindex="-1"></a>  fname <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;design&quot;</span>, <span class="st">&quot;daysTimeS.txt&quot;</span>)</span>
+<span id="cb26-11"><a href="prepare-behavioral-data.html#cb26-11" aria-hidden="true" tabindex="-1"></a>  real_time <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(fname, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-12"><a href="prepare-behavioral-data.html#cb26-12" aria-hidden="true" tabindex="-1"></a>  real_time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">t</span>(<span class="fu">as.matrix</span>(real_time)))</span>
+<span id="cb26-13"><a href="prepare-behavioral-data.html#cb26-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-14"><a href="prepare-behavioral-data.html#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i_sub <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(subjects)){</span>
+<span id="cb26-15"><a href="prepare-behavioral-data.html#cb26-15" aria-hidden="true" tabindex="-1"></a>    sub_id <span class="ot">&lt;-</span> subjects[i_sub]</span>
+<span id="cb26-16"><a href="prepare-behavioral-data.html#cb26-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-17"><a href="prepare-behavioral-data.html#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># initialize the tibble</span></span>
+<span id="cb26-18"><a href="prepare-behavioral-data.html#cb26-18" aria-hidden="true" tabindex="-1"></a>    design_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">sub_id =</span> <span class="fu">rep</span>(sub_id, n_days <span class="sc">*</span> n_events_day), </span>
+<span id="cb26-19"><a href="prepare-behavioral-data.html#cb26-19" aria-hidden="true" tabindex="-1"></a>                         <span class="at">day=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">5</span>),<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">5</span>),<span class="fu">rep</span>(<span class="dv">4</span>,<span class="dv">5</span>)),</span>
+<span id="cb26-20"><a href="prepare-behavioral-data.html#cb26-20" aria-hidden="true" tabindex="-1"></a>                         <span class="at">event=</span><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_events_day,<span class="dv">4</span>), virtual_time, </span>
+<span id="cb26-21"><a href="prepare-behavioral-data.html#cb26-21" aria-hidden="true" tabindex="-1"></a>                         real_time, <span class="at">pic =</span> <span class="fu">numeric</span>(n_days <span class="sc">*</span> n_events_day))</span>
+<span id="cb26-22"><a href="prepare-behavioral-data.html#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-23"><a href="prepare-behavioral-data.html#cb26-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load design file to get stimulus assignments</span></span>
+<span id="cb26-24"><a href="prepare-behavioral-data.html#cb26-24" aria-hidden="true" tabindex="-1"></a>    fname <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;logs&quot;</span>, <span class="st">&quot;input_files&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;P%s_input.txt&quot;</span>, sub_id))</span>
+<span id="cb26-25"><a href="prepare-behavioral-data.html#cb26-25" aria-hidden="true" tabindex="-1"></a>    input_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(fname)</span>
+<span id="cb26-26"><a href="prepare-behavioral-data.html#cb26-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-27"><a href="prepare-behavioral-data.html#cb26-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extract the trials where pics were presented</span></span>
+<span id="cb26-28"><a href="prepare-behavioral-data.html#cb26-28" aria-hidden="true" tabindex="-1"></a>    pic_trial_idx <span class="ot">=</span> input_data[,<span class="dv">5</span>] <span class="sc">==</span> <span class="dv">1</span>; <span class="co"># picture trial if column 5 is a 1</span></span>
+<span id="cb26-29"><a href="prepare-behavioral-data.html#cb26-29" aria-hidden="true" tabindex="-1"></a>    pic_trials <span class="ot">&lt;-</span> input_data[pic_trial_idx,]</span>
+<span id="cb26-30"><a href="prepare-behavioral-data.html#cb26-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-31"><a href="prepare-behavioral-data.html#cb26-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># assign the 5 picture IDs of each day to the respective days</span></span>
+<span id="cb26-32"><a href="prepare-behavioral-data.html#cb26-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i_day <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_days){</span>
+<span id="cb26-33"><a href="prepare-behavioral-data.html#cb26-33" aria-hidden="true" tabindex="-1"></a>          all_reps <span class="ot">&lt;-</span> pic_trials[pic_trials[,<span class="dv">3</span>]<span class="sc">==</span>i_day,<span class="dv">6</span>] <span class="co"># all repetitions for this day</span></span>
+<span id="cb26-34"><a href="prepare-behavioral-data.html#cb26-34" aria-hidden="true" tabindex="-1"></a>          design_tbl<span class="sc">$</span>pic[design_tbl<span class="sc">$</span>day<span class="sc">==</span>i_day] <span class="ot">&lt;-</span> all_reps[<span class="dv">1</span><span class="sc">:</span>n_events_day] <span class="co"># extract IDs for first rep</span></span>
+<span id="cb26-35"><a href="prepare-behavioral-data.html#cb26-35" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb26-36"><a href="prepare-behavioral-data.html#cb26-36" aria-hidden="true" tabindex="-1"></a>          <span class="co"># check assumption that IDs are correct is met</span></span>
+<span id="cb26-37"><a href="prepare-behavioral-data.html#cb26-37" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (<span class="sc">!</span><span class="fu">identical</span>(all_reps, <span class="fu">rep</span>(all_reps[<span class="dv">1</span><span class="sc">:</span>n_events_day],<span class="dv">7</span>))){</span>
+<span id="cb26-38"><a href="prepare-behavioral-data.html#cb26-38" aria-hidden="true" tabindex="-1"></a>                <span class="fu">stop</span>(<span class="st">&quot;error when finding picture IDs for subject &quot;</span>, sub_id)</span>
+<span id="cb26-39"><a href="prepare-behavioral-data.html#cb26-39" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb26-40"><a href="prepare-behavioral-data.html#cb26-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb26-41"><a href="prepare-behavioral-data.html#cb26-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-42"><a href="prepare-behavioral-data.html#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sanity check: compare to Lorena&#39;s day order</span></span>
+<span id="cb26-43"><a href="prepare-behavioral-data.html#cb26-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">#fname &lt;- here(&quot;data&quot;, &quot;behavior&quot;, &quot;design&quot;, sprintf(&quot;P%s_daysOrder.txt&quot;, sub_id))</span></span>
+<span id="cb26-44"><a href="prepare-behavioral-data.html#cb26-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">#days_order &lt;- read.csv(fname, header = FALSE)</span></span>
+<span id="cb26-45"><a href="prepare-behavioral-data.html#cb26-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">#days_order &lt;- c(t(as.matrix(days_order)))</span></span>
+<span id="cb26-46"><a href="prepare-behavioral-data.html#cb26-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">#stopifnot(all(days_order == design_tbl$pic))</span></span>
+<span id="cb26-47"><a href="prepare-behavioral-data.html#cb26-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-48"><a href="prepare-behavioral-data.html#cb26-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write design tibble to file for this subject</span></span>
+<span id="cb26-49"><a href="prepare-behavioral-data.html#cb26-49" aria-hidden="true" tabindex="-1"></a>    out_dir <span class="ot">=</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;design_tbl&quot;</span>)</span>
+<span id="cb26-50"><a href="prepare-behavioral-data.html#cb26-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(out_dir)){<span class="fu">dir.create</span>(out_dir)}</span>
+<span id="cb26-51"><a href="prepare-behavioral-data.html#cb26-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write_csv</span>(design_tbl, <span class="fu">file.path</span>(out_dir, <span class="fu">sprintf</span>(<span class="st">&quot;%s_design_tbl.txt&quot;</span>, sub_id)))</span>
+<span id="cb26-52"><a href="prepare-behavioral-data.html#cb26-52" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb26-53"><a href="prepare-behavioral-data.html#cb26-53" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-54"><a href="prepare-behavioral-data.html#cb26-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-55"><a href="prepare-behavioral-data.html#cb26-55" aria-hidden="true" tabindex="-1"></a><span class="co"># call the function to get the design tibble for each subject and write it to file</span></span>
+<span id="cb26-56"><a href="prepare-behavioral-data.html#cb26-56" aria-hidden="true" tabindex="-1"></a><span class="fu">virtem_behavior_prepare_design_tbl</span>(<span class="at">subjects =</span> subjects)</span></code></pre></div>
+<div id="sorting-task" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Sorting task</h2>
+<p>Here is a description of the task from the methods:</p>
+<blockquote>
+<p>The day sorting task (Figure 1D) was performed in front of a computer screen. The 20 event images from the day learning task were presented on the screen in a miniature version. They were arranged in a circle around a central area displaying 4 rectangles. Participants were instructed to drag and drop all events of the same sequence into the same rectangle with a computer mouse. Participants freely chose which rectangle corresponded to which sequence as the sequence were not identifiable by any label and were presented in differing orders across mini-blocks during learning.</p>
+</blockquote>
+<p>Thus, in analysis, we take the grouping as provided by the rectangles and assign the four groups of events to the four days in a way that maximizes the overlap between actual days and sorted days. This may be trivial if performance is perfect or very high, but if several scenes were mixed up between days, it can become difficult to ascertain which day participants were trying to re-assemble. The best fitting permutation is written to file.</p>
+<blockquote>
+<p>For analysis of the sorting task, we took the grouping of event images as provided by the participants and assigned them to the four sequences to ensure maximal overlap between actual and sorted sequence memberships. While the assignment of groupings to sequences is unambiguous when performance is, as in our sample, high, this procedure is potentially liberal at lower performance levels. We then calculated the percentage of correctly sorted event images (Figure 2A).</p>
+</blockquote>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="prepare-behavioral-data.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define function to prepare the data from the day sorting task</span></span>
+<span id="cb27-2"><a href="prepare-behavioral-data.html#cb27-2" aria-hidden="true" tabindex="-1"></a>virtem_behavior_prepare_data_day_sorting <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">subjects =</span> <span class="fu">c</span>(<span class="st">&quot;036&quot;</span>, <span class="st">&quot;037&quot;</span>)){</span>
+<span id="cb27-3"><a href="prepare-behavioral-data.html#cb27-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb27-4"><a href="prepare-behavioral-data.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># initialize</span></span>
+<span id="cb27-5"><a href="prepare-behavioral-data.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  n_correct <span class="ot">=</span> <span class="fu">numeric</span>(<span class="fu">length</span>(subjects))</span>
+<span id="cb27-6"><a href="prepare-behavioral-data.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  out_dir <span class="ot">=</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;day_sorting&quot;</span>)</span>
+<span id="cb27-7"><a href="prepare-behavioral-data.html#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(out_dir)){<span class="fu">dir.create</span>(out_dir)}</span>
+<span id="cb27-8"><a href="prepare-behavioral-data.html#cb27-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-9"><a href="prepare-behavioral-data.html#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i_sub <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(subjects)){</span>
+<span id="cb27-10"><a href="prepare-behavioral-data.html#cb27-10" aria-hidden="true" tabindex="-1"></a>    sub_id <span class="ot">&lt;-</span> subjects[i_sub]</span>
+<span id="cb27-11"><a href="prepare-behavioral-data.html#cb27-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-12"><a href="prepare-behavioral-data.html#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load design file with true assignment of stimuli to days</span></span>
+<span id="cb27-13"><a href="prepare-behavioral-data.html#cb27-13" aria-hidden="true" tabindex="-1"></a>    fname <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;design_tbl&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;%s_design_tbl.txt&quot;</span>, sub_id))</span>
+<span id="cb27-14"><a href="prepare-behavioral-data.html#cb27-14" aria-hidden="true" tabindex="-1"></a>    col_classes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sub_id&quot;</span> <span class="ot">=</span> <span class="st">&quot;c&quot;</span>, <span class="st">&quot;day&quot;</span><span class="ot">=</span><span class="st">&quot;n&quot;</span>, <span class="st">&quot;event&quot;</span><span class="ot">=</span><span class="st">&quot;n&quot;</span>, <span class="st">&quot;pic&quot;</span><span class="ot">=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb27-15"><a href="prepare-behavioral-data.html#cb27-15" aria-hidden="true" tabindex="-1"></a>    design_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">read_csv</span>(fname, <span class="at">col_types =</span> col_classes))</span>
+<span id="cb27-16"><a href="prepare-behavioral-data.html#cb27-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-17"><a href="prepare-behavioral-data.html#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load the data from the day sorting task and store what we need</span></span>
+<span id="cb27-18"><a href="prepare-behavioral-data.html#cb27-18" aria-hidden="true" tabindex="-1"></a>    fname <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;logs&quot;</span>, <span class="st">&quot;day_sorting&quot;</span>, </span>
+<span id="cb27-19"><a href="prepare-behavioral-data.html#cb27-19" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">sprintf</span>(<span class="st">&quot;%s_rectangles_results.mat&quot;</span>, sub_id))</span>
+<span id="cb27-20"><a href="prepare-behavioral-data.html#cb27-20" aria-hidden="true" tabindex="-1"></a>    sorting_log <span class="ot">&lt;-</span> <span class="fu">readMat</span>(fname)</span>
+<span id="cb27-21"><a href="prepare-behavioral-data.html#cb27-21" aria-hidden="true" tabindex="-1"></a>    obj_pos <span class="ot">&lt;-</span> sorting_log<span class="sc">$</span>objectPositions</span>
+<span id="cb27-22"><a href="prepare-behavioral-data.html#cb27-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-23"><a href="prepare-behavioral-data.html#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extract quadrant for  each image</span></span>
+<span id="cb27-24"><a href="prepare-behavioral-data.html#cb27-24" aria-hidden="true" tabindex="-1"></a>    pic_q <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_days<span class="sc">*</span>n_events_day)</span>
+<span id="cb27-25"><a href="prepare-behavioral-data.html#cb27-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i_pic <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(obj_pos)){</span>
+<span id="cb27-26"><a href="prepare-behavioral-data.html#cb27-26" aria-hidden="true" tabindex="-1"></a>          <span class="co"># coordinates of current image</span></span>
+<span id="cb27-27"><a href="prepare-behavioral-data.html#cb27-27" aria-hidden="true" tabindex="-1"></a>          curr_x <span class="ot">&lt;-</span> obj_pos[i_pic,<span class="dv">1</span>]</span>
+<span id="cb27-28"><a href="prepare-behavioral-data.html#cb27-28" aria-hidden="true" tabindex="-1"></a>          curr_y <span class="ot">&lt;-</span> obj_pos[i_pic,<span class="dv">2</span>]</span>
+<span id="cb27-29"><a href="prepare-behavioral-data.html#cb27-29" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb27-30"><a href="prepare-behavioral-data.html#cb27-30" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (curr_x <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> curr_y <span class="sc">&gt;</span> <span class="dv">0</span>){ <span class="co"># x smaller than 0, y bigger than 0 --&gt; quadrant 1</span></span>
+<span id="cb27-31"><a href="prepare-behavioral-data.html#cb27-31" aria-hidden="true" tabindex="-1"></a>                pic_q[i_pic] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb27-32"><a href="prepare-behavioral-data.html#cb27-32" aria-hidden="true" tabindex="-1"></a>          }  </span>
+<span id="cb27-33"><a href="prepare-behavioral-data.html#cb27-33" aria-hidden="true" tabindex="-1"></a>          <span class="cf">else</span> <span class="cf">if</span> (curr_x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> curr_y <span class="sc">&gt;</span> <span class="dv">0</span>){ <span class="co"># x bigger than 0, y bigger than 0 --&gt; quadrant 2</span></span>
+<span id="cb27-34"><a href="prepare-behavioral-data.html#cb27-34" aria-hidden="true" tabindex="-1"></a>                pic_q[i_pic] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb27-35"><a href="prepare-behavioral-data.html#cb27-35" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb27-36"><a href="prepare-behavioral-data.html#cb27-36" aria-hidden="true" tabindex="-1"></a>          <span class="cf">else</span> <span class="cf">if</span> (curr_x <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> curr_y <span class="sc">&lt;</span> <span class="dv">0</span>){ <span class="co"># x smaller than 0, y smaller than 0 --&gt; quadrant 3</span></span>
+<span id="cb27-37"><a href="prepare-behavioral-data.html#cb27-37" aria-hidden="true" tabindex="-1"></a>                pic_q[i_pic] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb27-38"><a href="prepare-behavioral-data.html#cb27-38" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb27-39"><a href="prepare-behavioral-data.html#cb27-39" aria-hidden="true" tabindex="-1"></a>          <span class="cf">else</span> <span class="cf">if</span> (curr_x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> curr_y <span class="sc">&lt;</span> <span class="dv">0</span>){ <span class="co"># x bigger than 0, y smaller than 0 --&gt; quadrant 4</span></span>
+<span id="cb27-40"><a href="prepare-behavioral-data.html#cb27-40" aria-hidden="true" tabindex="-1"></a>                pic_q[i_pic] <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb27-41"><a href="prepare-behavioral-data.html#cb27-41" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb27-42"><a href="prepare-behavioral-data.html#cb27-42" aria-hidden="true" tabindex="-1"></a>          <span class="cf">else</span> {<span class="fu">stop</span>(<span class="st">&quot;Error, can&#39;t sort!&quot;</span>)}</span>
+<span id="cb27-43"><a href="prepare-behavioral-data.html#cb27-43" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb27-44"><a href="prepare-behavioral-data.html#cb27-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-45"><a href="prepare-behavioral-data.html#cb27-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># match quadrant number to days for all possible combinations</span></span>
+<span id="cb27-46"><a href="prepare-behavioral-data.html#cb27-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># surely there must be a better way to get all combinations as a matrix?!</span></span>
+<span id="cb27-47"><a href="prepare-behavioral-data.html#cb27-47" aria-hidden="true" tabindex="-1"></a>    all_perms <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">array</span>(<span class="fu">unlist</span>(<span class="fu">permn</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)), <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>)))</span>
+<span id="cb27-48"><a href="prepare-behavioral-data.html#cb27-48" aria-hidden="true" tabindex="-1"></a>    n_matches <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(all_perms))</span>
+<span id="cb27-49"><a href="prepare-behavioral-data.html#cb27-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-50"><a href="prepare-behavioral-data.html#cb27-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i_perm <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(all_perms)){</span>
+<span id="cb27-51"><a href="prepare-behavioral-data.html#cb27-51" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb27-52"><a href="prepare-behavioral-data.html#cb27-52" aria-hidden="true" tabindex="-1"></a>          <span class="co"># get vector with pic-day assignment for this permutation</span></span>
+<span id="cb27-53"><a href="prepare-behavioral-data.html#cb27-53" aria-hidden="true" tabindex="-1"></a>          comb_to_test <span class="ot">&lt;-</span><span class="fu">numeric</span>(<span class="dv">20</span>)</span>
+<span id="cb27-54"><a href="prepare-behavioral-data.html#cb27-54" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span> (i_day <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_days){</span>
+<span id="cb27-55"><a href="prepare-behavioral-data.html#cb27-55" aria-hidden="true" tabindex="-1"></a>                comb_to_test[design_tbl<span class="sc">$</span>pic[design_tbl<span class="sc">$</span>day <span class="sc">==</span> all_perms[i_perm, i_day]]] <span class="ot">&lt;-</span> i_day</span>
+<span id="cb27-56"><a href="prepare-behavioral-data.html#cb27-56" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb27-57"><a href="prepare-behavioral-data.html#cb27-57" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb27-58"><a href="prepare-behavioral-data.html#cb27-58" aria-hidden="true" tabindex="-1"></a>          <span class="co"># count the number of matches</span></span>
+<span id="cb27-59"><a href="prepare-behavioral-data.html#cb27-59" aria-hidden="true" tabindex="-1"></a>          n_matches[i_perm] <span class="ot">&lt;-</span> <span class="fu">sum</span>(comb_to_test <span class="sc">==</span> pic_q)</span>
+<span id="cb27-60"><a href="prepare-behavioral-data.html#cb27-60" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb27-61"><a href="prepare-behavioral-data.html#cb27-61" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-62"><a href="prepare-behavioral-data.html#cb27-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># find the best permutation and the number of hits</span></span>
+<span id="cb27-63"><a href="prepare-behavioral-data.html#cb27-63" aria-hidden="true" tabindex="-1"></a>    winner_perm <span class="ot">&lt;-</span> <span class="fu">which.max</span>(n_matches)</span>
+<span id="cb27-64"><a href="prepare-behavioral-data.html#cb27-64" aria-hidden="true" tabindex="-1"></a>    n_correct[i_sub] <span class="ot">&lt;-</span> <span class="fu">max</span>(n_matches)</span>
+<span id="cb27-65"><a href="prepare-behavioral-data.html#cb27-65" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-66"><a href="prepare-behavioral-data.html#cb27-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sort the behavioral responses in the same way as the design table</span></span>
+<span id="cb27-67"><a href="prepare-behavioral-data.html#cb27-67" aria-hidden="true" tabindex="-1"></a>    to_sort <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span> <span class="co"># this works because the data in the sorting task logfile follows the picture number</span></span>
+<span id="cb27-68"><a href="prepare-behavioral-data.html#cb27-68" aria-hidden="true" tabindex="-1"></a>    sort_idx <span class="ot">&lt;-</span> <span class="fu">match</span>(design_tbl<span class="sc">$</span>pic,to_sort)</span>
+<span id="cb27-69"><a href="prepare-behavioral-data.html#cb27-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(design_tbl<span class="sc">$</span>pic <span class="sc">==</span> to_sort[sort_idx]) <span class="co"># make sure we have identical vectors now</span></span>
+<span id="cb27-70"><a href="prepare-behavioral-data.html#cb27-70" aria-hidden="true" tabindex="-1"></a>    sorted_pic_q <span class="ot">&lt;-</span> pic_q[sort_idx]</span>
+<span id="cb27-71"><a href="prepare-behavioral-data.html#cb27-71" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-72"><a href="prepare-behavioral-data.html#cb27-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># store which pic was sorted to which day based on winning permutation</span></span>
+<span id="cb27-73"><a href="prepare-behavioral-data.html#cb27-73" aria-hidden="true" tabindex="-1"></a>    design_tbl<span class="sc">$</span>sorted_day <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_days<span class="sc">*</span>n_events_day)</span>
+<span id="cb27-74"><a href="prepare-behavioral-data.html#cb27-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i_day <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_days){</span>
+<span id="cb27-75"><a href="prepare-behavioral-data.html#cb27-75" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb27-76"><a href="prepare-behavioral-data.html#cb27-76" aria-hidden="true" tabindex="-1"></a>          <span class="co"># recode the day labels to match the day labels in the design tibble</span></span>
+<span id="cb27-77"><a href="prepare-behavioral-data.html#cb27-77" aria-hidden="true" tabindex="-1"></a>          idx <span class="ot">&lt;-</span> sorted_pic_q <span class="sc">==</span> i_day</span>
+<span id="cb27-78"><a href="prepare-behavioral-data.html#cb27-78" aria-hidden="true" tabindex="-1"></a>          design_tbl<span class="sc">$</span>sorted_day[idx] <span class="ot">&lt;-</span> all_perms[winner_perm,i_day]</span>
+<span id="cb27-79"><a href="prepare-behavioral-data.html#cb27-79" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb27-80"><a href="prepare-behavioral-data.html#cb27-80" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">sum</span>(design_tbl<span class="sc">$</span>day <span class="sc">==</span> design_tbl<span class="sc">$</span>sorted_day) <span class="sc">==</span> n_correct[i_sub])</span>
+<span id="cb27-81"><a href="prepare-behavioral-data.html#cb27-81" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-82"><a href="prepare-behavioral-data.html#cb27-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write design tibble to file for this subject</span></span>
+<span id="cb27-83"><a href="prepare-behavioral-data.html#cb27-83" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write_csv</span>(design_tbl, </span>
+<span id="cb27-84"><a href="prepare-behavioral-data.html#cb27-84" aria-hidden="true" tabindex="-1"></a>              <span class="fu">file.path</span>(out_dir,<span class="fu">sprintf</span>(<span class="st">&quot;%s_behavior_tbl_day_sorting.txt&quot;</span>, sub_id)))</span>
+<span id="cb27-85"><a href="prepare-behavioral-data.html#cb27-85" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb27-86"><a href="prepare-behavioral-data.html#cb27-86" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-87"><a href="prepare-behavioral-data.html#cb27-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-88"><a href="prepare-behavioral-data.html#cb27-88" aria-hidden="true" tabindex="-1"></a><span class="co"># call the function for all subjects</span></span>
+<span id="cb27-89"><a href="prepare-behavioral-data.html#cb27-89" aria-hidden="true" tabindex="-1"></a><span class="fu">virtem_behavior_prepare_data_day_sorting</span>(<span class="at">subjects =</span> subjects)</span></code></pre></div>
+</div>
+<div id="timeline-task" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Timeline task</h2>
+<blockquote>
+<p>In this task, participants saw a timeline ranging from 6 a.m. to midnight together with miniature versions of the five event images belonging to one sequence (Figure 1E). Participants were instructed to drag and drop the event images next to the timeline so that scene positions reflected the event times they had inferred in the day learning task. To facilitate precise alignment to the timeline, event images were shown with an outward pointing triangle on their left side, on which participants were instructed to base their responses.</p>
+</blockquote>
+<p>Participants responses are read out from the logfiles of this task and converted to virtual hours. The data are saved in the text file including all behavioral data (<em>virtem_behavioral_data.txt</em>).</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="prepare-behavioral-data.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the function to prepare data from the timeline task</span></span>
+<span id="cb28-2"><a href="prepare-behavioral-data.html#cb28-2" aria-hidden="true" tabindex="-1"></a>virtem_behavior_prepare_data_timeline <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">subjects =</span> <span class="fu">c</span>(<span class="st">&quot;036&quot;</span>, <span class="st">&quot;037&quot;</span>, <span class="st">&quot;039&quot;</span>)){</span>
+<span id="cb28-3"><a href="prepare-behavioral-data.html#cb28-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb28-4"><a href="prepare-behavioral-data.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># initialize</span></span>
+<span id="cb28-5"><a href="prepare-behavioral-data.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  out_dir <span class="ot">=</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;timeline&quot;</span>)</span>
+<span id="cb28-6"><a href="prepare-behavioral-data.html#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(out_dir)){<span class="fu">dir.create</span>(out_dir)}</span>
+<span id="cb28-7"><a href="prepare-behavioral-data.html#cb28-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-8"><a href="prepare-behavioral-data.html#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i_sub <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(subjects)){</span>
+<span id="cb28-9"><a href="prepare-behavioral-data.html#cb28-9" aria-hidden="true" tabindex="-1"></a>    sub_id <span class="ot">&lt;-</span> subjects[i_sub]</span>
+<span id="cb28-10"><a href="prepare-behavioral-data.html#cb28-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-11"><a href="prepare-behavioral-data.html#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load design file with true assignment of stimuli to days (&amp; data from day sorting)</span></span>
+<span id="cb28-12"><a href="prepare-behavioral-data.html#cb28-12" aria-hidden="true" tabindex="-1"></a>    fname <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;day_sorting&quot;</span>, </span>
+<span id="cb28-13"><a href="prepare-behavioral-data.html#cb28-13" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">sprintf</span>(<span class="st">&quot;%s_behavior_tbl_day_sorting.txt&quot;</span>, sub_id))</span>
+<span id="cb28-14"><a href="prepare-behavioral-data.html#cb28-14" aria-hidden="true" tabindex="-1"></a>    col_classes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sub_id&quot;</span> <span class="ot">=</span> <span class="st">&quot;c&quot;</span>, <span class="st">&quot;day&quot;</span><span class="ot">=</span><span class="st">&quot;n&quot;</span>, <span class="st">&quot;event&quot;</span><span class="ot">=</span><span class="st">&quot;n&quot;</span>, <span class="st">&quot;virtual_time&quot;</span> <span class="ot">=</span> <span class="st">&quot;d&quot;</span>, </span>
+<span id="cb28-15"><a href="prepare-behavioral-data.html#cb28-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;real_time&quot;</span> <span class="ot">=</span> <span class="st">&quot;d&quot;</span>, <span class="st">&quot;pic&quot;</span><span class="ot">=</span><span class="st">&quot;n&quot;</span>, <span class="st">&quot;sorted_day&quot;</span> <span class="ot">=</span> <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb28-16"><a href="prepare-behavioral-data.html#cb28-16" aria-hidden="true" tabindex="-1"></a>    design_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">read_csv</span>(fname, <span class="at">col_types =</span> col_classes))</span>
+<span id="cb28-17"><a href="prepare-behavioral-data.html#cb28-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-18"><a href="prepare-behavioral-data.html#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add column for remembered time based on timeline task</span></span>
+<span id="cb28-19"><a href="prepare-behavioral-data.html#cb28-19" aria-hidden="true" tabindex="-1"></a>    design_tbl<span class="sc">$</span>memory_time <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_days <span class="sc">*</span> n_events_day)</span>
+<span id="cb28-20"><a href="prepare-behavioral-data.html#cb28-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-21"><a href="prepare-behavioral-data.html#cb28-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i_day <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_days){</span>
+<span id="cb28-22"><a href="prepare-behavioral-data.html#cb28-22" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb28-23"><a href="prepare-behavioral-data.html#cb28-23" aria-hidden="true" tabindex="-1"></a>      <span class="co"># load the data from the timeline task from this day</span></span>
+<span id="cb28-24"><a href="prepare-behavioral-data.html#cb28-24" aria-hidden="true" tabindex="-1"></a>      fname <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;logs&quot;</span>, <span class="st">&quot;timeline&quot;</span>, </span>
+<span id="cb28-25"><a href="prepare-behavioral-data.html#cb28-25" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">sprintf</span>(<span class="st">&quot;%s_timeline_results_day%d.mat&quot;</span>, sub_id, i_day))</span>
+<span id="cb28-26"><a href="prepare-behavioral-data.html#cb28-26" aria-hidden="true" tabindex="-1"></a>      timeline_log <span class="ot">&lt;-</span> <span class="fu">readMat</span>(fname)</span>
+<span id="cb28-27"><a href="prepare-behavioral-data.html#cb28-27" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb28-28"><a href="prepare-behavioral-data.html#cb28-28" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i_pic <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_events_day){</span>
+<span id="cb28-29"><a href="prepare-behavioral-data.html#cb28-29" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb28-30"><a href="prepare-behavioral-data.html#cb28-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># get the number of this picture</span></span>
+<span id="cb28-31"><a href="prepare-behavioral-data.html#cb28-31" aria-hidden="true" tabindex="-1"></a>        pic_name <span class="ot">&lt;-</span> timeline_log<span class="sc">$</span>ud[[<span class="dv">2</span>]][<span class="dv">1</span><span class="sc">+</span>(i_pic<span class="dv">-1</span>)<span class="sc">*</span><span class="dv">2</span>]</span>
+<span id="cb28-32"><a href="prepare-behavioral-data.html#cb28-32" aria-hidden="true" tabindex="-1"></a>        pic <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">str_extract</span>(pic_name, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d{1,2}&quot;</span>))</span>
+<span id="cb28-33"><a href="prepare-behavioral-data.html#cb28-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-34"><a href="prepare-behavioral-data.html#cb28-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># which row in our table are we looking at</span></span>
+<span id="cb28-35"><a href="prepare-behavioral-data.html#cb28-35" aria-hidden="true" tabindex="-1"></a>        tbl_idx <span class="ot">&lt;-</span> <span class="fu">which</span>(design_tbl<span class="sc">$</span>pic <span class="sc">==</span> pic)</span>
+<span id="cb28-36"><a href="prepare-behavioral-data.html#cb28-36" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb28-37"><a href="prepare-behavioral-data.html#cb28-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># extract the response from the logfile and transform it to be in virtual hours</span></span>
+<span id="cb28-38"><a href="prepare-behavioral-data.html#cb28-38" aria-hidden="true" tabindex="-1"></a>        design_tbl<span class="sc">$</span>memory_time[tbl_idx] <span class="ot">&lt;-</span> (timeline_log<span class="sc">$</span>objectPositions[i_pic,<span class="dv">2</span>]<span class="sc">+</span><span class="fl">0.5</span>)<span class="sc">*</span><span class="dv">18</span><span class="sc">+</span><span class="dv">6</span></span>
+<span id="cb28-39"><a href="prepare-behavioral-data.html#cb28-39" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb28-40"><a href="prepare-behavioral-data.html#cb28-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb28-41"><a href="prepare-behavioral-data.html#cb28-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-42"><a href="prepare-behavioral-data.html#cb28-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># store the remembered order for each virtual day based on remembered times</span></span>
+<span id="cb28-43"><a href="prepare-behavioral-data.html#cb28-43" aria-hidden="true" tabindex="-1"></a>    design_tbl <span class="ot">&lt;-</span> design_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb28-44"><a href="prepare-behavioral-data.html#cb28-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(day) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-45"><a href="prepare-behavioral-data.html#cb28-45" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb28-46"><a href="prepare-behavioral-data.html#cb28-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">memory_order =</span> <span class="fu">rank</span>(memory_time, <span class="at">ties.method =</span> <span class="st">&quot;first&quot;</span>))</span>
+<span id="cb28-47"><a href="prepare-behavioral-data.html#cb28-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-48"><a href="prepare-behavioral-data.html#cb28-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write design tibble to file for this subject</span></span>
+<span id="cb28-49"><a href="prepare-behavioral-data.html#cb28-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write_csv</span>(design_tbl,</span>
+<span id="cb28-50"><a href="prepare-behavioral-data.html#cb28-50" aria-hidden="true" tabindex="-1"></a>              <span class="fu">file.path</span>(out_dir, <span class="fu">sprintf</span>(<span class="st">&quot;%s_behavior_tbl_timeline.txt&quot;</span>, sub_id)))</span>
+<span id="cb28-51"><a href="prepare-behavioral-data.html#cb28-51" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb28-52"><a href="prepare-behavioral-data.html#cb28-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-53"><a href="prepare-behavioral-data.html#cb28-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-54"><a href="prepare-behavioral-data.html#cb28-54" aria-hidden="true" tabindex="-1"></a><span class="co"># run for all subjects</span></span>
+<span id="cb28-55"><a href="prepare-behavioral-data.html#cb28-55" aria-hidden="true" tabindex="-1"></a><span class="fu">virtem_behavior_prepare_data_timeline</span>(<span class="at">subjects =</span> subjects)</span></code></pre></div>
+<p>Now we are ready to combine the data from the two memory tests into the final dataframe that we write to file for the actual analyses.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="prepare-behavioral-data.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define function</span></span>
+<span id="cb29-2"><a href="prepare-behavioral-data.html#cb29-2" aria-hidden="true" tabindex="-1"></a>virtem_behavior_prepare_data_combine_across_subjects <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">subjects =</span> <span class="fu">c</span>(<span class="st">&quot;036&quot;</span>, <span class="st">&quot;037&quot;</span>)){</span>
+<span id="cb29-3"><a href="prepare-behavioral-data.html#cb29-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb29-4"><a href="prepare-behavioral-data.html#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set up a dataframe to collect the data</span></span>
+<span id="cb29-5"><a href="prepare-behavioral-data.html#cb29-5" aria-hidden="true" tabindex="-1"></a>  beh_data <span class="ot">=</span> <span class="fu">tibble</span>()</span>
+<span id="cb29-6"><a href="prepare-behavioral-data.html#cb29-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-7"><a href="prepare-behavioral-data.html#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i_sub <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(subjects)){</span>
+<span id="cb29-8"><a href="prepare-behavioral-data.html#cb29-8" aria-hidden="true" tabindex="-1"></a>    sub_id <span class="ot">&lt;-</span> subjects[i_sub]</span>
+<span id="cb29-9"><a href="prepare-behavioral-data.html#cb29-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-10"><a href="prepare-behavioral-data.html#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load data from CSV</span></span>
+<span id="cb29-11"><a href="prepare-behavioral-data.html#cb29-11" aria-hidden="true" tabindex="-1"></a>    fname <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;timeline&quot;</span>, </span>
+<span id="cb29-12"><a href="prepare-behavioral-data.html#cb29-12" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">sprintf</span>(<span class="st">&quot;%s_behavior_tbl_timeline.txt&quot;</span>, sub_id))</span>
+<span id="cb29-13"><a href="prepare-behavioral-data.html#cb29-13" aria-hidden="true" tabindex="-1"></a>    col_types_list <span class="ot">&lt;-</span> <span class="fu">cols_only</span>(</span>
+<span id="cb29-14"><a href="prepare-behavioral-data.html#cb29-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">sub_id =</span> <span class="fu">col_integer</span>(),</span>
+<span id="cb29-15"><a href="prepare-behavioral-data.html#cb29-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">day =</span> <span class="fu">col_integer</span>(),</span>
+<span id="cb29-16"><a href="prepare-behavioral-data.html#cb29-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">event =</span> <span class="fu">col_integer</span>(),</span>
+<span id="cb29-17"><a href="prepare-behavioral-data.html#cb29-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">pic =</span> <span class="fu">col_integer</span>(),</span>
+<span id="cb29-18"><a href="prepare-behavioral-data.html#cb29-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">virtual_time =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb29-19"><a href="prepare-behavioral-data.html#cb29-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">real_time =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb29-20"><a href="prepare-behavioral-data.html#cb29-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">memory_time =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb29-21"><a href="prepare-behavioral-data.html#cb29-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">memory_order =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb29-22"><a href="prepare-behavioral-data.html#cb29-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">sorted_day =</span> <span class="fu">col_integer</span>())</span>
+<span id="cb29-23"><a href="prepare-behavioral-data.html#cb29-23" aria-hidden="true" tabindex="-1"></a>    timeline_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">read_csv</span>(fname, <span class="at">col_types =</span> col_types_list))</span>
+<span id="cb29-24"><a href="prepare-behavioral-data.html#cb29-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-25"><a href="prepare-behavioral-data.html#cb29-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># append to table with data from all subjects</span></span>
+<span id="cb29-26"><a href="prepare-behavioral-data.html#cb29-26" aria-hidden="true" tabindex="-1"></a>    beh_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(beh_data, timeline_tbl)</span>
+<span id="cb29-27"><a href="prepare-behavioral-data.html#cb29-27" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-28"><a href="prepare-behavioral-data.html#cb29-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-29"><a href="prepare-behavioral-data.html#cb29-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reorder to have a more intuitive order</span></span>
+<span id="cb29-30"><a href="prepare-behavioral-data.html#cb29-30" aria-hidden="true" tabindex="-1"></a>  beh_data <span class="ot">&lt;-</span> beh_data[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">7</span>)]</span>
+<span id="cb29-31"><a href="prepare-behavioral-data.html#cb29-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-32"><a href="prepare-behavioral-data.html#cb29-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># write data to file</span></span>
+<span id="cb29-33"><a href="prepare-behavioral-data.html#cb29-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(beh_data, <span class="fu">file.path</span>(dirs<span class="sc">$</span>data4analysis, <span class="st">&quot;behavioral_data.txt&quot;</span>))</span>
+<span id="cb29-34"><a href="prepare-behavioral-data.html#cb29-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-35"><a href="prepare-behavioral-data.html#cb29-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-36"><a href="prepare-behavioral-data.html#cb29-36" aria-hidden="true" tabindex="-1"></a><span class="co"># combine behavioral data frames across subjects</span></span>
+<span id="cb29-37"><a href="prepare-behavioral-data.html#cb29-37" aria-hidden="true" tabindex="-1"></a><span class="fu">virtem_behavior_prepare_data_combine_across_subjects</span>(<span class="at">subjects =</span> subjects)</span></code></pre></div>
+<p>We have a similar dataframe from Nicole Montijn’s study conducted at Utrecht University that we will later use to replicate the generalization bias. Let’s move it to the folder with the analysis data.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="prepare-behavioral-data.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># copy to analysis data folder (that will be shared)</span></span>
+<span id="cb30-2"><a href="prepare-behavioral-data.html#cb30-2" aria-hidden="true" tabindex="-1"></a>fname <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;behavior&quot;</span>, <span class="st">&quot;replication_data_montijn&quot;</span>, <span class="st">&quot;beh_dataNDM.txt&quot;</span>)</span>
+<span id="cb30-3"><a href="prepare-behavioral-data.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">file.copy</span>(fname, dirs<span class="sc">$</span>data4analysis)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="picture-viewing-tasks" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Picture viewing tasks</h2>
+<blockquote>
+<p>In the picture viewing tasks (Figure 1B), participants viewed a stream of the event images. Their task was to look at the images attentively and to respond via a button press whenever a target picture, which showed the father feeding the family’s dog, was presented.</p>
+</blockquote>
+<p>Below, we check how well participants detected the targets.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="prepare-behavioral-data.html#cb32-1" aria-hidden="true" tabindex="-1"></a>pvt_target_detect <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb32-2"><a href="prepare-behavioral-data.html#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="prepare-behavioral-data.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i_run <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_runs){</span>
+<span id="cb32-4"><a href="prepare-behavioral-data.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i_sub <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(subjects)){</span>
+<span id="cb32-5"><a href="prepare-behavioral-data.html#cb32-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb32-6"><a href="prepare-behavioral-data.html#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="prepare-behavioral-data.html#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load the logfile for this run (pre or post)</span></span>
+<span id="cb32-8"><a href="prepare-behavioral-data.html#cb32-8" aria-hidden="true" tabindex="-1"></a>    log_fn <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dirs<span class="sc">$</span>pvt_log_dir, <span class="fu">sprintf</span>(<span class="st">&#39;P%s_%svirtem.txt&#39;</span>, subjects[i_sub], runs[i_run]))</span>
+<span id="cb32-9"><a href="prepare-behavioral-data.html#cb32-9" aria-hidden="true" tabindex="-1"></a>    log <span class="ot">&lt;-</span> <span class="fu">read.table</span>(log_fn)</span>
+<span id="cb32-10"><a href="prepare-behavioral-data.html#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">colnames</span>(log) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;pic&quot;</span>, <span class="st">&quot;fix_start&quot;</span>, <span class="st">&quot;pic_start&quot;</span>, <span class="st">&quot;volume&quot;</span>, <span class="st">&quot;response&quot;</span>, <span class="st">&quot;RT&quot;</span>, <span class="st">&quot;trial_end&quot;</span>)</span>
+<span id="cb32-11"><a href="prepare-behavioral-data.html#cb32-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb32-12"><a href="prepare-behavioral-data.html#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add column for block and subject ID to log</span></span>
+<span id="cb32-13"><a href="prepare-behavioral-data.html#cb32-13" aria-hidden="true" tabindex="-1"></a>    log <span class="ot">&lt;-</span> log <span class="sc">%&gt;%</span> </span>
+<span id="cb32-14"><a href="prepare-behavioral-data.html#cb32-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_column</span>(<span class="at">run =</span> runs[i_run]) <span class="sc">%&gt;%</span></span>
+<span id="cb32-15"><a href="prepare-behavioral-data.html#cb32-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_column</span>(<span class="at">sub_id =</span> subjects[i_sub])</span>
+<span id="cb32-16"><a href="prepare-behavioral-data.html#cb32-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb32-17"><a href="prepare-behavioral-data.html#cb32-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate proportion of hits and average RT</span></span>
+<span id="cb32-18"><a href="prepare-behavioral-data.html#cb32-18" aria-hidden="true" tabindex="-1"></a>    curr_dat <span class="ot">&lt;-</span> log <span class="sc">%&gt;%</span> </span>
+<span id="cb32-19"><a href="prepare-behavioral-data.html#cb32-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(pic <span class="sc">==</span> <span class="dv">21</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-20"><a href="prepare-behavioral-data.html#cb32-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">sub_id =</span> <span class="fu">unique</span>(sub_id),</span>
+<span id="cb32-21"><a href="prepare-behavioral-data.html#cb32-21" aria-hidden="true" tabindex="-1"></a>                <span class="at">run =</span> <span class="fu">unique</span>(run),</span>
+<span id="cb32-22"><a href="prepare-behavioral-data.html#cb32-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">perc_hits =</span> <span class="fu">sum</span>(response)<span class="sc">/</span><span class="fu">nrow</span>(.)<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb32-23"><a href="prepare-behavioral-data.html#cb32-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">avg_rt =</span> <span class="fu">mean</span>(RT[response<span class="sc">==</span><span class="dv">1</span>])) <span class="co"># calculate average RT for hits</span></span>
+<span id="cb32-24"><a href="prepare-behavioral-data.html#cb32-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb32-25"><a href="prepare-behavioral-data.html#cb32-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add to the overall tibble</span></span>
+<span id="cb32-26"><a href="prepare-behavioral-data.html#cb32-26" aria-hidden="true" tabindex="-1"></a>    pvt_target_detect <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pvt_target_detect, curr_dat)</span>
+<span id="cb32-27"><a href="prepare-behavioral-data.html#cb32-27" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-28"><a href="prepare-behavioral-data.html#cb32-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-29"><a href="prepare-behavioral-data.html#cb32-29" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb32-30"><a href="prepare-behavioral-data.html#cb32-30" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pvt_target_detect)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-27">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-27">Table 4.1: </span> </caption><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sub_id</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">run</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">perc_hits</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">avg_rt</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">031</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">pre</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">100</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">921</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">032</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">pre</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">90</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">993</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">033</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">pre</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">70</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">904</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">034</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">pre</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">100</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">948</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">035</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">pre</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">100</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">710</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">036</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">pre</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">100</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">747</td></tr>
+</table>
+
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="prepare-behavioral-data.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate mean and standard deviation across participants</span></span>
+<span id="cb33-2"><a href="prepare-behavioral-data.html#cb33-2" aria-hidden="true" tabindex="-1"></a>pvt_target_detect_summary <span class="ot">&lt;-</span> pvt_target_detect <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="prepare-behavioral-data.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(run) <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="prepare-behavioral-data.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_perc_hits =</span> <span class="fu">mean</span>(perc_hits),</span>
+<span id="cb33-5"><a href="prepare-behavioral-data.html#cb33-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_perc_hits =</span> <span class="fu">sd</span>(perc_hits),</span>
+<span id="cb33-6"><a href="prepare-behavioral-data.html#cb33-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_rt =</span> <span class="fu">mean</span>(avg_rt),</span>
+<span id="cb33-7"><a href="prepare-behavioral-data.html#cb33-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_rt =</span> <span class="fu">sd</span>(avg_rt),</span>
+<span id="cb33-8"><a href="prepare-behavioral-data.html#cb33-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups=</span><span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb33-9"><a href="prepare-behavioral-data.html#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pvt_target_detect_summary)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-27">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-27">Table 4.1: </span> </caption><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">run</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean_perc_hits</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd_perc_hits</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean_rt</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd_rt</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">post</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">95.7</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6.9</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">841</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">162</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">pre</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">95.7</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7.9</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">881</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">131</td></tr>
+</table>
+
+<p>Target detection in picture viewing task:<br />
+Pre-learning: 95.71% ± 7.90% mean±standard deviation of percentage of hits; 881.34ms ± 131.43ms mean±standard deviation of average reaction times</p>
+<p>Post-learning: 95.71% ± 6.90% mean±standard deviation of percentage of hits; 841.40ms ± 162.16ms mean±standard deviation of average reaction times</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="illustrations-of-task-design-and-analysis-logic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="behavioral-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

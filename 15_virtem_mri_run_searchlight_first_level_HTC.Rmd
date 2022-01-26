@@ -1,0 +1,683 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## First-level RSA searchlight
+
+>We further probed how temporal distances between events shaped representational change using searchlight analyses. Using the procedures described above, we calculated pattern similarity change values for search spheres with a radius of 3 voxels around the center voxel. Search spheres were centered on all brain voxels within our field of view. Within a given search sphere, only gray matter voxels were analyzed. Search spheres not containing more than 25 gray matter voxels were discarded. 
+
+Building on the prepared data, we want to run the searchlight analysis. To speed things up, we split the brain into chunks that we analyze in parallel jobs.
+
+### Set analysis parameters {-}
+
+First, let's set some analysis parameters. These include
+
+- the radius of the search spheres. This is the radius around the center voxel, so that the diameter of the spheres is given by 2*radius + 1
+- the minimum number of valid voxels that a sphere has to contain to be analyzed
+- the number of chunks into which we split the analysis to speed up the computations using the HPC cluster
+
+Further, we define a function that returns the voxels in the sphere of a given radius around. This canonical sphere definition will then be combined with the actual sphere center coordinates. It is based on the way the sphere definition is implemented in the [fmri package for R](https://rdrr.io/cran/fmri/src/R/searchlight.r).
+
+```{r, eval = run_srchlght_lvl1}
+
+# how large should the searchlights be 
+radius <- 3 # radius around center voxel
+
+# how many voxels (counting the center) must be in a searchlight for it to be run; smaller ones are skipped.
+min_voxels <- 25
+
+# how many chunks to split the analysis up into (for speed reasons)
+n_chunks <- 40
+
+# function to get searchsphere of given radius (based on: https://rdrr.io/cran/fmri/src/R/searchlight.r)
+searchlight <- function(radius){
+    rad <- as.integer(radius)
+    nr <- 2*rad+1
+    indices <- rbind(rep(-rad:rad,nr*nr),
+                     rep(-rad:rad,rep(nr,nr)),
+                     rep(-rad:rad,rep(nr*nr,nr)))
+    indices[,apply(indices^2,2,sum)<=radius^2]
+}
+
+```
+
+### Prepare RSA-predictions {-}
+
+To relate pattern similarity change in each search sphere to the temporal structure of the sequences we need the relationships of the events in virtual time. We calculate these here analogously to the main ROI analyses, but save them for each subject separately. 
+
+
+```{r, eval = run_srchlght_lvl1}
+
+for (i_sub in subjects){
+  
+  # set up the dataframe to use for RSA
+  pics <- which(upper.tri(matrix(TRUE, n_pics, n_pics), diag = FALSE), arr.ind=TRUE)
+  
+  # load the behavioral data
+  fn <- file.path(dirs$timeline_dat_dir, sprintf("%s_behavior_tbl_timeline.txt", i_sub))
+  col_types_list <- cols_only(sub_id = col_character(), day = col_factor(), 
+                              event = col_integer(), pic = col_integer(),
+                              virtual_time = col_double(), real_time = col_double(),
+                              memory_time = col_double(), memory_order = col_double(), 
+                              sorted_day = col_integer())
+  beh_dat <- read_csv(fn, col_types = col_types_list)
+  
+  # sort behavioral data according to picture identity
+  beh_dat_ordered <- beh_dat[order(beh_dat$pic),]
+  
+  # find the order of comparisons
+  pics <- which(upper.tri(matrix(nrow = 20, ncol = 20)), arr.ind=TRUE)
+  
+  # extract the data for the first and second picture in each pair from the behavioral data
+  pic1_dat <- beh_dat_ordered[pics[,1],]
+  pic2_dat <- beh_dat_ordered[pics[,2],]
+  colnames(pic1_dat) <- paste0(colnames(pic1_dat), "1")
+  colnames(pic2_dat) <- paste0(colnames(pic2_dat), "2")
+  
+  # combine the two tibbles
+  pair_dat <- cbind(pic1_dat, pic2_dat)
+  
+  # reorder the tibble columns to make a bit more sense
+  pair_dat <- pair_dat %>%
+    select(sub_id1,
+           day1, day2,
+           pic1, pic2,
+           event1, event2, 
+           virtual_time1, virtual_time2, 
+           real_time1, real_time2, 
+           memory_order1, memory_order2, 
+           memory_time1, memory_time2, 
+           sorted_day1, sorted_day2) %>%
+    rename(sub_id = sub_id1)
+
+  # prepare RSA distance measures
+  pair_dat <- pair_dat %>%
+    mutate(
+      
+      # pair of events from say or different day (dv = deviation code)
+      same_day = day1 == day2,
+      same_day_dv = plyr::mapvalues(same_day, from = c(FALSE, TRUE), to = c(-1, 1)),
+      
+      # absolute difference in time metrics
+      vir_time_diff = abs(virtual_time1 - virtual_time2),
+      order_diff = abs(event1 - event2),
+      real_time_diff = abs(real_time1 - real_time2)) %>%
+    
+    # z-score the time metric predictors
+    mutate_at(
+      c("vir_time_diff", "order_diff", "real_time_diff"), scale)
+
+  # write to file
+  out_dir <- file.path(dirs$searchlight, "rsa_predictions")
+  if(!dir.exists(out_dir)){dir.create(out_dir, recursive = TRUE)}
+  fn <- file.path(out_dir, sprintf("%s_rsa_info.txt", i_sub))
+  write.table(pair_dat, file = fn)
+}
+```
+
+
+### Create lookup table for searchlight {-}
+
+As a first step, we prepare a table that - for each individual sphere - holds the coordinates of the voxels making up the search spheres. To find these voxels we rely on both a brain mask and a gray matter mask obtained during preprocessing. The brain mask is combined across the 10 preprocessing blocks and all voxels within this brain mask can be sphere centers. We get the coordinates of voxels around these sphere centers given the desired radius. Then, we exclude the non-gray matter voxels from the spheres. We check which spheres still contain the minimum number of voxels (do this here to speed up the subsequent computations) and discard the spheres that don't hold enough voxels, e.g. because they are in white matter or on the edge of the brain/field of view.
+
+We split this table into chunks to speed up the calculations and save the chunked lookup-tables for later use. To be able to relate the rows of the table (each row is a sphere) back to the brain, we create a nifti image that numbers all voxels which are sphere centers. These numbers correspond to the row names of the lookup table and will later be used to map the RSA results of each sphere back to the brain.
+
+```{r, eval = run_srchlght_lvl1}
+
+# Set up dataframe
+in_df <- tibble(subject = subjects)
+
+# how many chunks to run the analysis in for each
+in_df$n_chunks <- n_chunks
+
+# input files with relevant functional volumes
+in_df$rel_vol_pre_fn <- file.path(dirs$searchlight, "rel_vols_4D", 
+                              sprintf("%s_run%02d_rel_vols.nii.gz", subjects, 1)) 
+in_df$rel_vol_post_fn <- file.path(dirs$searchlight, "rel_vols_4D", 
+                              sprintf("%s_run%02d_rel_vols.nii.gz", subjects, 2)) 
+
+# which voxels should be center voxels of spheres --> typically brain mask
+in_df$ctr_mask_fn <- file.path(dirs$samespace_dir, paste0("VIRTEM_P", subjects),
+                               sprintf("VIRTEM_P%s_common_mask_perBlock.nii.gz",
+                                       subjects))
+# which voxels should be used for correlations --> typically graymatter mask
+in_df$feat_mask_fn <- file.path(dirs$samespace_dir, paste0("VIRTEM_P", subjects),
+                                sprintf("VIRTEM_P%s_common_graymatter_mask_brainmasked.nii.gz",
+                                       subjects))
+
+# radius of spheres
+in_df$radius <- radius
+
+# where to store outputs
+in_df$out_path <- file.path(dirs$searchlight, sprintf("first_level_%dvox_radius", radius), subjects)
+in_df$chunk_path <- file.path(in_df$out_path, "chunks")
+
+prepare_searchlight_lut <- function(in_df = in_df[1,]){
+
+  if(!dir.exists(in_df$out_path)){dir.create(in_df$out_path, recursive = TRUE)}
+  if(!dir.exists(in_df$chunk_path)){dir.create(in_df$chunk_path, recursive = TRUE)}
+  
+  # load the mask with voxels that will be sphere centers (typically brain mask)
+  ctr_mask_nii <- readNIfTI(in_df$ctr_mask_fn, reorient=FALSE)
+  if (!all.equal(unique(c(img_data(ctr_mask_nii))), c(0,1))){
+      stop("center mask not binary!")}
+  
+  # load the mask with voxels that will be the features used for correlations
+  feat_mask_nii <- readNIfTI(in_df$feat_mask_fn, reorient=FALSE)
+  feat_mask_array <- array(0, dim = dim(feat_mask_nii))
+  feat_mask_array[feat_mask_nii > 0.7 ] <- 1 
+  if (!all.equal(unique(c(feat_mask_array)), c(0,1))){
+      stop("make sure feature mask is binary!")}
+  
+  # make sure mask dimensions match functional images and each other
+  if (!all.equal(dim(ctr_mask_nii), dim(feat_mask_array))){
+       stop("mask dimensions don't match each other!")}
+  
+  # find all the voxel coordinates that will be sphere centers
+  ctr_inds <- which(ctr_mask_nii != 0, arr.ind=TRUE) # inds has subscripts for 3D coords of center voxels
+  if (ncol(ctr_inds) != 3) { stop('wrong dims on inds')}
+  
+  # 3D array with voxel numbers to save for future reference
+  vox_num_array <- array(0, dim(ctr_mask_nii))  # make a blank 3d matrix 'brain', all zeros
+  vox_num_array[ctr_inds] <- 1:nrow(ctr_inds)  # and put integers into the voxel places
+  
+  # create nifti with same header info as input data
+  vox_num_nii <- copyNIfTIHeader(img = ctr_mask_nii, arr = vox_num_array)
+  write_nifti(vox_num_nii, file.path(in_df$out_path, "vox_num"))    # write out as a NIfTI image
+  
+  # get the search sphere 3D subscripts
+  sphere_coords <- searchlight(radius)
+  
+  # actually fill up the lookup table. This goes through every voxel, so can take some time.
+  # the table will hold the sphere indices for each center voxel
+  lookup_tbl <- array(NA, c(nrow(ctr_inds), ncol(sphere_coords)))  
+  rownames(lookup_tbl) <- vox_num_nii[ctr_inds]
+  for (i in 1:nrow(ctr_inds)) {    # i <- 1
+      
+      # add the sphere coordinates to the current voxel coordinates
+      curr_sphere <- t(ctr_inds[i,] + sphere_coords)
+      
+      # remove voxels that are out of bounds (i.e. out of image dimensions)    
+      dims <- dim(vox_num_array)
+      curr_sphere[which(curr_sphere[,1]>dims[1]),] <- NA
+      curr_sphere[which(curr_sphere[,2]>dims[2]),] <- NA
+      curr_sphere[which(curr_sphere[,3]>dims[3]),] <- NA
+      curr_sphere[which(curr_sphere[,1]<1),] <- NA
+      curr_sphere[which(curr_sphere[,2]<1),] <- NA
+      curr_sphere[which(curr_sphere[,3]<1),] <- NA
+      
+      # remove voxels that are not in the feature mask
+      curr_sphere[!feat_mask_array[curr_sphere],] <- NA
+      
+      # store the voxel numbers for this sphere
+      vox.id <- vox_num_array[ctr_inds[i,1], ctr_inds[i,2], ctr_inds[i,3]]
+      lookup_tbl[vox.id,] <- vox_num_array[curr_sphere]
+  }
+  
+  # replace the zeroes with NA so can sort better at runtime
+  to_remove <- which(lookup_tbl == 0, arr.ind=TRUE)
+  lookup_tbl[to_remove] <- NA
+  
+  # remove rows that don't have the minimum amount of voxels (do this here because this speeds up all later computations)
+  lookup_tbl <- lookup_tbl[rowSums(!is.na(lookup_tbl)) > min_voxels,]
+
+  # write the table, gzipped to save file size
+  write.table(lookup_tbl, gzfile(file.path(in_df$out_path, sprintf("lookup_radius%d", in_df$radius, ".txt.gz"))), row.names = TRUE)   
+  
+  # vector to split lookupt table into chunks (last chunk will be slightly smaller)
+  r  <- rep(1:in_df$n_chunks,each=ceiling(nrow(lookup_tbl)/in_df$n_chunks))[1: nrow(lookup_tbl)]
+
+  for (i_chunk in 1:in_df$n_chunks){
+    
+    # extract current chunk and write to file
+    curr_chunk <- lookup_tbl[r == i_chunk,]
+    write.table(curr_chunk, 
+                gzfile(file.path(in_df$chunk_path,
+                                 sprintf("lookup_radius%d_chunk_%02d.txt.gz", in_df$radius, i_chunk))), 
+                row.names = TRUE)   
+  }
+}
+
+# run for all datasets
+for (i in 1:nrow(in_df)){
+  prepare_searchlight_lut(in_df = in_df[i,])
+}
+```
+
+
+We want to create some diagnostic images of the spheres we created to make sure the resulting search spheres look as expected.  
+For this a random subject is picked and a number of random spheres is plotted on the gray matter mask.
+
+```{r, eval = run_srchlght_lvl1}
+# pick random subject
+rand_sub <- sample(1:n_subs)[1]
+
+# read their lookup-table
+lookup_tbl<-read.table(gzfile(
+  file.path(in_df$out_path[rand_sub], 
+            sprintf("lookup_radius%d", in_df$radius[rand_sub], ".txt.gz"))))   
+
+# load their graymatter mask and the nifti linking indices
+gm_mask_nii <- in_df[rand_sub,]$feat_mask_fn %>% readNIfTI2()
+vox_num_nii <- file.path(in_df$out_path[rand_sub], "vox_num.nii.gz") %>% readNIfTI2()
+
+# pick 10 searchlights to plot at random
+do.searchlights <- sample(1:nrow(lookup_tbl))[1:10]
+
+# make a blank 3d matrix 'brain' to put the searchlights into
+sphere_test_array <- array(0, dim(gm_mask_nii))
+
+for (i in 1:length(do.searchlights)) {    # i <- 1
+
+    # voxels of this example sphere
+    voxs <- unlist(lookup_tbl[do.searchlights[i],], use.names=FALSE)
+    voxs <- voxs[which(!is.na(voxs))]  # get rid of NAs
+    print(sprintf('sphere %02d: %d voxels', i, length(voxs)))
+
+    # put integers into the sphere test array for each searchlight
+    for (j in 1:length(voxs)) {    # j <- 1
+        coords <- which(vox_num_nii == voxs[j], arr.ind=TRUE)   # location of this voxel
+        if (ncol(coords) != 3 | nrow(coords) != 1) { stop("wrong sized coords")}
+        sphere_test_array[coords[1], coords[2], coords[3]] <- i   # assign this voxel the searchlight number
+    }
+    
+  # visualize the sphere at the most frequent coordinate
+  ortho2(gm_mask_nii, y=sphere_test_array==i, col.y = "red",  col.crosshairs = "lightgrey",
+         xyz = c(statip::mfv1(which(sphere_test_array==i, arr.ind = TRUE)[,1]),
+                 statip::mfv1(which(sphere_test_array==i, arr.ind = TRUE)[,2]),
+                 statip::mfv1(which(sphere_test_array==i, arr.ind = TRUE)[,3])))
+}
+
+# create nifti with same header info as input data and save
+sphere_test_nii = copyNIfTIHeader(img = gm_mask_nii, arr = sphere_test_array)
+write_nifti(sphere_test_nii, 
+            file.path(dirs$searchlight, 
+                      sprintf("first_level_%dvox_radius", radius), 
+                      sprintf("sphere_test_sub%s", rand_sub)))    
+```
+
+### Dataframe with input for analysis {-}
+
+We start by preparing a data frame with one line for each chunk of each subject. The entries define the files to be used for this chunk and some basic analysis parameters. The function to be defined subsequently takes one row of this data frame as input.
+
+```{r, eval = run_srchlght_lvl1}
+
+in_df <- tibble(subject = rep(subjects, each=n_chunks))
+in_df$chunk <- rep(1:n_chunks, length(subjects))
+in_df$lut_file <- file.path(dirs$searchlight, sprintf("first_level_%dvox_radius", radius), rep(subjects, each=n_chunks), 
+                            "chunks", sprintf("lookup_radius%d_chunk_%02d.txt.gz", 
+                                              radius, rep(1:n_chunks, length(subjects))))
+in_df$pred_file <- file.path(dirs$searchlight, "rsa_predictions", 
+                             sprintf("%s_rsa_info.txt", rep(subjects, each=n_chunks)))
+
+# input files with relevant functional volumes
+in_df$rel_vol_pre_fn <- rep(file.path(dirs$searchlight, "rel_vols_4D",
+                                      sprintf("%s_run%02d_rel_vols.nii.gz", 
+                                              subjects, 1)), each = n_chunks) 
+in_df$rel_vol_post_fn <- rep(file.path(dirs$searchlight, "rel_vols_4D",
+                                       sprintf("%s_run%02d_rel_vols.nii.gz", 
+                                               subjects, 2)), each = n_chunks) 
+
+# file to use to bring data back into brain shape
+in_df$vox_num_fn <- rep(file.path(dirs$searchlight, sprintf("first_level_%dvox_radius", radius), subjects, "vox_num.nii.gz"), each = n_chunks)
+
+# output directory
+in_df$out_path <- rep(file.path(dirs$searchlight, sprintf("first_level_%dvox_radius", radius), subjects, "chunks"), each = n_chunks)
+
+# minimum number of features
+in_df$min_voxels <- min_voxels
+
+head(in_df)
+```
+
+### Searchlight implementation {-}
+
+Here, we define the function that implements RSA within each searchlight. The logic of running the searchlight analysis via the look-up table is inspired by and partly based on [this blogpost](http://mvpa.blogspot.com/2014/01/demo-r-code-to-perform-searchlight.html) by Joset A. Etzel and [the code](https://www.dropbox.com/s/qon127nu8ni1zaq/searchlightDemo_spherical.R?dl=0) accompanying it. 
+
+>For each search sphere, we implemented linear models to quantify the relationship between representational change and the learned temporal structure. Specifically, we assessed the relationship of pattern similarity change and absolute virtual temporal distances, separately for event pairs from the same sequences and from pairs from different sequences. In a third model, we included all event pairs and tested for an interaction effect of a sequence (same or different) predictor and virtual temporal distances. The t-values of the respective regressors of interest were stored at the center voxel of a given search sphere.
+
+The function goes through the same steps as the ROI-based analysis. First, the data of the voxels in each sphere is extracted. The resulting multi-voxel patterns are correlated between picture presentations to yield a trial-by-trial (200-by-200) correlation matrix. For each pair of images, the trial-wise correlations (10-by-10) are averaged such that comparisons of trials from the same block are excluded (i.e. excluding the diagonal of the 10-by-10 squares). This results in the condition-by-condition similarity matrix (20-by-20), which is then subjected to further analysis based on the temporal structure of events. Specifically, linear models are implemented for the different analyses. The resulting t-values are stored at the location of the center voxels of the respective sphere. Thus, for each model we test, we end up with a nifti image that has t-values at the voxel locations of the current chunk. 
+
+```{r, eval = run_srchlght_lvl1}
+
+# FUNCTION DEFINITION
+run_searchlight <- function(in_df){ #in_df <- in_df[1,]
+
+  ########## SET UP A FEW PARAMS
+  sprintf("working on: %s", in_df$lut_file)
+  n_pics <- 20
+  n_blocks <- 10
+  
+  # for all 10x10 comparisons we will be averaging all comparisons apart from the diagonal
+  # to exclude same_block comparisons
+  no_diag <- matrix(data = TRUE, nrow=n_blocks, ncol=n_blocks)
+  diag(no_diag)<- FALSE
+  
+  # indices to extract upper triangle excluding diagonal from pic-by-pic matrices
+  triu_idx <- which(upper.tri(matrix(TRUE, n_pics, n_pics), diag = FALSE), arr.ind = TRUE)
+  
+  
+  ########## LOAD THE DATA TO BE USED
+  # load the data about the learned temporal relationships
+  rsa_info <- read.table(in_df$pred_file)  
+
+  # initialize dataframe to fill (later ps-change data will be added)
+  pics <- which(upper.tri(matrix(TRUE, n_pics, n_pics), diag = FALSE), arr.ind=TRUE)
+  rsa_df <- tibble(pic1 = pics[,1], pic2 = pics[,2])
+  
+  # make sure the data frames have the same order    
+  if(!(all.equal(rsa_df$pic1, rsa_info$pic1) & all.equal(rsa_df$pic2, rsa_info$pic2))){
+    stop('order of data frames does not match [RSA preparations]')}
+    
+  # store the columns we need for RSA in the data frame
+  rsa_df <- cbind(rsa_df, rsa_info[names(rsa_info) %in% c("same_day", "same_day_dv", 
+                                                          "vir_time_diff", "order_diff", 
+                                                          "real_time_diff")])
+  
+  # read the look up table
+  lookup_tbl <- read.table(gzfile(in_df$lut_file), row.names = 1)
+  
+  # figure out which voxels to run in this chunk
+  n_voxels <- nrow(lookup_tbl)
+  
+  # read the functional images (takes ~ 2 mins)
+  print("starting to load functional images")
+  func_nii_pre <- readNIfTI(in_df$rel_vol_pre_fn, reorient=FALSE)
+  func_nii_post <- readNIfTI(in_df$rel_vol_post_fn, reorient=FALSE)
+  if(!all.equal(dim(func_nii_pre),dim(func_nii_post))){
+    stop("functional images of different size!")}# make sure inputs have same dimensions
+  
+  # load the image with voxel numbers (linear subscripts) that will be used to sort back into brain shape
+  vox_num_nii <- readNIfTI(in_df$vox_num_fn, reorient=FALSE)
+  if (!all.equal(dim(func_nii_pre)[1:3], dim(vox_num_nii))){
+      stop("voxel number image dimensions don't match functional data!")}
+  print("finished loading images")
+  
+  ########## BEGIN THE ACTUAL ANALYSIS
+  # initialize the output as all 0 (because FSL does not like NAs)
+  rsa_out_array_same_day_vir_time <- array(0, dim(vox_num_nii))
+  rsa_out_array_diff_day_vir_time <- array(0, dim(vox_num_nii))
+  rsa_out_array_all_pairs_vir_time <- array(0, dim(vox_num_nii))
+  rsa_out_array_interaction <- array(0, dim(vox_num_nii))
+  #rsa_out_array_n_in_sphere <- array(0, dim(vox_num_nii))
+
+  # loop over all voxels (in this chunk)
+  for (v in 1:n_voxels) {  # v <- do.centers[500]
+
+    # print a message to show progress
+    if (v%%100 == 0) { print(paste("at", v, "of", n_voxels))}
+    
+    # find which voxels belong in this center voxel's searchlight
+    voxs <- unlist(lookup_tbl[v,], use.names=FALSE)
+    voxs <- voxs[which(!is.na(voxs))];  # get rid of NAs. There will be NA entries if some surrounding voxels not in gray matter or brain
+    
+    # how many surrounding voxels must be in the searchlight? Smaller ones (edge of brain) will be skipped.
+    if (length(voxs) > in_df$min_voxels) {
+      
+      # initialize arrays to store data of current sphere for the pre and post runs
+      # images in the rows (voxels in this searchlight only), voxels in the columns
+      curr_dat_pre <- array(NA, c(n_pics*n_blocks, length(voxs)))  
+      curr_dat_post <- array(NA, c(n_pics*n_blocks, length(voxs)))
+
+      # put the data into a matrix to run analysis
+      for (i in 1:length(voxs)) {   # i <- 1
+          
+        # for the current voxel, take the data from all conditions and store it (separately for pre and post)
+        coords <- which(vox_num_nii == voxs[i], arr.ind=TRUE)
+        if (ncol(coords) != 3 | nrow(coords) != 1) { stop("wrong sized coords")}
+        curr_vox <- func_nii_pre[coords[1], coords[2], coords[3],] # pre
+        if (sd(curr_vox) > 0) {curr_dat_pre[,i] <- curr_vox} else { stop("zero variance voxel")} 
+        curr_vox <- func_nii_post[coords[1], coords[2], coords[3],] # post
+        if (sd(curr_vox) > 0) {curr_dat_post[,i] <- curr_vox} else { stop("zero variance voxel")} 
+      }
+      
+      # data is in repetition (row) by voxel (col) format, so we transpose 
+      # to get a voxel x repetition format
+      curr_dat_pre <- t(curr_dat_pre)
+      curr_dat_post <- t(curr_dat_post)
+      
+      # calculate correlation matrix (trial by trial) for pre and post run
+      cor_mat_pre_trial <- cor(curr_dat_pre, curr_dat_pre)
+      cor_mat_post_trial <- cor(curr_dat_post, curr_dat_post)
+      
+      # initialize condition by condition correlation matrix for pre and post run
+      corr_mat_pre <- matrix(nrow = 20, ncol = 20)
+      corr_mat_post <- matrix(nrow = 20, ncol = 20)
+
+      # loop over all picture comparisons
+      for(i_pic1 in 1:20){
+        for(i_pic2 in 1:20){
+          
+          # extract the current 10x10 correlation matrix
+          i1 <- (1+(i_pic1-1)*10):(i_pic1*10)
+          i2 <- (1+(i_pic2-1)*10):(i_pic2*10)
+          curr_mat_pre <- cor_mat_pre_trial[i1, i2]
+          curr_mat_post <- cor_mat_post_trial[i1, i2]
+          
+          # average the correlations while excluding diagonal (same block comparisons)
+          corr_mat_pre[i_pic1, i_pic2] <- mean(curr_mat_pre[no_diag])
+          corr_mat_post[i_pic1, i_pic2] <- mean(curr_mat_post[no_diag])
+        }
+      }
+        
+      # calculate pattern similarity change based on FisherZ-transformed upper 
+      # triangles of the correlation matrices
+      rsa_df$ps_change <- FisherZ(corr_mat_post[triu_idx]) - FisherZ(corr_mat_pre[triu_idx])
+      
+      # find 3D-coordinates of this searchlight center to save output
+      coords <- which(vox_num_nii == as.numeric(rownames(lookup_tbl[v,])), arr.ind=TRUE)
+      if (ncol(coords) != 3 | nrow(coords) != 1) { stop("wrong sized coords"); }
+      
+      ########## RUN RSA FOR THIS SPHERE
+      # same day virtual time
+      fit <- lm(ps_change ~ vir_time_diff, rsa_df[rsa_df$same_day,])
+      rsa_out_array_same_day_vir_time[coords[1], coords[2], coords[3]] <- coef(summary(fit))[, "t value"][2]
+      
+      # different day virtual time
+      fit <- lm(ps_change ~ vir_time_diff, rsa_df[!rsa_df$same_day,])
+      rsa_out_array_diff_day_vir_time[coords[1], coords[2], coords[3]] <- coef(summary(fit))[, "t value"][2]
+      
+      # all pairs virtual time 
+      fit <- lm(ps_change ~ vir_time_diff, rsa_df)
+      rsa_out_array_all_pairs_vir_time[coords[1], coords[2], coords[3]] <- coef(summary(fit))[, "t value"][2]
+      
+      # day*time interaction
+      fit <- lm(ps_change ~ vir_time_diff*same_day_dv, rsa_df)
+      rsa_out_array_interaction[coords[1], coords[2], coords[3]] <- coef(summary(fit))[, "t value"][4]
+      
+      # number of features
+      #rsa_out_array_n_in_sphere[coords[1], coords[2], coords[3]] <- length(voxs)
+      
+    } else{
+      stop("number of features too small!")
+    }
+  }
+  ########## SAVE RESULTS
+  # create nifti with same header info as input data and write to file
+  # same day virtual time
+  rsa_out_nii = copyNIfTIHeader(img = vox_num_nii, arr = rsa_out_array_same_day_vir_time)
+  write_nifti(rsa_out_nii, file.path(in_df$out_path, 
+                                     sprintf("%s_searchlight_same_day_vir_time_chunk%02d", 
+                                             in_df$subject, in_df$chunk)))
+  
+  # different day virtual time
+  rsa_out_nii = copyNIfTIHeader(img = vox_num_nii, arr = rsa_out_array_diff_day_vir_time)
+  write_nifti(rsa_out_nii, file.path(in_df$out_path, 
+                                     sprintf("%s_searchlight_diff_day_vir_time_chunk%02d", 
+                                             in_df$subject, in_df$chunk)))
+  
+  # all pairs virtual time
+  rsa_out_nii = copyNIfTIHeader(img = vox_num_nii, arr = rsa_out_array_all_pairs_vir_time)
+  write_nifti(rsa_out_nii, file.path(in_df$out_path, 
+                                     sprintf("%s_searchlight_all_pairs_vir_time_chunk%02d", 
+                                             in_df$subject, in_df$chunk))) 
+  
+  # day*time interaction
+  rsa_out_nii = copyNIfTIHeader(img = vox_num_nii, arr = rsa_out_array_interaction)
+  write_nifti(rsa_out_nii, file.path(in_df$out_path, 
+                                     sprintf("%s_searchlight_day_time_interaction_chunk%02d", 
+                                             in_df$subject, in_df$chunk)))
+  
+  # no. voxels in sphere
+  #rsa_out_nii = copyNIfTIHeader(img = vox_num_nii, arr = rsa_out_array_n_in_sphere)
+  #write_nifti(rsa_out_nii, file.path(in_df$out_path, sprintf("%s_searchlight_n_vox_sphere_chunk%02d", in_df$subject, in_df$chunk)))
+}
+```
+
+Now actually run the function for each chunk; either in parallel or serially. Because the analysis is slow (several hours per chunk when using 50 chunks), it is not feasible to run it serially.
+
+```{r, eval = run_srchlght_lvl1}
+
+# next step depends on whether we are in parallel or serial mode
+if (!run_parallel){ # run serially
+
+  print("Running the searchlight analysis serially. Do this only for testing purposes because the code will run forever")
+  
+  # run the function for each row of the data frame,
+  # i.e. for each block in each run for each subject
+  for(i in 1:nrow(in_df)){
+    
+    tic(sprintf("Subject %s, chunk %d",
+                in_df$subject[i], in_df$chunk[i]))
+    run_searchlight(in_df = in_df[i,])
+    toc()
+  }
+  
+} else if (run_parallel){ # run in parallel, assumes CBS HTCondor is available
+  
+  # write the data frame to file
+  fn <- file.path(here("data","mri", "rsa", "searchlight", sprintf("first_level_%dvox_radius", radius)),
+                  "htc_config_run_searchlight.txt")
+  fn_def <- cat(sprintf('"fn <- "%s"',fn))
+  write.table(in_df, fn,
+              append = FALSE, sep = ",", dec = ".", row.names = FALSE, col.names = TRUE)
+  
+  # store the function definition as text
+  func_def <- capture.output(run_searchlight)
+  func_def[1] <- paste0("run_searchlight <- ",func_def[1])
+  #func_def <- func_def[-length(func_def)]
+  
+  #write the Rscript that we want to run
+  rscript_fn <- here("data","mri", "rsa", "searchlight", sprintf("first_level_%dvox_radius", radius), "run_searchlight.R")
+  con <- file(rscript_fn)
+  open(con, "w")
+  writeLines(c(
+    "\n# handle input",
+    "args = commandArgs()",
+    "i <- as.numeric(args[length(args)])",
+    "\n#load required packages",
+    noquote(sprintf('lib_dir <- "%s"',"/data/pt_02261/virtem/virtem_code/R3.6.1/library/Linux")),
+    '.libPaths(c(lib_dir,.libPaths()))',
+    'lapply(c("oro.nifti", "assertthat", "dplyr", "neurobase", "DescTools"), library, character.only = TRUE)',
+    "\n# read the data and transform ROI column back to list",
+    noquote(sprintf('fn <- "%s"',fn)),
+    'func_dat_df <- read.table(fn, sep = ",", header = TRUE, stringsAsFactors = FALSE)',
+    "\n#define the function to run motion GLM",
+    func_def,
+    "\n# run the function on one line of the data frame",
+    "run_searchlight(in_df = func_dat_df[i,])"),con)
+  close(con)
+  
+  # folder for condor output
+  htc_dir <- here("htc_logs", "first_level_searchlight")
+  if(!dir.exists(htc_dir)){dir.create(htc_dir, recursive = TRUE)}
+  
+  # write the submit script
+  fn <- here("data","mri", "rsa", "searchlight", sprintf("first_level_%dvox_radius", radius), "run_searchlight.submit")
+  con <- file(fn)
+  open(con, "w")
+  writeLines(c(
+    "universe = vanilla",
+    "executable = /afs/cbs.mpg.de/software/scripts/envwrap",
+    "request_memory = 13500", # "request_memory = 13500", # works for 3 voxel radius & 40 chunks
+    "notification = error"
+    ),con)
+    
+    c <- 0
+    for (i in 1:nrow(in_df)){
+      if (!file.exists(file.path(in_df[i,]$out_path, 
+                                 sprintf("%d_searchlight_all_pairs_vir_time_chunk%02d.nii.gz",
+                                         as.numeric(in_df[i,]$subject), in_df[i,]$chunk)))){
+        c <- c + 1
+        
+          writeLines(c(
+          sprintf("\narguments = R+ --version 3.6.1 Rscript %s %d", rscript_fn, i),
+          sprintf("log = %s/%d.log", htc_dir, i),
+          sprintf("output = %s/%d.out", htc_dir, i),
+          sprintf("error = %s/%d.err", htc_dir, i),
+          sprintf("Queue\n")),con)
+      }
+    }
+  close(con)
+  
+  # submit to condor and play the waiting game
+  batch_id <- system(paste("condor_submit", fn), intern = TRUE)
+  batch_id <- regmatches(batch_id[2], gregexpr("[[:digit:]]+", batch_id[2]))[[1]][2]
+  cat(sprintf("submitted jobs (ID = %s) for 1st-level searchlights. Time to wait...", batch_id))
+  pause_until_batch_done(batch_id = batch_id, wait_interval = 1800) # check every half hour if done 
+  #system("condor_q")
+}
+
+```
+
+#### Combine the chunks {-}
+
+Lastly, we need to combine the results across chunks to get the whole picture.
+
+```{r, eval = run_srchlght_lvl1}
+
+# analyses that we ran the searchlights for
+searchlights <- c("same_day_vir_time", 
+                  "diff_day_vir_time", 
+                  "day_time_interaction", 
+                  "all_pairs_vir_time"#, 
+                  #"n_vox_sphere"
+                  )
+
+for (i_sub in subjects){
+  
+  # where are the chinks
+  in_dir <- file.path(dirs$searchlight, sprintf("first_level_%dvox_radius", radius), i_sub, "chunks")
+  
+  for (i_srchlght in searchlights){
+    
+    # file names of the individual chunks
+    in_files <- file.path(in_dir, sprintf("%d_searchlight_%s_chunk%02d.nii.gz", 
+                                          as.numeric(i_sub), i_srchlght, 1:n_chunks))
+    
+    # load the first chunk image, this will serve as the basis for combining all chunks
+    comb_nii <- readNIfTI(in_files[1], reorient = FALSE)
+    
+    for (i_chunk in 2:n_chunks){
+      
+      # load this chunk's nifti  
+      new_nii <- readNIfTI(in_files[i_chunk], reorient = FALSE)
+      
+      # find where the data is (i.e. where the image is non-zero)
+      #new_nii[is.na(new_nii)] <- 0
+      coords <- which(new_nii !=0, arr.ind = TRUE)
+      
+      # the combined image should be 0 at all these coordinates
+      if(!(sum(comb_nii[coords]==0) == nrow(coords))){
+          stop("chunks overlap!")}
+      
+      # add this chunk's data to the combined nifti
+      comb_nii[coords] <- new_nii[coords]
+    }
+    
+    # make a simple plot to check that the output is shaped like a brain  
+    fn <- file.path(dirs$searchlight, sprintf("first_level_%dvox_radius", radius), 
+                    i_sub, sprintf("%s_%s", i_sub, i_srchlght))
+    jpeg(file = paste0(fn,".jpg"), width = 1000, height = 1000, units = "px")
+    ortho2(comb_nii, NA.x=TRUE)
+    dev.off()
+    
+    # write nifti to file
+    write_nifti(comb_nii, fn)
+  }
+}
+```

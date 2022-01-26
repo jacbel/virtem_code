@@ -1,0 +1,204 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Group-Level Masks
+
+Lastly, we create some group-level masks for visualization and further analysis:
+
+- probabilistic ROI image for visualization of ROIs
+- a field of view mask in MNI space
+- a gray matter mask in MNI space
+-  a small volume correction mask
+
+We create these images in their respective folders, but also copy them to the analysis data folder so they can be shared.
+
+```{r}
+# create the group mask folder
+if (!dir.exists(file.path(dirs$data4analysis, "mni1mm_masks"))){
+  dir.create(file.path(dirs$data4analysis, "mni1mm_masks"))}
+
+# copy MNI image there
+file.copy(mni_fname(mm=1, brain = TRUE), file.path(dirs$data4analysis, "mni1mm_masks"),
+          overwrite=TRUE)
+```
+
+### Probabilistic ROIs for visualization {-}
+
+For later visualization we move the masks to MNI space and threshold at 0.5. We then add the images together and divide by the number of subjects to obtain an image giving us the probablity of each voxel to be included in the ROI.  
+
+Visualizations of the ROIs will be created before implementing [ROI-based RSA](#rsa-on-pattern-similarity-change).
+
+```{r, eval = run_prep_rois}
+
+# name of transformation matrix file to move from common functional to MNI 1mm space
+func2standard <- here("data", "mri", "processed", "wholebrain", 
+                     paste0("VIRTEM_P", subjects, ".feat"),
+                     "reg", "example_func2standard.mat")
+
+# use MNI 1mm image as a reference
+mni_1mm <- mni_fname(mm=1)
+
+for (i_roi in 1:length(rois)){
+  
+  # where to put the output
+  out_dir <- here("data", "mri", "rois", rois[i_roi], "mni_1mm")
+  if (!dir.exists(out_dir)){dir.create(out_dir)}
+  
+  # define input files in samespace (ss) = analysis space based on the wholebrain EPI
+  roi_ss <- here("data", "mri", "rois", rois[i_roi], "samespace",
+                 sprintf("P%s_%s_ss.nii.gz", subjects, rois[i_roi]))
+
+  #file name of output ROI file in standard MNI space
+  roi_mni <- file.path(out_dir, sprintf("P%s_%s_mni1mm.nii.gz", subjects, rois[i_roi]))
+  
+  # apply FSL flirt to move ROI from wholebrain functional space to MNI space
+  invisible(mapply(flirt_apply, infile = roi_ss, reffile = mni_1mm, 
+                   initmat = func2standard, outfile = roi_mni,
+                   verbose = FALSE, retimg = FALSE))
+  
+  # use fslmaths to binarize the ROI using a threshold of 0.5
+  out <- mapply(fsl_thresh, file = roi_mni, outfile = roi_mni, thresh = 0.5, opts = "-bin",
+                verbose = FALSE, retimg = FALSE)
+  
+  # create summary image
+  out_fn <- here("data", "mri", "rois", rois[i_roi], 
+                 sprintf("%s_group_prob_mni1mm.nii.gz",rois[i_roi]))
+  fslmaths(file = roi_mni, outfile = out_fn, 
+           opts = sprintf("-add %s", paste0(roi_mni[2:length(roi_mni)])),
+           verbose=FALSE)
+  fslmaths(file = out_fn, outfile = out_fn, 
+         opts = sprintf("-div %d", length(roi_mni)),
+         verbose=FALSE)
+  
+  # copy to data sharing folder
+  file.copy(from = out_fn, to = file.path(dirs$data4analysis, "mni1mm_masks"),
+            overwrite = TRUE)
+}
+```
+
+### Field of view mask for visualization {-}
+
+Next, we create a mask of our field of view, i.e. voxels covered in our functional images. We do so by registering the subject-specific brain masks from FEAT (in whole-brain functional space, already combined across blocks) to MNI space. After thresholding, the result is a binary mask to illustrate the FOV when plotting brain images in the main analysis script.
+
+```{r, eval = run_prep_rois}
+# folder for output
+if(!dir.exists(file.path(dirs$mask_dir, "fov"))){
+  dir.create(file.path(dirs$mask_dir, "fov"), recursive=TRUE)}
+
+# name of transformation matrix file to move from the shared functional space to MNI 1mm
+func2standard <- here("data", "mri", "processed", "wholebrain", 
+                      paste0("VIRTEM_P", subjects, ".feat"),
+                      "reg", "example_func2standard.mat")
+
+# subject-specific brain (FOV) masks in whole-brain functional space
+subj_masks <- file.path(dirs$samespace_dir, sprintf("VIRTEM_P%s",subjects),
+                        sprintf("VIRTEM_P%s_common_mask_perBlock.nii.gz",subjects))
+
+# output file name after moving to MNI space
+subj_masks_mni <- file.path(file.path(dirs$mask_dir, "fov"), 
+                            sprintf("%s_fov_mask_mni.nii.gz", subjects))
+
+# apply FSL flirt to move from wholebrain functional space to 1mm MNI space
+invisible(mapply(flirt_apply,
+                 infile = subj_masks,
+                 reffile = mni_fname("1"),
+                 initmat = func2standard,
+                 outfile = subj_masks_mni,
+                 verbose = FALSE, retimg = FALSE))
+
+# merge the files into a 4D file
+mask_4d <- file.path(dirs$mask_dir, "fov", "4d_fov_mask_mni.nii.gz")
+fsl_merge(infiles = subj_masks_mni, direction = "t", outfile = mask_4d, retimg = FALSE, verbose = FALSE)
+
+# create binary mask 
+fov_mask <- file.path(dirs$mask_dir, "fov", "fov_mask_mni.nii.gz")
+fov_mask_nii <- fslmaths(mask_4d, outfile = fov_mask, 
+                         opts = "-thr 0.3 -bin -Tmean -thr 0.3 -bin",
+                         verbose = FALSE, retimg = TRUE)
+
+# quick plot
+ortho2(fov_mask_nii, xyz=c(100,100,50))
+
+# copy to data sharing folder
+file.copy(from = fov_mask, to = file.path(dirs$data4analysis, "mni1mm_masks"))
+```
+
+### Gray matter mask{-}
+
+From the subject-specific gray matter masks (in whole-brain functional space) we create a merged, binary mask in MNI space. We use this to run FSL Randomise for all gray matter voxels (we only use gray matter voxels as features for our searchlight analysis).  
+
+>Gray matter segmentation was done on the structural images and the results were mapped back to the space of the whole-brain functional scan for later use in the analysis.
+
+```{r, eval = run_prep_rois}
+# folder for output
+if(!dir.exists(file.path(dirs$mask_dir, "gray_matter"))){
+  dir.create(file.path(dirs$mask_dir, "gray_matter"), recursive=TRUE)}
+
+# name of transformation matrix file to move from the shared functional space to MNI 1mm
+func2standard <- here("data", "mri", "processed", "wholebrain", 
+                      paste0("VIRTEM_P", subjects, ".feat"),
+                      "reg", "example_func2standard.mat")
+
+# subject-specific gray matter masks in whole-brain functional space
+subj_masks <- file.path(dirs$samespace_dir, sprintf("VIRTEM_P%s",subjects),
+                        sprintf("VIRTEM_P%s_common_graymatter_mask_brainmasked.nii.gz", subjects))
+
+# output file name in MNI space
+subj_masks_mni <- file.path(dirs$mask_dir, "gray_matter", 
+                            sprintf("%s_graymatter_mni.nii.gz", subjects))
+
+# apply FSL flirt to move from wholebrain functional space to 1mm MNI space
+invisible(mapply(flirt_apply,
+                 infile = subj_masks,
+                 reffile = mni_fname("1"),
+                 initmat = func2standard,
+                 outfile = subj_masks_mni,
+                 verbose = FALSE, retimg = FALSE))
+
+# merge the files into a 4D file
+gm_4d <- file.path(dirs$mask_dir, "gray_matter", "4d_graymatter_mni.nii.gz")
+fsl_merge(infiles = subj_masks_mni, direction = "t", outfile = gm_4d, retimg = FALSE, verbose = FALSE)
+
+# create binary gray matter mask by thresholding and combining across subjects liberally
+mni_brain_mask <- mni_fname(mm = "1", brain=TRUE, mask=TRUE)
+gm_mask <- file.path(dirs$mask_dir, "gray_matter", "gray_matter_mask.nii.gz")
+gm_mask_nii <- fslmaths(gm_4d, outfile = gm_mask, 
+                        opts = sprintf("-thr 0.3 -bin -Tmean -thr 0.3 -bin -mas %s",
+                                       mni_brain_mask),
+                        verbose = FALSE, retimg = TRUE)
+```
+
+
+### Small Volume Correction Mask{-}
+
+>We corrected for multiple comparisons using a small volume correction mask including our a priori regions of interest, the anterior hippocampus and the anterior-lateral entorhinal cortex.
+
+The small volume correction mask consists of our a priori ROIs, the anterior hippocampus and the anterior-lateral entorhinal cortex. We use the subject-specific masks, moved back to MNI space for this.
+
+```{r, eval = run_prep_rois}
+# folder for output
+if(!dir.exists(file.path(dirs$mask_dir, "svc"))){
+  dir.create(file.path(dirs$mask_dir, "svc"), recursive=TRUE)}
+
+# create the SVC mask by merging aHPC and alEC ROIs
+aHPC_fn <- here("data", "mri", "rois", "aHPC_lr",
+                sprintf("%s_group_prob_mni1mm.nii.gz", "aHPC_lr"))
+alEC_fn <- here("data", "mri", "rois", "alEC_lr",
+                sprintf("%s_group_prob_mni1mm.nii.gz", "alEC_lr"))
+svc_mask_fn <- file.path(dirs$mask_dir, "svc", "svc_mask.nii.gz")
+fsl_add(file = aHPC_fn, file2 = alEC_fn, outfile = svc_mask_fn, 
+        retimg = FALSE)
+svc_nii <- fslmaths(file = svc_mask_fn, outfile = svc_mask_fn, 
+                    opts = sprintf("-thr 0.99 -bin -mas %s", gm_mask), 
+                    retimg = TRUE)
+
+# let's have a look at the mask we created
+mni_nii <- readNIfTI2(mni_fname("1"))
+ortho2(mni_nii, y = svc_nii, xyz = c(63, 113, 50))
+ortho2(mni_nii, y = svc_nii, xyz = c(71, 127, 39))
+```

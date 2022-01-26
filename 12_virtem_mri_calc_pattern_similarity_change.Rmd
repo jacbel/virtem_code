@@ -1,0 +1,49 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+### Calculate Pattern Similarity Change {-}
+
+In the next step, we calculate how the correlation between patterns change from the first to the second picture viewing task, i.e. through the day learning task. To do this, we load both correlation matrices and reduce them to the upper triangle, excluding the diagonal. Then, the correlations are Fisher Z-transformed and the similarity values from the pre-learning picture viewing task are subtracted from those of the post-learning picture viewing task to isolate pattern similarity change. The correlations and their changes are then saved together with information about the pictures that were compared.
+
+>In order to assess changes in representational similarity due to the day learning task, which took place in between the two picture viewing tasks, we quantified pattern similarity changes as the difference of the respective correlation coefficients for every pair of events between the post-learning picture viewing task and its pre-learning baseline equivalent (Figure 3). 
+
+```{r}
+
+for(i_sub in subjects){
+  for(i_roi in 1:length(rois)){
+  
+    # load pre correlation matrix
+    fn <- file.path(dirs$rsa_roi_corr_mat_dirs[i_roi], 
+                    sprintf("%s_%s_pre_corr_mat.txt", i_sub, rois[i_roi]))
+    corr_mat_pre <- read.table(fn, sep = ",", dec = ".")    
+    
+    # load post correlation matrix
+    fn <- file.path(dirs$rsa_roi_corr_mat_dirs[i_roi], 
+                    sprintf("%s_%s_post_corr_mat.txt", i_sub, rois[i_roi]))
+    corr_mat_post <- read.table(fn, sep = ",", dec = ".")
+    
+    # reduce to upper triangle of correlations (without diagonal)
+    pre_corrs <- corr_mat_pre[upper.tri(corr_mat_pre, diag = FALSE)]
+    post_corrs <- corr_mat_post[upper.tri(corr_mat_post, diag = FALSE)]
+    
+    # create a tibble with the correlations 
+    pics <- which(upper.tri(corr_mat_post), arr.ind=TRUE)
+    corr_df <- tibble(pic1 = pics[,1], pic2 = pics[,2], pre_corrs, post_corrs)
+    
+    # Fisher Z transform correlations and calculate pattern similarity change
+    # by subtracting the pre-correlations from the post-correlations
+    corr_df$ps_change <- FisherZ(corr_df$post_corrs) - FisherZ(corr_df$pre_corrs)
+    
+    # write to file
+    fn <- file.path(dirs$rsa_roi_ps_change_dirs[i_roi], 
+                    sprintf("%s_%s_pattern_similarity_change.txt", i_sub, rois[i_roi]))
+    write.table(corr_df, fn, append = FALSE, sep = ",",
+                dec = ".", row.names = FALSE, col.names = TRUE)
+  }
+}
+```

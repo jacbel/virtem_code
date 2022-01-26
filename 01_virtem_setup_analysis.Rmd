@@ -1,0 +1,144 @@
+---
+author: "Jacob Bellmund"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Analysis Setup
+
+## Defining Variables and Folders
+
+First, we set up some global variables that will be used throughout the analyses. This includes the identifiers of the subjects to include in the analysis, specifics of the design such as the number of days and events per day and the regions of interest for representational similarity analysis.
+
+```{r}
+
+#-------- DEFINE GLOBAL VARIABLES ---------
+
+# list of subject IDs(excluded: 58 and 68 because of bad memory performance and MRI acquisition problems)
+subjects <- c("031", "032", "033", "034", "035", "036", "037", "038", "039", "054", 
+              "055", "056", "057", "059", "061", "062", "063", "064", "065", "066", 
+              "069", "070", "071", "072", "073", "074", "075", "076")
+n_subs <- length(subjects)
+
+# PVT scanning runs and blocks within each run
+runs <- c("pre", "post")
+n_runs <- length(runs)
+n_blocks <- 10
+
+# design parameters
+n_days <- 4
+n_events_day <- 5
+n_pics <- n_days*n_events_day
+
+# Main regions of interest for analyses
+rois <- c("aHPC_lr", "alEC_lr")
+
+# Regions of interest in MNI space
+rois_ec = c("alEC_lr")
+rois_hpc = c("aHPC_lr")
+rois_mni <- c(rois_hpc, rois_ec)
+roi_colors <- c("#dd4731", "#079cd6")
+
+# Regions of interest to get from Freesurfer
+rois_fs = c("hpc_lr", "ec_lr")
+# numeric Freesurfer labels
+#(https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT)
+labels_fs = list(c(17,53), c(1006,2006)) 
+roi_colors_fs <- wes_palette(n = length(rois_fs), name = "FantasticFox1")
+
+# Define colors to use in plots
+event_colors <- scico::scico(n=5, begin = 0, end = 0.6, palette = "bamako")
+time_colors <- c("#26588E", "#33602D", "#C1AA6E") 
+
+aHPC_colors <- c("#dd4731", # main
+                 "#26588E", # within main, from scico::scico(n=5, begin = 0.1, end = 0.7, palette = "devon")[3], 
+                 "#e31a1c", # within low
+                 "#800026", # within high
+                 "#A54440", # across main, from scico::scico(n=5, begin = 0.3, end = 0.9, palette = "lajolla")[3]
+                 "#feb24c", # across low
+                 "#fc4e2a") # across high
+names(aHPC_colors) <- c("main", "within_main", "within_low", "within_high", "across_main", "across_low", "across_high")
+alEC_colors <- c("#855C85", 
+                 "#225ea8", 
+                 "#1d91c0", 
+                 "#0c2c84", 
+                 "#7fcdbb", 
+                 "#c7e9b4", 
+                 "#41b6c4")
+names(alEC_colors) <- c("main", "within_main", "within_low", "within_high", "across_main", "across_low", "across_high")
+day_time_int_color <- "#F5DF4D"
+time_within_across_color <- unname(alEC_colors["main"])
+ultimate_gray <- "#939597"
+```
+
+### Folder Structure {-}
+
+In a second step, we create some folders that will be used during the analysis. These are folders that contain raw data as well as folders into which processed data is written. CAVE: Some Markdown files still create their own folders.
+
+```{r}
+#-------- SET UP FOLDERS ---------
+dirs <- c()
+
+# directory with logs from picture viewing task
+dirs$pvt_log_dir <- here("data", "behavior", "logs", "picture_viewing_task")
+
+# directory with logs from day learning task
+dirs$dlt_log_dir <- here("data", "behavior", "logs", "day_learning")
+
+# directory with logs from the timeline task
+dirs$timeline_dat_dir <- here("data", "behavior", "timeline")
+
+# directories for freesurfer ROIs
+dirs$rois_fs_dirs = here("data", "mri", "rois", rois_fs) 
+
+# directories for final ROIs in analysis space
+dirs$rois_ss_dirs <- here("data", "mri", "rois", rois, "samespace")
+
+# directories for the MNI ROIs in analysis space
+dirs$rois_mni_ss_dirs <- here("data", "mri", "rois", rois_mni, "samespace")
+
+# directory where preprocessed data lies for each run and block
+dirs$feat_dir <- here("data", "mri", "processed", "functionalDataPerBlock")
+
+# directory with MRI data in the analysis space (samespace)
+dirs$samespace_dir <- here("data", "mri", "processed", "samespace")
+
+# base directory for RSA
+dirs$rsa_dir <- here("data", "mri", "rsa")
+
+# directories for RSA correlation matrices
+dirs$rsa_roi_corr_mat_dirs <- here("data", "mri", "rsa", "correlation_matrices", rois)
+
+# directories for RSA pattern similarity change
+dirs$rsa_roi_ps_change_dirs <- here("data", "mri", "rsa", "pattern_similarity_change", rois)
+
+# directories for the cleaned timeseries data
+dirs$rsa_roi_clean_timeseries_dirs <- here("data", "mri", "rsa", "clean_roi_timeseries", rois)
+
+# directories for the relevant volumes of each ROI
+dirs$rsa_roi_rel_vol_dirs <- here("data", "mri", "rsa", "relevant_roi_volumes", rois)
+
+# directory for data on which to run RSA
+dirs$rsa_dat_dir <- here("data", "mri", "rsa", "data_for_rsa")
+
+dirs$mask_dir <- here("data", "mri", "processed", "group_masks")
+
+# base directory for RSA searchlights
+dirs$searchlight <- here("data", "mri", "rsa", "searchlight")
+
+# data for final analysis (this will be shared)
+dirs$data4analysis <- here("data_for_analysis")
+
+# directory for source data for nature communications
+dirs$source_dat_dir <-here("source_data_natcomms")
+if(dir.exists(dirs$source_dat_dir)){unlink(dirs$source_dat_dir)} # delete if already existing to make sure to start with empty directory
+
+# directory to save figures to
+fig_dir = here("figures")
+if(!dir.exists(fig_dir)){dir.create(fig_dir)}
+
+# create all the directories
+dirs_created <- lapply(unlist(dirs), function(x) if(!dir.exists(x)) dir.create(x, recursive=TRUE))
+```
