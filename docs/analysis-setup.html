@@ -24,7 +24,7 @@
 <meta name="author" content="Jacob L. S. Bellmund" />
 
 
-<meta name="date" content="2022-01-27" />
+<meta name="date" content="2022-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -519,7 +519,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-53"><a href="analysis-setup.html#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-54"><a href="analysis-setup.html#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co"># directory for source data for nature communications</span></span>
 <span id="cb2-55"><a href="analysis-setup.html#cb2-55" aria-hidden="true" tabindex="-1"></a>dirs<span class="sc">$</span>source_dat_dir <span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">&quot;source_data_natcomms&quot;</span>)</span>
-<span id="cb2-56"><a href="analysis-setup.html#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">dir.exists</span>(dirs<span class="sc">$</span>source_dat_dir)){<span class="fu">unlink</span>(dirs<span class="sc">$</span>source_dat_dir)} <span class="co"># delete if already existing to make sure to start with empty directory</span></span>
+<span id="cb2-56"><a href="analysis-setup.html#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">dir.exists</span>(dirs<span class="sc">$</span>source_dat_dir)){<span class="fu">unlink</span>(dirs<span class="sc">$</span>source_dat_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>)} <span class="co"># delete if already existing to make sure to start with empty directory</span></span>
 <span id="cb2-57"><a href="analysis-setup.html#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-58"><a href="analysis-setup.html#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="co"># directory to save figures to</span></span>
 <span id="cb2-59"><a href="analysis-setup.html#cb2-59" aria-hidden="true" tabindex="-1"></a>fig_dir <span class="ot">=</span> <span class="fu">here</span>(<span class="st">&quot;figures&quot;</span>)</span>
@@ -549,8 +549,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This is also described in the methods section of the manuscript:</p>
 <blockquote>
 <p>For the summary statistics approach, we ran a multiple regression analysis for each participant with virtual time, sequence position (order), and real time since the first event of a day as predictors of responses in the timeline task. To test whether virtual time indeed explained participants’ responses even when competing for variance with order and real time, included in the model as control predictors of no interest, we compared the participant-specific t-values of the resulting regression coefficients against null distributions obtained from shuffling the remembered times against the predictors 10000 times. We converted the resulting p-values to Z-values and tested these against zero using a permutation-based t-test (10000 random sign-flips, Figure 2E).</p>
-</blockquote>
-<blockquote>
 <p>In the summary statistics approach, we used the different time metrics as predictors for pattern similarity change. We set up a GLM with the given variable from the day learning task as a predictor and the pairwise representational change values as the criterion for every participant. The t-values of the resulting model coefficients were then compared to a null distribution obtained from shuffling the dependent variable of the linear model (i.e. pattern similarity change) 10000 times. This approach to permutation-testing of regression coefficients controls Type I errors even under situations of collinear regressors (Anderson and Legendre, 1999). Resulting p-values for each coefficient were transformed to a Z-score. The Z-scores were then used for group-level inferential statistics.</p>
 </blockquote>
 <p>We start by defining the function that permutes the dependent variable of the linear model. This approach was described e.g. by Manly (<a href="https://www.taylorfrancis.com/books/9781315273075">1997</a>) and is referred to as permutation of raw data in Anderson &amp; Legendre (<a href="https://doi.org/10.1080/00949659908811936">1999</a>), who compare different ways to implement permutation tests for (partial) regression coefficients. Their simulations show that the chosen approach does well in terms of controlling type I errors and power, even under situations of collinear regressors.</p>

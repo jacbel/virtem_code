@@ -24,7 +24,7 @@
 <meta name="author" content="Jacob L. S. Bellmund" />
 
 
-<meta name="date" content="2022-01-27" />
+<meta name="date" content="2022-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -405,8 +405,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">12.1</span> List of packages</h2>
 <p>Here is a list of packages used in the analysis and references to them. It is created using the <a href="https://github.com/Pakillo/grateful">grateful package</a>.</p>
 <p>Unfortunately, not all packages provide all information, so there are a few warning messages. The code below generates a markdown file with references that we read in and print below.</p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="credit.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(grateful<span class="sc">::</span><span class="fu">cite_packages</span>(<span class="at">all.pkg =</span> <span class="cn">FALSE</span>, <span class="at">include.rmd=</span><span class="cn">FALSE</span>, <span class="at">style =</span> <span class="st">&quot;cell&quot;</span>,</span>
-<span id="cb544-2"><a href="credit.html#cb544-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">out.format =</span> <span class="st">&quot;md&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="credit.html#cb536-1" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(grateful<span class="sc">::</span><span class="fu">cite_packages</span>(<span class="at">all.pkg =</span> <span class="cn">FALSE</span>, <span class="at">include.rmd=</span><span class="cn">FALSE</span>, <span class="at">style =</span> <span class="st">&quot;cell&quot;</span>,</span>
+<span id="cb536-2"><a href="credit.html#cb536-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">out.format =</span> <span class="st">&quot;md&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning in FUN(X[[i]], ...): no date field in DESCRIPTION file of package &#39;extrafont&#39;</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): no date field in DESCRIPTION file of package &#39;ggBrain&#39;</code></pre>
 <pre><code>## 
@@ -415,12 +415,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## output file: refs.knit.md</code></pre>
 <pre><code>## 
 ## Output created: citations.md</code></pre>
-<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="credit.html#cb550-1" aria-hidden="true" tabindex="-1"></a>used_pkgs <span class="ot">&lt;-</span><span class="fu">readLines</span>(<span class="fu">here</span>(<span class="st">&quot;virtem_code&quot;</span>, <span class="st">&quot;citations.md&quot;</span>))</span>
-<span id="cb550-2"><a href="credit.html#cb550-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb550-3"><a href="credit.html#cb550-3" aria-hidden="true" tabindex="-1"></a>ref_line <span class="ot">&lt;-</span> <span class="fu">which</span>(used_pkgs<span class="sc">==</span><span class="st">&quot;References&quot;</span>)</span>
-<span id="cb550-4"><a href="credit.html#cb550-4" aria-hidden="true" tabindex="-1"></a>used_pkgs[ref_line] <span class="ot">&lt;-</span> <span class="st">&quot;### References {-}&quot;</span></span>
-<span id="cb550-5"><a href="credit.html#cb550-5" aria-hidden="true" tabindex="-1"></a>used_pkgs[ref_line<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb550-6"><a href="credit.html#cb550-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(used_pkgs, <span class="at">collapse =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">cat</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="credit.html#cb542-1" aria-hidden="true" tabindex="-1"></a>used_pkgs <span class="ot">&lt;-</span><span class="fu">readLines</span>(<span class="fu">here</span>(<span class="st">&quot;virtem_code&quot;</span>, <span class="st">&quot;citations.md&quot;</span>))</span>
+<span id="cb542-2"><a href="credit.html#cb542-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb542-3"><a href="credit.html#cb542-3" aria-hidden="true" tabindex="-1"></a>ref_line <span class="ot">&lt;-</span> <span class="fu">which</span>(used_pkgs<span class="sc">==</span><span class="st">&quot;References&quot;</span>)</span>
+<span id="cb542-4"><a href="credit.html#cb542-4" aria-hidden="true" tabindex="-1"></a>used_pkgs[ref_line] <span class="ot">&lt;-</span> <span class="st">&quot;### References {-}&quot;</span></span>
+<span id="cb542-5"><a href="credit.html#cb542-5" aria-hidden="true" tabindex="-1"></a>used_pkgs[ref_line<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb542-6"><a href="credit.html#cb542-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(used_pkgs, <span class="at">collapse =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">cat</span>()</span></code></pre></div>
 <ul>
 <li>base (R Core Team, 2019)</li>
 <li>extrafont (Chang, 2020)</li>
@@ -478,14 +478,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>mgsub (Ewing, 2019)</li>
 <li>tinytex (Xie, 2019)</li>
 <li>combinat (Chasalow, 2012)</li>
-<li>devtools (Wickham et al., 2020a)</li>
+<li>devtools (Wickham et al., 2020)</li>
 <li>usethis (Wickham and Bryan, 2020)</li>
 <li>forcats (Wickham, 2020)</li>
 <li>stringr (Wickham, 2019)</li>
-<li>dplyr (Wickham et al., 2020b)</li>
+<li>dplyr (Wickham et al., 2021)</li>
 <li>purrr (Henry and Wickham, 2020)</li>
 <li>readr (Wickham and Hester, 2021)</li>
-<li>tidyr (Wickham and Henry, 2020)</li>
+<li>tidyr (Wickham, 2021)</li>
 <li>tibble (Müller and Wickham, 2021)</li>
 <li>ggplot2 (Wickham, 2016)</li>
 <li>tidyverse (Wickham et al., 2019)</li>
@@ -595,17 +595,17 @@ DICOM and NIfTI data standards in R. Journal of Statistical Software
 string operations.</p>
 <p>Wickham, H. (2020). Forcats: Tools for working with categorical
 variables (factors).</p>
+<p>Wickham, H. (2021). Tidyr: Tidy messy data.</p>
 <p>Wickham, H., and Bryan, J. (2020). Usethis: Automate package and project
 setup.</p>
-<p>Wickham, H., and Henry, L. (2020). Tidyr: Tidy messy data.</p>
 <p>Wickham, H., and Hester, J. (2021). Readr: Read rectangular text data.</p>
 <p>Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L.D., François,
 R., Grolemund, G., Hayes, A., Henry, L., Hester, J., et al. (2019).
 Welcome to the <span class="nocase">tidyverse</span>. Journal of Open
 Source Software <em>4</em>, 1686.</p>
-<p>Wickham, H., Hester, J., and Chang, W. (2020a). Devtools: Tools to make
+<p>Wickham, H., Hester, J., and Chang, W. (2020). Devtools: Tools to make
 developing r packages easier.</p>
-<p>Wickham, H., François, R., Henry, L., and Müller, K. (2020b). Dplyr: A
+<p>Wickham, H., François, R., Henry, L., and Müller, K. (2021). Dplyr: A
 grammar of data manipulation.</p>
 <p>Wilke, C.O. (2019). Cowplot: Streamlined plot theme and plot annotations
 for ’ggplot2’.</p>
@@ -620,7 +620,7 @@ Multiple parts and multiple responses. Journal of Statistical Software
 <div id="session-info" class="section level2" number="12.3">
 <h2><span class="header-section-number">12.3</span> Session Info</h2>
 <p>Lastly, we run session info, using the version from the devtools package.</p>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="credit.html#cb551-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="credit.html#cb543-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
 <pre><code>## ─ Session info ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 3.6.1 (2019-07-05)
@@ -631,7 +631,7 @@ Multiple parts and multiple responses. Journal of Statistical Software
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Europe/Berlin               
-##  date     2022-01-27                  
+##  date     2022-01-31                  
 ## 
 ## ─ Packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  !  package      * version     date       lib source                                 
@@ -640,8 +640,8 @@ Multiple parts and multiple responses. Journal of Statistical Software
 ##     afex         * 0.27-2      2020-03-28 [1] CRAN (R 3.6.1)                         
 ##     askpass        1.1         2019-01-13 [1] CRAN (R 3.6.1)                         
 ##     assertr      * 2.7         2020-02-05 [1] CRAN (R 3.6.1)                         
-##     assertthat     0.2.1       2019-03-21 [1] CRAN (R 3.6.1)                         
-##     backports      1.1.8       2020-06-17 [1] CRAN (R 3.6.1)                         
+##  P  assertthat     0.2.1       2019-03-21 [2] CRAN (R 3.6.1)                         
+##  VP backports      1.2.1       2020-06-17 [2] CRAN (R 3.6.1)                         
 ##     base64enc      0.1-3       2015-07-28 [1] CRAN (R 3.6.1)                         
 ##     bit            4.0.4       2020-08-04 [2] CRAN (R 3.6.1)                         
 ##     bit64          4.0.5       2020-08-30 [2] CRAN (R 3.6.1)                         
@@ -649,7 +649,7 @@ Multiple parts and multiple responses. Journal of Statistical Software
 ##     blob           1.2.1       2020-01-20 [1] CRAN (R 3.6.1)                         
 ##     bookdown     * 0.19        2020-05-15 [1] CRAN (R 3.6.1)                         
 ##     boot           1.3-22      2019-04-02 [3] CRAN (R 3.6.1)                         
-##     broom        * 0.7.9       2021-07-27 [1] CRAN (R 3.6.1)                         
+##  P  broom        * 0.7.9       2021-07-27 [2] CRAN (R 3.6.1)                         
 ##     broom.mixed  * 0.2.6       2020-05-17 [1] CRAN (R 3.6.1)                         
 ##     callr          3.4.3       2020-03-28 [1] CRAN (R 3.6.1)                         
 ##     candisc        0.8-3       2020-04-22 [1] CRAN (R 3.6.1)                         
@@ -672,14 +672,14 @@ Multiple parts and multiple responses. Journal of Statistical Software
 ##  VP crayon         1.4.1       2017-09-16 [2] CRAN (R 3.6.1)                         
 ##     curl           4.3         2019-12-02 [1] CRAN (R 3.6.1)                         
 ##     data.table     1.13.4      2020-12-08 [1] CRAN (R 3.6.1)                         
-##     DBI            1.1.0       2019-12-15 [1] CRAN (R 3.6.1)                         
+##  VP DBI            1.1.1       2019-12-15 [2] CRAN (R 3.6.1)                         
 ##     dbplyr         1.4.4       2020-05-27 [1] CRAN (R 3.6.1)                         
 ##     desc           1.2.0       2018-05-01 [1] CRAN (R 3.6.1)                         
 ##     DescTools    * 0.99.36     2020-05-23 [1] CRAN (R 3.6.1)                         
 ##     devtools     * 2.3.0       2020-04-10 [1] CRAN (R 3.6.1)                         
 ##  VP digest         0.6.27      2021-09-23 [2] CRAN (R 3.6.1)                         
 ##     doParallel     1.0.15      2019-08-02 [1] CRAN (R 3.6.1)                         
-##     dplyr        * 1.0.0       2020-05-29 [1] CRAN (R 3.6.1)                         
+##  VP dplyr        * 1.0.7       2020-05-29 [2] CRAN (R 3.6.1)                         
 ##     e1071        * 1.7-3       2019-11-26 [1] CRAN (R 3.6.1)                         
 ##     effsize      * 0.8.1       2020-10-05 [1] CRAN (R 3.6.1)                         
 ##     ellipse        0.4.2       2020-05-27 [1] CRAN (R 3.6.1)                         
@@ -691,7 +691,7 @@ Multiple parts and multiple responses. Journal of Statistical Software
 ##     extrafont    * 0.17.0.9000 2020-12-22 [1] Github (wch/extrafont@cfa3269)         
 ##     extrafontdb    1.0         2012-06-11 [1] CRAN (R 3.6.1)                         
 ##  VP fansi          0.5.0       2020-01-08 [2] CRAN (R 3.6.1)                         
-##     farver         2.0.3       2020-01-16 [1] CRAN (R 3.6.1)                         
+##  VP farver         2.1.0       2020-01-16 [2] CRAN (R 3.6.1)                         
 ##     flextable    * 0.6.1       2020-12-08 [1] CRAN (R 3.6.1)                         
 ##     forcats      * 0.5.0       2020-03-01 [1] CRAN (R 3.6.1)                         
 ##     foreach        1.5.0       2020-03-30 [1] CRAN (R 3.6.1)                         
@@ -704,18 +704,18 @@ Multiple parts and multiple responses. Journal of Statistical Software
 ##     fslr         * 2.24.1      2019-08-05 [1] CRAN (R 3.6.1)                         
 ##     gdata          2.18.0      2017-06-06 [1] CRAN (R 3.6.1)                         
 ##     gdtools        0.2.2       2020-04-03 [1] CRAN (R 3.6.1)                         
-##     generics       0.0.2       2018-11-29 [1] CRAN (R 3.6.1)                         
+##  VP generics       0.1.0       2018-11-29 [2] CRAN (R 3.6.1)                         
 ##     ggBrain      * 0.1.2       2020-11-18 [1] Github (neuroconductor/ggBrain@cae74e5)
 ##     ggcorrplot   * 0.1.3       2019-05-19 [1] CRAN (R 3.6.1)                         
 ##     ggeffects    * 0.15.0      2020-06-16 [1] CRAN (R 3.6.1)                         
 ##     ggforce      * 0.3.2       2020-06-23 [1] CRAN (R 3.6.1)                         
 ##     gghalves     * 0.1.0       2020-03-28 [1] CRAN (R 3.6.1)                         
-##     ggplot2      * 3.3.2       2020-06-19 [1] CRAN (R 3.6.1)                         
-##     glue           1.4.1       2020-05-13 [1] CRAN (R 3.6.1)                         
+##  VP ggplot2      * 3.3.5       2020-06-19 [2] CRAN (R 3.6.1)                         
+##  VP glue           1.4.2       2020-05-13 [2] CRAN (R 3.6.1)                         
 ##     grateful     * 0.0.2       2020-12-18 [1] Github (Pakillo/grateful@552b4bd)      
 ##     greybox      * 0.6.0       2020-05-20 [1] CRAN (R 3.6.1)                         
 ##     gridExtra      2.3         2017-09-09 [1] CRAN (R 3.6.1)                         
-##     gtable         0.3.0       2019-03-25 [1] CRAN (R 3.6.1)                         
+##  P  gtable         0.3.0       2019-03-25 [2] CRAN (R 3.6.1)                         
 ##     gtools         3.8.2       2020-03-31 [1] CRAN (R 3.6.1)                         
 ##     haven          2.3.1       2020-06-01 [1] CRAN (R 3.6.1)                         
 ##     heplots        1.3-5       2018-04-03 [1] CRAN (R 3.6.1)                         
@@ -777,13 +777,13 @@ Multiple parts and multiple responses. Journal of Statistical Software
 ##     plotrix      * 3.7-8       2020-04-16 [1] CRAN (R 3.6.1)                         
 ##  P  plyr           1.8.6       2020-03-03 [2] CRAN (R 3.6.1)                         
 ##     png            0.1-7       2013-12-03 [1] CRAN (R 3.6.1)                         
-##     polyclip       1.10-0      2019-03-14 [1] CRAN (R 3.6.1)                         
+##  P  polyclip       1.10-0      2019-03-14 [2] CRAN (R 3.6.1)                         
 ##     polynom        1.4-0       2019-03-22 [1] CRAN (R 3.6.1)                         
 ##     pracma         2.2.9       2019-12-15 [1] CRAN (R 3.6.1)                         
 ##     prettyunits    1.1.1       2020-01-24 [1] CRAN (R 3.6.1)                         
 ##     processx       3.4.2       2020-02-09 [1] CRAN (R 3.6.1)                         
 ##     ps             1.3.3       2020-05-08 [1] CRAN (R 3.6.1)                         
-##     purrr        * 0.3.4       2020-04-17 [1] CRAN (R 3.6.1)                         
+##  P  purrr        * 0.3.4       2020-04-17 [2] CRAN (R 3.6.1)                         
 ##     quadprog       1.5-8       2019-11-20 [1] CRAN (R 3.6.1)                         
 ##     quantmod       0.4.17      2020-03-31 [1] CRAN (R 3.6.1)                         
 ##     R.matlab     * 3.6.2       2018-09-27 [1] CRAN (R 3.6.1)                         
@@ -827,8 +827,8 @@ Multiple parts and multiple responses. Journal of Statistical Software
 ##     texreg       * 1.37.5      2020-06-18 [1] CRAN (R 3.6.1)                         
 ##  VP tibble       * 3.1.3       2020-04-20 [2] CRAN (R 3.6.1)                         
 ##     tictoc       * 1.0         2014-06-17 [1] CRAN (R 3.6.1)                         
-##     tidyr        * 1.1.0       2020-05-20 [1] CRAN (R 3.6.1)                         
-##     tidyselect     1.1.0       2020-05-11 [1] CRAN (R 3.6.1)                         
+##  VP tidyr        * 1.1.3       2020-05-20 [2] CRAN (R 3.6.1)                         
+##  VP tidyselect     1.1.1       2020-05-11 [2] CRAN (R 3.6.1)                         
 ##     tidystats    * 0.4.1       2020-06-15 [1] CRAN (R 3.6.1)                         
 ##     tidyverse    * 1.3.0       2019-11-21 [1] CRAN (R 3.6.1)                         
 ##     timeDate       3043.102    2018-02-21 [1] CRAN (R 3.6.1)                         
@@ -836,7 +836,7 @@ Multiple parts and multiple responses. Journal of Statistical Software
 ##     TMB            1.7.16      2020-01-15 [1] CRAN (R 3.6.1)                         
 ##     tseries        0.10-47     2019-06-05 [1] CRAN (R 3.6.1)                         
 ##     TTR            0.23-6      2019-12-15 [1] CRAN (R 3.6.1)                         
-##     tweenr         1.0.1       2018-12-14 [1] CRAN (R 3.6.1)                         
+##  VP tweenr         1.0.2       2018-12-14 [2] CRAN (R 3.6.1)                         
 ##     tzdb           0.1.2       2021-07-20 [2] CRAN (R 3.6.1)                         
 ##     umap         * 0.2.7.0     2020-11-04 [1] CRAN (R 3.6.1)                         
 ##     urca           1.3-0       2016-09-06 [1] CRAN (R 3.6.1)                         

@@ -54,14 +54,14 @@
 -   mgsub (Ewing, 2019)
 -   tinytex (Xie, 2019)
 -   combinat (Chasalow, 2012)
--   devtools (Wickham et al., 2020a)
+-   devtools (Wickham et al., 2020)
 -   usethis (Wickham and Bryan, 2020)
 -   forcats (Wickham, 2020)
 -   stringr (Wickham, 2019)
--   dplyr (Wickham et al., 2020b)
+-   dplyr (Wickham et al., 2021)
 -   purrr (Henry and Wickham, 2020)
 -   readr (Wickham and Hester, 2021)
--   tidyr (Wickham and Henry, 2020)
+-   tidyr (Wickham, 2021)
 -   tibble (Müller and Wickham, 2021)
 -   ggplot2 (Wickham, 2016)
 -   tidyverse (Wickham et al., 2019)
@@ -225,10 +225,10 @@ string operations.
 Wickham, H. (2020). Forcats: Tools for working with categorical
 variables (factors).
 
+Wickham, H. (2021). Tidyr: Tidy messy data.
+
 Wickham, H., and Bryan, J. (2020). Usethis: Automate package and project
 setup.
-
-Wickham, H., and Henry, L. (2020). Tidyr: Tidy messy data.
 
 Wickham, H., and Hester, J. (2021). Readr: Read rectangular text data.
 
@@ -237,10 +237,10 @@ R., Grolemund, G., Hayes, A., Henry, L., Hester, J., et al. (2019).
 Welcome to the <span class="nocase">tidyverse</span>. Journal of Open
 Source Software *4*, 1686.
 
-Wickham, H., Hester, J., and Chang, W. (2020a). Devtools: Tools to make
+Wickham, H., Hester, J., and Chang, W. (2020). Devtools: Tools to make
 developing r packages easier.
 
-Wickham, H., François, R., Henry, L., and Müller, K. (2020b). Dplyr: A
+Wickham, H., François, R., Henry, L., and Müller, K. (2021). Dplyr: A
 grammar of data manipulation.
 
 Wilke, C.O. (2019). Cowplot: Streamlined plot theme and plot annotations

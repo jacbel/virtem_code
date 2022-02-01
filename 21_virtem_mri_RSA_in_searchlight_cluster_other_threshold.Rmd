@@ -10,6 +10,8 @@ output:
 
 This section is to address a reviewer comment about whether the results of this analysis differ when running it with a different threshold (p<0.001 rather than p<0.01) to define the ROI based on the same-sequence searchlight. The code below is thus copied from the original script and modified to include the different p-threshold.
 
+>To test whether within- and across-sequence representations overlap, we defined an ROI based on the within-sequence searchlight analysis. Specifically, voxels belonging to the cluster around the peak voxel, thresholded at p<0.01 uncorrected within our small volume correction mask, were included. The analysis of representational change was then carried out as described for the other ROIs above. The results observed using a threshold of p<0.001 were not statistically different from those obtained with a threshold of p<0.01 (t27=-0.95, p=0.338; test against 0 using the ROI resulting from the p<0.001 threshold: t27=-1.98, p=0.056).
+
 ## Prepare RSA in searchlight peak
 
 To show that overlapping clusters of voxels drive both the within- and across sequence effects, we will run the across-sequence analysis in the cluster of voxels that show the within-day effect. Because these are independent comparisons, we can use the within-day searchlight to define a region of interest for the across-day analysis.

@@ -10,7 +10,7 @@ output:
 ## Regions of Interest
 We want to run ROI-based representational similarity analyses to test how the hippocampal-entorhinal system represents the learned temporal relationships. We will focus our analysis on the anterior hippocampus (aHPC) and anterolateral entorhinal cortex (alEC). 
 
->Following our previous work on sequence representations in the hippocampus and entorhinal cortex (Bellmund et al., 2019; Deuker et al., 2016), we focused our analysis on the anterior hippocampus and the anterior-lateral entorhinal cortex. 
+>Our previous work demonstrates representations reflecting the temporal relations of events from one sequence in the anterior hippocampus(21) and the anterior-lateral entorhinal cortex(27). More generally, these regions have been implicated in temporal coding and memory (for review, see(10)). Further, the hippocampus has been linked to inferential reasoning and generalization(46,48,49,51,53). We thus focused our analyses on these regions. 
 
 To define participant-specific ROI masks, we want to combine masks from the individual Freesurfer parcellations of the HPC and EC with masks dividing the subregions of the HPC and EC. Specifically, these are based on the Harvard-Oxford atlas distributed with FSL for the hippocampus and on the EC subregion masks from [Navarro Schröder et al. (eLife, 2015)](http://elifesciences.org/content/4/e06738).
 

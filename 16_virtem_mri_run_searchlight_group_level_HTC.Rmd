@@ -217,7 +217,7 @@ find_FSL_atlas_label <- function(atlas = "Harvard-Oxford Cortical Structural Atl
 
 We extract clusters that are significant at p<0.05 after correcting for multiple comparisons using small volume correction. To explore the searchlight results beyond the hippocampal-entorhinal region, we look for clusters at a threshold of p<0.001 uncorrected with a minimum extent of 30 voxels.
 
->We corrected for multiple comparisons using a small volume correction mask including our a priori regions of interest, the anterior hippocampus and the anterior-lateral entorhinal cortex. Further, we used a liberal threshold of puncorrected<0.001 to explore the data for additional effects within our field of view. Exploratory searchlight results are shown in Supplemental Figure 7 and clusters with a minimum extent of 30 voxels are listed in Supplemental Tables 9, 11 and 12.
+>We corrected for multiple comparisons using a small volume correction mask including our a priori regions of interest, the anterior hippocampus and the anterior-lateral entorhinal cortex. Further, we used a liberal threshold of puncorrected<0.001 to explore the data for additional effects within our field of view. Exploratory searchlight results are shown in Supplemental Figure 9 and clusters with a minimum extent of 30 voxels are listed in Supplemental Tables 9, 11 and 12.
 
 ```{r, eval = run_srchlght_lvl2}
 

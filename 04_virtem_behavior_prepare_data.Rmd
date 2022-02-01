@@ -73,11 +73,11 @@ virtem_behavior_prepare_design_tbl(subjects = subjects)
 
 Here is a description of the task from the methods:  
 
->The day sorting task (Figure 1D) was performed in front of a computer screen. The 20 event images from the day learning task were presented on the screen in a miniature version. They were arranged in a circle around a central area displaying 4 rectangles. Participants were instructed to drag and drop all events of the same sequence into the same rectangle with a computer mouse. Participants freely chose which rectangle corresponded to which sequence as the sequence were not identifiable by any label and were presented in differing orders across mini-blocks during learning. 
+>The day sorting task (Figure 1D) was performed in front of a computer screen. The 20 event images from the day learning task were presented on the screen in a miniature version. They were arranged in a circle around a central area displaying 4 rectangles. Participants were instructed to drag and drop all events of the same sequence into the same rectangle with a computer mouse. Participants freely chose which rectangle corresponded to which sequence as the sequences were not identifiable by any label and were presented in differing orders across mini-blocks during learning.  
 
 Thus, in analysis, we take the grouping as provided by the rectangles and assign the four groups of events to the four days in a way that maximizes the overlap between actual days and sorted days. This may be trivial if performance is perfect or very high, but if several scenes were mixed up between days, it can become difficult to ascertain which day participants were trying to re-assemble. The best fitting permutation is written to file.
 
->For analysis of the sorting task, we took the grouping of event images as provided by the participants and assigned them to the four sequences to ensure maximal overlap between actual and sorted sequence memberships. While the assignment of groupings to sequences is unambiguous when performance is, as in our sample, high, this procedure is potentially liberal at lower performance levels. We then calculated the percentage of correctly sorted event images (Figure 2A). 
+>For analysis of the sorting task, we took the grouping of event images as provided by the participants and assigned them to the four sequences to ensure maximal overlap between actual and sorted sequence memberships. While the assignment of groupings to sequences is unambiguous when performance is, as in our sample, high, this procedure is potentially liberal at lower performance levels. We then calculated the percentage of correctly sorted event images for each participant, see the raincloud plot(100) in Figure 2A. 
 
 ```{r eval = run_prep_beh}
 
@@ -288,7 +288,7 @@ file.copy(fname, dirs$data4analysis)
 
 ## Picture viewing tasks
 
->In the picture viewing tasks (Figure 1B), participants viewed a stream of the event images. Their task was to look at the images attentively and to respond via a button press whenever a target picture, which showed the father feeding the family’s dog, was presented.
+>In the picture viewing tasks (Figure 1B), participants viewed a stream of the event images. Their task was to look at the images attentively and to respond via button press whenever a target picture, which showed the father feeding the family’s dog, was presented.
 
 Below, we check how well participants detected the targets.
 

@@ -11,14 +11,14 @@ We are now ready to analyze and plot the behavioral data. Let's start with a qui
 
 ***Sorting Task***
 
->The day sorting task (Figure 1D) was performed in front of a computer screen. The 20 event images from the day learning task were presented on the screen in a miniature version. They were arranged in a circle around a central area displaying 4 rectangles. Participants were instructed to drag and drop all events of the same sequence into the same rectangle with a computer mouse. Participants freely chose which rectangle corresponded to which sequence as the sequence were not identifiable by any label and were presented in differing orders across mini-blocks during learning. 
+>The day sorting task (Figure 1D) was performed in front of a computer screen. The 20 event images from the day learning task were presented on the screen in a miniature version. They were arranged in a circle around a central area displaying 4 rectangles. Participants were instructed to drag and drop all events of the same sequence into the same rectangle with a computer mouse. Participants freely chose which rectangle corresponded to which sequence as the sequences were not identifiable by any label and were presented in differing orders across mini-blocks during learning. 
 
 Thus, in analysis, we took the grouping as provided by the rectangles and assigned the four groups of events to the four days in a way that there was maximal overlap between actual days and sorted days. We found the best solution for this by trying all combinations in a preparation step. 
 
 
 ***Timeline task***
 
->In this task, participants saw a timeline ranging from 6 a.m. to midnight together with miniature versions of the five event images belonging to one sequence (Figure 1E). Participants were instructed to drag and drop the event images next to the timeline so that scene positions reflected the event times they had inferred in the day learning task. To facilitate precise alignment to the timeline, event images were shown with an outward pointing triangle on their left side, which participants were instructed to base their responses on.
+>In this task, participants saw a timeline ranging from 6 a.m. to midnight together with miniature versions of the five event images belonging to one sequence (Figure 1E). Participants were instructed to drag and drop the event images next to the timeline so that scene positions reflected the event times they had inferred in the day learning task. To facilitate precise alignment to the timeline, event images were shown with an outward pointing triangle on their left side, on which participants were instructed to base their responses.
 
 Participants responses were read out from the logfiles of this task and converted to virtual hours. The data are saved in the text file including all behavioral data (*virtem_behavioral_data.txt*).
 
@@ -57,7 +57,7 @@ head(beh_data)
 
 ## Sorting Task
 
->For analysis of the sorting task, we took the grouping of event images as provided by the participants and assigned them to the four sequences to ensure maximal overlap between actual and sorted sequence memberships. While the assignment of groupings to sequences is unambiguous when performance is, as in our sample, high, this procedure is potentially liberal at lower performance levels. We then calculated the percentage of correctly sorted event images (Figure 2A).
+>For analysis of the sorting task, we took the grouping of event images as provided by the participants and assigned them to the four sequences to ensure maximal overlap between actual and sorted sequence memberships. While the assignment of groupings to sequences is unambiguous when performance is, as in our sample, high, this procedure is potentially liberal at lower performance levels. We then calculated the percentage of correctly sorted event images for each participant, see the raincloud plot(100) in Figure 2A.
 
 ### Calculate percentage of correct responses {-}
 So to calculate participants' accuracy in this task we need to figure out how often the true day label matches the label of the quadrant into which an event was sorted.
@@ -243,7 +243,7 @@ readr::write_tsv(source_dat %>% select(x,y),
 
 ### Accuracy of remembered times {-}
 
->We analyzed how well participants constructed the event times based on the day learning task. We quantified absolute errors across all events (Figure 2C) as well as separately for the five sequence positions (Figure 2D). 
+>We analyzed how well participants constructed the event times based on the day learning task. We quantified absolute errors across all events (Figure 2C) as well as separately for the five sequence positions (Figure 2D), the four sequences (Supplemental Figure 3A) and as a function of virtual clock speed (Supplemental Figure 3B). 
 
 #### Average absolute error per participant {-}
 
@@ -524,13 +524,13 @@ t~`r stats$parameter`~=`r round(stats$statistic,2)`, p=`r format(round(stats$p.v
 
 ### Time metrics underlying remembered times {-}
 
->Further, using two approaches we tested whether virtual time drove participants’ responses rather than the sequence order or objectively elapsing time.   
+>Using two approaches we tested whether virtual time drove participants’ responses rather than the sequence order or objectively elapsing time. 
 
 While participants were asked to reproduce the virtual time, any of the other two factors could have an impact on their behavioral responses. If participants had, for example, only memorized the order of scenes in a given day, they would probably do reasonably well on the timeline task by distributing the scenes evenly along the timeline in the correct order. 
 
 #### Summary Statistics {-}
 
->For the summary statistics approach, we ran a multiple regression analysis for each participant with virtual time, sequence position (order), and real time since the first event of a day as predictors of responses in the timeline task. To test whether virtual time indeed explained participants’ responses even when competing for variance with order and real time, included in the model as control predictors of no interest, we compared the participant-specific t-values of the resulting regression coefficients against null distributions obtained from shuffling the remembered times against the predictors 10,000 times. We converted the resulting p-values to Z-values and tested these against zero using a permutation-based t-test (two-sided; α=0.05; 10,000 random sign-flips, Figure 2E). As a measure of effect size, we report Cohen’s d with Hedges’ correction and its 95% confidence interval as computed using the effsize-package106.
+>For the summary statistics approach, we ran a multiple regression analysis for each participant with virtual time, sequence position (order), and real time since the first event of a day as predictors of responses in the timeline task. To test whether virtual time indeed explained participants’ responses even when competing for variance with order and real time, included in the model as control predictors of no interest, we compared the participant-specific t-values of the resulting regression coefficients against null distributions obtained from shuffling the remembered times against the predictors 10,000 times. We converted the resulting p-values to Z-values and tested these against zero using a permutation-based t-test (two-sided; α=0.05; 10,000 random sign-flips, Figure 2E). As a measure of effect size, we report Cohen’s d with Hedges’ correction and its 95% confidence interval as computed using the effsize-package(101).
   
 ```{r multiple regression timeline}
 set.seed(115) # set seed for reproducibility
@@ -605,7 +605,7 @@ t~`r stats$parameter`~=`r round(stats$statistic,2)`, p=`r format(round(stats$p_p
 
 A potentially more elegant way of testing the above is to use linear mixed effects models. However, drawing statistical inferences from these data is less straight forward and care needs to be taken with respect to the precise hypotheses that are tested.
 
->Second, we addressed this question using linear mixed effects modeling. Here, we included the three z-scored time metrics as fixed effects. Starting from a maximal random effect structure (Barr et al., 2013), we simplified the random effects structure to avoid convergence failures and singular fits. The final model included random intercepts and random slopes for virtual time for participants. The model results are visualized by dot plots showing the fixed effect parameters with their 95% confidence intervals (Figure 2F) and marginal effects (Figure 2G) estimated using the ggeffects package (Lüdecke, 2018). To assess the statistical significance of virtual time above and beyond the effects of order and real time, we compared this full model to a nested model without the fixed effect of virtual time, but including order and real time, using a likelihood ratio test. Supplemental Table 1 provides an overview of the final model and the model comparison. 
+>Second, we addressed this question using linear mixed effects modeling. Here, we included the three z-scored time metrics as fixed effects. Starting from a maximal random effect structure(102), we simplified the random effects structure to avoid convergence failures and singular fits. The final model included random intercepts and random slopes for virtual time for participants. The model results are visualized by dot plots showing the fixed effect parameters with their 95% confidence intervals (Supplemental Figure 4A) and marginal effects (Supplemental Figure 4B) estimated using the ggeffects package103. To assess the statistical significance (α=0.05) of virtual time above and beyond the effects of order and real time, we compared this full model to a nested model without the fixed effect of virtual time, but including order and real time, using a likelihood ratio test. Supplemental Table 1 provides an overview of the final model and the model comparison.  
 
 The main point we want to make is that virtual time explains variance above and beyond order. To test this, we run the full LMM and a reduced version of the model without virtual time. These two models are then compared using a likelihood ratio test to obtain a p-value.
 
@@ -801,10 +801,10 @@ ggsave(paste0(fn, ".pdf"), plot=f2, units = "cm",
          width = 17.4, height = 16, dpi = "retina", device = cairo_pdf)
 ggsave(paste0(fn, ".png"), plot=f2, units = "cm",
          width = 17.4, height = 16, dpi = "retina", device = "png")
-f2
 ```
   
->Figure 2. Participants learn the temporal structure of the sequences relative to the virtual clock. A. Plot shows the percentage of correctly sorted event images in the sorting task. B. Constructed event times were assessed in the timeline task. Responses are shown separately for each of the five events (color coded according to true virtual time) of each of the four sequences (rows). Colored circles with gray outline at the bottom of each row show true event times. C, D. Mean absolute errors in constructed times (in virtual hours) are shown (C) averaged across events and sequences and (D) averaged separately for the five event positions. E. Z-values for the effects of different time metrics from participant-specific multiple regression analyses and permutation tests show that virtual time explained constructed event times with event order and real time in the model as control predictors. F. Likewise, parameter estimates and 95% confidence intervals for the fixed effects of the three time metrics from a linear mixed model indicate that virtual time relates to constructed event times beyond the effects of order and real time. G. Estimated marginal means (model predictions) illustrate the effects of the three time metrics. A-E. Circles are individual participant data; boxplots show median and upper/lower quartile along with whiskers extending to most extreme data point within 1.5 interquartile ranges above/below the upper/lower quartile; black circle with error bars corresponds to mean±S.E.M.; distributions show probability density function of data points. *** p<0.001
+`r sprintf("![Figure 2. Participants learn the temporal structure of the sequences relative to the virtual clock. A. Plot shows the percentage of correctly sorted event images in the sorting task. B. Constructed event times were assessed in the timeline task. Responses are shown separately for the five events (color coded according to true virtual time) of each sequence (rows). Colored circles with gray outline show true event times. C, D. Mean absolute errors in constructed times (in virtual hours) are shown (C) averaged across events and sequences and (D) averaged separately for the five event positions. E. Z-values for the effects of different time metrics from participant-specific multiple regression analyses and permutation tests show that virtual time explained constructed event times with event order and real time in the model as control predictors. A-E. Circles are individual participant data; boxplots show median and upper/lower quartile along with whiskers extending to most extreme data point within 1.5 interquartile ranges above/below the upper/lower quartile; black circle with error bars corresponds to mean±S.E.M.; distributions show probability density function of data points. ***p<0.001](%s)", here("figures", "f2.png"))`  
+
 
 ## Generalization bias
 
@@ -813,7 +813,7 @@ If participants use structural knowledge about the sequences when constructing t
 
 ### Quantify relative time of other events {-}
 
->To explore whether general time patterns bias the construction of event times, we assessed errors in remembered event times. Specifically, when constructing the time of one specific event, participants could be biased in their response by the times of the events from other sequences at that sequence position. For each event, we quantified the average time of events in the other sequences at the same sequence position (Figure 8A). For example, for the fourth event of the first sequence, we calculated the average time of the fourth events of sequences two, three and four. 
+>To explore whether structural knowledge about general time patterns biases the construction of event times, we assessed errors in remembered event times. Specifically, when constructing the time of one specific event, participants could be biased in their response by the times of the events from other sequences at that sequence position. For each event, we quantified the average time of events in the other sequences at the same sequence position (Figure 8A). For example, for the fourth event of the first sequence, we calculated the average time of the fourth events of sequences two, three and four. 
 
 To test for such a bias, we quantify, for each event, the relative time of the other events at that sequence position. We then calculate by how much virtual time each individual event time deviates from the average virtual time of the other events at that sequence position (e.g. the difference in virtual time for event 1 from sequence 1 compared to the average virtual time of events 1 from sequences 2-4). We do this so that positive values of this relative time measure indicate that the other events happened later than the event of interest.
 
@@ -846,7 +846,7 @@ for (i_day in 1:n_days){
 
 ### Test Generalization Bias {-}
 
->We then asked whether the deviation between the average time of other events and an event’s true virtual time was systematically related to signed errors in constructed event times. A positive relationship between the relative time of other events and time construction errors indicates that, when other events at the same sequence position are relatively late, participants are biased to construct a later time for a given event than when the other events took place relatively early.
+>We then asked whether the deviation between the average time of other events and an event’s true virtual time was systematically related to signed errors in constructed event times. A positive relationship between the relative time of other events and time construction errors indicates that, when other events at the same sequence position are relatively late, participants are biased to construct a later time for a given event than when the other events took place relatively early. 
 
 The crucial test is then whether over- and underestimates of remembered time can be explained by this deviation measure.  
 
@@ -858,7 +858,7 @@ beh_data <- beh_data %>%
 
 #### Summary statistics {-}
 
->In the summary statistics approach, we ran a linear regression model for each participant (Figure 8B, Supplemental Figure 8) and tested the resulting coefficients for statistical significance using the permutation-based procedures described above (Figure 8C). 
+>In the summary statistics approach, we ran a linear regression for each participant (Figure 8B, Supplemental Figure 10A) and tested the resulting coefficients for statistical significance using the permutation-based procedures described above (Figure 8C).  
 
 In the summary statistics approach, we run a linear regression model for each participant and test the resulting coefficients against a permutation-based null distribution. The resulting z-scores are then tested against 0 on the group level.
 
@@ -971,7 +971,7 @@ readr::write_tsv(source_dat %>% select(x,y),
 
 #### Mixed Model {-}
 
->Further, we analyzed these data using the linear mixed model approach (Figure 8DE, Supplemental Table 13). 
+>Further, we analyzed these data using the linear mixed model approach (Supplemental Figure 4OP, Supplemental Table 16). 
 
 We also want to this effect using a linear mixed model. We use the maximal random effects structure with random intercepts and random slopes for participants.
 
@@ -1091,7 +1091,7 @@ sfig_bias_single_sub
 
 ## Replication of Generalization Bias
 
->To replicate the results from this exploratory analysis, we conducted the same analysis in an independent group of participants. These participants (n=46) constituted the control groups of a behavioral experiment testing the effect of stress induction on temporal memory (Montijn et al., 2021). They underwent the same learning task as described above with the only difference being the duration of this learning phase (4 rather than 7 mini-blocks of training). The timeline task was administered on the day after learning. The procedures are described in detail in Montijn et al. (2021). The data from this independent sample are shown in Figure 8F-H and Supplemental Figure 8B.
+>To replicate the results from this exploratory analysis, we conducted the same analysis in an independent group of participants. These participants (n=46) constituted the control groups of a behavioral experiment testing the effect of stress induction on temporal memory(66). They underwent the same learning task as described above with the only difference being the duration of this learning phase (4 rather than 7 mini-blocks of training). The timeline task was administered on the day after learning. The procedures are described in detail in Montijn et al.(66). The data from this independent sample are shown in Figure 8D and Supplemental Figure 10B.
 
 ```{r }
 
@@ -1384,15 +1384,16 @@ ggsave(paste0(fn, ".pdf"), plot=sfig_bias_single_sub_both_samples, units = "cm",
          width = 17.4, height = 22.5, dpi = "retina", device = cairo_pdf)
 ggsave(paste0(fn, ".png"), plot=sfig_bias_single_sub_both_samples, units = "cm",
          width = 17.4, height = 22.5, dpi = "retina", device = "png")
-sfig_bias_single_sub_both_samples
 ```
 
->Supplemental Figure 8. Generalization bias in individual participants. A, B. Each panel shows the data from one participant. Each circle corresponds to one event. The x-axis indicates the average relative time of the events occupying the same sequence position in other sequences. The y-axis shows the signed error of constructed event times as measured in the timeline task. The regression line and its confidence interval are overlaid in red. Positive slopes of the regression line indicate that constructed event times are biased by the average time of events in the other sequences. A shows data from the main sample; B from the replication sample.
+`r sprintf("![Supplemental Figure 10. Generalization bias in individual participants. A, B. Each panel shows the data from one participant. Each circle corresponds to one event. The x-axis indicates the average relative time of the events occupying the same sequence position in other sequences. The y-axis shows the signed error of constructed event times as measured in the timeline task. The regression line and its confidence interval are overlaid in red. Positive slopes of the regression line indicate that constructed event times are biased by the average time of events in the other sequences. Correlation coefficients are based on Pearson correlation. A shows data from the main sample; B from the replication sample.](%s)", here("figures", "sf10.png"))`
 
 
 ## Swap Errors
 
 Given that participants' behavior indicates that they generalize across sequences, we next also explore whether there might be systematic errors in the sorting task as well. Specifically, it could be that events belonging to the same sequence position are swapped.
+
+>In an exploratory analysis, we searched for systematic errors in the sorting task. Specifically, we looked for swap errors where participants interchanged events occurring at the same position between two or more sequences. 
 
 We begin by defining a function that identifies swap errors based on the sorting task data and logic. The function takes a dataframe as an input that corresponds to the sorting task data of one participant with one row per event image. The expected columns are:
 
@@ -1400,6 +1401,8 @@ We begin by defining a function that identifies swap errors based on the sorting
 - event: sequence position of the image (1:5)
 - sorted day: day the event was sorted to
 - correct_sort: logical indicating whether event was sorted to correct day or not.
+
+
 ```{r}
 
 find_swap_errors <- function(in_df = tibble(day = rep(1:4, each=5), event = rep(1:5, times=4), sorted_day = rep(1:4, each=5), correct_sort = day==sorted_day)){
@@ -1553,6 +1556,8 @@ sfig_beh_e
 
 Next, we test whether the distribution of swap errors across sequence positions differs from uniformity.
 
+>We used a χ2-test to assess whether the number of swap errors deviated from uniformity across sequence positions. 
+
 ```{r}
 # DISTRIBUTION OF SWAP ERRORS
 # test whether frequencies of swap errors for the sequence positions differs from uniformity
@@ -1583,6 +1588,8 @@ $\chi^2$=`r sprintf("%.2f, p=%.3f",round(stats$statistic,2), round(stats$p.value
 ### Swap error: More frequent than expected from chance? {-}
 
 So we do observe swap errors, but are they more frequent than what would be expected from chance given the number of sorting errors in our data? To test that, we run a permutation test where we generate a fake sample of participants that has the same number of swap errors as the real participants, but swap errors are introduced at random positions.
+
+>To test whether participants made more swap errors than expected from chance we ran a permutation test where we introduced sorting errors for randomly selected events. For each of 10 000 iterations, we generated a surrogate sample of sorting results with the number of randomly introduced sorting errors matching the number of errors made by the different participants in our sample. We then quantified the proportion of swap errors across this surrogate sample. This resulted in a distribution of the proportion of swap errors that would be expected from random sorting errors. We assessed how many permutations yielded proportions of swap errors larger or equal to the proportion of swap errors observed in the fMRI sample to compute a p-value and further quantified a z-value as the difference between the observed swap error proportion and the mean of the chance distribution divided by the standard deviation of the chance distribution. 
 
 ```{r}
 
@@ -1673,6 +1680,8 @@ sfig_beh_g
 
 Both swap errors and the generalization bias point towards subjects generalizing across sequences in memory. Let's test if the two are related across subjects.
 
+>We tested whether the number of swap errors was related to absolute errors in the timeline task (see below) using Spearman’s correlation and a t-test for independent samples.
+
 ```{r}
 
 beh_group <- inner_join(beh_group, fit_beh_bias)
@@ -1759,7 +1768,6 @@ sfig <- sfig_beh_a + sfig_beh_b + sfig_beh_c + sfig_beh_d + sfig_beh_e+ sfig_beh
         legend.text=element_text(size=6),
         legend.title=element_text(size=8))
 sfig[[5]] <- sfig[[5]] + theme(legend.spacing.x = unit(0.05, "cm"))
-sfig
 
 # save
 fn <- here("figures", "sf03")
@@ -1768,4 +1776,6 @@ ggsave(paste0(fn, ".pdf"), plot=sfig, units = "cm",
 ggsave(paste0(fn, ".png"), plot=sfig, units = "cm",
        width = 17.4, height = 11, dpi = "retina", device = "png")
 ```
+  
+`r sprintf("![Supplemental Figure 3. Memory performance. A. A permutation-based repeated measures ANOVA revealed a significant effect of sequence on mean absolute errors in the timeline task (F3,81=5.86, p<0.001, post hoc contrasts: sequence 1 vs. 2: t27=3.38, p=0.001, sequence 1 vs. 3: t27=-0.12, p=0.912, sequence 1 vs. 4: t27=2.59, p=0.013, sequence 2 vs. 3: t27=-2.92, p=0.001, sequence 2 vs. 4: t27=-1.15, p=0.271, sequence 3 vs. 4: t27=2.15, p=0.023). *p < Bonferroni-adjusted alpha-level of 0.008, corrected for 6 pairwise post hoc comparisons. B. Mean absolute timeline errors did not differ statistically between sequences with fast and slow clock speed (t27=-0.82, p=0.423). C. The number of errors in the sorting task did not correlate with the mean absolute error in the timeline task across participants (r=0.23, p=0.246). D. Mean absolute errors in the timeline task were not statistically different between participants who made one or more errors (red) or no errors in the sorting task (green) in the sorting task (t-test for independent samples, t26=-1.79, p=0.085). E. Histogram shows the number of swap errors for participants with (red) and without (green) errors in the sorting task. F. The distribution of swap errors over sequence positions did not deviate statistically from uniformity (𝝌2(1)=1.07, p=0.899). G. Histogram shows the null distribution of the proportion of swap errors expected under random sorting errors. The proportion of swap errors observed in our sample (red line) exceeded the 95th percentile of the null distribution (black line). H. The number of swap errors was not significantly correlated with the generalization bias (Spearman r=0.12, p=0.528). I. The generalization bias in the timeline task was not significantly different between participants who made one or more swap errors (red) or no swap errors (green) in the sorting task (t26=0.18, p=0.861).  A, B, D, H. Circles show individual participant values; boxplot shows median and upper/lower quartile along with whiskers extending to most extreme data point within 1.5 interquartile ranges above/below the upper/lower quartile; black circle with error bars corresponds to mean±S.E.M.; distribution shows probability density function of data points. C, H. Each circle shows data from one participant, grey line and shaded region indicate least squares line and confidence interval.  ](%s)", here("figures", "sf03.png"))`  
   

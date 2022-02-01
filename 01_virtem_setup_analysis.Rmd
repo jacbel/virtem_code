@@ -133,7 +133,7 @@ dirs$data4analysis <- here("data_for_analysis")
 
 # directory for source data for nature communications
 dirs$source_dat_dir <-here("source_data_natcomms")
-if(dir.exists(dirs$source_dat_dir)){unlink(dirs$source_dat_dir)} # delete if already existing to make sure to start with empty directory
+if(dir.exists(dirs$source_dat_dir)){unlink(dirs$source_dat_dir, recursive = TRUE)} # delete if already existing to make sure to start with empty directory
 
 # directory to save figures to
 fig_dir = here("figures")
