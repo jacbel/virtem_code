@@ -3242,11 +3242,9 @@ summary(aov_fit_perm)
 ```
 
 Summary Statistics: permutation-based repeated measures ANOVA (Rd_kheradPajouh_renaud method)
-main effect of ROI: F~`r summary(aov_fit_perm)["dfn"][1,]`~~,~~`r summary(aov_fit_perm)["dfd"][1,]`~=`r round(summary(aov_fit_perm)["F"][1,],2)`, p=`r format(round(summary(aov_fit_perm)["permutation P(>F)"][1,], 3), nsmall = 3)`, $\eta^2$=`r format(round(aov_fit$anova_table$ges[1], 2), nsmall = 2)`  
-main effect of sequence: F~`r summary(aov_fit_perm)["dfn"][2,]`~~,~~`r summary(aov_fit_perm)["dfd"][2,]`~=`r round(summary(aov_fit_perm)["F"][2,],2)`, p=`r format(round(summary(aov_fit_perm)["permutation P(>F)"][2,], 3), nsmall = 3)`, $\eta^2$=`r format(round(aov_fit$anova_table$ges[2], 2), nsmall = 2)`  
-interaction ROI and sequence: F~`r summary(aov_fit_perm)["dfn"][3,]`~~,~~`r summary(aov_fit_perm)["dfd"][3,]`~=`r round(summary(aov_fit_perm)["F"][3,],2)`, p=`r format(round(summary(aov_fit_perm)["permutation P(>F)"][3,], 3), nsmall = 3)`, $\eta^2$=`r format(round(aov_fit$anova_table$ges[3], 2), nsmall = 2)`  
-
-
+main effect of ROI: F~`r summary(aov_fit_perm)["dfn"][1,]`~~,~~`r summary(aov_fit_perm)["dfd"][1,]`~=`r round(summary(aov_fit_perm)["F"][1,],2)`, p=`r format(round(summary(aov_fit_perm)[1,9], 3), nsmall = 3)`, $\eta^2$=`r format(round(aov_fit$anova_table$ges[1], 2), nsmall = 2)`  
+main effect of sequence: F~`r summary(aov_fit_perm)["dfn"][2,]`~~,~~`r summary(aov_fit_perm)["dfd"][2,]`~=`r round(summary(aov_fit_perm)["F"][2,],2)`, p=`r format(round(summary(aov_fit_perm)[2,9], 3), nsmall = 3)`, $\eta^2$=`r format(round(aov_fit$anova_table$ges[2], 2), nsmall = 2)`  
+interaction ROI and sequence: F~`r summary(aov_fit_perm)["dfn"][3,]`~~,~~`r summary(aov_fit_perm)["dfd"][3,]`~=`r round(summary(aov_fit_perm)["F"][3,],2)`, p=`r format(round(summary(aov_fit_perm)[3,9], 3), nsmall = 3)`, $\eta^2$=`r format(round(aov_fit$anova_table$ges[3], 2), nsmall = 2)`  
 ### Linear Mixed Effects {-}
 
 To test whether the hippocampus and entorhinal cortex differentially represent virtual time between events within a virtual day and also virtual days, we also run a linear mixed model on pattern similarity change in both regions that includes event pairs that are from the same day, but also from different days. We include the fixed effects ROI (aHPC and alEC), day (same or different) and virtual time difference as well as their interaction in the model.

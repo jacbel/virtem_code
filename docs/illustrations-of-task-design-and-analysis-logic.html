@@ -24,7 +24,7 @@
 <meta name="author" content="Jacob L. S. Bellmund" />
 
 
-<meta name="date" content="2022-01-31" />
+<meta name="date" content="2022-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -312,7 +312,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.10" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#ahpc-vs.-alec"><i class="fa fa-check"></i><b>8.10</b> aHPC vs. alEC</a>
 <ul>
 <li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#summary-statistics-12"><i class="fa fa-check"></i>Summary Statistics</a></li>
-<li class="chapter" data-level="" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#linear-mixed-effects-10"><i class="fa fa-check"></i>Linear Mixed Effects</a></li>
 </ul></li>
 <li class="chapter" data-level="8.11" data-path="rsa-on-pattern-similarity-change.html"><a href="rsa-on-pattern-similarity-change.html#searchlight-results"><i class="fa fa-check"></i><b>8.11</b> Searchlight Results</a>
 <ul>
@@ -492,7 +491,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-49"><a href="illustrations-of-task-design-and-analysis-logic.html#cb14-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>), </span>
 <span id="cb14-50"><a href="illustrations-of-task-design-and-analysis-logic.html#cb14-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&#39;black&#39;</span>, <span class="at">size =</span> <span class="fl">0.5</span>),</span>
 <span id="cb14-51"><a href="illustrations-of-task-design-and-analysis-logic.html#cb14-51" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="virtem_book_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="virtem_book_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 <div id="events-in-virtual-time" class="section level3 unnumbered">
 <h3>Events in virtual time</h3>
@@ -594,7 +593,7 @@ Correlation of order and real time: Pearson r=0.991</p>
 <span id="cb18-13"><a href="illustrations-of-task-design-and-analysis-logic.html#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="co">#strip.text = element_blank(),</span></span>
 <span id="cb18-14"><a href="illustrations-of-task-design-and-analysis-logic.html#cb18-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
 <span id="cb18-15"><a href="illustrations-of-task-design-and-analysis-logic.html#cb18-15" aria-hidden="true" tabindex="-1"></a>sfigc</span></code></pre></div>
-<p><img src="virtem_book_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="virtem_book_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Lastly, let’s plot the events and time cues in real time relative to the first event of a given day, separately for the different repetitions of each day.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="illustrations-of-task-design-and-analysis-logic.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># real time relative to first event of the day</span></span>
 <span id="cb19-2"><a href="illustrations-of-task-design-and-analysis-logic.html#cb19-2" aria-hidden="true" tabindex="-1"></a>sfigd <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(timecue_log, <span class="fu">aes</span>(<span class="at">x=</span>rel_scanner_time, <span class="at">y=</span>rep, <span class="at">group =</span> rep)) <span class="sc">+</span></span>
@@ -611,7 +610,7 @@ Correlation of order and real time: Pearson r=0.991</p>
 <span id="cb19-13"><a href="illustrations-of-task-design-and-analysis-logic.html#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="co">#strip.text = element_blank(),</span></span>
 <span id="cb19-14"><a href="illustrations-of-task-design-and-analysis-logic.html#cb19-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
 <span id="cb19-15"><a href="illustrations-of-task-design-and-analysis-logic.html#cb19-15" aria-hidden="true" tabindex="-1"></a>sfigd</span></code></pre></div>
-<p><img src="virtem_book_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="virtem_book_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
 <div id="supplemental-figure-for-task-design" class="section level3 unnumbered">
 <h3>Supplemental figure for task design</h3>
@@ -696,7 +695,7 @@ Correlation of order and real time: Pearson r=0.991</p>
 <span id="cb22-35"><a href="illustrations-of-task-design-and-analysis-logic.html#cb22-35" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(fn, <span class="st">&quot;.pdf&quot;</span>), <span class="at">plot=</span>fig_pre_sim, <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>,</span>
 <span id="cb22-36"><a href="illustrations-of-task-design-and-analysis-logic.html#cb22-36" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">2</span>, <span class="at">height =</span> <span class="dv">2</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>, <span class="at">device =</span> cairo_pdf)</span>
 <span id="cb22-37"><a href="illustrations-of-task-design-and-analysis-logic.html#cb22-37" aria-hidden="true" tabindex="-1"></a>fig_pre_sim</span></code></pre></div>
-<p><img src="virtem_book_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="virtem_book_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>To plot the RSA prediction matrix, we generate a matrix that has the pairwise temporal distances between events in its cell. We also generate a similarity matrix that mirrors our effects in the hippocampus, e.g. where similarity increases with distance within a sequence and decreases with distance between sequences.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="illustrations-of-task-design-and-analysis-logic.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CREATE DISTANCE AND IDEALIZED SIMILARITY CHANGE MATRICES</span></span>
 <span id="cb23-2"><a href="illustrations-of-task-design-and-analysis-logic.html#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -765,7 +764,7 @@ Correlation of order and real time: Pearson r=0.991</p>
 <span id="cb23-65"><a href="illustrations-of-task-design-and-analysis-logic.html#cb23-65" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(fn, <span class="st">&quot;.pdf&quot;</span>), <span class="at">plot=</span>fig_dist_mat, <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>,</span>
 <span id="cb23-66"><a href="illustrations-of-task-design-and-analysis-logic.html#cb23-66" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">2</span>, <span class="at">height =</span> <span class="dv">2</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>, <span class="at">device =</span> cairo_pdf)</span>
 <span id="cb23-67"><a href="illustrations-of-task-design-and-analysis-logic.html#cb23-67" aria-hidden="true" tabindex="-1"></a>fig_dist_mat</span></code></pre></div>
-<p><img src="virtem_book_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="virtem_book_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="illustrations-of-task-design-and-analysis-logic.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT SIMILARITY CHANGE MATRIX</span></span>
 <span id="cb24-2"><a href="illustrations-of-task-design-and-analysis-logic.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># add noise to change similarity matrix (uniform distribution)</span></span>
 <span id="cb24-3"><a href="illustrations-of-task-design-and-analysis-logic.html#cb24-3" aria-hidden="true" tabindex="-1"></a>change_sim_mat <span class="ot">&lt;-</span> change_sim_mat<span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">400</span>, <span class="sc">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>), <span class="fu">dim</span>(change_sim_mat)[<span class="dv">1</span>])</span>
@@ -812,7 +811,7 @@ Correlation of order and real time: Pearson r=0.991</p>
 <span id="cb24-44"><a href="illustrations-of-task-design-and-analysis-logic.html#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(fn, <span class="st">&quot;.pdf&quot;</span>), <span class="at">plot=</span>fig_sim_change, <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>,</span>
 <span id="cb24-45"><a href="illustrations-of-task-design-and-analysis-logic.html#cb24-45" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">2</span>, <span class="at">height =</span> <span class="dv">2</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>, <span class="at">device =</span> cairo_pdf)</span>
 <span id="cb24-46"><a href="illustrations-of-task-design-and-analysis-logic.html#cb24-46" aria-hidden="true" tabindex="-1"></a>fig_sim_change</span></code></pre></div>
-<p><img src="virtem_book_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
+<p><img src="virtem_book_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
 <p>Lastly, we create a post-similarity matrix, which is the sum of the simulated pre-learning and the similarity change matrix.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="illustrations-of-task-design-and-analysis-logic.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CREATE AND PLOT POST SIMILARITY MATRIX</span></span>
 <span id="cb25-2"><a href="illustrations-of-task-design-and-analysis-logic.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># post similarity is sum of pre similarity and change similarity</span></span>
@@ -854,7 +853,7 @@ Correlation of order and real time: Pearson r=0.991</p>
 <span id="cb25-38"><a href="illustrations-of-task-design-and-analysis-logic.html#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(fn, <span class="st">&quot;.pdf&quot;</span>), <span class="at">plot=</span>fig_post_sim, <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>,</span>
 <span id="cb25-39"><a href="illustrations-of-task-design-and-analysis-logic.html#cb25-39" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">2</span>, <span class="at">height =</span> <span class="dv">2</span>, <span class="at">dpi =</span> <span class="st">&quot;retina&quot;</span>, <span class="at">device =</span> cairo_pdf)</span>
 <span id="cb25-40"><a href="illustrations-of-task-design-and-analysis-logic.html#cb25-40" aria-hidden="true" tabindex="-1"></a>fig_post_sim</span></code></pre></div>
-<p><img src="virtem_book_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="virtem_book_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 
 </div>
 </div>
