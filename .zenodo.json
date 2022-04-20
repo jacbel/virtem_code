@@ -1,0 +1,26 @@
+{
+    "description": "<p>Initial Release.\nThe code implements the analysis of the virtual time project (virtem for short as it investigates the impact of virtual temporal distances on event representations in the hippocampus and entorhinal cortex). It is based on R markdown files that implement the individual analysis steps. The individual markdown files are merged using bookdown.</p>", 
+    "license": "MIT License", 
+    "title": "Mnemonic construction and representation of temporal structure in the hippocampal formation", 
+    "version": "v.1.0.0", 
+    "upload_type": "software", 
+    "publication_date": "2022-04-07", 
+    "creators": [
+        {
+            "name": "Jacob L. S. Bellmund"
+        }
+    ], 
+    "access_right": "open", 
+    "related_identifiers": [
+        {
+            "scheme": "url", 
+            "identifier": "https://github.com/jacbel/virtem_code/tree/v.1.0.0", 
+            "relation": "isSupplementTo"
+        }, 
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.6421011", 
+            "relation": "isVersionOf"
+        }
+    ]
+}
