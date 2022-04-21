@@ -1,5 +1,5 @@
 --- 
-title: "Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences"
+title: "Mnemonic construction and representation of temporal structure in the hippocampal formation"
 subtitle: "Research Documentation  for VIRTEM"
 author: 
 - name: "Jacob L. S. Bellmund"
@@ -10,7 +10,7 @@ documentclass: book
 link-citations: yes
 github-repo: jacbel/virtem_code
 url: 'https://jacbel.github.io/virtem_code/'
-description: "Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences"
+description: "Mnemonic construction and representation of temporal structure in the hippocampal formation"
 geometry: margin=2cm
 fontfamily: mathpazo
 fontsize: 11pt

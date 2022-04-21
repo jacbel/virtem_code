@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</title>
-  <meta name="description" content="12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <title>12 Credit | Mnemonic construction and representation of temporal structure in the hippocampal formation</title>
+  <meta name="description" content="12 Credit | Mnemonic construction and representation of temporal structure in the hippocampal formation" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta property="og:title" content="12 Credit | Mnemonic construction and representation of temporal structure in the hippocampal formation" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://jacbel.github.io/virtem_code/" />
   
-  <meta property="og:description" content="12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta property="og:description" content="12 Credit | Mnemonic construction and representation of temporal structure in the hippocampal formation" />
   <meta name="github-repo" content="jacbel/virtem_code" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="twitter:title" content="12 Credit | Mnemonic construction and representation of temporal structure in the hippocampal formation" />
   
-  <meta name="twitter:description" content="12 Credit | Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences" />
+  <meta name="twitter:description" content="12 Credit | Mnemonic construction and representation of temporal structure in the hippocampal formation" />
   
 
 <meta name="author" content="Jacob L. S. Bellmund" />
 
 
-<meta name="date" content="2022-02-03" />
+<meta name="date" content="2022-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -390,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Structuring time: The hippocampus constructs sequence memories that generalize temporal relations across experiences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Mnemonic construction and representation of temporal structure in the hippocampal formation</a>
           </h1>
         </div>
 
@@ -404,8 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">12.1</span> List of packages</h2>
 <p>Here is a list of packages used in the analysis and references to them. It is created using the <a href="https://github.com/Pakillo/grateful">grateful package</a>.</p>
 <p>Unfortunately, not all packages provide all information, so there are a few warning messages. The code below generates a markdown file with references that we read in and print below.</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="credit.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(grateful<span class="sc">::</span><span class="fu">cite_packages</span>(<span class="at">all.pkg =</span> <span class="cn">FALSE</span>, <span class="at">include.rmd=</span><span class="cn">FALSE</span>, <span class="at">style =</span> <span class="st">&quot;cell&quot;</span>,</span>
-<span id="cb540-2"><a href="credit.html#cb540-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">out.format =</span> <span class="st">&quot;md&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="credit.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(grateful<span class="sc">::</span><span class="fu">cite_packages</span>(<span class="at">all.pkg =</span> <span class="cn">FALSE</span>, <span class="at">include.rmd=</span><span class="cn">FALSE</span>, <span class="at">style =</span> <span class="st">&quot;cell&quot;</span>,</span>
+<span id="cb542-2"><a href="credit.html#cb542-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">out.format =</span> <span class="st">&quot;md&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning in FUN(X[[i]], ...): no date field in DESCRIPTION file of package &#39;extrafont&#39;</code></pre>
 <pre><code>## Warning in FUN(X[[i]], ...): no date field in DESCRIPTION file of package &#39;ggBrain&#39;</code></pre>
 <pre><code>## 
@@ -414,12 +414,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## output file: refs.knit.md</code></pre>
 <pre><code>## 
 ## Output created: citations.md</code></pre>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="credit.html#cb546-1" aria-hidden="true" tabindex="-1"></a>used_pkgs <span class="ot">&lt;-</span><span class="fu">readLines</span>(<span class="fu">here</span>(<span class="st">&quot;virtem_code&quot;</span>, <span class="st">&quot;citations.md&quot;</span>))</span>
-<span id="cb546-2"><a href="credit.html#cb546-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb546-3"><a href="credit.html#cb546-3" aria-hidden="true" tabindex="-1"></a>ref_line <span class="ot">&lt;-</span> <span class="fu">which</span>(used_pkgs<span class="sc">==</span><span class="st">&quot;References&quot;</span>)</span>
-<span id="cb546-4"><a href="credit.html#cb546-4" aria-hidden="true" tabindex="-1"></a>used_pkgs[ref_line] <span class="ot">&lt;-</span> <span class="st">&quot;### References {-}&quot;</span></span>
-<span id="cb546-5"><a href="credit.html#cb546-5" aria-hidden="true" tabindex="-1"></a>used_pkgs[ref_line<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb546-6"><a href="credit.html#cb546-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(used_pkgs, <span class="at">collapse =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">cat</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="credit.html#cb548-1" aria-hidden="true" tabindex="-1"></a>used_pkgs <span class="ot">&lt;-</span><span class="fu">readLines</span>(<span class="fu">here</span>(<span class="st">&quot;virtem_code&quot;</span>, <span class="st">&quot;citations.md&quot;</span>))</span>
+<span id="cb548-2"><a href="credit.html#cb548-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb548-3"><a href="credit.html#cb548-3" aria-hidden="true" tabindex="-1"></a>ref_line <span class="ot">&lt;-</span> <span class="fu">which</span>(used_pkgs<span class="sc">==</span><span class="st">&quot;References&quot;</span>)</span>
+<span id="cb548-4"><a href="credit.html#cb548-4" aria-hidden="true" tabindex="-1"></a>used_pkgs[ref_line] <span class="ot">&lt;-</span> <span class="st">&quot;### References {-}&quot;</span></span>
+<span id="cb548-5"><a href="credit.html#cb548-5" aria-hidden="true" tabindex="-1"></a>used_pkgs[ref_line<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb548-6"><a href="credit.html#cb548-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(used_pkgs, <span class="at">collapse =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">cat</span>()</span></code></pre></div>
 <ul>
 <li>base (R Core Team, 2019)</li>
 <li>extrafont (Chang, 2020)</li>
@@ -493,133 +493,171 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="references" class="section level2" number="12.2">
 <h2><span class="header-section-number">12.2</span> References</h2>
-<p>al., A.S. et mult. (2020). DescTools: Tools for descriptive statistics.</p>
-<p>Bates, D., and Maechler, M. (2019). Matrix: Sparse and dense matrix
-classes and methods.</p>
-<p>Bates, D., Mächler, M., Bolker, B., and Walker, S. (2015). Fitting
-linear mixed-effects models using <span class="nocase">lme4</span>.
+<p>al., A.S. et mult. (2020). <a href="https://cran.r-project.org/package=DescTools">DescTools: Tools for descriptive
+statistics</a>.</p>
+<p>Bates, D., and Maechler, M. (2019). <a href="https://CRAN.R-project.org/package=Matrix">Matrix: Sparse and dense matrix
+classes and methods</a>.</p>
+<p>Bates, D., Mächler, M., Bolker, B., and Walker, S. (2015). <a href="https://doi.org/10.18637/jss.v067.i01">Fitting
+linear mixed-effects models using <span class="nocase">lme4</span></a>.
 Journal of Statistical Software <em>67</em>, 1–48.</p>
-<p>Bengtsson, H. (2018). R.matlab: Read and write MAT files and call MATLAB
-from within r.</p>
-<p>Bengtsson, H. (2020). matrixStats: Functions that apply to rows and
-columns of matrices (and to vectors).</p>
-<p>Bolker, B., and Robinson, D. (2020). Broom.mixed: Tidying methods for
-mixed models.</p>
-<p>Chang, W. (2020). Extrafont: Tools for using fonts.</p>
-<p>Chasalow, S. (2012). Combinat: Combinatorics utilities.</p>
-<p>de Leeuw, J., and Mair, P. (2009). Multidimensional scaling using
-majorization: SMACOF in R. Journal of Statistical Software <em>31</em>, 1–30.</p>
-<p>Ewing, M. (2019). Mgsub: Safe, multiple, simultaneous string
-substitution.</p>
-<p>Fischetti, T. (2020). Assertr: Assertive programming for r analysis
-pipelines.</p>
+<p>Bengtsson, H. (2018). <a href="https://CRAN.R-project.org/package=R.matlab">R.matlab: Read and write MAT files and call
+MATLAB from within r</a>.</p>
+<p>Bengtsson, H. (2020). <a href="https://CRAN.R-project.org/package=matrixStats">matrixStats: Functions that apply to rows and
+columns of matrices (and to
+vectors)</a>.</p>
+<p>Bolker, B., and Robinson, D. (2020). <a href="https://CRAN.R-project.org/package=broom.mixed">Broom.mixed: Tidying methods for
+mixed models</a>.</p>
+<p>Chang, W. (2020). <a href="https://github.com/wch/extrafont">Extrafont: Tools for using
+fonts</a>.</p>
+<p>Chasalow, S. (2012). <a href="https://CRAN.R-project.org/package=combinat">Combinat: Combinatorics
+utilities</a>.</p>
+<p>de Leeuw, J., and Mair, P. (2009). <a href="http://www.jstatsoft.org/v31/i03/">Multidimensional scaling using
+majorization: SMACOF in R</a>. Journal
+of Statistical Software <em>31</em>, 1–30.</p>
+<p>Ewing, M. (2019). <a href="https://CRAN.R-project.org/package=mgsub">Mgsub: Safe, multiple, simultaneous string
+substitution</a>.</p>
+<p>Fischetti, T. (2020). <a href="https://CRAN.R-project.org/package=assertr">Assertr: Assertive programming for r analysis
+pipelines</a>.</p>
 <p>Fisher, A. (2020). ggBrain: Ggplot brain images.</p>
-<p>Fox, J., and Weisberg, S. (2019). An R companion to applied regression
+<p>Fox, J., and Weisberg, S. (2019). <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An R companion to applied
+regression</a>
 (Thousand Oaks CA: Sage).</p>
-<p>Fox, J., Weisberg, S., and Price, B. (2020). carData: Companion to
-applied regression data sets.</p>
-<p>Frossard, J., and Renaud, O. (2019). Permuco: Permutation tests for
-regression, (repeated measures) ANOVA/ANCOVA and comparison of signals.</p>
-<p>Gohel, D. (2020a). Flextable: Functions for tabular reporting.</p>
-<p>Gohel, D. (2020b). Officer: Manipulation of microsoft word and
-PowerPoint documents.</p>
+<p>Fox, J., Weisberg, S., and Price, B. (2020). <a href="https://CRAN.R-project.org/package=carData">carData: Companion to
+applied regression data
+sets</a>.</p>
+<p>Frossard, J., and Renaud, O. (2019). <a href="https://CRAN.R-project.org/package=permuco">Permuco: Permutation tests for
+regression, (repeated measures) ANOVA/ANCOVA and comparison of
+signals</a>.</p>
+<p>Gohel, D. (2020a). <a href="https://CRAN.R-project.org/package=flextable">Flextable: Functions for tabular
+reporting</a>.</p>
+<p>Gohel, D. (2020b). <a href="https://CRAN.R-project.org/package=officer">Officer: Manipulation of microsoft word and
+PowerPoint documents</a>.</p>
 <p>Harrell Jr, F.E., Charles Dupont, with contributions from, and others.,
-many (2020). Hmisc: Harrell miscellaneous.</p>
-<p>Henry, L., and Wickham, H. (2020). Purrr: Functional programming tools.</p>
-<p>Hugh-Jones, D. (2020). Huxtable: Easily create and style tables for
-LaTeX, HTML and other formats.</p>
-<p>Izrailev, S. (2014). Tictoc: Functions for timing r scripts, as well as
-implementations of stack and list structures.</p>
+many (2020). <a href="https://CRAN.R-project.org/package=Hmisc">Hmisc: Harrell
+miscellaneous</a>.</p>
+<p>Henry, L., and Wickham, H. (2020). <a href="https://CRAN.R-project.org/package=purrr">Purrr: Functional programming
+tools</a>.</p>
+<p>Hugh-Jones, D. (2020). <a href="https://CRAN.R-project.org/package=huxtable">Huxtable: Easily create and style tables for
+LaTeX, HTML and other
+formats</a>.</p>
+<p>Izrailev, S. (2014). <a href="https://CRAN.R-project.org/package=tictoc">Tictoc: Functions for timing r scripts, as well as
+implementations of stack and list
+structures.</a></p>
 <p>J, L. (2006). Plotrix: A package in the red light district of r. R-News
 <em>6</em>, 8–12.</p>
-<p>Kassambara, A. (2019). Ggcorrplot: Visualization of a correlation matrix
-using ’ggplot2’.</p>
-<p>Konopka, T. (2020). Umap: Uniform manifold approximation and projection.</p>
-<p>Kuznetsova, A., Brockhoff, P.B., and Christensen, R.H.B. (2017). <span class="nocase">lmerTest</span> package: Tests in linear mixed effects
-models. Journal of Statistical Software <em>82</em>, 1–26.</p>
-<p>Leifeld, P. (2013). <span class="nocase">texreg</span>: Conversion of
-statistical model output in R to LaTeX and HTML tables. Journal of
-Statistical Software <em>55</em>, 1–24.</p>
-<p>Lenth, R. (2020). Emmeans: Estimated marginal means, aka least-squares
-means.</p>
-<p>Lüdecke, D. (2018a). Sjmisc: Data and variable transformation functions.
-Journal of Open Source Software <em>3</em>, 754.</p>
-<p>Lüdecke, D. (2018b). Ggeffects: Tidy data frames of marginal effects
-from regression models. Journal of Open Source Software <em>3</em>, 772.</p>
+<p>Kassambara, A. (2019). <a href="https://CRAN.R-project.org/package=ggcorrplot">Ggcorrplot: Visualization of a correlation
+matrix using ’ggplot2’</a>.</p>
+<p>Konopka, T. (2020). <a href="https://CRAN.R-project.org/package=umap">Umap: Uniform manifold approximation and
+projection</a>.</p>
+<p>Kuznetsova, A., Brockhoff, P.B., and Christensen, R.H.B. (2017). <a href="https://doi.org/10.18637/jss.v082.i13"><span class="nocase">lmerTest</span> package: Tests in linear mixed effects
+models</a>. Journal of Statistical
+Software <em>82</em>, 1–26.</p>
+<p>Leifeld, P. (2013). <a href="http://dx.doi.org/10.18637/jss.v055.i08"><span class="nocase">texreg</span>: Conversion of
+statistical model output in R to LaTeX and HTML
+tables</a>. Journal of Statistical
+Software <em>55</em>, 1–24.</p>
+<p>Lenth, R. (2020). <a href="https://CRAN.R-project.org/package=emmeans">Emmeans: Estimated marginal means, aka least-squares
+means</a>.</p>
+<p>Lüdecke, D. (2018a). <a href="https://doi.org/10.21105/joss.00754">Sjmisc: Data and variable transformation
+functions.</a> Journal of Open Source
+Software <em>3</em>, 754.</p>
+<p>Lüdecke, D. (2018b). <a href="https://doi.org/10.21105/joss.00772">Ggeffects: Tidy data frames of marginal effects
+from regression models.</a> Journal of
+Open Source Software <em>3</em>, 772.</p>
 <p>Meyer, D., Dimitriadou, E., Hornik, K., Weingessel, A., and Leisch, F.
-(2019). e1071: Misc functions of the department of statistics,
-probability theory group (formerly: E1071), TU wien.</p>
-<p>Müller, K. (2017). Here: A simpler way to find your files.</p>
-<p>Müller, K., and Wickham, H. (2021). Tibble: Simple data frames.</p>
-<p>Muschelli, J. (2020). Neurobase: ’Neuroconductor’ base package with
-helper functions for ’nifti’ objects.</p>
-<p>Pedersen, T.L. (2020a). Patchwork: The composer of plots.</p>
-<p>Pedersen, T.L. (2020b). Ggforce: Accelerating ’ggplot2’.</p>
-<p>Pedersen, T.L., and Crameri, F. (2020). Scico: Colour palettes based on
-the scientific colour-maps.</p>
-<p>Poncet, P., and The R Core Team (2019). Statip: Statistical functions
-for probability distributions and regression.</p>
-<p>R Core Team (2019). R: A language and environment for statistical
-computing (Vienna, Austria: R Foundation for Statistical Computing).</p>
-<p>Ram, K., and Wickham, H. (2018). Wesanderson: A wes anderson palette
-generator.</p>
-<p>Robinson, D., Hayes, A., and Couch, S. (2021). Broom: Convert
-statistical objects into tidy tibbles.</p>
-<p>Rodríguez-Sánchez, F., and Hutchins, S.D. (2020). Grateful: Facilitate
-citation of r packages.</p>
-<p>Rosseel, Y. (2012). <span class="nocase">lavaan</span>: An R package for
-structural equation modeling. Journal of Statistical Software <em>48</em>,
-1–36.</p>
-<p>Sarkar, D. (2008). Lattice: Multivariate data visualization with r (New
-York: Springer).</p>
+(2019). <a href="https://CRAN.R-project.org/package=e1071">e1071: Misc functions of the department of statistics,
+probability theory group (formerly: E1071), TU
+wien</a>.</p>
+<p>Müller, K. (2017). <a href="https://CRAN.R-project.org/package=here">Here: A simpler way to find your
+files</a>.</p>
+<p>Müller, K., and Wickham, H. (2021). <a href="https://CRAN.R-project.org/package=tibble">Tibble: Simple data
+frames</a>.</p>
+<p>Muschelli, J. (2020). <a href="https://CRAN.R-project.org/package=neurobase">Neurobase: ’Neuroconductor’ base package with
+helper functions for ’nifti’
+objects</a>.</p>
+<p>Pedersen, T.L. (2020a). <a href="https://CRAN.R-project.org/package=patchwork">Patchwork: The composer of
+plots</a>.</p>
+<p>Pedersen, T.L. (2020b). <a href="https://CRAN.R-project.org/package=ggforce">Ggforce: Accelerating
+’ggplot2’</a>.</p>
+<p>Pedersen, T.L., and Crameri, F. (2020). <a href="https://CRAN.R-project.org/package=scico">Scico: Colour palettes based on
+the scientific colour-maps</a>.</p>
+<p>Poncet, P., and The R Core Team (2019). <a href="https://CRAN.R-project.org/package=statip">Statip: Statistical functions
+for probability distributions and
+regression</a>.</p>
+<p>R Core Team (2019). <a href="https://www.R-project.org/">R: A language and environment for statistical
+computing</a> (Vienna, Austria: R Foundation
+for Statistical Computing).</p>
+<p>Ram, K., and Wickham, H. (2018). <a href="https://CRAN.R-project.org/package=wesanderson">Wesanderson: A wes anderson palette
+generator</a>.</p>
+<p>Robinson, D., Hayes, A., and Couch, S. (2021). <a href="https://CRAN.R-project.org/package=broom">Broom: Convert
+statistical objects into tidy
+tibbles</a>.</p>
+<p>Rodríguez-Sánchez, F., and Hutchins, S.D. (2020). <a href="https://github.com/Pakillo/grateful">Grateful: Facilitate
+citation of r packages</a>.</p>
+<p>Rosseel, Y. (2012). <a href="http://www.jstatsoft.org/v48/i02/"><span class="nocase">lavaan</span>: An R package
+for structural equation modeling</a>.
+Journal of Statistical Software <em>48</em>, 1–36.</p>
+<p>Sarkar, D. (2008). <a href="http://lmdvr.r-forge.r-project.org">Lattice: Multivariate data visualization with
+r</a> (New York: Springer).</p>
 <p>Singmann, H., Bolker, B., Westfall, J., Aust, F., and Ben-Shachar, M.S.
-(2020). Afex: Analysis of factorial experiments.</p>
-<p>Sleegers, W. (2020). Tidystats: Save output of statistical tests.</p>
+(2020). <a href="https://CRAN.R-project.org/package=afex">Afex: Analysis of factorial
+experiments</a>.</p>
+<p>Sleegers, W. (2020). <a href="https://CRAN.R-project.org/package=tidystats">Tidystats: Save output of statistical
+tests</a>.</p>
 <p>Stauffer, R., Mayr, G.J., Dabernig, M., and Zeileis, A. (2009).
-Somewhere over the rainbow: How to make effective use of colors in
-meteorological visualizations. Bulletin of the American Meteorological
-Society <em>96</em>, 203–216.</p>
-<p>Svetunkov, I. (2020a). Smooth: Forecasting using state space models.</p>
-<p>Svetunkov, I. (2020b). Greybox: Toolbox for model building and
-forecasting.</p>
-<p>Tiedemann, F. (2020). Gghalves: Compose half-half plots using your
-favourite geoms.</p>
-<p>Torchiano, M. (2020). Effsize: Efficient effect size computation.</p>
-<p>Whitcher, B., Schmid, V.J., and Thornton, A. (2011). Working with the
-DICOM and NIfTI data standards in R. Journal of Statistical Software
-<em>44</em>, 1–28.</p>
-<p>Wickham, H. (2016). ggplot2: Elegant graphics for data analysis
-(Springer-Verlag New York).</p>
-<p>Wickham, H. (2019). Stringr: Simple, consistent wrappers for common
-string operations.</p>
-<p>Wickham, H. (2020). Forcats: Tools for working with categorical
-variables (factors).</p>
-<p>Wickham, H., and Bryan, J. (2020). Usethis: Automate package and project
-setup.</p>
-<p>Wickham, H., and Henry, L. (2020). Tidyr: Tidy messy data.</p>
-<p>Wickham, H., and Hester, J. (2021). Readr: Read rectangular text data.</p>
+<a href="https://doi.org/10.1175/BAMS-D-13-00155.1">Somewhere over the rainbow: How to make effective use of colors in
+meteorological
+visualizations</a>. Bulletin of
+the American Meteorological Society <em>96</em>, 203–216.</p>
+<p>Svetunkov, I. (2020a). <a href="https://CRAN.R-project.org/package=smooth">Smooth: Forecasting using state space
+models</a>.</p>
+<p>Svetunkov, I. (2020b). <a href="https://CRAN.R-project.org/package=greybox">Greybox: Toolbox for model building and
+forecasting</a>.</p>
+<p>Tiedemann, F. (2020). <a href="https://CRAN.R-project.org/package=gghalves">Gghalves: Compose half-half plots using your
+favourite geoms</a>.</p>
+<p>Torchiano, M. (2020). <a href="https://doi.org/10.5281/zenodo.1480624">Effsize: Efficient effect size
+computation</a>.</p>
+<p>Whitcher, B., Schmid, V.J., and Thornton, A. (2011). <a href="http://www.jstatsoft.org/v44/i06/">Working with the
+DICOM and NIfTI data standards in R</a>.
+Journal of Statistical Software <em>44</em>, 1–28.</p>
+<p>Wickham, H. (2016). <a href="https://ggplot2.tidyverse.org">ggplot2: Elegant graphics for data
+analysis</a> (Springer-Verlag New York).</p>
+<p>Wickham, H. (2019). <a href="https://CRAN.R-project.org/package=stringr">Stringr: Simple, consistent wrappers for common
+string operations</a>.</p>
+<p>Wickham, H. (2020). <a href="https://CRAN.R-project.org/package=forcats">Forcats: Tools for working with categorical
+variables (factors)</a>.</p>
+<p>Wickham, H., and Bryan, J. (2020). <a href="https://CRAN.R-project.org/package=usethis">Usethis: Automate package and
+project setup</a>.</p>
+<p>Wickham, H., and Henry, L. (2020). <a href="https://CRAN.R-project.org/package=tidyr">Tidyr: Tidy messy
+data</a>.</p>
+<p>Wickham, H., and Hester, J. (2021). <a href="https://CRAN.R-project.org/package=readr">Readr: Read rectangular text
+data</a>.</p>
 <p>Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L.D., François,
 R., Grolemund, G., Hayes, A., Henry, L., Hester, J., et al. (2019).
-Welcome to the <span class="nocase">tidyverse</span>. Journal of Open
-Source Software <em>4</em>, 1686.</p>
-<p>Wickham, H., Hester, J., and Chang, W. (2020a). Devtools: Tools to make
-developing r packages easier.</p>
-<p>Wickham, H., François, R., Henry, L., and Müller, K. (2020b). Dplyr: A
-grammar of data manipulation.</p>
-<p>Wilke, C.O. (2019). Cowplot: Streamlined plot theme and plot annotations
-for ’ggplot2’.</p>
-<p>Xie, Y. (2016). Bookdown: Authoring books and technical documents with R
-markdown (Boca Raton, Florida: Chapman; Hall/CRC).</p>
-<p>Xie, Y. (2019). TinyTeX: A lightweight, cross-platform, and
-easy-to-maintain LaTeX distribution based on TeX live. TUGboat 30–32.</p>
-<p>Zeileis, A., and Croissant, Y. (2010). Extended model formulas in R:
-Multiple parts and multiple responses. Journal of Statistical Software
-<em>34</em>, 1–13.</p>
+<a href="https://doi.org/10.21105/joss.01686">Welcome to the <span class="nocase">tidyverse</span></a>.
+Journal of Open Source Software <em>4</em>, 1686.</p>
+<p>Wickham, H., Hester, J., and Chang, W. (2020a). <a href="https://CRAN.R-project.org/package=devtools">Devtools: Tools to make
+developing r packages
+easier</a>.</p>
+<p>Wickham, H., François, R., Henry, L., and Müller, K. (2020b). <a href="https://CRAN.R-project.org/package=dplyr">Dplyr: A
+grammar of data manipulation</a>.</p>
+<p>Wilke, C.O. (2019). <a href="https://CRAN.R-project.org/package=cowplot">Cowplot: Streamlined plot theme and plot
+annotations for ’ggplot2’</a>.</p>
+<p>Xie, Y. (2016). <a href="https://github.com/rstudio/bookdown">Bookdown: Authoring books and technical documents with
+R markdown</a> (Boca Raton, Florida:
+Chapman; Hall/CRC).</p>
+<p>Xie, Y. (2019). <a href="http://tug.org/TUGboat/Contents/contents40-1.html">TinyTeX: A lightweight, cross-platform, and
+easy-to-maintain LaTeX distribution based on TeX
+live</a>. TUGboat 30–32.</p>
+<p>Zeileis, A., and Croissant, Y. (2010). <a href="https://doi.org/10.18637/jss.v034.i01">Extended model formulas in R:
+Multiple parts and multiple
+responses</a>. Journal of
+Statistical Software <em>34</em>, 1–13.</p>
 </div>
 <div id="session-info" class="section level2" number="12.3">
 <h2><span class="header-section-number">12.3</span> Session Info</h2>
 <p>Lastly, we run session info, using the version from the devtools package.</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="credit.html#cb547-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="credit.html#cb549-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
 <pre><code>## ─ Session info ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 3.6.1 (2019-07-05)
@@ -630,7 +668,7 @@ Multiple parts and multiple responses. Journal of Statistical Software
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Europe/Berlin               
-##  date     2022-02-03                  
+##  date     2022-04-20                  
 ## 
 ## ─ Packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  !  package      * version     date       lib source                                 

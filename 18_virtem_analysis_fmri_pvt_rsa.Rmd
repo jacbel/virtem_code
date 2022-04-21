@@ -973,9 +973,9 @@ f4[[1]] <- f4[[1]] +
 # save and print
 fn <- here("figures", "f4")
 ggsave(paste0(fn, ".pdf"), plot=f4, units = "cm",
-         width = 17.4, height = 10, dpi = "retina", device = cairo_pdf)
+         width = 18, height = 10, dpi = "retina", device = cairo_pdf)
 ggsave(paste0(fn, ".png"), plot=f4, units = "cm",
-         width = 17.4, height = 10, dpi = "retina", device = "png")
+         width = 18, height = 10, dpi = "retina", device = "png")
 
 ```
 
@@ -2362,9 +2362,9 @@ f5 <-  f5a + f5b + f5c_guide +
 # save and print (height was 18 when incl. searchlights)
 fn <- here("figures", "f5")
 ggsave(paste0(fn, ".pdf"), plot=f5, units = "cm",
-         width = 17.4, height = 10, dpi = "retina", device = cairo_pdf)
+         width = 18, height = 10, dpi = "retina", device = cairo_pdf)
 ggsave(paste0(fn, ".png"), plot=f5, units = "cm",
-         width = 17.4, height = 10, dpi = "retina", device = "png")
+         width = 18, height = 10, dpi = "retina", device = "png")
 
 ```
   
@@ -4231,9 +4231,9 @@ theme(plot.tag = element_text(margin = margin(l =13)))
 # save and print
 fn <- here("figures", "f7")
 ggsave(paste0(fn, ".pdf"), plot=f7, units = "cm",
-         width = 17.4, height = 12, dpi = "retina", device = cairo_pdf)
+         width = 18, height = 12, dpi = "retina", device = cairo_pdf)
 ggsave(paste0(fn, ".png"), plot=f7, units = "cm",
-         width = 17.4, height = 12, dpi = "retina", device = "png")
+         width = 18, height = 12, dpi = "retina", device = "png")
 ```
   
 `r sprintf("![Figure 7. Overlapping representations of within- and across-sequence relations. A. Searchlight analysis results show a positive relationship between representational change and virtual temporal distances for event pairs from the same sequence in the bilateral anterior hippocampus. Statistical image is thresholded at puncorrected<0.01; voxels within black outline are significant after correction for multiple comparisons using small volume correction. B. In the peak cluster from the independent within-sequence searchlight analysis (A), representational change was negatively related to virtual temporal distances between events from different sequences. Circles show individual participant Z-values from summary statistics approach; boxplot shows median and upper/lower quartile along with whiskers extending to most extreme data point within 1.5 interquartile ranges above/below the upper/lower quartile; black circle with error bars corresponds to mean±S.E.M.; distribution shows probability density function of data points. C. Searchlight analysis results show negative relationship between representational change and temporal distances for different-sequence event pairs. Statistical image is thresholded at puncorrected <0.05. D. Within the anterior hippocampus, the effects for events from the same sequence and from two different sequences overlap. Visualization is based on statistical images thresholded at puncorrected <0.05 within small volume correction mask. E. Searchlight analysis results show a bilateral interaction effect in the anterior hippocampus that is defined by a differential relationship of virtual temporal distances and representational change for events from the same and different sequences. Statistical image is thresholded at puncorrected<0.01; voxels within black outline are significant after correction for multiple comparisons using small volume correction. A, C-E. Results are shown on the MNI template with voxels outside the field of view displayed in lighter shades of gray. See Supplemental Figure 9 for additional exploratory results. * p<0.05](%s)", here("figures", "f7.png"))`
@@ -4534,7 +4534,7 @@ f8e <- ggplot(fit_beh_bias, aes(x=srchlght_across_t, y=beta_rel_time_other_event
   ylab("behavioral bias") +
   annotate("text", x=Inf, y=Inf, hjust=1,vjust=1,
            size = 6/.pt, family = font2use,
-           label=sprintf("r=%.2f,\np=%.3f",
+           label=sprintf("r=%.2f\np=%.3f",
                          round(stats$estimate,2), round(stats$p.value, 3)))+
   theme_cowplot() +
   theme(text = element_text(size=10, family=font2use),
@@ -4600,7 +4600,7 @@ f8f <- ggplot(fit_beh_bias, aes(x=srchlght_t, y=beta_rel_time_other_events))+
   ylab("behavioral bias") +
   annotate("text", x=Inf, y=Inf, hjust=1,vjust=1,
            size = 6/.pt, family = font2use,
-           label=sprintf("r=%.2f,\np=%.3f",
+           label=sprintf("r=%.2f\np=%.3f",
                          round(stats$estimate,2), round(stats$p.value, 3))) +
   theme_cowplot() +
   theme(text = element_text(size=10, family=font2use),
@@ -4638,9 +4638,9 @@ f8 <- plot_spacer() + f8b + f8c + f8d + f8e + f8f +
 # save as png and pdf and print to screen
 fn <- here("figures", "f8")
 ggsave(paste0(fn, ".pdf"), plot=f8, units = "cm",
-         width = 17.4, height = 10, dpi = "retina", device = cairo_pdf)
+         width = 18, height = 10, dpi = "retina", device = cairo_pdf)
 ggsave(paste0(fn, ".png"), plot=f8, units = "cm",
-         width = 17.4, height = 10, dpi = "retina", device = "png")
+         width = 18, height = 10, dpi = "retina", device = "png")
 ```
   
 `r sprintf("![Figure 8. Structural knowledge biases construction of event times. A. The generalization bias quantifies the influence of structural knowledge on the construction of individual event times. For each event, the mean time of events at the same sequence position in the other sequences was calculated to test whether event times were biased towards the relative time of other events. B. The scatterplot illustrates the generalization bias for an example participant. Each circle corresponds to one event and the regression line highlights the relationship between the relative time of other events and the errors in constructed event times. The example participant was chosen to have a median-strength generalization bias. See Supplemental Figure 10 for the entire sample. Correlation coefficient is based on Pearson correlation. C. The relative time of events from other sequences predicted signed event time construction errors as measured in the timeline task. Positive values indicate that when other events took place late relative to a specific event, the time of that event was estimated to be later than when other events were relatively early. Circles show individual participant Z-values from participant-specific linear models (B); boxplot shows median and upper/lower quartile along with whiskers extending to most extreme data point within 1.5 interquartile ranges above/below the upper/lower quartile; black circle with error bars corresponds to mean±S.E.M.; distribution shows probability density function of data points. D. The generalization bias in event time construction through structural knowledge was replicated in an independent sample (n=46) based on Montijn et al.66. Data shown as in B. E. The behavioral generalization bias (regression coefficients from summary statistics approach) did not correlate significantly with the across-sequence generalization effect in the anterior hippocampus (searchlight peak voxel t-values). F. We observed a significant negative correlation between the same-sequence searchlight effect (peak voxel t-values) and the behavioral generalization bias (regression coefficients from summary statistics approach), suggesting that participants with strong hippocampal representations of the temporal relations between events from the same sequence were less biased by structural knowledge in their construction of event times. Statistics in E and F are based on Spearman correlation.](%s)", here("figures", "f8.png"))`

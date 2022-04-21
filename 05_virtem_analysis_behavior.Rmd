@@ -798,9 +798,9 @@ f2 <- f2a + f2b + f2c + f2d + f2e +
 # save as png and pdf and print to screen
 fn <- here("figures", "f2")
 ggsave(paste0(fn, ".pdf"), plot=f2, units = "cm",
-         width = 17.4, height = 16, dpi = "retina", device = cairo_pdf)
+         width = 18, height = 16, dpi = "retina", device = cairo_pdf)
 ggsave(paste0(fn, ".png"), plot=f2, units = "cm",
-         width = 17.4, height = 16, dpi = "retina", device = "png")
+         width = 18, height = 16, dpi = "retina", device = "png")
 ```
   
 `r sprintf("![Figure 2. Participants learn the temporal structure of the sequences relative to the virtual clock. A. Plot shows the percentage of correctly sorted event images in the sorting task. B. Constructed event times were assessed in the timeline task. Responses are shown separately for the five events (color coded according to true virtual time) of each sequence (rows). Colored circles with gray outline show true event times. C, D. Mean absolute errors in constructed times (in virtual hours) are shown (C) averaged across events and sequences and (D) averaged separately for the five event positions. E. Z-values for the effects of different time metrics from participant-specific multiple regression analyses and permutation tests show that virtual time explained constructed event times with event order and real time in the model as control predictors. A-E. Circles are individual participant data; boxplots show median and upper/lower quartile along with whiskers extending to most extreme data point within 1.5 interquartile ranges above/below the upper/lower quartile; black circle with error bars corresponds to mean±S.E.M.; distributions show probability density function of data points. ***p<0.001](%s)", here("figures", "f2.png"))`  
